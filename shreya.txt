@@ -1,0 +1,95 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20250702115109
+Username: ASCENDION\shreya.sg
+RunAs User: ASCENDION\shreya.sg
+Configuration Name: 
+Machine: ASCINLAP61365 (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 9188
+PSVersion: 5.1.26100.4061
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.4061
+BuildVersion: 10.0.26100.4061
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is shreya.txt
+PS C:\Users\shreya.sg> New-Item -Path . -Name QA-Training
+
+
+    Directory: C:\Users\shreya.sg
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        02-07-2025     11:51              0 QA-Training
+
+
+PS C:\Users\shreya.sg> New-Item -Path . -Name QA-Training -ItemType Directory
+New-Item : An item with the specified name C:\Users\shreya.sg\QA-Training already exists.
+At line:1 char:1
++ New-Item -Path . -Name QA-Training -ItemType Directory
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceExists: (C:\Users\shreya.sg\QA-Training:String) [New-Item], IOException
+    + FullyQualifiedErrorId : DirectoryExist,Microsoft.PowerShell.Commands.NewItemCommand
+New-Item : An item with the specified name C:\Users\shreya.sg\QA-Training already exists.
+At line:1 char:1
++ New-Item -Path . -Name QA-Training -ItemType Directory
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceExists: (C:\Users\shreya.sg\QA-Training:String) [New-Item], IOException
+    + FullyQualifiedErrorId : DirectoryExist,Microsoft.PowerShell.Commands.NewItemCommand
+
+PS C:\Users\shreya.sg> Remove-Item .\QA-Training
+PS C:\Users\shreya.sg> New-Item -Path . -Name QA-Training -ItemType Directory
+
+
+    Directory: C:\Users\shreya.sg
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        02-07-2025     11:52                QA-Training
+
+
+PS C:\Users\shreya.sg> Set-Location .\QA-Training\
+PS C:\Users\shreya.sg\QA-Training> git -c http.sslverify=false clone https://github.com/sureshnanjan/automation-072025.git
+
+PS C:\Users\shreya.sg\QA-Training> dir
+
+
+    Directory: C:\Users\shreya.sg\QA-Training
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        02-07-2025     11:53                automation-072025
+
+
+PS C:\Users\shreya.sg\QA-Training> Set-Location .\automation-072025\
+PS C:\Users\shreya.sg\QA-Training\automation-072025> git status
+
+PS C:\Users\shreya.sg\QA-Training\automation-072025> git checkout -b shreya-branch
+Switched to a new branch 'shreya-branch'
+PS C:\Users\shreya.sg\QA-Training\automation-072025> git status
+On branch shreya-branch
+nothing to commit, working tree clean
+PS C:\Users\shreya.sg\QA-Training\automation-072025> dir
+
+
+    Directory: C:\Users\shreya.sg\QA-Training\automation-072025
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        02-07-2025     11:53          35823 LICENSE
+-a----        02-07-2025     11:53             64 README.md
+
+
+PS C:\Users\shreya.sg\QA-Training\automation-072025> Stop-Transcript
+**********************
+Windows PowerShell transcript end
+End time: 20250702115625
+**********************
