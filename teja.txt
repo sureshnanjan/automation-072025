@@ -1,0 +1,130 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20250702103741
+Username: ASCENDION\teja.boreddy
+RunAs User: ASCENDION\teja.boreddy
+Configuration Name: 
+Machine: ASCINLAP61379 (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 2112
+PSVersion: 5.1.26100.1150
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.1150
+BuildVersion: 10.0.26100.1150
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is teja.txt
+PS C:\Users\teja.boreddy> New-Item -path C:\MyShuttle_Pjt -Name 'QA-Training' -ItemType Directory
+
+
+    Directory: C:\MyShuttle_Pjt
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        02-07-2025     10:41                QA-Training
+
+
+PS C:\Users\teja.boreddy> Set-Location C:\MyShuttle_Pjt\QA-Training
+PS C:\MyShuttle_Pjt\QA-Training> git --version
+git : The term 'git' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ git --version
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+git : The term 'git' is not recognized as the name of a
+cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that
+the path is correct and try again.
+At line:1 char:1
++ git --version
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [],
+    CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\MyShuttle_Pjt\QA-Training> Invoke-WebRequest -Uri https://github.com/git-for-windows/git/releases/download/v2.44.0.windows.1/Git-2.44.0-64-bit.exe -OutFile git-installer.exe
+PS C:\MyShuttle_Pjt\QA-Training> ./git-installer.exe /VERYSILENT /NORESTART
+PS C:\MyShuttle_Pjt\QA-Training> git --version
+git : The term 'git' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ git --version
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+git : The term 'git' is not recognized as the name of a
+cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that
+the path is correct and try again.
+At line:1 char:1
++ git --version
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [],
+    CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\MyShuttle_Pjt\QA-Training> git --version
+git : The term 'git' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ git --version
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+git : The term 'git' is not recognized as the name of a
+cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that
+the path is correct and try again.
+At line:1 char:1
++ git --version
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [],
+    CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\MyShuttle_Pjt\QA-Training> git --version
+git : The term 'git' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ git --version
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+git : The term 'git' is not recognized as the name of a
+cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that
+the path is correct and try again.
+At line:1 char:1
++ git --version
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [],
+    CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\MyShuttle_Pjt\QA-Training> Set-Location C:\MyShuttle_Pjt\QA-Training\QA-Training
+Set-Location : Cannot find path 'C:\MyShuttle_Pjt\QA-Training\QA-Training' because it does not exist.
+At line:1 char:1
++ Set-Location C:\MyShuttle_Pjt\QA-Training\QA-Training
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\MyShuttle_Pjt\QA-Training\QA-Training:String) [Set-Location], 
+ItemNotFoundException
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.SetLocationCommand
+Set-Location : Cannot find path
+'C:\MyShuttle_Pjt\QA-Training\QA-Training' because it does not
+exist.
+At line:1 char:1
++ Set-Location C:\MyShuttle_Pjt\QA-Training\QA-Training
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\MyShuttle_Pj
+   t\QA-Training\QA-Training:String) [Set-Location], ItemNotF
+  oundException
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShel
+   l.Commands.SetLocationCommand
+
+PS C:\MyShuttle_Pjt\QA-Training> Set-Location C:\MyShuttle_Pjt\QA-Training
