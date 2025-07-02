@@ -1,0 +1,113 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20250702105504
+Username: ASCENDION\vamsi.krishna
+RunAs User: ASCENDION\vamsi.krishna
+Configuration Name: 
+Machine: ASCINLAP61375 (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 7756
+PSVersion: 5.1.26100.4061
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.4061
+BuildVersion: 10.0.26100.4061
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is Vamsi.txt
+PS C:\Users\vamsi.krishna> New-Item -Path C:\Users\vamsi.krishna\OneDrive - ascendion\Desktop\ContosoAir -Name ‘QA-Training’ -ItemType Directory
+PS C:\Users\vamsi.krishna> TerminatingError(New-Item): "A positional parameter cannot be found that accepts argument '-'."
+New-Item : A positional parameter cannot be found that accepts argument '-'.
+At line:1 char:1
++ New-Item -Path C:\Users\vamsi.krishna\OneDrive - ascendion\Desktop\Co ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [New-Item], ParameterBindingException
+    + FullyQualifiedErrorId : PositionalParameterNotFound,Microsoft.PowerShell.Commands.NewItemCommand
+New-Item : A positional parameter cannot be found that accepts
+argument '-'.
+At line:1 char:1
++ New-Item -Path C:\Users\vamsi.krishna\OneDrive -
+ascendion\Desktop\Co ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [New-Item],
+    ParameterBindingException
+    + FullyQualifiedErrorId : PositionalParameterNotFound,Micr
+   osoft.PowerShell.Commands.NewItemCommand
+
+PS C:\Users\vamsi.krishna> New-Item -Path "C:\Users\vamsi.krishna\OneDrive - ascendion\Desktop\ContosoAir" -Name ‘QA-Training’ -ItemType Directory
+
+
+    Directory: C:\Users\vamsi.krishna\OneDrive -
+    ascendion\Desktop\ContosoAir
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        02-07-2025     10:56                QA-Training
+
+
+PS C:\Users\vamsi.krishna> Set-Location "C:\Users\vamsi.krishna\OneDrive - ascendion\Desktop\ContosoAir\QA-Training"
+PS C:\Users\vamsi.krishna\OneDrive - ascendion\Desktop\ContosoAir\QA-Training> Invoke-WebRequest -Uri https://github.com/git-for-windows/git/releases/download/v2.44.0.windows.1/Git-2.44.0-64-bit.exe -OutFile git-installer.exe
+PS C:\Users\vamsi.krishna\OneDrive - ascendion\Desktop\ContosoAir\QA-Training> .\git-installer.exe /VERYSILENT /NORESTART 
+PS C:\Users\vamsi.krishna\OneDrive - ascendion\Desktop\ContosoAir\QA-Training> git clone https://github.com/sureshnanjan/automation-072025.git
+git : The term 'git' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ git clone https://github.com/sureshnanjan/automation-072025.git
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+git : The term 'git' is not recognized as the name of a
+cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that
+the path is correct and try again.
+At line:1 char:1
++ git clone
+https://github.com/sureshnanjan/automation-072025.git
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [],
+    CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Users\vamsi.krishna\OneDrive - ascendion\Desktop\ContosoAir\QA-Training> git --version
+git : The term 'git' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ git --version
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+git : The term 'git' is not recognized as the name of a
+cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that
+the path is correct and try again.
+At line:1 char:1
++ git --version
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [],
+    CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Users\vamsi.krishna\OneDrive - ascendion\Desktop\ContosoAir\QA-Training> git -c http.sslVerify=false clone https://github.com/sureshnanjan/automation-072025.git
+git : The term 'git' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ git -c http.sslVerify=false clone https://github.com/sureshnanjan/aut ...
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+git : The term 'git' is not recognized as the name of a
+cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that
+the path is correct and try again.
+At line:1 char:1
++ git -c http.sslVerify=false clone
+https://github.com/sureshnanjan/aut ...
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [],
+    CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
