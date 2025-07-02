@@ -1,0 +1,51 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20250702115313
+Username: ASCENDION\sehwag.v
+RunAs User: ASCENDION\sehwag.v
+Configuration Name: 
+Machine: ASCINLAP61358 (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 29044
+PSVersion: 5.1.26100.4202
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.4202
+BuildVersion: 10.0.26100.4202
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is sehwag.txt
+PS C:\Users\sehwag.v> New-Item -Path C:\Users\sehwag.v\OneDrive-ascendion\Desktop\Cognixia-Training-QA -Name ‘QA-Training’ -ItemType Directory
+New-Item : An item with the specified name 
+C:\Users\sehwag.v\OneDrive-ascendion\Desktop\Cognixia-Training-QA\QA-Training already exists.
+At line:1 char:1
++ New-Item -Path C:\Users\sehwag.v\OneDrive-ascendion\Desktop\Cognixia- ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceExists: (C:\Users\sehwag...-QA\QA-Training:String) [New-Item], IOException
+    + FullyQualifiedErrorId : DirectoryExist,Microsoft.PowerShell.Commands.NewItemCommand
+New-Item : An item with the specified name C:\Users\sehwag.v\OneDrive-ascendion\Desktop\Cognixia-Training-QA\QA-Training already
+exists.
+At line:1 char:1
++ New-Item -Path C:\Users\sehwag.v\OneDrive-ascendion\Desktop\Cognixia- ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceExists: (C:\Users\sehwag...-QA\QA-Training:String) [New-Item], IOException
+    + FullyQualifiedErrorId : DirectoryExist,Microsoft.PowerShell.Commands.NewItemCommand
+
+PS C:\Users\sehwag.v> Set-Location C:\Users\sehwag.v\OneDrive-ascendion\Desktop\Cognixia-Training-QA\QA-Training
+PS C:\Users\sehwag.v\OneDrive-ascendion\Desktop\Cognixia-Training-QA\QA-Training> git --version
+git version 2.50.0.windows.2
+PS C:\Users\sehwag.v\OneDrive-ascendion\Desktop\Cognixia-Training-QA\QA-Training> git clone https://github.com/sureshnanjan/automation-072025.git
+fatal: destination path 'automation-072025' already exists and is not an empty directory.
+PS C:\Users\sehwag.v\OneDrive-ascendion\Desktop\Cognixia-Training-QA\QA-Training> Set-Location automation-072025
+PS C:\Users\sehwag.v\OneDrive-ascendion\Desktop\Cognixia-Training-QA\QA-Training\automation-072025> git status
+On branch sehwag-branch
+nothing to commit, working tree clean
+PS C:\Users\sehwag.v\OneDrive-ascendion\Desktop\Cognixia-Training-QA\QA-Training\automation-072025> git checkout -b sehwag-branch
+fatal: a branch named 'sehwag-branch' already exists
+PS C:\Users\sehwag.v\OneDrive-ascendion\Desktop\Cognixia-Training-QA\QA-Training\automation-072025> Stop-Transcript
+**********************
+Windows PowerShell transcript end
+End time: 20250702115632
+**********************
