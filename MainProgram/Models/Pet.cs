@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    internal class Pet
+    public class Pet
     {
+        public int MyProperty { get; set; }
     }
 }
