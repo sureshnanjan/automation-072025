@@ -32,5 +32,20 @@ namespace Models
         {
             return $"{this.Name}-{this.MyProperty}";
         }
+
+        public void DoSomeThing() {
+            // Signature
+        }
+
+        public int addTwoNumbers(int first, int second) {
+            return first + second;
+        }
+
+        public double addTwoNumbers(double first, double second)
+        {
+            return first + second;
+        }
+
+        
     }
 }
