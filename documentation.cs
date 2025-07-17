@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿// -----------------------------------------------------------------------------
 // Copyright © 2025 Gayathri
 // All rights reserved.
@@ -18,6 +19,9 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
+=======
+﻿// Namespace declaration
+>>>>>>> c8b846021937c37a471ad8136f48ad3257eed170
 namespace PetStoreClientApp
 {
     /// <summary>
@@ -54,6 +58,10 @@ namespace PetStoreClientApp
         /// </summary>
         public PetStoreClient()
         {
+<<<<<<< HEAD
+=======
+            // Set the base URL of the Swagger Petstore API
+>>>>>>> c8b846021937c37a471ad8136f48ad3257eed170
             _client = new RestClient("https://petstore.swagger.io/v2");
         }
 
@@ -65,16 +73,33 @@ namespace PetStoreClientApp
         /// <exception cref="Exception">Thrown when API call fails</exception>
         public List<Pet> GetPetsByStatus(string status)
         {
+<<<<<<< HEAD
             var request = new RestRequest("pet/findByStatus", Method.Get);
             request.AddParameter("status", status);
 
             var response = _client.Execute(request);
 
+=======
+            // Create a GET request to the findByStatus endpoint
+            var request = new RestRequest("pet/findByStatus", Method.Get);
+
+            // Add 'status' query parameter to the request
+            request.AddParameter("status", status);
+
+            // Execute the request and capture the response
+            var response = _client.Execute(request);
+
+            // Check if the request was successful; if not, throw an error
+>>>>>>> c8b846021937c37a471ad8136f48ad3257eed170
             if (!response.IsSuccessful)
             {
                 throw new Exception($"API Error: {response.StatusCode} - {response.Content}");
             }
 
+<<<<<<< HEAD
+=======
+            // Deserialize the JSON response into a list of Pet objects
+>>>>>>> c8b846021937c37a471ad8136f48ad3257eed170
             return JsonConvert.DeserializeObject<List<Pet>>(response.Content);
         }
     }
@@ -84,13 +109,30 @@ namespace PetStoreClientApp
     /// </summary>
     class Program
     {
+<<<<<<< HEAD
+=======
+        /// <summary>
+        /// Main method that runs the client and displays available pets.
+        /// </summary>
+        /// <param name="args">Command-line arguments (not used)</param>
+>>>>>>> c8b846021937c37a471ad8136f48ad3257eed170
         static void Main(string[] args)
         {
             try
             {
+<<<<<<< HEAD
                 var client = new PetStoreClient();
                 var pets = client.GetPetsByStatus("available");
 
+=======
+                // Create a new instance of the PetStoreClient
+                var client = new PetStoreClient();
+
+                // Fetch available pets from the API
+                var pets = client.GetPetsByStatus("available");
+
+                // Display the retrieved pets
+>>>>>>> c8b846021937c37a471ad8136f48ad3257eed170
                 Console.WriteLine("Available Pets from Swagger Petstore:");
                 foreach (var pet in pets)
                 {
@@ -99,7 +141,12 @@ namespace PetStoreClientApp
             }
             catch (Exception ex)
             {
+<<<<<<< HEAD
                 Console.WriteLine($"Error: {ex.Message}");
+=======
+                // Log any errors encountered during execution
+                Console.WriteLine($" Error: {ex.Message}");
+>>>>>>> c8b846021937c37a471ad8136f48ad3257eed170
             }
         }
     }
