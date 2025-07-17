@@ -1,3 +1,4 @@
+
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,8 @@ namespace Models
         /// <summary>
         /// A detailed message from the server explaining the result of the API call.
         /// </summary>
+        /// 
         public string Message { get; set; }
     }
+
 }
