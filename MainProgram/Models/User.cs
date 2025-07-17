@@ -50,5 +50,13 @@
         /// Example values: 0 (inactive), 1 (active), etc.
         /// </summary>
         public int? UserStatus { get; set; }
+
+        private int v;
+
+        public User(int v)
+        {
+            this.v = v;
+        }
+
     }
 }
