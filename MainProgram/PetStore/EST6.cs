@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MainProgram
+namespace PetStore
 {
-    internal class User
+    public class EST6: IAddableToCart,IBarkable
     {
     }
 }

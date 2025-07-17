@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models
+namespace PetStore
 {
-    public class Pet
+    internal interface IBarkable
     {
-        public int MyProperty { get; set; }
     }
 }
