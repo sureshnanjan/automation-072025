@@ -66,10 +66,27 @@ public class Program
         {
             Console.WriteLine(item);
         }
-        Console.WriteLine("After Sorting");
+        Console.WriteLine("After Sorting: ASCENDING");
         Array.Sort(myNumbers);
         Array.Sort(myNamee);
         Array.Sort(myUsers);
+        foreach (var item in myNumbers)
+        {
+            Console.WriteLine(item);
+        }
+        foreach (var item in myNamee)
+        {
+            Console.WriteLine(item);
+        }
+        foreach (var item in myUsers)
+        {
+            Console.WriteLine(item);
+        }
+        //using compareto to return the value by comparing it 
+        Console.WriteLine("After Sorting: DESCENDING");
+        Array.Sort(myNumbers, (a, b) => b.CompareTo(a));
+        Array.Sort(myNamee, (a, b) => b.CompareTo(a));
+        Array.Sort(myUsers, (a, b) => b.Name.CompareTo(a.Name));
         foreach (var item in myNumbers)
         {
             Console.WriteLine(item);
