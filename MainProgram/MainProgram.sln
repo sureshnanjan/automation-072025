@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetStore", "PetStore\PetSto
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automator", "Automator\Automator.csproj", "{EC3DAA21-64F8-47AC-873D-24EEAFE64E2C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarySearcher", "BinarySearcher\BinarySearcher.csproj", "{DE2AD96F-1FF7-4F79-B020-A416E7CF7DA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarySearcherTests", "BinarySearcherTests\BinarySearcherTests.csproj", "{ABF3391F-9BBA-4405-AB62-331D6FFD608D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{EC3DAA21-64F8-47AC-873D-24EEAFE64E2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC3DAA21-64F8-47AC-873D-24EEAFE64E2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC3DAA21-64F8-47AC-873D-24EEAFE64E2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE2AD96F-1FF7-4F79-B020-A416E7CF7DA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE2AD96F-1FF7-4F79-B020-A416E7CF7DA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE2AD96F-1FF7-4F79-B020-A416E7CF7DA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE2AD96F-1FF7-4F79-B020-A416E7CF7DA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABF3391F-9BBA-4405-AB62-331D6FFD608D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABF3391F-9BBA-4405-AB62-331D6FFD608D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABF3391F-9BBA-4405-AB62-331D6FFD608D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABF3391F-9BBA-4405-AB62-331D6FFD608D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
