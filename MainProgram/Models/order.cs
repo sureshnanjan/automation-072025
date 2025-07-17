@@ -15,9 +15,6 @@ namespace Models
 
         public DateTime? ShipDate { get; set; }
 
-        /// <summary>
-        /// Order status (e.g., placed, approved, delivered).
-        /// </summary>
         public string Status { get; set; }
 
         public bool? Complete { get; set; }
