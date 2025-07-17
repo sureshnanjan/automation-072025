@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\MainProgram",
+    "\\MainProgram\\MainProgram",
+    "\\MainProgram\\Models",
+    "\\MainProgram\\PetstoreDesktop",
+    "\\MainProgram\\PetstoreDesktop\\Properties"
   ],
-  "SelectedNode": "\\LICENSE",
+  "SelectedNode": "\\MainProgram\\PetstoreDesktop\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
