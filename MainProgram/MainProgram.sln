@@ -3,10 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.12.35514.174
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainProgram", "MainProgram\MainProgram.csproj", "{12B5F5B2-892A-46CD-95F1-3DCECCDF00A3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{A2976DD7-77F1-4E6E-A155-37A431B7C763}"
 EndProject
+<<<<<<< HEAD
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetStoreApp", "PetStoreApp\PetStoreApp.csproj", "{B6F5D194-6472-45E3-8634-F9ED5432FC74}"
+EndProject
+>>>>>>> 7ebd1fa (commiting the main branch)
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetStore", "PetStore\PetStore.csproj", "{B63A95BC-BE19-4B0D-96B2-EE79604112CD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automator", "Automator\Automator.csproj", "{EC3DAA21-64F8-47AC-873D-24EEAFE64E2C}"
@@ -21,14 +24,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{12B5F5B2-892A-46CD-95F1-3DCECCDF00A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{12B5F5B2-892A-46CD-95F1-3DCECCDF00A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{12B5F5B2-892A-46CD-95F1-3DCECCDF00A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{12B5F5B2-892A-46CD-95F1-3DCECCDF00A3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A2976DD7-77F1-4E6E-A155-37A431B7C763}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A2976DD7-77F1-4E6E-A155-37A431B7C763}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A2976DD7-77F1-4E6E-A155-37A431B7C763}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A2976DD7-77F1-4E6E-A155-37A431B7C763}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+		{D83E2DA0-AEA9-4B3D-9731-B2B651138A35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D83E2DA0-AEA9-4B3D-9731-B2B651138A35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D83E2DA0-AEA9-4B3D-9731-B2B651138A35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D83E2DA0-AEA9-4B3D-9731-B2B651138A35}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> 7ebd1fa (commiting the main branch)
 		{B63A95BC-BE19-4B0D-96B2-EE79604112CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B63A95BC-BE19-4B0D-96B2-EE79604112CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B63A95BC-BE19-4B0D-96B2-EE79604112CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -37,6 +44,7 @@ Global
 		{EC3DAA21-64F8-47AC-873D-24EEAFE64E2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC3DAA21-64F8-47AC-873D-24EEAFE64E2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC3DAA21-64F8-47AC-873D-24EEAFE64E2C}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
 		{DE2AD96F-1FF7-4F79-B020-A416E7CF7DA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DE2AD96F-1FF7-4F79-B020-A416E7CF7DA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE2AD96F-1FF7-4F79-B020-A416E7CF7DA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,8 +53,19 @@ Global
 		{ABF3391F-9BBA-4405-AB62-331D6FFD608D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABF3391F-9BBA-4405-AB62-331D6FFD608D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABF3391F-9BBA-4405-AB62-331D6FFD608D}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+=======
+		{B6F5D194-6472-45E3-8634-F9ED5432FC74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6F5D194-6472-45E3-8634-F9ED5432FC74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6F5D194-6472-45E3-8634-F9ED5432FC74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6F5D194-6472-45E3-8634-F9ED5432FC74}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> 33ca87d (Added pet object logic and all the models for the petstore and with the documentation)
+>>>>>>> 7ebd1fa (commiting the main branch)
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1FD60997-12C8-4579-AB91-DAC6F6A6F8C7}
 	EndGlobalSection
 EndGlobal

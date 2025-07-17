@@ -1,36 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Models
+﻿namespace Models
 {
+    /// <summary>
+    /// Represents the category to which a pet belongs, such as "Dogs" or "Cats".
+    /// </summary>
     public class Category
     {
-        Pet[] pets;
+        /// <summary>
+        /// Unique identifier for the category.
+        /// </summary>
+        public long? Id { get; set; }
 
+        /// <summary>
+        /// Name of the category (e.g., "Dog", "Cat").
+        /// </summary>
         public string Name { get; set; }
-        private int myVar;
-        private float myFloatVar;
 
-        public Category(string name, int myVar)
+        /// <summary>
+        /// Returns a string that represents the current Category object.
+        /// </summary>
+        /// <returns>A string with category name and ID.</returns>
+        public override string ToString()
         {
-            Name = name;
-            this.myVar = myVar;
-        }
-
-        public int MyProperty
-        {
-            get { myVar = 10;  return myVar; }
-            set { myVar = value; }
-        }
-
-        public float MyFloatVar { get => myFloatVar; set => myFloatVar = value; }
-
-        public override string? ToString()
-        {
-            return $"{this.Name}-{this.MyProperty}";
+            return $"Category(Name: {Name}, Id: {Id})";
         }
 
         public void DoSomeThing() {
