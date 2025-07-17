@@ -1,4 +1,23 @@
-﻿// Namespace declaration
+﻿// -----------------------------------------------------------------------------
+// Copyright © 2025 Gayathri
+// All rights reserved.
+//
+// This code is a part of PetStoreClientApp.
+// Created as a learning project during early career development.
+//
+// You are free to use, modify, and share this code for educational and 
+// non-commercial purposes. For commercial use or redistribution, please 
+// contact the author.
+//
+// Author: Gayathri
+// Email : gayathri.thalapathi@ascendion.com
+// -----------------------------------------------------------------------------
+
+using RestSharp;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+
 namespace PetStoreClientApp
 {
     /// <summary>
@@ -35,7 +54,6 @@ namespace PetStoreClientApp
         /// </summary>
         public PetStoreClient()
         {
-            // Set the base URL of the Swagger Petstore API
             _client = new RestClient("https://petstore.swagger.io/v2");
         }
 
@@ -47,22 +65,16 @@ namespace PetStoreClientApp
         /// <exception cref="Exception">Thrown when API call fails</exception>
         public List<Pet> GetPetsByStatus(string status)
         {
-            // Create a GET request to the findByStatus endpoint
             var request = new RestRequest("pet/findByStatus", Method.Get);
-
-            // Add 'status' query parameter to the request
             request.AddParameter("status", status);
 
-            // Execute the request and capture the response
             var response = _client.Execute(request);
 
-            // Check if the request was successful; if not, throw an error
             if (!response.IsSuccessful)
             {
                 throw new Exception($"API Error: {response.StatusCode} - {response.Content}");
             }
 
-            // Deserialize the JSON response into a list of Pet objects
             return JsonConvert.DeserializeObject<List<Pet>>(response.Content);
         }
     }
@@ -72,21 +84,13 @@ namespace PetStoreClientApp
     /// </summary>
     class Program
     {
-        /// <summary>
-        /// Main method that runs the client and displays available pets.
-        /// </summary>
-        /// <param name="args">Command-line arguments (not used)</param>
         static void Main(string[] args)
         {
             try
             {
-                // Create a new instance of the PetStoreClient
                 var client = new PetStoreClient();
-
-                // Fetch available pets from the API
                 var pets = client.GetPetsByStatus("available");
 
-                // Display the retrieved pets
                 Console.WriteLine("Available Pets from Swagger Petstore:");
                 foreach (var pet in pets)
                 {
@@ -95,8 +99,7 @@ namespace PetStoreClientApp
             }
             catch (Exception ex)
             {
-                // Log any errors encountered during execution
-                Console.WriteLine($" Error: {ex.Message}");
+                Console.WriteLine($"Error: {ex.Message}");
             }
         }
     }
