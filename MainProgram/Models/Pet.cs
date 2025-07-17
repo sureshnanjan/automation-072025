@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Models
 {
+<<<<<<< HEAD
     /// <summary>
     /// Represents a Pet in the pet store system.
     /// This model is based on the Swagger Petstore API.
@@ -38,5 +39,10 @@ namespace Models
         /// Pet status in the store (e.g., "available", "pending", "sold").
         /// </summary>
         public string Status { get; set; }
+=======
+    public class Pet
+    {
+        public int MyProperty { get; set; }
+>>>>>>> 08d7146 (Method Parameters Demo)
     }
 }
