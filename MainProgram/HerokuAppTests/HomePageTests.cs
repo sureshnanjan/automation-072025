@@ -23,15 +23,21 @@ namespace HerokuAppTests
         [TestMethod]
         public void SubTitleisOK()
         {
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 4c83d42b69d81bf5f64327afb32b0617c28e862f
         }
 
         [TestMethod]
         public void ExamplesCountis44()
         {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4c83d42b69d81bf5f64327afb32b0617c28e862f
         }
     }
 }

@@ -12,7 +12,14 @@ public class Program
 
         //designToInterface();
 
+<<<<<<< HEAD
         comparableDemo();
+=======
+        // comparableDemo();
+
+        DemoUser dminstance = new DemoUser(10, "AUser");
+        DemoUser copyofOne = (DemoUser)dminstance.Clone(); // Shallow copy
+>>>>>>> 4c83d42b69d81bf5f64327afb32b0617c28e862f
 
     }
 
