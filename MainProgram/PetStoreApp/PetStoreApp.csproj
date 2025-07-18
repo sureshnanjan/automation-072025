@@ -8,11 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-<<<<<<< HEAD
+
     <ProjectReference Include="..\Models\PetStore-Models.csproj" />
-=======
     <ProjectReference Include="..\Models\Models.csproj" />
->>>>>>> db712769416cc2d9d7834615b8e6106eb4900d2b
   </ItemGroup>
 
 </Project>
