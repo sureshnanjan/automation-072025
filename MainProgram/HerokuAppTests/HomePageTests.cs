@@ -1,0 +1,85 @@
+﻿using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium;
+
+namespace HerokuAppTests
+{
+    // This class contains automated UI tests for the homepage of the-internet.herokuapp.com
+    [TestClass]
+    public sealed class HomePageTests
+    {
+        [TestMethod]
+        public void TitleisOK()
+        {
+            // This test verifies that the main heading (h1) on the homepage is "Welcome to the-internet"
+
+            // Arrange - expected value
+            var expectedTitle = "Welcome to the-internet";
+
+            // Launch Chrome browser and navigate to the site
+            ChromeDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
+
+            // Locate the main heading element (h1)
+            IWebElement pageheading = driver.FindElement(By.TagName("h1"));
+
+            // Act - get the actual heading text
+            var actualTitle = pageheading.Text;
+
+            // Assert - check if the actual heading matches the expected heading
+            Assert.AreEqual(expectedTitle, actualTitle);
+
+            // Cleanup - close the browser
+            driver.Quit();
+        }
+
+        [TestMethod]
+        public void SubTitleisOK()
+        {
+            // This test verifies that the subtitle (h2) on the homepage is "Available Examples"
+
+            // Arrange - expected subtitle
+            var expectedSubTitle = "Available Examples";
+
+            // Launch Chrome browser and navigate to the site
+            ChromeDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
+
+            // Locate the subtitle element in a "h2"
+            IWebElement pageheading = driver.FindElement(By.TagName("h2"));
+
+            // Act - get the actual subtitle text
+            var actualSubTitle = pageheading.Text;
+
+            // Assert - check if the actual subtitle matches the expected subtitle
+            Assert.AreEqual(expectedSubTitle, actualSubTitle);
+
+            // Cleanup - close the browser
+            driver.Quit();
+        }
+
+        [TestMethod]
+        public void ExamplesCountis44()
+        {
+            // This test verifies that the number of example links on the homepage is 44
+
+            // Arrange - expected number of list items (each example is in a <li>)
+            int expectedCount = 44;
+
+            // Launch Chrome browser and navigate to the site
+            ChromeDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
+
+            // Link is given in a list tag, so I am using tagname as "li"
+            var listItems = driver.FindElements(By.TagName("li"));
+
+            // Act - count how many list items are found
+            int actualCount = listItems.Count;
+
+            // Assert - check if the actual count matches the expected count
+            Assert.AreEqual(expectedCount, actualCount);
+
+            // Cleanup - close the browser
+            driver.Quit();
+        }
+    }
+}
