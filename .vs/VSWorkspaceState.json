@@ -2,11 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\MainProgram",
-    "\\MainProgram\\MainProgram",
-    "\\MainProgram\\Models",
+    "\\MainProgram\\BinarySearcherTests",
+    "\\MainProgram\\HerokuAppTests",
     "\\MainProgram\\PetstoreDesktop",
-    "\\MainProgram\\PetstoreDesktop\\Properties"
+    "\\MainProgram\\PetstoreDesktop\\Properties",
+    "\\Week 3 assignments"
   ],
-  "SelectedNode": "\\MainProgram\\PetstoreDesktop\\Program.cs",
+  "SelectedNode": "\\MainProgram\\MainProgram.sln",
   "PreviewInSolutionExplorer": false
 }
