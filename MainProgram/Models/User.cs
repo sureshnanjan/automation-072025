@@ -5,14 +5,14 @@
     /// </summary>
     public class User
     {
-<<<<<<< HEAD
+
         private int v;
 
         public User(int v)
         {
             this.v = v;
         }
-=======
+
         /// <summary>
         /// Gets or sets the unique identifier of the user.
         /// This is optional and may be null when creating a new user.
@@ -58,6 +58,6 @@
         /// Example values: 0 (inactive), 1 (active), etc.
         /// </summary>
         public int? UserStatus { get; set; }
->>>>>>> 33ca87d (Added pet object logic and all the models for the petstore and with the documentation)
+
     }
 }

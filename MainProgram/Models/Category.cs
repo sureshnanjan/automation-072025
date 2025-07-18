@@ -24,6 +24,7 @@
             return $"Category(Name: {Name}, Id: {Id})";
         }
 
+
         public void DoSomeThing() {
             // Signature
         }
@@ -37,6 +38,5 @@
             return first + second;
         }
 
-        
     }
 }
