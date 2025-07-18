@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetstoreDesktop", "PetstoreDesktop\PetstoreDesktop.csproj", "{D83E2DA0-AEA9-4B3D-9731-B2B651138A35}"
 EndProject
-<<<<<<< HEAD
-=======
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetStore", "PetStore\PetStore.csproj", "{B63A95BC-BE19-4B0D-96B2-EE79604112CD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automator", "Automator\Automator.csproj", "{EC3DAA21-64F8-47AC-873D-24EEAFE64E2C}"
@@ -19,7 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarySearcher", "BinarySea
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarySearcherTests", "BinarySearcherTests\BinarySearcherTests.csproj", "{ABF3391F-9BBA-4405-AB62-331D6FFD608D}"
 EndProject
->>>>>>> origin/main
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HerokuAppTests", "HerokuAppTests\HerokuAppTests.csproj", "{818C0B98-37F9-AD2B-7F8D-9A1E7808A287}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,8 +37,6 @@ Global
 		{D83E2DA0-AEA9-4B3D-9731-B2B651138A35}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D83E2DA0-AEA9-4B3D-9731-B2B651138A35}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D83E2DA0-AEA9-4B3D-9731-B2B651138A35}.Release|Any CPU.Build.0 = Release|Any CPU
-<<<<<<< HEAD
-=======
 		{B63A95BC-BE19-4B0D-96B2-EE79604112CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B63A95BC-BE19-4B0D-96B2-EE79604112CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B63A95BC-BE19-4B0D-96B2-EE79604112CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -56,9 +53,15 @@ Global
 		{ABF3391F-9BBA-4405-AB62-331D6FFD608D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABF3391F-9BBA-4405-AB62-331D6FFD608D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABF3391F-9BBA-4405-AB62-331D6FFD608D}.Release|Any CPU.Build.0 = Release|Any CPU
->>>>>>> origin/main
+		{818C0B98-37F9-AD2B-7F8D-9A1E7808A287}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{818C0B98-37F9-AD2B-7F8D-9A1E7808A287}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{818C0B98-37F9-AD2B-7F8D-9A1E7808A287}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{818C0B98-37F9-AD2B-7F8D-9A1E7808A287}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7FCE2720-32CA-4DF5-82D3-F9FF03A43DB7}
 	EndGlobalSection
 EndGlobal
