@@ -9,7 +9,7 @@ namespace HerokuAppTests
         public void TitleisOK()
         {
             // Arrange
-            var expectedTitle = "Welcome to the-internet1";
+            var expectedTitle = "Welcome to the-internet";
             // Launch the browser and navigae to 
             ChromeDriver driver = new ChromeDriver();
             driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
@@ -23,11 +23,39 @@ namespace HerokuAppTests
         [TestMethod]
         public void SubTitleisOK()
         {
+            //Arrange
+            var expectedSubTitle = "Available Examples";
+            ChromeDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
+            //Find the subtitle with head tag element <h2>
+            IWebElement subtitleElement = driver.FindElement(By.TagName("h2"));
+
+            //Act
+            var actualSubTitle = subtitleElement.Text;
+
+            //Assert
+            Assert.AreEqual(expectedSubTitle, actualSubTitle);
+
         }
 
         [TestMethod]
         public void ExamplesCountis44()
         {
+            // Arrange
+            var expectedCount = 44;
+            ChromeDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
+
+            // Act
+            // All the example links are inside <ul> with many <li> elements
+            var exampleItems = driver.FindElements(By.CssSelector("ul li"));
+            var actualCount = exampleItems.Count;
+
+            // Assert
+            Assert.AreEqual(expectedCount, actualCount);
+
+            // Cleanup
+            //driver.Quit();
         }
     }
 }

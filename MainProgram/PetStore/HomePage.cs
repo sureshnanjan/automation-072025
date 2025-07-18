@@ -2,8 +2,8 @@
 {
     public class HomePage
     {
-        private PetStoreLogo logo;
-        private PetStoreMenu menu;
+        //private PetStoreLogo logo;
+        //private PetStoreMenu menu;
         //private PetStoreSearch search;
         Pets allPets;
         
@@ -11,14 +11,14 @@
         public void doLogin(string uname, string password) { }
         public HomePage()
         {
-           EST1 = new EST1();
-           EST2 = new EST2();
-           myfish = new AngelFish();
+            //EST2 = new EST1();
+           // EST2 = new EST2();
+           //myfish = new AngelFish();
 
             EST1[] myfirstfishes = new EST1[10];
             EST2[] mysecondfishes = new EST2[10];
             AngelFish[] myangelfishes = { new EST2(), new EST1() };
         }
-
+ 
     }
 }

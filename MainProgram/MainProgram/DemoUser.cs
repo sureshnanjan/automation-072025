@@ -19,8 +19,7 @@ namespace MainProgram
 
         public int CompareTo(DemoUser? other)
         {
-            return other.Name.CompareTo(this.Nam
-                e);
+            return other.Name.CompareTo(this.Name);
         }
 
         public object Clone()
