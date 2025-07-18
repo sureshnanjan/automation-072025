@@ -50,44 +50,6 @@ internal class Program
 ///
 
 Category.cs
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-
-//namespace Models
-//{
-//    public class Category
-//    {
-//        Pet[] pets;
-
-//        public string Name { get; set; }
-//        private int myVar;
-//        private float myFloatVar;
-
-//        public Category(string name, int myVar)
-//        {
-//            Name = name;
-//            this.myVar = myVar;
-//        }
-
-//        public int MyProperty
-//        {
-//            get { myVar = 10;  return myVar; }
-//            set { myVar = value; }
-//        }
-
-//        public float MyFloatVar { get => myFloatVar; set => myFloatVar = value; }
-
-//        public override string? ToString()
-//        {
-//            return $"{this.Name}-{this.MyProperty}";
-//        }
-//    }
-//}
-
-
 /// documentation starts here ///
 
 using System;
@@ -173,5 +135,79 @@ namespace Models
 
     }
 }
+
+DemoUser.cs
+///documentation begins here
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MainProgram
+{
+    /// <summary>
+    /// Represents a demo user with a name and a value.
+    /// Implements <see cref="IComparable{DemoUser}"/> for sorting and <see cref="ICloneable"/> for cloning functionality.
+    /// </summary>
+    public class DemoUser : IComparable<DemoUser>, ICloneable
+    {
+        /// <summary>
+        /// Gets or sets the numeric value associated with the user.
+        /// </summary>
+        public int Value { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the user.
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Returns a string representation of the user in the format "User-&lt;Value&gt;:&lt;Name&gt;".
+        /// </summary>
+        /// <returns>A formatted string containing the user’s value and name.</returns>
+        public override string? ToString()
+        {
+            return $"User-{this.Value}:{this.Name}";
+        }
+
+        /// <summary>
+        /// Compares this instance with another <see cref="DemoUser"/> object by name in descending order.
+        /// </summary>
+        /// <param name="other">The other <see cref="DemoUser"/> instance to compare with.</param>
+        /// <returns>
+        /// An integer that indicates the relative order of the objects being compared.
+        /// A negative number if this instance follows <paramref name="other"/>; 
+        /// zero if they are equal; 
+        /// a positive number if this instance precedes <paramref name="other"/>.
+        /// </returns>
+        public int CompareTo(DemoUser? other)
+        {
+            return other.Name.CompareTo(this.Name);
+        }
+
+        /// <summary>
+        /// Throws <see cref="NotImplementedException"/>. Intended to create a copy of the current object.
+        /// </summary>
+        /// <returns>A clone of the current object.</returns>
+        /// <exception cref="NotImplementedException">Thrown because the method is not implemented.</exception>
+        public object Clone()
+        {
+            return new DemoUser(this.Value, this.Name);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DemoUser"/> class with the specified value and name.
+        /// </summary>
+        /// <param name="val">The numeric value associated with the user.</param>
+        /// <param name="name">The name of the user.</param>
+        public DemoUser(int val, string name)
+        {
+            Value = val;
+            Name = name;
+        }
+    }
+}
+
 
 
