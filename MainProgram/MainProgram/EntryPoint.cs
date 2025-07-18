@@ -8,11 +8,14 @@ public class Program
         //Code1507();
         //callingConventions();
         // int myOriginalValue; 
-        //DemoRefParam(ref myOriginalValue);
+        //DemoRefParam(ref myOriginalValue);gti 
 
         //designToInterface();
 
-        comparableDemo();
+        // comparableDemo();
+
+        DemoUser dminstance = new DemoUser(10, "AUser");
+        DemoUser copyofOne = (DemoUser)dminstance.Clone(); // Shallow copy
 
     }
 
