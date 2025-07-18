@@ -3,10 +3,15 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BinarySearchTests
 {
+    /// <summary>
+    /// Contains unit tests that verify exception handling behavior of <see cref="Array.BinarySearch(Array, object)"/>.
+    /// </summary>
     [TestClass]
     public class BinarySearchExceptionTests
     {
-        // TC_EX_01: Null array should throw ArgumentNullException
+        /// <summary>
+        /// TC_EX_01: Verifies that passing a null array throws an <see cref="ArgumentNullException"/>.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void BinarySearch_NullArray_ThrowsArgumentNullException()
@@ -17,7 +22,9 @@ namespace BinarySearchTests
             Array.BinarySearch(array, value);
         }
 
-        // TC_EX_02: Multidimensional array should throw RankException
+        /// <summary>
+        /// TC_EX_02: Verifies that passing a multidimensional array throws a <see cref="RankException"/>.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(RankException))]
         public void BinarySearch_MultidimensionalArray_ThrowsRankException()
@@ -25,12 +32,14 @@ namespace BinarySearchTests
             int[,] array = { { 1, 2 }, { 3, 4 } }; // 2D array
             int value = 3;
 
-            Array.BinarySearch(array, value); // Cast to Array automatically
+            Array.BinarySearch(array, value);
         }
 
-        // TC_EX_03: Incompatible types should throw ArgumentException
+        /// <summary>
+        /// TC_EX_03: Verifies that searching an array with an incompatible type throws an <see cref="InvalidOperationException"/>.
+        /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(InvalidOperationException))] // FIXED
+        [ExpectedException(typeof(InvalidOperationException))]
         public void BinarySearch_IncompatibleType_ThrowsInvalidOperationException()
         {
             string[] array = { "a", "b", "c" };
@@ -39,8 +48,9 @@ namespace BinarySearchTests
             Array.BinarySearch(array, value);
         }
 
-
-        // TC_EX_04: Value does not implement IComparable — should throw InvalidOperationException
+        /// <summary>
+        /// TC_EX_04: Verifies that using objects that do not implement <see cref="IComparable"/> throws an <see cref="InvalidOperationException"/>.
+        /// </summary>
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
         public void BinarySearch_NonComparableObject_ThrowsInvalidOperationException()
@@ -51,7 +61,9 @@ namespace BinarySearchTests
             Array.BinarySearch(array, value);
         }
 
-        // TC_EX_05: Unsorted array – no exception, but may return incorrect result
+        /// <summary>
+        /// TC_EX_05: Verifies that using an unsorted array does not throw an exception, but returns unpredictable results.
+        /// </summary>
         [TestMethod]
         public void BinarySearch_UnsortedArray_ResultMayBeUnpredictable()
         {
@@ -66,9 +78,14 @@ namespace BinarySearchTests
             Assert.Inconclusive("BinarySearch behavior on unsorted arrays is unpredictable.");
         }
 
-        // Helper class for TC_EX_04
+        /// <summary>
+        /// Helper class that does not implement <see cref="IComparable"/>, used to test invalid BinarySearch inputs.
+        /// </summary>
         private class NonComparable
         {
+            /// <summary>
+            /// Gets a sample ID for demonstration purposes.
+            /// </summary>
             public int Id => 1;
         }
     }
