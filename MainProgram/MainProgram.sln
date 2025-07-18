@@ -17,11 +17,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarySearcher", "BinarySea
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarySearcherTests", "BinarySearcherTests\BinarySearcherTests.csproj", "{ABF3391F-9BBA-4405-AB62-331D6FFD608D}"
 EndProject
+<<<<<<< HEAD
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
 	ProjectSection(SolutionItems) = preProject
 		documentation.cs = documentation.cs
 	EndProjectSection
 EndProject
+=======
+>>>>>>> 186d03cec2df535e30a7e2f1c3c60f8e6120b33c
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,7 +63,10 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+<<<<<<< HEAD
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5D68F1D1-4B7B-46EB-845A-57C25FAEF70B}
 	EndGlobalSection
+=======
+>>>>>>> 186d03cec2df535e30a7e2f1c3c60f8e6120b33c
 EndGlobal

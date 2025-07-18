@@ -1,6 +1,9 @@
 ﻿using BinarySearcher;
+<<<<<<< HEAD
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+=======
+>>>>>>> 186d03cec2df535e30a7e2f1c3c60f8e6120b33c
 namespace BinarySearcherTests
 {
     [TestClass]
@@ -9,6 +12,7 @@ namespace BinarySearcherTests
         [TestMethod]
         public void ElementFoundTest()
         {
+<<<<<<< HEAD
             int[] inputArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
             int elementToFind = 5;
             int expectedIndex = 4;
@@ -16,12 +20,24 @@ namespace BinarySearcherTests
             BinarySearcherImpl SUT = new BinarySearcherImpl();
             int actualresult = SUT.doBinaryDearch(inputArray, elementToFind);
 
+=======
+            // Arrange Act Assert
+            int[] inputArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            int elementToFind = 5;
+            int expectedIndex = 4; // Zero-based index of the element
+            BinarySearcherImpl SUT = new BinarySearcherImpl(); ;
+            // System Under Test, replace with actual implementation
+            // Act
+            int actualresult = SUT.doBinaryDearch(inputArray,elementToFind);
+            // Assert
+>>>>>>> 186d03cec2df535e30a7e2f1c3c60f8e6120b33c
             Assert.AreEqual(expectedIndex, actualresult, "The element was not found at the expected index.");
         }
 
         [TestMethod]
         public void ElementNotFoundButLessthanTest()
         {
+<<<<<<< HEAD
             int[] inputArray = { 1, 2, 3, 4, 6, 7, 8, 9, 10 };
             int elementToFind = 5;
             int expectedIndex = ~4;
@@ -29,12 +45,24 @@ namespace BinarySearcherTests
             BinarySearcherImpl SUT = new BinarySearcherImpl();
             int actualresult = SUT.doBinaryDearch(inputArray, elementToFind);
 
+=======
+            // Arrange Act Assert
+            int[] inputArray = { 1, 2, 3, 4, 6, 7, 8, 9, 10 };
+            int elementToFind = 5;
+            int expectedIndex = ~4; // Zero-based index of the element
+            BinarySearcherImpl SUT = new BinarySearcherImpl(); ;
+            // System Under Test, replace with actual implementation
+            // Act
+            int actualresult = SUT.doBinaryDearch(inputArray, elementToFind);
+            // Assert
+>>>>>>> 186d03cec2df535e30a7e2f1c3c60f8e6120b33c
             Assert.AreEqual(expectedIndex, actualresult, "The element was not found at the expected index.");
         }
 
         [TestMethod]
         public void ElementNotFoundButGreaterthanAllTest()
         {
+<<<<<<< HEAD
             int[] inputArray = { 1, 2, 3, 4, 6, 7, 8, 9, 10 };
             int elementToFind = 15;
             int expectedIndex = ~inputArray.Length;
@@ -89,3 +117,18 @@ namespace BinarySearcherTests
         }
     }
 }
+=======
+            // Arrange Act Assert
+            int[] inputArray = { 1, 2, 3, 4, 6, 7, 8, 9, 10 };
+            int elementToFind = 15;
+            int expectedIndex = ~inputArray.Length; // Zero-based index of the element
+            BinarySearcherImpl SUT = new BinarySearcherImpl(); ;
+            // System Under Test, replace with actual implementation
+            // Act
+            int actualresult = SUT.doBinaryDearch(inputArray, elementToFind);
+            // Assert
+            Assert.AreEqual(expectedIndex, actualresult, "The element was not found at the expected index.");
+        }
+    }
+}
+>>>>>>> 186d03cec2df535e30a7e2f1c3c60f8e6120b33c
