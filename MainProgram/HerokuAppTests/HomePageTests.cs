@@ -23,21 +23,52 @@ namespace HerokuAppTests
         [TestMethod]
         public void SubTitleisOK()
         {
-<<<<<<< HEAD
+             // This test verifies that the subtitle (h2) on the homepage is "Available Examples"
 
+            // Arrange - expected subtitle
+            var expectedSubTitle = "Available Examples";
 
+            // Launch Chrome browser and navigate to the site
+            ChromeDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
 
-=======
->>>>>>> 4c83d42b69d81bf5f64327afb32b0617c28e862f
+            // Locate the subtitle element in a "h2"
+            IWebElement pageheading = driver.FindElement(By.TagName("h2"));
+
+            // Act - get the actual subtitle text
+            var actualSubTitle = pageheading.Text;
+
+            // Assert - check if the actual subtitle matches the expected subtitle
+            Assert.AreEqual(expectedSubTitle, actualSubTitle);
+
+            // Cleanup - close the browser
+            driver.Quit();
+
         }
 
         [TestMethod]
         public void ExamplesCountis44()
         {
-<<<<<<< HEAD
+             // This test verifies that the number of example links on the homepage is 44
 
-=======
->>>>>>> 4c83d42b69d81bf5f64327afb32b0617c28e862f
+            // Arrange - expected number of list items (each example is in a <li>)
+            int expectedCount = 44;
+
+            // Launch Chrome browser and navigate to the site
+            ChromeDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
+
+            // Link is given in a list tag, so I am using tagname as "li"
+            var listItems = driver.FindElements(By.TagName("li"));
+
+            // Act - count how many list items are found
+            int actualCount = listItems.Count;
+
+            // Assert - check if the actual count matches the expected count
+            Assert.AreEqual(expectedCount, actualCount);
+
+            // Cleanup - close the browser
+            driver.Quit();
         }
     }
 }
