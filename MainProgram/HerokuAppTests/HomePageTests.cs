@@ -1,11 +1,23 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+
 namespace HerokuAppTests
 {
+    /// <summary>
+    /// Contains automated UI tests for verifying key elements of the HerokuApp homepage.
+    /// Follows the Arrange-Act-Assert pattern for each test case.
+    /// </summary>
     [TestClass]
     public sealed class HomePageTests
     {
+        /// <summary>
+        /// Test to verify that the main title of the homepage is correct.
+        /// 
+        /// Arrange: Set the expected title and open the browser to the HerokuApp homepage.
+        /// Act: Retrieve the text of the main heading (h1).
+        /// Assert: Check that the actual heading matches the expected title.
+        /// </summary>
         [TestMethod]
         public void TitleisOK()
         {
@@ -21,6 +33,14 @@ namespace HerokuAppTests
             // Assert
             Assert.AreEqual(expectedTitle, actualTitle);
         }
+
+        /// <summary>
+        /// Test to verify that the subtitle under the main title is correct.
+        /// 
+        /// Arrange: Set the expected subtitle and open the HerokuApp homepage.
+        /// Act: Locate the subtitle element (h2) and retrieve its text.
+        /// Assert: Ensure the actual text matches the expected subtitle.
+        /// </summary>
         [TestMethod]
         public void SubTitleisOK()
         {
@@ -37,7 +57,13 @@ namespace HerokuAppTests
             Assert.AreEqual(expectedSubtitle, actualSubtitle);
         }
 
-
+        /// <summary>
+        /// Test to verify that the homepage displays exactly 44 example links.
+        /// 
+        /// Arrange: Open the HerokuApp homepage.
+        /// Act: Wait for and count all <li> elements under the <ul> list of examples.
+        /// Assert: Confirm that the count equals 44.
+        /// </summary>
         [TestMethod]
         public void ExamplesCountis44()
         {

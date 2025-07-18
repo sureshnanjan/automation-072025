@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace PetStore
 {
+    /// <summary>
+    /// Represents a contract for animals or entities capable of barking.
+    /// </summary>
     internal interface IBarkable
     {
     }
