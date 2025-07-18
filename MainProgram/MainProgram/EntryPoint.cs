@@ -8,7 +8,11 @@ public class Program
         //Code1507();
         //callingConventions();
         // int myOriginalValue; 
+<<<<<<< HEAD
         //DemoRefParam(ref myOriginalValue);gti 
+=======
+        //DemoRefParam(ref myOriginalValue);
+>>>>>>> 18c84e212202e2c7edd4701945f0a27b44c470b6
 
         //designToInterface();
 
