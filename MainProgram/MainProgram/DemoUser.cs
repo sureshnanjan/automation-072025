@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MainProgram
 {
-    public class DemoUser: IComparable<DemoUser>
+    public class DemoUser: IComparable<DemoUser>, ICloneable
     {
         public int Value { get; set; }
         public string Name { get; set; }
@@ -19,8 +19,13 @@ namespace MainProgram
 
         public int CompareTo(DemoUser? other)
         {
-            return this.Name.CompareTo(other.Name
-                );
+            return other.Name.CompareTo(this.Nam
+                e);
+        }
+
+        public object Clone()
+        {
+            throw new NotImplementedException();
         }
 
         public DemoUser(int val, string name)
