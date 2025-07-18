@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Ascendion\\Desktop\\gitpractice\\automation_practice\\automation-072025\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Ascendion\\Desktop\\gitpractice\\automation_practice\\automation-072025\\MainProgram\\HerokuAppTests\\HomePageTests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MainProgram\\HerokuAppTests\\HomePageTests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Ascendion\\Desktop\\gitpractice\\automation_practice\\automation-072025\\MainProgram\\BinarySearcherTests\\ExceptionTestingBinarySearchSG.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:MainProgram\\BinarySearcherTests\\ExceptionTestingBinarySearchSG.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Ascendion\\Desktop\\gitpractice\\automation_practice\\automation-072025\\Week 3 assignments\\Herokuapphometestcases.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Week 3 assignments\\Herokuapphometestcases.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Ascendion\\Desktop\\gitpractice\\automation_practice\\automation-072025\\Week 3 assignments\\BinarySearchTestCase.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Week 3 assignments\\BinarySearchTestCase.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,6 +35,45 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "HomePageTests.cs",
+              "DocumentMoniker": "C:\\Users\\Ascendion\\Desktop\\gitpractice\\automation_practice\\automation-072025\\MainProgram\\HerokuAppTests\\HomePageTests.cs",
+              "RelativeDocumentMoniker": "MainProgram\\HerokuAppTests\\HomePageTests.cs",
+              "ToolTip": "C:\\Users\\Ascendion\\Desktop\\gitpractice\\automation_practice\\automation-072025\\MainProgram\\HerokuAppTests\\HomePageTests.cs",
+              "RelativeToolTip": "MainProgram\\HerokuAppTests\\HomePageTests.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-18T10:58:50.265Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Herokuapphometestcases.cs",
+              "DocumentMoniker": "C:\\Users\\Ascendion\\Desktop\\gitpractice\\automation_practice\\automation-072025\\Week 3 assignments\\Herokuapphometestcases.cs",
+              "RelativeDocumentMoniker": "Week 3 assignments\\Herokuapphometestcases.cs",
+              "ToolTip": "C:\\Users\\Ascendion\\Desktop\\gitpractice\\automation_practice\\automation-072025\\Week 3 assignments\\Herokuapphometestcases.cs",
+              "RelativeToolTip": "Week 3 assignments\\Herokuapphometestcases.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAmwD0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-18T10:55:16.46Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BinarySearchTestCase.txt",
+              "DocumentMoniker": "C:\\Users\\Ascendion\\Desktop\\gitpractice\\automation_practice\\automation-072025\\Week 3 assignments\\BinarySearchTestCase.txt",
+              "RelativeDocumentMoniker": "Week 3 assignments\\BinarySearchTestCase.txt",
+              "ToolTip": "C:\\Users\\Ascendion\\Desktop\\gitpractice\\automation_practice\\automation-072025\\Week 3 assignments\\BinarySearchTestCase.txt",
+              "RelativeToolTip": "Week 3 assignments\\BinarySearchTestCase.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-07-18T10:49:57.463Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "ExceptionTestingBinarySearchSG.cs",
               "DocumentMoniker": "C:\\Users\\Ascendion\\Desktop\\gitpractice\\automation_practice\\automation-072025\\MainProgram\\BinarySearcherTests\\ExceptionTestingBinarySearchSG.cs",
               "RelativeDocumentMoniker": "MainProgram\\BinarySearcherTests\\ExceptionTestingBinarySearchSG.cs",

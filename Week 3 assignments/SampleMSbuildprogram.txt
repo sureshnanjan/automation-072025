@@ -1,0 +1,81 @@
+DOCUMENTATION COMMENTS : 
+MathLibrary.cs
+using System;
+namespace MyLibrary
+{
+    /// <summary>
+    /// Provides basic arithmetic operations.
+    /// </summary>
+    public class Calculator
+    {
+        /// <summary>
+        /// Adds two integers and returns the result.
+        /// </summary>
+        /// <param name="a">First integer to add.</param>
+        /// <param name="b">Second integer to add.</param>
+        /// <returns>The sum of the two integers.</returns>
+        public int Add(int a, int b)
+        {
+            return a + b;
+        }
+    }
+}
+
+MainProgram.cs:
+
+using System;
+using MyLibrary;
+namespace CalculatorApp
+{
+    /// <summary>
+    /// Entry point of the Calculator application.
+    /// </summary>
+    class Program
+    {
+        /// <summary>
+        /// Main method to execute the calculator.
+        /// </summary>
+        /// <param name="args">Command-line arguments.</param>
+        static void Main(string[] args)
+        {
+            var calc = new Calculator();
+            Console.WriteLine($"Addition: {calc.Add(10, 5)}");
+        }
+    }
+}
+
+Calculator.csproj :
+
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003"> 
+
+  <!-- PropertyGroup defines build-related settings -->
+  <PropertyGroup>
+    <!-- The type of output: Exe means a console application -->
+    <OutputType>Exe</OutputType>
+
+    <!-- The .NET Framework version to target -->
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+
+    <!-- The root namespace for the project -->
+    <RootNamespace>CalculatorApp</RootNamespace>
+
+    <!-- The name of the output assembly (exe file) -->
+    <AssemblyName>CalculatorApp</AssemblyName>
+
+    <!-- This enables generation of XML documentation from code comments -->
+    <DocumentationFile>bin\CalculatorApp.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <!-- ItemGroup defines files to be compiled -->
+  <ItemGroup>
+    <!-- MathLibrary.cs contains the Calculator class -->
+    <Compile Include="MathLibrary.cs" />
+
+    <!-- MainProgram.cs contains the Main method -->
+    <Compile Include="MainProgram.cs" />
+  </ItemGroup>
+
+  <!-- Imports the default build rules for C# projects -->
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
+</Project>
