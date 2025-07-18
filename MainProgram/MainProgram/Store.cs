@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace MainProgram
 {
+    /// <summary>
+    /// Represents a store in the system.
+    /// </summary>
     internal class Store
     {
     }
 }
+
