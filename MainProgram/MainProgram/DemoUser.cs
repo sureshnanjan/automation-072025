@@ -24,7 +24,7 @@ namespace MainProgram
 
         public object Clone()
         {
-            throw new NotImplementedException();
+            return new DemoUser(this.Value, this.Name);
         }
 
         public DemoUser(int val, string name)

@@ -17,4 +17,4 @@
     <ProjectReference Include="..\BinarySearcher\BinarySearcher.csproj" />
   </ItemGroup>
 
-</Project>
+</Project> 
