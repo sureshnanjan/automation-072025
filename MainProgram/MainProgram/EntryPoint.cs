@@ -14,8 +14,14 @@ public class Program
 
         // comparableDemo();
 
-        DemoUser dminstance = new DemoUser(10, "AUser");
-        DemoUser copyofOne = (DemoUser)dminstance.Clone(); // Shallow copy
+        //DemoUser dminstance = new DemoUser(10, "AUser");
+        //DemoUser copyofOne = (DemoUser)dminstance.Clone(); // Shallow copy
+
+        GenericCalculator<int> intcal = new GenericCalculator<int>(10,20);
+        GenericCalculator<float> floatcal = new GenericCalculator<float>(10.5f, 20.5f);
+        GenericCalculator<DemoUser> demUsercal = new GenericCalculator<DemoUser>(new DemoUser(10, "AUser"), new DemoUser(20, "BUser"));
+        List<DemoUser> myUsers = new List<DemoUser>();
+        List<int> users = new List<int>();
 
     }
 
