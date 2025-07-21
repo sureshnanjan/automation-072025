@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using MainProgram;
 using Models;
 using Automator;
@@ -139,6 +140,13 @@ public class Program
 
     private static void Code1507()
     {
+=======
+﻿using Models;
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+>>>>>>> adda301 (Coding structure explanation)
         // Home Page
         Category[] categories = new Category[]
         {
@@ -146,7 +154,11 @@ public class Program
             new Category("Cats", 11),
             new Category ("Birds",12)
         };
+<<<<<<< HEAD
         Category reptile = new Category("Reptiles", 100);
+=======
+        Category reptile = new Category ("Reptiles", 100 );
+>>>>>>> adda301 (Coding structure explanation)
         reptile.Name = "Changed Reptiles";
         Console.WriteLine(reptile.Name);
         Console.WriteLine(reptile.MyProperty);
@@ -155,6 +167,7 @@ public class Program
         {
             Console.WriteLine(item);
         }
+<<<<<<< HEAD
         reptile.addTwoNumbers(100, 200);
         reptile.addTwoNumbers(123.456, 67.980);
         reptile.DoSomeThing();
@@ -163,5 +176,8 @@ public class Program
         Console.WriteLine(mynumber);
         float myFloat = 10.5f; // Float literal
         bool isTrue = true; // Boolean literal
+=======
+        
+>>>>>>> adda301 (Coding structure explanation)
     }
 }

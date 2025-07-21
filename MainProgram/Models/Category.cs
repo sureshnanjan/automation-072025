@@ -32,6 +32,7 @@ namespace Models
         {
             return $"{this.Name}-{this.MyProperty}";
         }
+<<<<<<< HEAD
 
         public void DoSomeThing() {
             // Signature
@@ -47,5 +48,7 @@ namespace Models
         }
 
         
+=======
+>>>>>>> adda301 (Coding structure explanation)
     }
 }
