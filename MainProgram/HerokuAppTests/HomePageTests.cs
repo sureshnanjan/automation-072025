@@ -7,6 +7,13 @@ namespace HerokuAppTests
     [TestClass]
     public sealed class HomePageTests
     {
+        [TestInitialize]
+
+        public void Init()
+        {
+
+        }
+
         [TestMethod]
         public void TitleisOK()
         {
@@ -70,7 +77,9 @@ namespace HerokuAppTests
             driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
 
             // Link is given in a list tag, so I am using tagname as "li"
-            var listItems = driver.FindElements(By.TagName("li"));
+            var listItems = driver.FindElements
+                
+                    (By.TagName("li"));
 
             // Act - count how many list items are found
             int actualCount = listItems.Count;
@@ -79,6 +88,49 @@ namespace HerokuAppTests
             Assert.AreEqual(expectedCount, actualCount);
 
             // Cleanup - close the browser
+            driver.Quit();
+        }
+
+        [TestMethod]
+        public void TenthExampleisOkUsingID()
+        {
+            // Arrange
+            var expectedText = "Drag and Drop";
+
+            ChromeDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
+
+            // Act
+            var content = driver.FindElement(By.Id("content"));  // Find parent by ID
+            var links = content.FindElements(By.TagName("a"));   // Get all <a> tags inside
+            var actualText = links[9].Text;  // 10th link (index 9)
+
+            // Assert
+            Assert.AreEqual(expectedText, actualText);
+
+            // Cleanup
+            driver.Quit();
+        }
+
+
+        [TestMethod]
+
+        public void TenthExampleIsOkUsingXPATH()
+        {
+            var expectedText = "Drag and Drop";
+
+            // Arrange
+            ChromeDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
+
+            // Act
+            // Use XPath to get the 10th <a> tag inside the <ul> list
+            var actualText = driver.FindElement(By.XPath("(//ul/li/a)[10]")).Text;
+
+            // Assert
+            Assert.AreEqual(expectedText, actualText);
+
+            // Cleanup
             driver.Quit();
         }
     }
