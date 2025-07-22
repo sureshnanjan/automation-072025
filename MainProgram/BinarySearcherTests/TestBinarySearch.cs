@@ -26,6 +26,7 @@ namespace BinarySearcherTests
             // Act
             int actualIndex = searcher.doBinaryDearch(inputArray, target);
 
+
             // Assert
             Assert.AreEqual(expectedIndex, actualIndex, "Element was not found at the expected index.");
         }

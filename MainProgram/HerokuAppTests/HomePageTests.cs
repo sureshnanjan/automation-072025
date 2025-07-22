@@ -52,5 +52,41 @@ namespace HerokuAppTests
             // Assert
             Assert.AreEqual(expectedCount, actualCount);
         }
+        [TestMethod]
+        public void TenthExampleisOK()
+        {
+            // Arrange
+            var expectedText = "Drag and Drop";
+            // Launch the browser and navigae to
+            ChromeDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
+            IWebElement pageheading = driver.FindElement(By.Id("content"));
+            // 
+            // Act
+            var actualText = pageheading.FindElements(By.TagName("li"))[9].Text;
+            // Assert
+            Assert.AreEqual(expectedText, actualText);
+        }
+
+
+        [TestMethod]
+        public void TenthExampleisOK_UsingXPath()
+        {
+            // Arrange
+            var expectedText = "Drag and Drop";
+
+            // Launch the browser and navigate to the page
+            ChromeDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
+
+            // Act: Find the 10th <li> element using XPath
+            IWebElement tenthElement = driver.FindElement(By.XPath("//*[@id=\"content\"]/ul/li[10]/a")); // XPath is 1-based index
+            var actualText = tenthElement.Text;
+
+            // Assert
+            Assert.AreEqual(expectedText, actualText);
+
+        }
+
     }
 }
