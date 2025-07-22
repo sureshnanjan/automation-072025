@@ -31,8 +31,7 @@ namespace MainProgram
         {
             throw new NotImplementedException();
 =======
-            return this.Name.CompareTo(other.Name
-                );
+            return this.Name.CompareTo(other.Name);
 >>>>>>> 36b0f0fc745403c37246e152e1024826ba098ee4
         }
 
