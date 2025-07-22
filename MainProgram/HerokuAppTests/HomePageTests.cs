@@ -10,7 +10,7 @@ namespace HerokuAppTests
         {
             // Arrange
             var expectedTitle = "Welcome to the-internet";
-            // Launch the browser and navigae to 
+            // Launch the browser and navigate to 
             ChromeDriver driver = new ChromeDriver();
             driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
             IWebElement pageheading = driver.FindElement(By.TagName("h1"));
