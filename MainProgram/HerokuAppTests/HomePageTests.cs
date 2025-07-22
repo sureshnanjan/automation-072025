@@ -85,6 +85,28 @@ namespace HerokuAppTests
             // Cleanup
             driver.Quit();
         }
+        
+        [TestMethod]
+        public void TenthItemIsDragAndDrop()
+        {
+            // Arrange
+            var driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
+
+            // Optional: wait until the list items are loaded
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            wait.Until(d => d.FindElements(By.CssSelector("ul li")).Count >= 10);
+
+            // Act
+            IList<IWebElement> items = driver.FindElements(By.CssSelector("ul li"));
+            string tenthItemText = items[9].Text; // Index 9 = 10th element (0-based index)
+
+            // Assert
+            Assert.AreEqual("Drag and Drop", tenthItemText);
+
+            // Cleanup
+            driver.Quit();
+        }
 
     }
 }
