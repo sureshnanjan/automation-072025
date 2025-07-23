@@ -14,7 +14,7 @@ namespace BinarySearcherTests
             BinarySearcherImpl SUT = new BinarySearcherImpl(); ;
             // System Under Test, replace with actual implementation
             // Act
-            int actualresult = SUT.doBinaryDearch(inputArray,elementToFind);
+            int actualresult = SUT.doBinarySearch(inputArray,elementToFind);
             // Assert
             Assert.AreEqual(expectedIndex, actualresult, "The element was not found at the expected index.");
         }
@@ -29,7 +29,7 @@ namespace BinarySearcherTests
             BinarySearcherImpl SUT = new BinarySearcherImpl(); ;
             // System Under Test, replace with actual implementation
             // Act
-            int actualresult = SUT.doBinaryDearch(inputArray, elementToFind);
+            int actualresult = SUT.doBinarySearch(inputArray, elementToFind);
             // Assert
             Assert.AreEqual(expectedIndex, actualresult, "The element was not found at the expected index.");
         }
@@ -44,7 +44,7 @@ namespace BinarySearcherTests
             BinarySearcherImpl SUT = new BinarySearcherImpl(); ;
             // System Under Test, replace with actual implementation
             // Act
-            int actualresult = SUT.doBinaryDearch(inputArray, elementToFind);
+            int actualresult = SUT.doBinarySearch(inputArray, elementToFind);
             // Assert
             Assert.AreEqual(expectedIndex, actualresult, "The element was not found at the expected index.");
         }

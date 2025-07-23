@@ -53,7 +53,7 @@ namespace Models
         /// </summary>
         public override string? ToString()
         {
-            return $"{this.Name}-{this.MyProperty}";
+            return $"{Name}-{MyProperty}";
         }
 
         /// <summary>
