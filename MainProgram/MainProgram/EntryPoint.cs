@@ -2,6 +2,7 @@
 using Models;
 using Automator;
 
+
 /// <summary>
 /// Main entry point of the application demonstrating OOP principles, interfaces, and utility methods.
 /// </summary>
