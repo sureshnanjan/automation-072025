@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models
+namespace Automator
 {
-    public class Pet
+    public interface INavigate
     {
-        public int MyProperty { get; set; }
+        void GotoURL(string url);
     }
 }

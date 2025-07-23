@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models
+namespace Automator
 {
-    public class Pet
+    internal interface IClose
     {
-        public int MyProperty { get; set; }
+        void Close();
     }
 }

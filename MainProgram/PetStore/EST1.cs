@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models
+namespace PetStore
 {
-    public class Pet
+    public class EST1: AngelFish,IAddableToCart,IFloatable
     {
-        public int MyProperty { get; set; }
+        
     }
 }
