@@ -15,7 +15,7 @@ namespace BinarySearcherTests
             BinarySearcherImpl SUT = new BinarySearcherImpl();
 
             // Act
-            int actualResult = SUT.doBinaryDearch(inputArray, elementToFind);
+            int actualResult = SUT.doBinarySearch(inputArray, elementToFind);
 
             // Assert
             Assert.AreEqual(expectedIndex, actualResult, "Should return ~0 for empty array.");
@@ -32,7 +32,7 @@ namespace BinarySearcherTests
             BinarySearcherImpl SUT = new BinarySearcherImpl();
 
             // Act
-            int actualResult = SUT.doBinaryDearch(inputArray, elementToFind);
+            int actualResult = SUT.doBinarySearch(inputArray, elementToFind);
 
             // Assert
             Assert.AreEqual(expectedIndex, actualResult, "Should return 0 for found in single-element array.");
@@ -49,7 +49,7 @@ namespace BinarySearcherTests
             BinarySearcherImpl SUT = new BinarySearcherImpl();
 
             // Act
-            int actualResult = SUT.doBinaryDearch(inputArray, elementToFind);
+            int actualResult = SUT.doBinarySearch(inputArray, elementToFind);
 
             // Assert
             Assert.AreEqual(expectedIndex, actualResult, "Should return ~0 for not found in single-element array.");
@@ -65,7 +65,7 @@ namespace BinarySearcherTests
             BinarySearcherImpl SUT = new BinarySearcherImpl();
 
             // Act
-            int actualResult = SUT.doBinaryDearch(inputArray, elementToFind);
+            int actualResult = SUT.doBinarySearch(inputArray, elementToFind);
 
             // Assert
             Assert.IsTrue(actualResult >= 0 && actualResult < inputArray.Length, "Element should be found among duplicates.");
@@ -82,7 +82,7 @@ namespace BinarySearcherTests
             BinarySearcherImpl SUT = new BinarySearcherImpl();
 
             // Act
-            int actualResult = SUT.doBinaryDearch(inputArray, elementToFind);
+            int actualResult = SUT.doBinarySearch(inputArray, elementToFind);
 
             // Assert
             Assert.AreEqual(expectedIndex, actualResult, "Should return index where element would be inserted.");
@@ -99,7 +99,7 @@ namespace BinarySearcherTests
             BinarySearcherImpl SUT = new BinarySearcherImpl();
 
             // Act
-            int actualResult = SUT.doBinaryDearch(inputArray, elementToFind);
+            int actualResult = SUT.doBinarySearch(inputArray, elementToFind);
 
             // Assert
             Assert.AreEqual(expectedIndex, actualResult, "Should correctly handle negative numbers.");
