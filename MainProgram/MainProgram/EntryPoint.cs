@@ -10,7 +10,7 @@ public class Program
     public delegate int AMethodWith2IntsReturnInt(int a, int b);
     private static void Main(string[] args)
     {
-        Array myarray = new Array();
+        
         //Code1507();
         //callingConventions();
         // int myOriginalValue; 
