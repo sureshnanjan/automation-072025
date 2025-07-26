@@ -5,7 +5,7 @@
 * Description  : Demonstrates basic file operations using the System.IO namespace.
 *                Implements 5 methods of the File class (WriteAllText, ReadAllText,
 *                AppendAllText, Copy, GetAttributes) with proper documentation.
-* Copyright    : © 2025 Your Name. All rights reserved.
+* Copyright    : © 2025 AscendionQA. All rights reserved.
 ************************************************************************************/
 
 using System;
