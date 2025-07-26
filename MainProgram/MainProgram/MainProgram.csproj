@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Automator\Automator.csproj" />
+    <ProjectReference Include="..\BinarySearcherTests\BinarySearcherTests.csproj" />
     <ProjectReference Include="..\Models\Models.csproj" />
   </ItemGroup>
 
