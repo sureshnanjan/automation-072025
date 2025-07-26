@@ -1,6 +1,6 @@
 ﻿/***********************************************************************************
 * File Name    : FileOperationsDemo.cs
-* Author       : Your Name
+* Author       : SHREYA S G
 * Created Date : 26-Jul-2025
 * Description  : Demonstrates basic file operations using the System.IO namespace.
 *                Implements 5 methods of the File class (WriteAllText, ReadAllText,
