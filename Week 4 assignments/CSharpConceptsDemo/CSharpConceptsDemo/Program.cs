@@ -1,5 +1,5 @@
 ﻿/************************************************************************************
-*  © 2025 Your Name or Company Name. All rights reserved.
+*  © 2025 AscendionQA. All rights reserved.
 *  
 *  File: Program.cs
 *  Description: This program demonstrates key C# concepts:
@@ -9,7 +9,7 @@
 *               - LINQ: Querying collections
 *               - Enumerators: Iterating through collections
 *  
-*  Author: Your Name
+*  Author: Shreya S G
 *  Created On: 26-Jul-2025
 ************************************************************************************/
 
