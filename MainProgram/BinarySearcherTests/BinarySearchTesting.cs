@@ -4,6 +4,7 @@ using System;
 namespace TestingBinarySearchTypes
 {
     [TestClass]
+    //using BinarySearch(Array, Int32, Int32, Object, IComparer)
     public sealed class TestingBinarySearchwithComparer
     {
       [TestMethod]
@@ -59,6 +60,7 @@ namespace TestingBinarySearchTypes
             Assert.AreEqual(-1, index); // Not found in empty array
         }
     }
+    //BinarySearch(Array, Object, IComparer)
     [TestClass]
     public class BinarySearch_ArrayObjectIComparer_Tests
     {
@@ -82,7 +84,7 @@ namespace TestingBinarySearchTypes
             Assert.AreEqual(1, result);
         }
     }
-
+    //BinarySearch(Array, Int32, Int32, Object)
     [TestClass]
     public class BinarySearch_ArrayRangeObject_Tests
     {
@@ -104,7 +106,7 @@ namespace TestingBinarySearchTypes
             Assert.AreEqual(3, result);
         }
     }
-
+    //BinarySearch<T>(T[], T)
     [TestClass]
     public class BinarySearch_Generic_TArray_Tests
     {
@@ -126,7 +128,7 @@ namespace TestingBinarySearchTypes
             Assert.AreEqual(1, result);
         }
     }
-
+    //BinarySearch<T>(T[], T, IComparer<T>)
     [TestClass]
     public class BinarySearch_GenericWithComparer_Tests
     {
@@ -149,6 +151,7 @@ namespace TestingBinarySearchTypes
         }
     }
 
+    //BinarySearch<T>(T[], int, int, T)
     [TestClass]
     public class BinarySearch_GenericRange_Tests
     {
@@ -171,6 +174,7 @@ namespace TestingBinarySearchTypes
         }
     }
 
+    //BinarySearch<T>(T[], int, int, T, IComparer<T>)
     [TestClass]
     public class BinarySearch_GenericRangeComparer_Tests
     {
