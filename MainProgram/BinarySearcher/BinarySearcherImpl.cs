@@ -5,10 +5,9 @@
     /// </summary>
     public class BinarySearcherImpl
     {
-<<<<<<< HEAD
         public int doBinarySearch(Array input, Object key) {
               return Array.BinarySearch(input, key);
-=======
+
         /// <summary>
         /// Performs a binary search on the given array for the specified key.
         /// </summary>
@@ -17,7 +16,7 @@
         /// <returns></returns>
         public int doBinaryDearch(Array input, Object key) {
             return Array.BinarySearch(input, key);
->>>>>>> 10e667814f0e67d7065ec9e42fceb6d191319c20
+
         }
 
         // Code added just for Reference . Please ignore this
