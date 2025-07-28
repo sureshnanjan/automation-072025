@@ -22,7 +22,6 @@ namespace HerokuAppTests
         {
             // This test verifies that the main heading (h1) on the homepage is "Welcome to the-internet"
 
-            // Arrange - expected value
             var expectedTitle = "Welcome to the-internet";
 
             // Launch Chrome browser and navigate to the site
