@@ -26,11 +26,11 @@ public class Program
 
         //GenericsDemo();
 
-        //GenericsDemo(args);
-        //GreetUser(DayOfWeek.Friday);
-        //GreetUser("monday");
-        //GreetUser("Holiday");
-        //MyMethodwithNoArguments method1 = delegatesDemo();
+        GenericsDemo(args);
+        GreetUser(DayOfWeek.Friday);
+        GreetUser("monday");
+        GreetUser("Holiday");
+        MyMethodwithNoArguments method1 = delegatesDemo();
 
         doExecution(Method1);
         doExecution(() => Console.WriteLine("This is something different"));
