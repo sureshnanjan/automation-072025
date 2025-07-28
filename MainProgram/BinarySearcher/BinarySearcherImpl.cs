@@ -1,7 +1,16 @@
 ﻿namespace BinarySearcher
 {
+    /// <summary>
+    /// This is the implementation of a binary search algorithm.
+    /// </summary>
     public class BinarySearcherImpl
     {
+        /// <summary>
+        /// Performs a binary search on the given array for the specified key.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public int doBinaryDearch(Array input, Object key) {
             return Array.BinarySearch(input, key);
         }
