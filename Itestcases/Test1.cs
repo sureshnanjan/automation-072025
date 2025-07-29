@@ -145,5 +145,6 @@ namespace DemoInterfaces.Tests
             bool equal = ((IStructuralEquatable)arr1).Equals(arr2, EqualityComparer<int>.Default);
             Assert.IsTrue(equal);
         }
+        
     }
 }
