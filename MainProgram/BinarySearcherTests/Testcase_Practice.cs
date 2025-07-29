@@ -5,14 +5,14 @@ using System;
 namespace BinarySearcherTests
 {
     [TestClass]
-    public class Testcase_Practice
+    public class ExceptionTests
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ThrowsArgumentNullExceptionWhenArrayIsNull()
         {
             var searcher = new BinarySearcherImpl();
-            object value = searcher.doBinarySearch(null, 5);
+            searcher.doBinarySearch(null, 5);
         }
 
         [TestMethod]
@@ -25,8 +25,8 @@ namespace BinarySearcherTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void ThrowsArgumentExceptionForIncompatibleType()
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void ThrowsInvalidOperationExceptionWhenTypeIsIncompatible()
         {
             var searcher = new BinarySearcherImpl();
             int[] array = { 1, 2, 3 };

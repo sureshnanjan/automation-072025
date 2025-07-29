@@ -19,6 +19,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarySearcherTests", "Bina
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HerokuAppTests", "HerokuAppTests\HerokuAppTests.csproj", "{818C0B98-37F9-AD2B-7F8D-9A1E7808A287}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarySearcherIcomparer", "Binarysearcher_new\BinarySearcherIcomparer.csproj", "{BA37AF41-CDDF-4130-9FC8-E52CB3EBB4D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectionsTests", "CollectionsTests\CollectionsTests.csproj", "{9D8F54F3-8C54-4261-A3A2-116B2DDD373E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +66,14 @@ Global
 		{818C0B98-37F9-AD2B-7F8D-9A1E7808A287}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{818C0B98-37F9-AD2B-7F8D-9A1E7808A287}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{818C0B98-37F9-AD2B-7F8D-9A1E7808A287}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA37AF41-CDDF-4130-9FC8-E52CB3EBB4D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA37AF41-CDDF-4130-9FC8-E52CB3EBB4D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA37AF41-CDDF-4130-9FC8-E52CB3EBB4D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA37AF41-CDDF-4130-9FC8-E52CB3EBB4D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D8F54F3-8C54-4261-A3A2-116B2DDD373E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D8F54F3-8C54-4261-A3A2-116B2DDD373E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D8F54F3-8C54-4261-A3A2-116B2DDD373E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D8F54F3-8C54-4261-A3A2-116B2DDD373E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

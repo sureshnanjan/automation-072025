@@ -18,7 +18,7 @@ public class Program
         //DemoRefParam(ref myOriginalValue);
         //designToInterface();
 
-        comparableDemo();
+        //comparableDemo();
     }
 
     /// <summary>
@@ -48,4 +48,6 @@ public class Program
                 break;
         }
 
-        automator.Launch()
+        automator.Launch();
+    }
+}

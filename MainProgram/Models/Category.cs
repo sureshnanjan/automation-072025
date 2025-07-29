@@ -1,61 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Models
+﻿namespace Models
 {
     /// <summary>
-    /// Represents a category with properties and utility methods.
+    /// Represents the category to which a pet belongs, such as "Dogs" or "Cats".
     /// </summary>
     public class Category
     {
-        private Pet[] pets;
+        /// <summary>
+        /// Unique identifier for the category.
+        /// </summary>
+        public long? Id { get; set; }
 
         /// <summary>
-        /// Category name.
+        /// Name of the category (e.g., "Dog", "Cat").
         /// </summary>
         public string Name { get; set; }
 
-        private int myVar;
-        private float myFloatVar;
-
         /// <summary>
-        /// Creates a new Category.
+        /// Returns a string that represents the current Category object.
         /// </summary>
-        public Category(string name, int myVar)
+        /// <returns>A string with category name and ID.</returns>
+        public override string ToString()
         {
-            Name = name;
-            this.myVar = myVar;
+            return $"Category(Name: {Name}, Id: {Id})";
         }
 
-        /// <summary>
-        /// Integer property.
-        /// </summary>
-        public int MyProperty
+
+        public void DoSomeThing()
         {
-            get { myVar = 10; return myVar; }
-            set { myVar = value; }
+            // Signature
         }
 
-        /// <summary>
-        /// Float property.
-        /// </summary>
-        public float MyFloatVar
+        public int addTwoNumbers(int first, int second)
         {
-            get => myFloatVar;
-            set => myFloatVar = value;
+            return first + second;
         }
 
-        /// <summary>
-        /// Returns name and MyProperty as a string.
-        /// </summary>
-        public override string? ToString()
+        public double addTwoNumbers(double first, double second)
         {
-            return $"{Name}-{MyProperty}";
+            return first + second;
         }
 
-        /// <summary>
-        /// Example method.
-        /// </summary>
+    }
+}
