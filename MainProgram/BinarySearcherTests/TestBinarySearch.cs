@@ -1,4 +1,6 @@
 ﻿using BinarySearcher;
+using System.Collections;
+using CustomExtensions;
 namespace BinarySearcherTests
 {
     [TestClass]
@@ -47,6 +49,15 @@ namespace BinarySearcherTests
             int actualresult = SUT.doBinaryDearch(inputArray, elementToFind);
             // Assert
             Assert.AreEqual(expectedIndex, actualresult, "The element was not found at the expected index.");
+        }
+        [TestMethod]
+        public void ElementFoundForRangeOK() {
+            int[] inputArray = { 1, 2, 3, 4, 6, 7, 8, 9, 10 };
+            //inputArray.Add
+          
+            int elementToFind = 0;
+            int actual = Array.BinarySearch(inputArray, 1,5,elementToFind);
+
         }
     }
 }
