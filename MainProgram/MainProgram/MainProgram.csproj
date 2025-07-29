@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Selenium.Support" Version="4.34.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Automator\Automator.csproj" />
     <ProjectReference Include="..\Models\Models.csproj" />
   </ItemGroup>

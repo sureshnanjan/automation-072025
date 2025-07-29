@@ -1,18 +1,26 @@
 ﻿using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
 namespace HerokuAppTests
 {
     [TestClass]
     public sealed class HomePageTests
     {
+        [TestInitialize]
+        public void Init() {
+            // Read from app.config
+            //AppContext appContext = Confi
+           
+        }
         [TestMethod]
         public void TitleisOK()
         {
             // Arrange
             var expectedTitle = "Welcome to the-internet";
             // Launch the browser and navigae to 
-            ChromeDriver driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
+            ISearchContext driver = new ChromeDriver();
+            driver = new FirefoxDriver();
+            ((IWebDriver)driver).Navigate().GoToUrl("https://the-internet.herokuapp.com/");
             IWebElement pageheading = driver.FindElement(By.TagName("h1"));
             // 
             // Act
