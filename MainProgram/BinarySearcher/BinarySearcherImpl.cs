@@ -1,12 +1,15 @@
-﻿namespace BinarySearcher
+﻿
+namespace BinarySearcher
 {
     /// <summary>
     /// This is the implementation of a binary search algorithm.
     /// </summary>
     public class BinarySearcherImpl
     {
-        public int doBinarySearch(Array input, Object key) {
-              return Array.BinarySearch(input, key);
+        public int doBinarySearch(Array input, Object key)
+        {
+            return Array.BinarySearch(input, key);
+        }
 
         /// <summary>
         /// Performs a binary search on the given array for the specified key.
