@@ -83,5 +83,13 @@ namespace BinarySearchTests
             int index = Array.BinarySearch<string>(arr, 1, 3, "date", StringComparer.OrdinalIgnoreCase);
             Assert.IsTrue(index >= 1 && index <= 3); // Index should be within range
         }
+        [TestMethod]
+        public void Test_EmptyArray()
+        {
+            int[] arr = { };
+            int index = Array.BinarySearch(arr, 10);
+            Assert.AreEqual(~0, index); // Should return complement of index 0 (not found)
+        }
+
     }
 }
