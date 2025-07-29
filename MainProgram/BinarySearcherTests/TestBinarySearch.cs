@@ -24,7 +24,7 @@ namespace BinarySearcherTests
             BinarySearcherImpl searcher = new BinarySearcherImpl();
 
             // Act
-            int actualIndex = searcher.doBinaryDearch(inputArray, target);
+            int actualIndex = searcher.doBinarySearch(inputArray, target);
 
             // Assert
             Assert.AreEqual(expectedIndex, actualIndex, "Element was not found at the expected index.");
@@ -44,7 +44,7 @@ namespace BinarySearcherTests
             BinarySearcherImpl searcher = new BinarySearcherImpl();
 
             // Act
-            int actualIndex = searcher.doBinaryDearch(inputArray, target);
+            int actualIndex = searcher.doBinarySearch(inputArray, target);
 
             // Assert
             Assert.AreEqual(expectedIndex, actualIndex, "Incorrect negative index when value is not found and less than some elements.");
@@ -64,7 +64,7 @@ namespace BinarySearcherTests
             BinarySearcherImpl searcher = new BinarySearcherImpl();
 
             // Act
-            int actualIndex = searcher.doBinaryDearch(inputArray, target);
+            int actualIndex = searcher.doBinarySearch(inputArray, target);
 
             // Assert
             Assert.AreEqual(expectedIndex, actualIndex, "Incorrect negative index when value is greater than all elements.");
@@ -84,7 +84,7 @@ namespace BinarySearcherTests
             BinarySearcherImpl searcher = new BinarySearcherImpl();
 
             // Act
-            searcher.doBinaryDearch(inputArray, target);
+            searcher.doBinarySearch(inputArray, target);
         }
 
         /// <summary>
@@ -100,7 +100,7 @@ namespace BinarySearcherTests
             BinarySearcherImpl searcher = new BinarySearcherImpl();
 
             // Act
-            searcher.doBinaryDearch((Array)(object)multiArray, 3);
+            searcher.doBinarySearch((Array)(object)multiArray, 3);
         }
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace BinarySearcherTests
             BinarySearcherImpl searcher = new BinarySearcherImpl();
 
             // Act
-            searcher.doBinaryDearch(inputArray, target);
+            searcher.doBinarySearch(inputArray, target);
         }
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace BinarySearcherTests
             BinarySearcherImpl searcher = new BinarySearcherImpl();
 
             // Act
-            searcher.doBinaryDearch(inputArray, target);
+            searcher.doBinarySearch(inputArray, target);
         }
     }
 }
