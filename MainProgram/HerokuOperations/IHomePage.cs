@@ -8,5 +8,7 @@
 
         string[] getAvailableExamples();
 
+        void GoToExample(string exampleName);
+
     }
 }
