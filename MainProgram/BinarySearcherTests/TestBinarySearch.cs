@@ -1,7 +1,12 @@
 ﻿using BinarySearcher;
+<<<<<<< HEAD
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
+=======
+using System.Collections;
+using CustomExtensions;
+>>>>>>> ad7289cc476d9913159bb7b22d7c14188d4971da
 namespace BinarySearcherTests
 {
     /// <summary>
@@ -143,6 +148,15 @@ namespace BinarySearcherTests
 
             // Act
             searcher.doBinarySearch(inputArray, target);
+        }
+        [TestMethod]
+        public void ElementFoundForRangeOK() {
+            int[] inputArray = { 1, 2, 3, 4, 6, 7, 8, 9, 10 };
+            //inputArray.Add
+          
+            int elementToFind = 0;
+            int actual = Array.BinarySearch(inputArray, 1,5,elementToFind);
+
         }
     }
 }

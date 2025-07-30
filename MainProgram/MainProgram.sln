@@ -22,7 +22,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HerokuAppTests", "HerokuAppTests\HerokuAppTests.csproj", "{38218DC5-BD28-482B-9107-A87210B77E78}"
 EndProject
+<<<<<<< HEAD
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "generics", "generics\generics.csproj", "{55C29949-05C6-43D0-AFE3-4118FFE989BD}"
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomExtensions", "CustomExtensions\CustomExtensions.csproj", "{3A066C3F-3A33-4BAC-BEAC-452F88A539C8}"
+>>>>>>> ad7289cc476d9913159bb7b22d7c14188d4971da
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,15 +62,26 @@ Global
 		{38218DC5-BD28-482B-9107-A87210B77E78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38218DC5-BD28-482B-9107-A87210B77E78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38218DC5-BD28-482B-9107-A87210B77E78}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
 		{55C29949-05C6-43D0-AFE3-4118FFE989BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{55C29949-05C6-43D0-AFE3-4118FFE989BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55C29949-05C6-43D0-AFE3-4118FFE989BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55C29949-05C6-43D0-AFE3-4118FFE989BD}.Release|Any CPU.Build.0 = Release|Any CPU
+=======
+		{3A066C3F-3A33-4BAC-BEAC-452F88A539C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A066C3F-3A33-4BAC-BEAC-452F88A539C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A066C3F-3A33-4BAC-BEAC-452F88A539C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A066C3F-3A33-4BAC-BEAC-452F88A539C8}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> ad7289cc476d9913159bb7b22d7c14188d4971da
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+<<<<<<< HEAD
 		SolutionGuid = {5D68F1D1-4B7B-46EB-845A-57C25FAEF70B}
+=======
+		SolutionGuid = {4A446EE7-FC46-4199-BC85-88F0437B2C49}
+>>>>>>> ad7289cc476d9913159bb7b22d7c14188d4971da
 	EndGlobalSection
 EndGlobal
