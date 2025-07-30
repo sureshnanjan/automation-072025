@@ -20,9 +20,9 @@ namespace BinarySearchDemo
     public class BinarySearchExample
     {
         /// <summary>
-        /// Main method that executes binary search operations and handles exceptions.
+        /// Method that executes binary search operations and handles exceptions.
         /// </summary>
-        public static void Main()
+        public static void RunBinarySearchExamples()
         {
             try
             {

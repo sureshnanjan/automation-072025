@@ -89,6 +89,11 @@ namespace BinarySearchAdvancedTests
             // Search for 1 in range {1, 3, 5}
             int index = Array.BinarySearch(numbers, 0, 3, 1, new SimpleComparer());
             Assert.AreEqual(0, index); // 1 is at index 0
+            PetStore mycheenai = new PetStore();
+            foreach (var item in mycheenai)
+            {
+                
+            }
         }
 
         /// <summary>
@@ -127,14 +132,21 @@ namespace BinarySearchAdvancedTests
         /// <summary>
         /// Tests if the method throws ArgumentNullException when a null comparer is passed.
         /// </summary>
+      
         [TestMethod]
-        public void Test_InvalidComparer_Throws()
+        public void Test_NullComparer_UsesDefaultComparer()
         {
-            Assert.ThrowsException<ArgumentNullException>(() =>
-            {
-                // Should throw because the comparer is null
-                int index = Array.BinarySearch(numbers, 0, 7, 5, null);
-            });
+            int[] numbers = { 1, 3, 5, 7, 9, 11, 13 };
+
+            // Pass null as the comparer — should use default comparer for int
+            int index = Array.BinarySearch(numbers, 0, numbers.Length, 5, null);
+
+            // 5 is at index 2
+            Assert.AreEqual(2, index);
         }
+       
+
+
+
     }
 }
