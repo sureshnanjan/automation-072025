@@ -2,6 +2,7 @@
 using MainProgram;
 using Models;
 using System.Collections.Generic;
+using System.Reflection;
 
 
 public class Program
@@ -36,26 +37,65 @@ public class Program
         //GreetUser("Holiday");
         //MyMethodwithNoArguments method1 = delegatesDemo();
 
+        //UsingDelegatesDemo();
+
+        //pubSubDemo();
+        eventFiringDemo();
+
+    }
+
+    private static void eventFiringDemo()
+    {
+        TypeWithEvent typeWithEvent = new TypeWithEvent();
+        typeWithEvent.Event += sendSMS;
+        typeWithEvent.Event += sendEmail;
+        typeWithEvent.Event += (s, ea) => { Console.WriteLine($"Handling the Event from  WHATS APP{s} with data {ea.ToString()}"); };
+        typeWithEvent.FireEvent();
+    }
+
+    private static void sendSMS(object? sender, EventArgs e)
+    {
+        Console.WriteLine($"Handling the Event from  SMS {sender} with data {e.ToString()}");
+    }
+    private static void sendEmail(object? sender, EventArgs e)
+    {
+        Console.WriteLine($"Handling the Event from  EMAIL {sender} with data {e.ToString()}");
+    }
+
+    private static void pubSubDemo()
+    {
+        EventEmitter eventEmitter = new EventEmitter();
+        EventSubscriber mailnotification = new EventSubscriber("Email Notification");
+        EventSubscriber smsnotification = new EventSubscriber("SMS Notification");
+        EventSubscriber whatsapp = new EventSubscriber("Whats App Notification");
+        eventEmitter.Subscribe(mailnotification);
+        eventEmitter.Subscribe(smsnotification);
+        eventEmitter.Subscribe(whatsapp);
+        try
+        {
+            eventEmitter.PublishEvent(new EventArgs());
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+    }
+
+    private static void UsingDelegatesDemo()
+    {
         doExecution(Method1);
         doExecution(() => Console.WriteLine("This is something different"));
         Action<string> strOp = (arg) => Console.WriteLine($"{arg}-{arg}-{arg}");
         strOp("suresh");
 
-        int[] mynumbers = { 1, 2, 3, 4,5,6,7 };
+        int[] mynumbers = { 1, 2, 3, 4, 5, 6, 7 };
         Console.WriteLine(mynumbers.Any(x => x < 100));
         Console.WriteLine(mynumbers.All(x => x > 0));
-        Console.WriteLine(mynumbers.Aggregate((a,b)=>a*b));
+        Console.WriteLine(mynumbers.Aggregate((a, b) => a * b));
 
         SuperMan superMan = new SuperMan();
         superMan.Play(() => { Console.WriteLine("PLaywith English"); });
-
-       
-
-
-        
-
-
-
     }
 
     private static MyMethodwithNoArguments delegatesDemo()

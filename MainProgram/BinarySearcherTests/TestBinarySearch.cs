@@ -1,7 +1,8 @@
 ﻿using BinarySearcher;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-
+using System.Collections;
+using CustomExtensions;
 namespace BinarySearcherTests
 {
     /// <summary>
@@ -180,6 +181,15 @@ namespace BinarySearcher
 
             // Not found: return bitwise complement of insertion index
             return ~low;
+        }
+        [TestMethod]
+        public void ElementFoundForRangeOK() {
+            int[] inputArray = { 1, 2, 3, 4, 6, 7, 8, 9, 10 };
+            //inputArray.Add
+          
+            int elementToFind = 0;
+            int actual = Array.BinarySearch(inputArray, 1,5,elementToFind);
+
         }
     }
 }
