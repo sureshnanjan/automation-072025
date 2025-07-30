@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 ﻿using Automator;
+=======
+﻿
+using Automator;
+>>>>>>> f6bb7fb812dedd6e4734d3837588df55f2851795
 using MainProgram;
 using Models;
 using System.Collections.Generic;
@@ -7,7 +12,11 @@ using System.Reflection;
 
 public class Program
 {
+<<<<<<< HEAD
     public delegate void  MyMethodwithNoArguments();
+=======
+    public delegate void MyMethodwithNoArguments();
+>>>>>>> f6bb7fb812dedd6e4734d3837588df55f2851795
     public delegate void MyMethodwithDayOfWeek(DayOfWeek inst);
 
     public delegate int AMethodWith2IntsReturnInt(int a, int b);
@@ -27,15 +36,24 @@ public class Program
 
         //GenericsDemo();
 
+<<<<<<< HEAD
         GenericsDemo(args);
         GreetUser(DayOfWeek.Friday);
         GreetUser("monday");
         GreetUser("Holiday");
         MyMethodwithNoArguments method1 = delegatesDemo();
+=======
+        //GenericsDemo(args);
+        //GreetUser(DayOfWeek.Friday);
+        //GreetUser("monday");
+        //GreetUser("Holiday");
+        //MyMethodwithNoArguments method1 = delegatesDemo();
+>>>>>>> f6bb7fb812dedd6e4734d3837588df55f2851795
 
         //UsingDelegatesDemo();
 
         //pubSubDemo();
+<<<<<<< HEAD
         //eventFiringDemo();
         // Feed the pets
         Fish[] myfishes = { };
@@ -56,6 +74,10 @@ public class Program
     private static void feedCAt(Cat cat, object catinst)
     {
         throw new NotImplementedException();
+=======
+        eventFiringDemo();
+
+>>>>>>> f6bb7fb812dedd6e4734d3837588df55f2851795
     }
 
     private static void eventFiringDemo()
@@ -149,12 +171,23 @@ public class Program
         }
     }
 
+<<<<<<< HEAD
     static void Method1() {
 
         Console.WriteLine("Inside Method 1");    
     }
 
     static void doExecution(Action argfunction) {
+=======
+    static void Method1()
+    {
+
+        Console.WriteLine("Inside Method 1");
+    }
+
+    static void doExecution(Action argfunction)
+    {
+>>>>>>> f6bb7fb812dedd6e4734d3837588df55f2851795
         Console.WriteLine("Executing another Method");
         argfunction();
         Console.WriteLine("Doing something after execution");
@@ -169,7 +202,12 @@ public class Program
         List<int> users = new List<int>();
     }
 
+<<<<<<< HEAD
     private static void GreetUser(DayOfWeek dayofweek) {
+=======
+    private static void GreetUser(DayOfWeek dayofweek)
+    {
+>>>>>>> f6bb7fb812dedd6e4734d3837588df55f2851795
         switch (dayofweek)
         {
             case DayOfWeek.Monday:
@@ -225,7 +263,7 @@ public class Program
     {
         int[] myNumbers = { 10, 1, 222, 32, 4, 5, 0, 100 };
         string[] myNamee = { "AJohn", "Jane", "Doe", "Zach" };
-        DemoUser[] myUsers = { new DemoUser(10,"AUser"), new DemoUser(11,"DUser"), new DemoUser(12,"BUser"), new DemoUser(20,"ZUser"), new DemoUser(0,"XUser") };
+        DemoUser[] myUsers = { new DemoUser(10, "AUser"), new DemoUser(11, "DUser"), new DemoUser(12, "BUser"), new DemoUser(20, "ZUser"), new DemoUser(0, "XUser") };
 
         Console.WriteLine("Before Sorting");
         foreach (var item in myNumbers)
@@ -279,8 +317,9 @@ public class Program
         return first + second;
     }
 
-    static void DemoRefParam(ref int received) {
-    
+    static void DemoRefParam(ref int received)
+    {
+
     }
 
     static void SumOfAll(params int[] received) { }
@@ -288,13 +327,15 @@ public class Program
     void sort(int[] array) { }
 
 
-    
-    static void DemoOutParam(out int received) {
+
+    static void DemoOutParam(out int received)
+    {
         Console.WriteLine("I am inialising the param as I am an OUT modifier");
         received = 100; // Must assign a value before using it
     }
 
-    static void DemoInParam(in int received) {
+    static void DemoInParam(in int received)
+    {
         //received = 100;
     }
 
@@ -333,4 +374,8 @@ public class Program
     }
 
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> f6bb7fb812dedd6e4734d3837588df55f2851795

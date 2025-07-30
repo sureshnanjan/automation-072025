@@ -24,12 +24,29 @@
             return $"Category(Name: {Name}, Id: {Id})";
         }
 
+<<<<<<< HEAD
+=======
+        public int MyProperty
+        {
+            get { myVar = 10; return myVar; }
+            set { myVar = value; }
+        }
 
-        public void DoSomeThing() {
+        public float MyFloatVar { get => myFloatVar; set => myFloatVar = value; }
+
+        public override string? ToString()
+        {
+            return $"{this.Name}-{this.MyProperty}";
+        }
+>>>>>>> f6bb7fb812dedd6e4734d3837588df55f2851795
+
+        public void DoSomeThing()
+        {
             // Signature
         }
 
-        public int addTwoNumbers(int first, int second) {
+        public int addTwoNumbers(int first, int second)
+        {
             return first + second;
         }
 
@@ -38,5 +55,9 @@
             return first + second;
         }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> f6bb7fb812dedd6e4734d3837588df55f2851795
     }
 }

@@ -1,4 +1,5 @@
-﻿
+
+
 namespace BinarySearcher
 {
     /// <summary>
@@ -17,7 +18,8 @@ namespace BinarySearcher
         /// <param name="input"></param>
         /// <param name="key"></param>
         /// <returns></returns>
-        public int doBinaryDearch(Array input, Object key) {
+        public int doBinaryDearch(Array input, Object key)
+        {
             return Array.BinarySearch(input, key);
 
         }

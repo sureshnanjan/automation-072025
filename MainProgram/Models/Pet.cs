@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Models
 {
+<<<<<<< HEAD
 
     /// <summary>
     /// Represents a Pet in the pet store system.
@@ -40,5 +41,25 @@ namespace Models
         /// </summary>
         public string Status { get; set; }
 
+=======
+    /// <summary>
+    /// Represents a pet with customizable properties.
+    /// </summary>
+    /// <remarks>
+    /// This class currently contains a single property, but can be expanded
+    /// to include more attributes such as name, type, breed, or age.
+    /// </remarks>
+    public class Pet
+    {
+        /// <summary>
+        /// Gets or sets a value for the pet's property.
+        /// </summary>
+        /// <value>
+        /// An integer representing a property of the pet. This is a placeholder 
+        /// and should be replaced or extended with more meaningful properties.
+        /// </value>
+        public int MyProperty { get; set; }
+>>>>>>> f6bb7fb812dedd6e4734d3837588df55f2851795
     }
 }
+

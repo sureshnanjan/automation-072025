@@ -11,6 +11,9 @@ namespace HerokuOperations
         // Navigates to the Basic Auth page using the provided credentials.
         void NavigateToPage(string username, string password);
 
+        // Checks if the page is accessible with the provided credentials.
+        bool IsCredentialIsCorrect(string username, string password);
+
         // Get the page title after successful login.
         string GetPageTitle();
 
