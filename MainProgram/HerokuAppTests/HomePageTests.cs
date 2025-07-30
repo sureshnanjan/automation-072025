@@ -1,18 +1,41 @@
+<<<<<<< HEAD
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
+=======
+﻿using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
+>>>>>>> 10e667814f0e67d7065ec9e42fceb6d191319c20
 namespace HerokuAppTests
 {
     [TestClass]
     public sealed class HomePageTests
     {
+<<<<<<< HEAD
+=======
+        [TestInitialize]
+        public void Init() {
+            // Read from app.config
+            //AppContext appContext = Confi
+           
+        }
+>>>>>>> 10e667814f0e67d7065ec9e42fceb6d191319c20
         [TestMethod]
         public void TitleisOK()
         {
             // Arrange
+<<<<<<< HEAD
             var expectedTitle = "Welcome to the-internet";
             // Launch the browser and navigae to 
             ChromeDriver driver = new ChromeDriver();
             driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
+=======
+            var expectedTitle = "Welcome to the-internet1";
+            // Launch the browser and navigae to 
+            ISearchContext driver = new ChromeDriver();
+            driver = new FirefoxDriver();
+            ((IWebDriver)driver).Navigate().GoToUrl("https://the-internet.herokuapp.com/");
+>>>>>>> 10e667814f0e67d7065ec9e42fceb6d191319c20
             IWebElement pageheading = driver.FindElement(By.TagName("h1"));
             // 
             // Act
@@ -23,6 +46,7 @@ namespace HerokuAppTests
         [TestMethod]
         public void SubTitleisOK()
         {
+<<<<<<< HEAD
 		// Arrange
          var expectedSubTitle = "Available Examples";
 
@@ -41,11 +65,14 @@ namespace HerokuAppTests
 
         // Cleanup
         driver.Quit();
+=======
+>>>>>>> 10e667814f0e67d7065ec9e42fceb6d191319c20
         }
 
         [TestMethod]
         public void ExamplesCountis44()
         {
+<<<<<<< HEAD
 		 // Arrange
     var expectedCount = 44;
 
@@ -66,3 +93,8 @@ namespace HerokuAppTests
         }
     }
 }
+=======
+        }
+    }
+}
+>>>>>>> 10e667814f0e67d7065ec9e42fceb6d191319c20

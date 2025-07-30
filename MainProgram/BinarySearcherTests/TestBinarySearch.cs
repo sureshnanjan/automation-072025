@@ -20,6 +20,7 @@ namespace BinarySearcherTests
             Assert.AreEqual(expectedIndex, actualresult, "The element was not found at the expected index.");
         }
 
+
         [TestMethod]
         public void ElementNotFoundButLessthanTest()
         {

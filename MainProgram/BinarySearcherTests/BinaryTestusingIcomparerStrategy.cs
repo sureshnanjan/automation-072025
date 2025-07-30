@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Models
+namespace BinarySearcherTests
 {
-    public class Pet
+    internal class BinaryTestusingIcomparerStrategy
     {
-        public int MyProperty { get; set; }
     }
 }
