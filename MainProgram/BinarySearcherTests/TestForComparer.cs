@@ -1,170 +1,145 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+// -----------------------------------------------------------------------------
+// Author      : Arpita Neogi
+// Date        : 28/07/25
+// Description : Interface demonstration with unit tests (IEnumerable, ICollection, etc.)
+// -----------------------------------------------------------------------------
+// © 2025 Arpita Neogi. All rights reserved.
+// -----------------------------------------------------------------------------
+
+using Microsoft.VisualStudio.TestTools.UnitTesting; // MSTest framework
 using System;
 
 namespace BinarySearchOverload
 {
-    [TestClass]
+    [TestClass] // Marks this class as a test container
     public class BinarySearchTests
     {
         // -------------------------------
         // Overload 1: Array.BinarySearch(Array, Object)
-        // Searches the entire array for a specific object
         // -------------------------------
 
         [TestMethod]
         public void BinarySearch_Array_Object_Found()
         {
-            int[] arr = { 10, 20, 30 };
-            // Searching for 20 in the whole array
-            int index = Array.BinarySearch(arr, 20);
-            Assert.AreEqual(1, index); // 20 is at index 1
+            int[] arr = { 10, 20, 30 }; // Sorted array of integers
+            int index = Array.BinarySearch(arr, 20); // Search for 20
+            Assert.AreEqual(1, index); // Assert that 20 is at index 1
         }
 
         [TestMethod]
         public void BinarySearch_Array_Object_NotFound()
         {
-            int[] arr = { 10, 20, 30 };
-            // Searching for 25 which doesn't exist
-            int index = Array.BinarySearch(arr, 25);
-            Assert.IsTrue(index < 0); // Not found => negative index
+            int[] arr = { 10, 20, 30 }; // Sorted array
+            int index = Array.BinarySearch(arr, 25); // 25 not in array
+            Assert.IsTrue(index < 0); // Should return a negative index
         }
 
         // -------------------------------
         // Overload 2: Array.BinarySearch(Array, Int32, Int32, Object)
-        // Searches a portion of the array (from a specific index and count)
         // -------------------------------
 
         [TestMethod]
         public void BinarySearch_Array_Partial_Found()
         {
-            int[] arr = { 5, 10, 15, 20, 25 };
-            // Search for 15 in subarray {10, 15, 20}
-            int index = Array.BinarySearch(arr, 1, 3, 15);
-            Assert.AreEqual(2, index); // 15 is at index 2 in original array
+            int[] arr = { 5, 10, 15, 20, 25 }; // Full array
+            int index = Array.BinarySearch(arr, 1, 3, 15); // Search 15 in {10,15,20}
+            Assert.AreEqual(2, index); // 15 is at index 2 in full array
         }
 
         [TestMethod]
         public void BinarySearch_Array_Partial_NotFound()
         {
-            int[] arr = { 5, 10, 15, 20, 25 };
-            // Search for 100 in subarray {10, 15, 20}
-            int index = Array.BinarySearch(arr, 1, 3, 100);
-            Assert.IsTrue(index < 0); // Not found
+            int[] arr = { 5, 10, 15, 20, 25 }; // Array to search within
+            int index = Array.BinarySearch(arr, 1, 3, 100); // Search 100 in {10,15,20}
+            Assert.IsTrue(index < 0); // 100 not found, index should be negative
         }
 
         // -------------------------------
         // Overload 3: BinarySearch<T>(T[], T)
-        // Type-safe search on generic array
         // -------------------------------
 
         [TestMethod]
         public void BinarySearch_Generic_Found()
         {
-            string[] arr = { "a", "b", "c" };
-            // Search for "b"
-            int index = Array.BinarySearch(arr, "b");
-            Assert.AreEqual(1, index);
+            string[] arr = { "a", "b", "c" }; // Sorted string array
+            int index = Array.BinarySearch(arr, "b"); // Search for "b"
+            Assert.AreEqual(1, index); // "b" is at index 1
         }
 
         [TestMethod]
         public void BinarySearch_Generic_NotFound()
         {
-            string[] arr = { "a", "b", "c" };
-            // Search for "z" (not found)
-            int index = Array.BinarySearch(arr, "z");
-            Assert.IsTrue(index < 0);
+            string[] arr = { "a", "b", "c" }; // Sorted string array
+            int index = Array.BinarySearch(arr, "z"); // "z" not found
+            Assert.IsTrue(index < 0); // Result should be negative
         }
 
         // -------------------------------
         // Overload 4: Array.BinarySearch(Array, Object, IComparer)
-        // Non-generic version with custom comparer
         // -------------------------------
 
         [TestMethod]
         public void BinarySearch_WithComparer_Found()
         {
-            string[] arr = { "Apple", "banana", "Cherry" };
-            // Case-insensitive search for "BANANA"
-            int index = Array.BinarySearch(arr, "BANANA", StringComparer.OrdinalIgnoreCase);
-            Assert.AreEqual(1, index);
+            string[] arr = { "Apple", "banana", "Cherry" }; // Mixed case
+            int index = Array.BinarySearch(arr, "BANANA", StringComparer.OrdinalIgnoreCase); // Case-insensitive search
+            Assert.AreEqual(1, index); // "banana" found at index 1
         }
 
         [TestMethod]
         public void BinarySearch_WithComparer_NotFound()
         {
-            string[] arr = { "Apple", "banana", "Cherry" };
-            // Search for "zebra", not in array
-            int index = Array.BinarySearch(arr, "zebra", StringComparer.OrdinalIgnoreCase);
-            Assert.IsTrue(index < 0);
+            string[] arr = { "Apple", "banana", "Cherry" }; // Array
+            int index = Array.BinarySearch(arr, "zebra", StringComparer.OrdinalIgnoreCase); // "zebra" not in array
+            Assert.IsTrue(index < 0); // Should return negative index
         }
 
         // -------------------------------
         // Overload 5: BinarySearch<T>(T[], T, IComparer<T>)
-        // Type-safe version with custom comparer
         // -------------------------------
 
         [TestMethod]
         public void BinarySearch_GenericComparer_Found()
         {
-            string[] arr = { "dog", "Elephant", "fox" };
-            // Case-insensitive search for "elephant"
-            int index = Array.BinarySearch(arr, "elephant", StringComparer.OrdinalIgnoreCase);
-            Assert.AreEqual(1, index);
+            string[] arr = { "dog", "Elephant", "fox" }; // Sorted array
+            int index = Array.BinarySearch(arr, "elephant", StringComparer.OrdinalIgnoreCase); // Case-insensitive search
+            Assert.AreEqual(1, index); // Match at index 1
         }
 
         [TestMethod]
         public void BinarySearch_GenericComparer_NotFound()
         {
-            string[] arr = { "dog", "Elephant", "fox" };
-            // Search for "goat" which doesn't exist
-            int index = Array.BinarySearch(arr, "goat", StringComparer.OrdinalIgnoreCase);
-            Assert.IsTrue(index < 0);
+            string[] arr = { "dog", "Elephant", "fox" }; // Array
+            int index = Array.BinarySearch(arr, "goat", StringComparer.OrdinalIgnoreCase); // "goat" not in array
+            Assert.IsTrue(index < 0); // Not found => negative
         }
 
         // -------------------------------
         // Overload 6: BinarySearch<T>(T[], Int32, Int32, T)
-        // Type-safe partial search (no custom comparer)
         // -------------------------------
 
         [TestMethod]
         public void BinarySearch_GenericPartial_Found()
         {
-            int[] arr = { 1, 2, 3, 4, 5 };
-            // Search for 3 in subarray {2,3,4}
-            int index = Array.BinarySearch(arr, 1, 3, 3);
-            Assert.AreEqual(2, index);
+            int[] arr = { 1, 2, 3, 4, 5 }; // Array
+            int index = Array.BinarySearch(arr, 1, 3, 3); // Search 3 in {2,3,4}
+            Assert.AreEqual(2, index); // 3 is at index 2 in full array
         }
 
         [TestMethod]
         public void BinarySearch_GenericPartial_NotFound()
         {
-            int[] arr = { 1, 2, 3, 4, 5 };
-            // Search for 10 in subarray {2,3,4}
-            int index = Array.BinarySearch(arr, 1, 3, 10);
-            Assert.IsTrue(index < 0);
+            int[] arr = { 1, 2, 3, 4, 5 }; // Array
+            int index = Array.BinarySearch(arr, 1, 3, 10); // Search 10 in {2,3,4}
+            Assert.IsTrue(index < 0); // 10 not found
         }
 
         // -------------------------------
         // Overload 7: BinarySearch<T>(T[], Int32, Int32, T, IComparer<T>)
-        // Most flexible version: partial + generic + custom comparer
         // -------------------------------
 
         [TestMethod]
         public void BinarySearch_GenericPartialComparer_Found()
         {
-            string[] arr = { "a", "Beta", "charlie", "Delta" };
-            // Case-insensitive search for "CHARLIE" in subarray {Beta, charlie}
-            int index = Array.BinarySearch(arr, 1, 2, "CHARLIE", StringComparer.OrdinalIgnoreCase);
-            Assert.AreEqual(2, index);
-        }
-
-        [TestMethod]
-        public void BinarySearch_GenericPartialComparer_NotFound()
-        {
-            string[] arr = { "a", "Beta", "charlie", "Delta" };
-            // Search for "ZULU" in subarray {Beta, charlie}
-            int index = Array.BinarySearch(arr, 1, 2, "ZULU", StringComparer.OrdinalIgnoreCase);
-            Assert.IsTrue(index < 0);
-        }
-    }
-}
+            string[] arr = { "a", "Beta", "charlie", "Delta" }; // Sorted string array
+            int index = Array.BinarySearch(arr, 1, 2, "CHARLIE", StringComparer.OrdinalIgnoreCase); // Search "CHARLIE" in {Be
