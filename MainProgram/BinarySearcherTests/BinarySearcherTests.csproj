@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BinarySearcher\BinarySearcher.csproj" />
+    <ProjectReference Include="..\CustomExtensions\CustomExtensions.csproj" />
   </ItemGroup>
 
   <ItemGroup>
