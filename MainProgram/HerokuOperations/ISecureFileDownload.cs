@@ -35,7 +35,7 @@ namespace HerokuOperations
         List<string> GetAvailableFiles();
 
         /// <summary>
-        /// Downloads a specified file from the secure directory.
+        /// Downloads a specified file from the secure directory..
         /// </summary>
         /// <param name="fileName">Name of the file to download.</param>
         /// <returns>Path where the file is downloaded.</returns>

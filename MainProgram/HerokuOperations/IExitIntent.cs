@@ -26,7 +26,7 @@ namespace HerokuOperations
         /// <summary>
         /// Gets the title of the Exit Intent popup.
         /// </summary>
-        /// <returns>Title text of the Exit Intent popup.</returns>
+        /// <returns>Title text of the Exit Intent popup..</returns>
         string GetPopupTitle();
 
         /// <summary>

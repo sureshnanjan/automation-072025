@@ -27,7 +27,7 @@ namespace HerokuOperations
         /// <summary>
         /// Gets the description/content of the Entry Ad popup.
         /// </summary>
-        /// <returns>Description text of the Entry Ad.</returns>
+        /// <returns>Description text of the Entry Ad..</returns>
         string GetAdContent();
 
         /// <summary>
