@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarySearcherTests", "Bina
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HerokuAppTests", "HerokuAppTests\HerokuAppTests.csproj", "{38218DC5-BD28-482B-9107-A87210B77E78}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomExtensions", "CustomExtensions\CustomExtensions.csproj", "{3A066C3F-3A33-4BAC-BEAC-452F88A539C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,11 +53,19 @@ Global
 		{38218DC5-BD28-482B-9107-A87210B77E78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38218DC5-BD28-482B-9107-A87210B77E78}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38218DC5-BD28-482B-9107-A87210B77E78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A066C3F-3A33-4BAC-BEAC-452F88A539C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A066C3F-3A33-4BAC-BEAC-452F88A539C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A066C3F-3A33-4BAC-BEAC-452F88A539C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A066C3F-3A33-4BAC-BEAC-452F88A539C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+<<<<<<< HEAD
 		SolutionGuid = {1FD60997-12C8-4579-AB91-DAC6F6A6F8C7}
+=======
+		SolutionGuid = {4A446EE7-FC46-4199-BC85-88F0437B2C49}
+>>>>>>> ad7289cc476d9913159bb7b22d7c14188d4971da
 	EndGlobalSection
 EndGlobal
