@@ -68,26 +68,84 @@ public class Program
 
         // Example usage of passing methods as delegates
 
+
+        //doExecution(Method1);
+        //doExecution(() => Console.WriteLine("This is something different"));
+
+        //// Action delegate example with lambda
+        //Action<string> strOp = (arg) => Console.WriteLine($"{arg}-{arg}-{arg}");
+        //strOp("suresh");
+
+        //// LINQ operations on an integer array
+
+        //int[] mynumbers = { 1, 2, 3, 4, 5, 6, 7 };
+        //Console.WriteLine(mynumbers.Any(x => x < 100));
+        //Console.WriteLine(mynumbers.All(x => x > 0));
+        //Console.WriteLine(mynumbers.Aggregate((a, b) => a * b));
+
+        //// Using the SuperMan class with a delegate
+        //SuperMan superMan = new SuperMan();
+        //superMan.Play(() => { Console.WriteLine("PLaywith English"); });
+
+        //pubSubDemo();
+        eventFiringDemo();
+
+
+    }
+    //Event Handling examples
+    private static void eventFiringDemo()
+    {
+        TypeWithEvent typeWithEvent = new TypeWithEvent();
+        typeWithEvent.Event += sendSMS;
+        typeWithEvent.Event += sendEmail;
+        typeWithEvent.Event += (s, ea) => { Console.WriteLine($"Handling the Event from  WHATS APP{s} with data {ea.ToString()}"); };
+        typeWithEvent.FireEvent();
+    }
+
+    private static void sendSMS(object? sender, EventArgs e)
+    {
+        Console.WriteLine($"Handling the Event from  SMS {sender} with data {e.ToString()}");
+    }
+    private static void sendEmail(object? sender, EventArgs e)
+    {
+        Console.WriteLine($"Handling the Event from  EMAIL {sender} with data {e.ToString()}");
+    }
+
+    private static void pubSubDemo()
+    {
+        EventEmitter eventEmitter = new EventEmitter();
+        EventSubscriber mailnotification = new EventSubscriber("Email Notification");
+        EventSubscriber smsnotification = new EventSubscriber("SMS Notification");
+        EventSubscriber whatsapp = new EventSubscriber("Whats App Notification");
+        eventEmitter.Subscribe(mailnotification);
+        eventEmitter.Subscribe(smsnotification);
+        eventEmitter.Subscribe(whatsapp);
+        try
+        {
+            eventEmitter.PublishEvent(new EventArgs());
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+    }
+
+    //delegates demo 
+    private static void UsingDelegatesDemo()
+    {
         doExecution(Method1);
         doExecution(() => Console.WriteLine("This is something different"));
-
-        // Action delegate example with lambda
         Action<string> strOp = (arg) => Console.WriteLine($"{arg}-{arg}-{arg}");
         strOp("suresh");
-
-        // LINQ operations on an integer array
 
         int[] mynumbers = { 1, 2, 3, 4, 5, 6, 7 };
         Console.WriteLine(mynumbers.Any(x => x < 100));
         Console.WriteLine(mynumbers.All(x => x > 0));
         Console.WriteLine(mynumbers.Aggregate((a, b) => a * b));
 
-        // Using the SuperMan class with a delegate
         SuperMan superMan = new SuperMan();
         superMan.Play(() => { Console.WriteLine("PLaywith English"); });
-
-
-
     }
     /// <summary>
     /// Demonstrates creating and using delegates with different method signatures and lambdas.
