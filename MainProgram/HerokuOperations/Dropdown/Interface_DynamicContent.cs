@@ -1,42 +1,32 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.Threading;
 
-namespace DynamicContentTests
+namespace DynamicContentPage
 {
-    [TestClass]
-    public class DynamicContentTests
+    public class DynamicContentInterface
     {
-        private IWebDriver driver;
-        private const string url = "https://the-internet.herokuapp.com/dynamic_content";
+        private readonly IWebDriver driver;
 
-        [TestInitialize]
-        public void Setup()
+        public DynamicContentInterface(IWebDriver webDriver)
         {
+            driver = webDriver;
         }
 
-        [TestMethod]
-        public void Test_PageLoadsSuccessfully()
+        public IWebElement PageHeader => driver.FindElement(By.CssSelector("h3"));
+
+        public IList<IWebElement> ContentRows => driver.FindElements(By.CssSelector("#content .row"));
+
+        public IWebElement GetImageElementInRow(int rowIndex)
         {
+            return ContentRows[rowIndex].FindElement(By.CssSelector(".large-2 img"));
         }
 
-        [TestMethod]
-        public void Test_ContentChangesOnRefresh()
+        public IWebElement GetTextElementInRow(int rowIndex)
         {
+            return ContentRows[rowIndex].FindElement(By.CssSelector(".large-10"));
         }
 
-        private List<string> GetContentTexts()
-        {
-        }
+        public IWebElement ExampleText => driver.FindElement(By.CssSelector("#content > div > div > div"));
 
-        [TestCleanup]
-        public void Teardown()
-        {
-            driver.Quit();
-        }
+        public IWebElement PoweredByText => driver.FindElement(By.CssSelector(".example p"));
     }
 }
