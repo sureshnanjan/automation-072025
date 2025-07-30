@@ -6,18 +6,10 @@ using System.Threading.Tasks;
 
 namespace HerokuOperations
 {
-    public interface HorizontalSlider
+    public interface IABTest
     {
         string GetTitle();
         string GetDescription();
-        void FocusSlider();
-        void MoveSLiderLeft(int steps);
-        void MoveSLiderRight(int steps);
-        int GetSliderValue();
-
-
-
-
-
+        void DisableABTest();
     }
 }
