@@ -5,64 +5,63 @@ using OpenQA.Selenium.Support.UI;
 namespace HerokuAppTests
 {
     /// <summary>
-    /// Contains automated UI tests for verifying key elements of the HerokuApp homepage.
-    /// Follows the Arrange-Act-Assert pattern for each test case.
+    /// Contains automated UI tests for validating key elements on the HerokuApp homepage.
+    /// Each test follows the Arrange-Act-Assert pattern.
     /// </summary>
     [TestClass]
     public sealed class HomePageTests
     {
         /// <summary>
-        /// Test to verify that the main title of the homepage is correct.
+        /// Verifies that the main title (h1) of the HerokuApp homepage matches the expected text.
         /// 
-        /// Arrange: Set the expected title and open the browser to the HerokuApp homepage.
-        /// Act: Retrieve the text of the main heading (h1).
-        /// Assert: Check that the actual heading matches the expected title.
+        /// Arrange: Define the expected title and navigate to the homepage.
+        /// Act: Locate the main heading element and extract its text.
+        /// Assert: Check if the actual text equals the expected title.
         /// </summary>
         [TestMethod]
         public void TitleisOK()
         {
-            // Arrange
             var expectedTitle = "Welcome to the-internet";
-            // Launch the browser and navigae to 
-            ChromeDriver driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
-            IWebElement pageheading = driver.FindElement(By.TagName("h1"));
-            // 
-            // Act
-            var actualTitle = pageheading.Text;
-            // Assert
-            Assert.AreEqual(expectedTitle, actualTitle);
+
+            using (ChromeDriver driver = new ChromeDriver())
+            {
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+                driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
+                IWebElement pageheading = driver.FindElement(By.TagName("h1"));
+                var actualTitle = pageheading.Text;
+
+                Assert.AreEqual(expectedTitle, actualTitle);
+            }
         }
 
         /// <summary>
-        /// Test to verify that the subtitle under the main title is correct.
+        /// Verifies that the subtitle (h2) on the HerokuApp homepage matches the expected text.
         /// 
-        /// Arrange: Set the expected subtitle and open the HerokuApp homepage.
-        /// Act: Locate the subtitle element (h2) and retrieve its text.
-        /// Assert: Ensure the actual text matches the expected subtitle.
+        /// Arrange: Define the expected subtitle and navigate to the homepage.
+        /// Act: Locate the subtitle element and retrieve its text.
+        /// Assert: Compare the actual text to the expected subtitle.
         /// </summary>
         [TestMethod]
         public void SubTitleisOK()
         {
-            // Arrange
             var expectedSubtitle = "Available Examples";
-            ChromeDriver driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
 
-            // Act
-            IWebElement subtitleElement = driver.FindElement(By.TagName("h2"));
-            var actualSubtitle = subtitleElement.Text;
+            using (ChromeDriver driver = new ChromeDriver())
+            {
+                driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
+                IWebElement subtitleElement = driver.FindElement(By.TagName("h2"));
+                var actualSubtitle = subtitleElement.Text;
 
-            // Assert
-            Assert.AreEqual(expectedSubtitle, actualSubtitle);
+                Assert.AreEqual(expectedSubtitle, actualSubtitle);
+            }
         }
 
         /// <summary>
-        /// Test to verify that the homepage displays exactly 44 example links.
+        /// Verifies that the homepage contains exactly 44 example links listed as <li> elements.
         /// 
-        /// Arrange: Open the HerokuApp homepage.
-        /// Act: Wait for and count all <li> elements under the <ul> list of examples.
-        /// Assert: Confirm that the count equals 44.
+        /// Arrange: Navigate to the HerokuApp homepage.
+        /// Act: Count the total number of list items in the unordered list.
+        /// Assert: Ensure the count equals 44.
         /// </summary>
         [TestMethod]
         public void ExamplesCountis44()
@@ -86,27 +85,32 @@ namespace HerokuAppTests
             driver.Quit();
         }
 
+        /// <summary>
+        /// Verifies that the 10th item in the example list is "Drag and Drop".
+        /// 
+        /// Arrange: Navigate to the HerokuApp homepage and wait for the list to load.
+        /// Act: Retrieve the text of the 10th list item (zero-based index).
+        /// Assert: Confirm the text matches "Drag and Drop".
+        /// </summary>
         [TestMethod]
         public void TenthItemIsDragAndDrop()
         {
             // Arrange
-            var driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
+            using (var driver = new ChromeDriver())
+            {
+                driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+                driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
 
-            // Optional: wait until the list items are loaded
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(d => d.FindElements(By.CssSelector("ul li")).Count >= 10);
+                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+                wait.Until(d => d.FindElements(By.CssSelector("ul li")).Count >= 10);
 
-            // Act
-            IList<IWebElement> items = driver.FindElements(By.CssSelector("ul li"));
-            string tenthItemText = items[9].Text; // Index 9 = 10th element (0-based index)
+                // Act
+                IList<IWebElement> items = driver.FindElements(By.CssSelector("ul li"));
+                string tenthItemText = items[9].Text; // Index 9 = 10th item
 
-            // Assert
-            Assert.AreEqual("Drag and Drop", tenthItemText);
-
-            // Cleanup
-            driver.Quit();
+                // Assert
+                Assert.AreEqual("Drag and Drop", tenthItemText);
+            }
         }
-
     }
 }
