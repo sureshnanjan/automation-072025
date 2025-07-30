@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ITinyMCEEditorPage.cs" company="Arpita Neogi">
 //   Copyright (c) 2025 Arpita Neogi. All rights reserved.
 //   This file contains an interface defining actions for interacting with the TinyMCE Editor page
@@ -42,4 +42,15 @@ namespace HerokuOperations
         void ClearEditorContent();
 
         /// <summary>
-        /// Enters the specified text into the TinyMCE editor'
+        /// Enters the specified text into the TinyMCE editor's text area.
+        /// </summary>
+        /// <param name="text">The text to be entered into the editor.</param>
+        void EnterTextInEditor(string text);
+
+        /// <summary>
+        /// Retrieves the current text content from the TinyMCE editor.
+        /// </summary>
+        /// <returns>The text currently present inside the TinyMCE editor.</returns>
+        string GetEditorContent();
+    }
+}
