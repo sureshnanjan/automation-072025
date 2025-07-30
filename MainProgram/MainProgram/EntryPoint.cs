@@ -45,8 +45,26 @@ public class Program
         //UsingDelegatesDemo();
 
         //pubSubDemo();
-        eventFiringDemo();
+        //eventFiringDemo();
+        // Feed the pets
+        Fish[] myfishes = { };
+        Cat[] mycats = { };
+        feedCAt(catinst);
+        feedFish(fishinstance);// { }
+        
 
+
+
+    }
+
+    private static void feedFish(Fish fish, object fishinstance)
+    {
+        throw new NotImplementedException();
+    }
+
+    private static void feedCAt(Cat cat, object catinst)
+    {
+        throw new NotImplementedException();
     }
 
     private static void eventFiringDemo()
