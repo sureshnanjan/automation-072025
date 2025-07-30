@@ -5,6 +5,7 @@
     /// </summary>
     public class BinarySearcherImpl
     {
+<<<<<<< HEAD
         /// <summary>
         /// Performs a binary search on the given array for the specified key.
         /// </summary>
@@ -12,6 +13,10 @@
         /// <param name="key"></param>
         /// <returns></returns>
         public int doBinarySearch(Array input, Object key) {
+=======
+        public int doBinarySearch(Array input, Object key)
+        {
+>>>>>>> db678ac573450ce1a0523e5e90e890c6e87cc9cf
             return Array.BinarySearch(input, key);
         }
 

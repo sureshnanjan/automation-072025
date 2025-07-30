@@ -1,0 +1,217 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20250702103849
+Username: ASCENDION\arpita.neogi
+RunAs User: ASCENDION\arpita.neogi
+Configuration Name: 
+Machine: ASCINLAP61366 (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 26680
+PSVersion: 5.1.26100.4061
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.4061
+BuildVersion: 10.0.26100.4061
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is arpita.txt
+PS C:\Users\arpita.neogi> New-Item -Path <path/to/workingfolder> -Name ‘QA-Training’ -ItemType Directory
+At line:1 char:16
++ New-Item -Path <path/to/workingfolder> -Name ‘QA-Training’ -ItemType  ...
++                ~
+The '<' operator is reserved for future use.
+At line:1 char:16
++ New-Item -Path <path/to/workingfolder> -Name ‘QA-Training’ -ItemType  ...
++                ~
+The '<' operator is reserved for future use.
+    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
+    + FullyQualifiedErrorId : RedirectionNotSupported
+
+PS C:\Users\arpita.neogi> New-Item -Path https://github.com/ARPITA1312/QA-Training.git -Name ‘QA-Training’ -ItemType Directory
+New-Item : Cannot find drive. A drive with the name 'https' does not exist.
+At line:1 char:1
++ New-Item -Path https://github.com/ARPITA1312/QA-Training.git -Name ‘Q ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (https:String) [New-Item], DriveNotFoundException
+    + FullyQualifiedErrorId : DriveNotFound,Microsoft.PowerShell.Commands.NewItemCommand
+New-Item : Cannot find drive. A drive with the name 'https' does not exist.
+At line:1 char:1
++ New-Item -Path https://github.com/ARPITA1312/QA-Training.git -Name ‘Q ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (https:String) [New-Item], DriveNotFoundException
+    + FullyQualifiedErrorId : DriveNotFound,Microsoft.PowerShell.Commands.NewItemCommand
+
+PS C:\Users\arpita.neogi> New-Item -Path "C:\Users\arpita.neogi\OneDrive - ascendion\Desktop\Project" -Name ‘QA-Training’ -ItemType Directory
+
+
+    Directory: C:\Users\arpita.neogi\OneDrive - ascendion\Desktop\Project
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        02-07-2025     10:44                QA-Training
+
+
+PS C:\Users\arpita.neogi> Set-Location "C:\Users\arpita.neogi\OneDrive - ascendion\Desktop\Project"\QA-Training
+>> TerminatingError(Set-Location): "A positional parameter cannot be found that accepts argument '\QA-Training'."
+Set-Location : A positional parameter cannot be found that accepts argument '\QA-Training'.
+At line:1 char:1
++ Set-Location "C:\Users\arpita.neogi\OneDrive - ascendion\Desktop\Proj ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Set-Location], ParameterBindingException
+    + FullyQualifiedErrorId : PositionalParameterNotFound,Microsoft.PowerShell.Commands.SetLocationCommand
+Set-Location : A positional parameter cannot be found that accepts argument '\QA-Training'.
+At line:1 char:1
++ Set-Location "C:\Users\arpita.neogi\OneDrive - ascendion\Desktop\Proj ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Set-Location], ParameterBindingException
+    + FullyQualifiedErrorId : PositionalParameterNotFound,Microsoft.PowerShell.Commands.SetLocationCommand
+
+PS C:\Users\arpita.neogi> Set-Location 'C:\Users\arpita.neogi\OneDrive - ascendion\Desktop\Project'\QA-Training
+>> TerminatingError(Set-Location): "A positional parameter cannot be found that accepts argument '\QA-Training'."
+Set-Location : A positional parameter cannot be found that accepts argument '\QA-Training'.
+At line:1 char:1
++ Set-Location 'C:\Users\arpita.neogi\OneDrive - ascendion\Desktop\Proj ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Set-Location], ParameterBindingException
+    + FullyQualifiedErrorId : PositionalParameterNotFound,Microsoft.PowerShell.Commands.SetLocationCommand
+Set-Location : A positional parameter cannot be found that accepts argument '\QA-Training'.
+At line:1 char:1
++ Set-Location 'C:\Users\arpita.neogi\OneDrive - ascendion\Desktop\Proj ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Set-Location], ParameterBindingException
+    + FullyQualifiedErrorId : PositionalParameterNotFound,Microsoft.PowerShell.Commands.SetLocationCommand
+
+PS C:\Users\arpita.neogi> Set-Location "C:\Users\arpita.neogi\OneDrive - ascendion\Desktop\Project"\QA-Training
+>> TerminatingError(Set-Location): "A positional parameter cannot be found that accepts argument '\QA-Training'."
+Set-Location : A positional parameter cannot be found that accepts argument '\QA-Training'.
+At line:1 char:1
++ Set-Location "C:\Users\arpita.neogi\OneDrive - ascendion\Desktop\Proj ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Set-Location], ParameterBindingException
+    + FullyQualifiedErrorId : PositionalParameterNotFound,Microsoft.PowerShell.Commands.SetLocationCommand
+Set-Location : A positional parameter cannot be found that accepts argument '\QA-Training'.
+At line:1 char:1
++ Set-Location "C:\Users\arpita.neogi\OneDrive - ascendion\Desktop\Proj ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Set-Location], ParameterBindingException
+    + FullyQualifiedErrorId : PositionalParameterNotFound,Microsoft.PowerShell.Commands.SetLocationCommand
+
+PS C:\Users\arpita.neogi> Set-Location "C:\Users\arpita.neogi\OneDrive - ascendion\Desktop\Project\QA-Training"
+PS C:\Users\arpita.neogi\OneDrive - ascendion\Desktop\Project\QA-Training> git --version
+git : The term 'git' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ git --version
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+git : The term 'git' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of
+the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ git --version
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Users\arpita.neogi\OneDrive - ascendion\Desktop\Project\QA-Training> Invoke-WebRequest -Uri https://github.com/git-for-windows/git/releases/download/v2.44.0.windows.1/Git-2.44.0-64-bit.exe -OutFile git-installer.exe
+PS C:\Users\arpita.neogi\OneDrive - ascendion\Desktop\Project\QA-Training> git --version
+git : The term 'git' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ git --version
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+git : The term 'git' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of
+the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ git --version
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Users\arpita.neogi\OneDrive - ascendion\Desktop\Project\QA-Training> winget install --id Git.Git -e --source winget
+
+PS C:\Users\arpita.neogi\OneDrive - ascendion\Desktop\Project\QA-Training> git --version
+git : The term 'git' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ git --version
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+git : The term 'git' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of
+the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ git --version
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Users\arpita.neogi\OneDrive - ascendion\Desktop\Project\QA-Training> git --version
+git : The term 'git' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ git --version
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+git : The term 'git' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of
+the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ git --version
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Users\arpita.neogi\OneDrive - ascendion\Desktop\Project\QA-Training> git clone https://github.com/sureshnanjan/automation-072025.git
+git : The term 'git' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ git clone https://github.com/sureshnanjan/automation-072025.git
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+git : The term 'git' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of
+the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ git clone https://github.com/sureshnanjan/automation-072025.git
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Users\arpita.neogi\OneDrive - ascendion\Desktop\Project\QA-Training> git -c http.sslVerify=false clone "C:\Users\arpita.neogi\OneDrive - ascendion\Desktop\Project"
+git : The term 'git' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ git -c http.sslVerify=false clone "C:\Users\arpita.neogi\OneDrive - a ...
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+git : The term 'git' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of
+the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ git -c http.sslVerify=false clone "C:\Users\arpita.neogi\OneDrive - a ...
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Users\arpita.neogi\OneDrive - ascendion\Desktop\Project\QA-Training> git config http:sslVerify "false"
+git : The term 'git' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ git config http:sslVerify "false"
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+git : The term 'git' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of
+the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ git config http:sslVerify "false"
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (git:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HerokuOperations
 {
-    internal interface Input
+    internal interface Iinput
     {
 
         void GotoPage(); // Navigates to the Input page

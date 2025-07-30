@@ -15,6 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarySearcher", "BinarySea
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarySearcherTests", "BinarySearcherTests\BinarySearcherTests.csproj", "{ABF3391F-9BBA-4405-AB62-331D6FFD608D}"
 EndProject
+<<<<<<< HEAD
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
 	ProjectSection(SolutionItems) = preProject
 		documentation.cs = documentation.cs
@@ -31,6 +32,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HerokuOperations", "HerokuOperations\HerokuOperations.csproj", "{AD629599-B00D-429C-868C-5DF2404C144A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HerokuAppScenarios", "HerokuAppScenarios\HerokuAppScenarios.csproj", "{3854AB9D-2BDD-4354-A79D-76D6CFF5C6EA}"
+=======
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HerokuAppTests", "HerokuAppTests\HerokuAppTests.csproj", "{818C0B98-37F9-AD2B-7F8D-9A1E7808A287}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectionsManager", "CollectionsManager\CollectionsManager.csproj", "{FC2D668B-92E6-468A-A764-1C395AFF8BFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollectionsInterfacesTestacse", "CollectionsInterfacesTestacse\CollectionsInterfacesTestacse.csproj", "{FE607B8D-02BE-414F-B25E-BE6C1241EDA8}"
+>>>>>>> db678ac573450ce1a0523e5e90e890c6e87cc9cf
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +70,7 @@ Global
 		{ABF3391F-9BBA-4405-AB62-331D6FFD608D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABF3391F-9BBA-4405-AB62-331D6FFD608D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABF3391F-9BBA-4405-AB62-331D6FFD608D}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
 		{38218DC5-BD28-482B-9107-A87210B77E78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{38218DC5-BD28-482B-9107-A87210B77E78}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38218DC5-BD28-482B-9107-A87210B77E78}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -88,15 +97,33 @@ Global
 		{3854AB9D-2BDD-4354-A79D-76D6CFF5C6EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3854AB9D-2BDD-4354-A79D-76D6CFF5C6EA}.Release|Any CPU.Build.0 = Release|Any CPU
 >>>>>>> 6f06f182c74c0cfec7bdb4163e03dd9c2faa6129
+=======
+		{818C0B98-37F9-AD2B-7F8D-9A1E7808A287}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{818C0B98-37F9-AD2B-7F8D-9A1E7808A287}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{818C0B98-37F9-AD2B-7F8D-9A1E7808A287}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{818C0B98-37F9-AD2B-7F8D-9A1E7808A287}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC2D668B-92E6-468A-A764-1C395AFF8BFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC2D668B-92E6-468A-A764-1C395AFF8BFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC2D668B-92E6-468A-A764-1C395AFF8BFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC2D668B-92E6-468A-A764-1C395AFF8BFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE607B8D-02BE-414F-B25E-BE6C1241EDA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE607B8D-02BE-414F-B25E-BE6C1241EDA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE607B8D-02BE-414F-B25E-BE6C1241EDA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE607B8D-02BE-414F-B25E-BE6C1241EDA8}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> db678ac573450ce1a0523e5e90e890c6e87cc9cf
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 <<<<<<< HEAD
+<<<<<<< HEAD
 		SolutionGuid = {5D68F1D1-4B7B-46EB-845A-57C25FAEF70B}
 =======
 		SolutionGuid = {4A446EE7-FC46-4199-BC85-88F0437B2C49}
 >>>>>>> ad7289cc476d9913159bb7b22d7c14188d4971da
+=======
+		SolutionGuid = {7FCE2720-32CA-4DF5-82D3-F9FF03A43DB7}
+>>>>>>> db678ac573450ce1a0523e5e90e890c6e87cc9cf
 	EndGlobalSection
 EndGlobal

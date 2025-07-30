@@ -29,8 +29,12 @@ namespace BinarySearcherTests
             BinarySearcherImpl searcher = new BinarySearcherImpl();
 
             // Act
+<<<<<<< HEAD
             int actualIndex = searcher.doBinarySearch(inputArray, target);
 
+=======
+            int actualresult = SUT.doBinarySearch(inputArray, elementToFind);
+>>>>>>> db678ac573450ce1a0523e5e90e890c6e87cc9cf
             // Assert
             Assert.AreEqual(expectedIndex, actualIndex, "Element was not found at the expected index.");
         }
@@ -49,8 +53,12 @@ namespace BinarySearcherTests
             BinarySearcherImpl searcher = new BinarySearcherImpl();
 
             // Act
+<<<<<<< HEAD
             int actualIndex = searcher.doBinarySearch(inputArray, target);
 
+=======
+            int actualresult = SUT.doBinarySearch(inputArray, elementToFind);
+>>>>>>> db678ac573450ce1a0523e5e90e890c6e87cc9cf
             // Assert
             Assert.AreEqual(expectedIndex, actualIndex, "Incorrect negative index when value is not found and less than some elements.");
         }
@@ -69,8 +77,12 @@ namespace BinarySearcherTests
             BinarySearcherImpl searcher = new BinarySearcherImpl();
 
             // Act
+<<<<<<< HEAD
             int actualIndex = searcher.doBinarySearch(inputArray, target);
 
+=======
+            int actualresult = SUT.doBinarySearch(inputArray, elementToFind);
+>>>>>>> db678ac573450ce1a0523e5e90e890c6e87cc9cf
             // Assert
             Assert.AreEqual(expectedIndex, actualIndex, "Incorrect negative index when value is greater than all elements.");
         }

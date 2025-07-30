@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HerokuOperations
 {
-    public interface InfiniteScroll
+    public interface IinfiniteScroll
     {
         // Navigates to the Infinite Scroll page
         void GotoPage();
