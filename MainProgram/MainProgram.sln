@@ -28,6 +28,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "generics", "generics\generi
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomExtensions", "CustomExtensions\CustomExtensions.csproj", "{3A066C3F-3A33-4BAC-BEAC-452F88A539C8}"
 >>>>>>> ad7289cc476d9913159bb7b22d7c14188d4971da
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HerokuOperations", "HerokuOperations\HerokuOperations.csproj", "{AD629599-B00D-429C-868C-5DF2404C144A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HerokuAppScenarios", "HerokuAppScenarios\HerokuAppScenarios.csproj", "{3854AB9D-2BDD-4354-A79D-76D6CFF5C6EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,7 +76,18 @@ Global
 		{3A066C3F-3A33-4BAC-BEAC-452F88A539C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A066C3F-3A33-4BAC-BEAC-452F88A539C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A066C3F-3A33-4BAC-BEAC-452F88A539C8}.Release|Any CPU.Build.0 = Release|Any CPU
+<<<<<<< HEAD
 >>>>>>> ad7289cc476d9913159bb7b22d7c14188d4971da
+=======
+		{AD629599-B00D-429C-868C-5DF2404C144A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD629599-B00D-429C-868C-5DF2404C144A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD629599-B00D-429C-868C-5DF2404C144A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD629599-B00D-429C-868C-5DF2404C144A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3854AB9D-2BDD-4354-A79D-76D6CFF5C6EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3854AB9D-2BDD-4354-A79D-76D6CFF5C6EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3854AB9D-2BDD-4354-A79D-76D6CFF5C6EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3854AB9D-2BDD-4354-A79D-76D6CFF5C6EA}.Release|Any CPU.Build.0 = Release|Any CPU
+>>>>>>> 6f06f182c74c0cfec7bdb4163e03dd9c2faa6129
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
