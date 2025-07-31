@@ -7,7 +7,9 @@ using System.Reflection;
 
 public class Program
 {
-    public delegate void  MyMethodwithNoArguments();
+    private static Cat catinst;
+
+    public delegate void MyMethodwithNoArguments();
     public delegate void MyMethodwithDayOfWeek(DayOfWeek inst);
 
     public delegate int AMethodWith2IntsReturnInt(int a, int b);
@@ -20,19 +22,21 @@ public class Program
 
         //designToInterface();
 
-<<<<<<< HEAD
-        comparableDemo();
-=======
         // comparableDemo();
 
-<<<<<<< HEAD
-        DemoUser dminstance = new DemoUser(10, "AUser");
-        DemoUser copyofOne = (DemoUser)dminstance.Clone(); // Shallow copy
->>>>>>> 4c83d42b69d81bf5f64327afb32b0617c28e862f
-=======
-        //DemoUser dminstance = new DemoUser(10, "AUser");
-        //DemoUser copyofOne = (DemoUser)dminstance.Clone(); // Shallow copy
->>>>>>> 10e667814f0e67d7065ec9e42fceb6d191319c20
+
+        DemoUser dminstance = new(10, "AUser");
+        // Fix for CS0121: The call is ambiguous between the following methods or properties: 'DemoUser.Clone()' and 'DemoUser.Clone()'
+        // Fix for CS7036: Provide the required arguments for the 'feedCAt' and 'feedFish' methods.
+
+        Cat catinst = new Cat(); // Initialize the 'catinst' variable
+        Fish fishinstance = new Fish(); // Initialize the 'fishinstance' variable
+
+        // Feed the pets
+        feedCAt(catinst, catinst); // Pass the required arguments
+        feedFish(fishinstance, fishinstance); // Pass the required arguments
+        DemoUser copyofOne = (DemoUser)((ICloneable)dminstance).Clone(); // Explicitly cast to ICloneable to resolve ambiguity
+
 
         //GenericsDemo();
 
@@ -51,7 +55,7 @@ public class Program
         Cat[] mycats = { };
         feedCAt(catinst);
         feedFish(fishinstance);// { }
-        
+
 
 
 
@@ -158,12 +162,14 @@ public class Program
         }
     }
 
-    static void Method1() {
+    static void Method1()
+    {
 
-        Console.WriteLine("Inside Method 1");    
+        Console.WriteLine("Inside Method 1");
     }
 
-    static void doExecution(Action argfunction) {
+    static void doExecution(Action argfunction)
+    {
         Console.WriteLine("Executing another Method");
         argfunction();
         Console.WriteLine("Doing something after execution");
@@ -178,7 +184,8 @@ public class Program
         List<int> users = new List<int>();
     }
 
-    private static void GreetUser(DayOfWeek dayofweek) {
+    private static void GreetUser(DayOfWeek dayofweek)
+    {
         switch (dayofweek)
         {
             case DayOfWeek.Monday:
@@ -234,7 +241,7 @@ public class Program
     {
         int[] myNumbers = { 10, 1, 222, 32, 4, 5, 0, 100 };
         string[] myNamee = { "AJohn", "Jane", "Doe", "Zach" };
-        DemoUser[] myUsers = { new DemoUser(10,"AUser"), new DemoUser(11,"DUser"), new DemoUser(12,"BUser"), new DemoUser(20,"ZUser"), new DemoUser(0,"XUser") };
+        DemoUser[] myUsers = { new(10, "AUser"), new DemoUser(11, "DUser"), new DemoUser(12, "BUser"), new DemoUser(20, "ZUser"), new DemoUser(0, "XUser") };
 
         Console.WriteLine("Before Sorting");
         foreach (var item in myNumbers)
@@ -288,8 +295,9 @@ public class Program
         return first + second;
     }
 
-    static void DemoRefParam(ref int received) {
-    
+    static void DemoRefParam(ref int received)
+    {
+
     }
 
     static void SumOfAll(params int[] received) { }
@@ -297,13 +305,15 @@ public class Program
     void sort(int[] array) { }
 
 
-    
-    static void DemoOutParam(out int received) {
+
+    static void DemoOutParam(out int received)
+    {
         Console.WriteLine("I am inialising the param as I am an OUT modifier");
         received = 100; // Must assign a value before using it
     }
 
-    static void DemoInParam(in int received) {
+    static void DemoInParam(in int received)
+    {
         //received = 100;
     }
 
@@ -342,4 +352,47 @@ public class Program
     }
 
 
+}// Fix for CS0121: The call is ambiguous between the following methods or properties: 'DemoUser.DemoUser(int, string)' and 'DemoUser.DemoUser(int, string)'
+// The issue likely arises from duplicate constructor definitions in the DemoUser class.
+// Ensure that the DemoUser class has only one constructor with the signature DemoUser(int, string).
+
+// Check the DemoUser class definition and remove any duplicate constructors with the same signature.
+// Below is an example of how the DemoUser class should look:
+
+public class DemoUser : IComparable<DemoUser>, ICloneable, IComparable
+{
+    public int Value { get; set; }
+    public string Name { get; set; }
+
+    // Constructor
+    public DemoUser(int value, string name)
+    {
+        Value = value;
+        Name = name;
+    }
+
+    public override string? ToString()
+    {
+        return $"{Name} ({Value})";
+    }
+
+    public int CompareTo(DemoUser? other)
+    {
+        if (other == null) return 1;
+        return Value.CompareTo(other.Value);
+    }
+
+    public object Clone()
+    {
+        return new DemoUser(Value, Name);
+    }
+
+    public int CompareTo(object? obj)
+    {
+        if (obj is DemoUser other)
+        {
+            return CompareTo(other);
+        }
+        throw new ArgumentException("Object is not a DemoUser");
+    }
 }
