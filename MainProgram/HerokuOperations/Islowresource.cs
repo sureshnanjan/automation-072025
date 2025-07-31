@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace HerokuOperations
 {
-    internal interface Interface1
+    internal interface Islowresource
     {
+      
+        /// Gets the page title (e.g., "Slow Resources").  
+        string GetTitle();
+
+        /// Gets the static description text shown on the page.
+        string GetDescription();
+
     }
-}
+}  
