@@ -1,14 +1,11 @@
-using OpenQA.Selenium;
-using System.Collections.Generic;
-
-namespace ShiftingContentPage
+namespace HerokuOperations
 {
-    interface IShiftingContentInterface
+    public interface IShiftingContentPage
     {
-        IWebElement PageHeader { get; }
+        string GetTitle();
+        string GetDescription();
 
-        IList<IWebElement> ContentLinks { get; }
-
-        IWebElement DescriptionText { get; }
+        string[] GetAllLinkTexts();
+        int GetLinkCount();
     }
 }
