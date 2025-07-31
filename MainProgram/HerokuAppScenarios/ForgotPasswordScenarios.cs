@@ -1,10 +1,16 @@
-﻿namespace HerokuAppScenarios;
+﻿
+namespace HerokuAppScenarios;
+
 
 public class ForgotPasswordScenarios
 {
+
+    private IForgotPassword forgotPassword;
     [SetUp]
     public void Setup()
     {
+        forgotPassword = new ForgotPasswordScenarios();
+
     }
 
     [Test]
