@@ -4,7 +4,8 @@ using System.Collections.Generic;
 namespace DynamicContentPage
 {
     /// <summary>
-    /// Interface for interacting with the dynamic content page at https://the-internet.herokuapp.com/dynamic_content
+    /// Interface for identifying and interacting with elements on the dynamic content page.
+    /// Provides access to headers, rows, images, texts, and footer elements.
     /// </summary>
     public interface IDynamicContentInterface
     {
