@@ -1,24 +1,9 @@
-using OpenQA.Selenium;
-using System.Collections.Generic;
+using OpenQA.Selenium;              // For IWebDriver and IWebElement
+using OpenQA.Selenium.Chrome;       // For ChromeDriver
+using OpenQA.Selenium.Support.UI;   // For WebDriverWait and SelectElement
+using System;                       // For TimeSpan
 
-namespace DynamicContentPage
-{
-    /// <summary>
-    /// Interface for identifying and interacting with elements on the dynamic content page.
-    /// Provides access to headers, rows, images, texts, and footer elements.
-    /// </summary>
-    public interface IDynamicContentInterface
-    {
-        IWebElement PageHeader { get; }
-
-        IList<IWebElement> ContentRows { get; }
-
-        IWebElement GetImageElementInRow(int rowIndex);
-
-        IWebElement GetTextElementInRow(int rowIndex);
-
-        IWebElement ExampleText { get; }
-
-        IWebElement PoweredByText { get; }
-    }
-}
+IWebDriver driver;                  // Controls the browser instance (Chrome, Firefox, etc.)
+WebDriverWait wait;                // Provides explicit wait functionality for specific elements or conditions
+IWebElement dropdown;              // Represents the <select> HTML element on the page
+SelectElement select;              // Wrapper around the <select> element to simplify dropdown interactions
