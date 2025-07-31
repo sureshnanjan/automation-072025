@@ -1,24 +1,18 @@
 using OpenQA.Selenium;
 using System.Collections.Generic;
 
-namespace DynamicContentPage
+namespace ShiftingContentPage
 {
     /// <summary>
-    /// Interface for identifying and interacting with elements on the dynamic content page.
-    /// Provides access to headers, rows, images, texts, and footer elements.
+    /// Interface for identifying and interacting with elements on the Shifting Content page.
+    /// Allows access to the page header, content links, and description text.
     /// </summary>
-    public interface IDynamicContentInterface
+    public interface IShiftingContentInterface
     {
         IWebElement PageHeader { get; }
 
-        IList<IWebElement> ContentRows { get; }
+        IList<IWebElement> ContentLinks { get; }
 
-        IWebElement GetImageElementInRow(int rowIndex);
-
-        IWebElement GetTextElementInRow(int rowIndex);
-
-        IWebElement ExampleText { get; }
-
-        IWebElement PoweredByText { get; }
+        IWebElement DescriptionText { get; }
     }
 }
