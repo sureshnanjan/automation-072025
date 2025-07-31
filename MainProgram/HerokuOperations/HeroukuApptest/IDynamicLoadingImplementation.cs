@@ -1,52 +1,21 @@
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using HerokuOperations;
 
-namespace HerokuOperations
+class Program
 {
-    public class DynamicLoading : IDynamicLoading
+    static void Main(string[] args)
     {
-        private readonly IWebDriver _driver;
+        IWebDriver driver = new ChromeDriver();
+        IDynamicLoading loader = new DynamicLoading(driver);
 
-        public DynamicLoading(IWebDriver driver)
-        {
-            _driver = driver;
-        }
+        // Example usage
+        loader.NavigateToExample(1);
+        loader.ClickStartButton();
+        loader.WaitForLoadingToFinish();
+        string result = loader.GetResultText();
+        Console.WriteLine(result);
 
-        public void NavigateToExample(int exampleNumber)
-        {
-            _driver.Navigate().GoToUrl($"https://the-internet.herokuapp.com/dynamic_loading/{exampleNumber}");
-        }
-
-        public void ClickStartButton()
-        {
-            var startButton = _driver.FindElement(By.CssSelector("#start button"));
-            startButton.Click();
-        }
-
-        public void WaitForLoadingToFinish()
-        {
-            var wait = new OpenQA.Selenium.Support.UI.WebDriverWait(_driver, TimeSpan.FromSeconds(10));
-            wait.Until(driver => driver.FindElement(By.Id("finish")).Displayed);
-        }
-
-        public string GetResultText()
-        {
-            var resultElement = _driver.FindElement(By.Id("finish"));
-            return resultElement.Text;
-        }
-
-        public bool IsLoadingIndicatorVisible()
-        {
-            try
-            {
-                var loadingIndicator = _driver.FindElement(By.Id("loading"));
-                return loadingIndicator.Displayed;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
-            }
-        }
+        driver.Quit();
     }
 }
-// Update the instantiation in the test class to use the concrete implementation
-loader = new DynamicLoading(driver);

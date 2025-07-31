@@ -56,5 +56,14 @@ namespace HerokuOperations
         }
     }
 }
-// Update the instantiation in the test class to use the concrete implementation
-page = new DynamicControlsPage(driver);
+
+// Ensure this instantiation is moved to a method or a proper context
+// Example:
+public class TestClass
+{
+    public void TestMethod(IWebDriver driver)
+    {
+        var page = new DynamicControlsPage(driver);
+        // Use the page object here
+    }
+}
