@@ -1,22 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using HerokuOperations;
+using System;
 
-namespace HerokuOperations
+namespace HerokuTests
 {
-    internal interface ShadowDOM
+    [TestClass]
+    public class ShadowDOMTests
     {
-            
-        // Gets the text content of the first shadow host's paragraph (e.g., "My default text")
-        string GetFirstShadowHostText();
+        private IWebDriver driver;
+        private IShadowDOM shadowDom;
 
-        // Gets the text content of the second shadow host's paragraph (e.g., "Let's have some different text!")
-        string GetSecondShadowHostText();
+        [TestInitialize]
+        public void Setup()
+        {
+            driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/shadowdom");
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            shadowDom = new ShadowDOMPage(driver); // ← Replace with your actual class
+        }
 
-        // Gets the text inside any nested shadow DOM element
-        string GetNestedShadowText();
+        [TestCleanup]
+        public void Teardown() => driver.Quit();
+
+        [TestMethod]
+        public void Test_GetShadowTexts()
+        {
+            string text1 = shadowDom.GetFirstShadowHostText();
+            string text2 = shadowDom.GetSecondShadowHostText();
+            string nested = shadowDom.GetNestedShadowText();
+
+            Assert.IsFalse(string.IsNullOrEmpty(text1));
+            Assert.IsFalse(string.IsNullOrEmpty(text2));
+            Assert.IsFalse(string.IsNullOrEmpty(nested));
+        }
     }
 }
-    
