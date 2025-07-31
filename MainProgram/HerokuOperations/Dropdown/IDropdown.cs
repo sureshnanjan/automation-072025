@@ -1,8 +1,10 @@
-using OpenQA.Selenium;              // For IWebDriver and IWebElement
-using OpenQA.Selenium.Chrome;       // For ChromeDriver
-using OpenQA.Selenium.Support.UI;   // For WebDriverWait and SelectElement
-using System;                       // For TimeSpan
+namespace HerokuOperations
+{
+    public interface IDropdownPage
+    {
+        string GetTitle();
 
+<<<<<<< HEAD
 namespace Dropdown
 {
     // Parameters required for dropdown testing using Selenium
@@ -21,3 +23,10 @@ namespace Dropdown
         }
     }
 }
+=======
+        string[] GetAllOptions();
+        void SelectOptionByText(string optionText);
+        string GetSelectedOption();
+    }
+}
+>>>>>>> d14d35d6339ba6935c04c01ab128e5aede9c44f0
