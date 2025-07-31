@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
-
-namespace HerokuOperations
+using HerokuOperations;
+namespace HerokuAppWeb
 {
     /// <summary>
     /// Implements the INotificationMessages interface for interacting with

@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
-namespace HerokuOperations
+using HerokuOperations;
+namespace HerokuAppWeb
 {
     /// <summary>
     /// Implements the IForgotPassword interface for interacting with the

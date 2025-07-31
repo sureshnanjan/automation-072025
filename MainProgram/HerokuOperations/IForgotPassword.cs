@@ -15,7 +15,7 @@ namespace HerokuOperations
     /// Represents the operations available on the "Forgot Password" page
     /// of the Heroku web application.
     /// </summary>
-    internal interface IForgotPassword
+    public interface IForgotPassword
     {
         /// <summary>
         /// Retrieves the page heading or title (typically "Forgot Password").

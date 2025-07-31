@@ -18,7 +18,7 @@ namespace HerokuOperations
     /// <summary>
     /// Defines operations for interacting with the Floating Menu page.
     /// </summary>
-    internal interface IFloatingMenu
+    public interface IFloatingMenu
     {
         /// <summary>
         /// Checks if the floating menu is visible on the screen.

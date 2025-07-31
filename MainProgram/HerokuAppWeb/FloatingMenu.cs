@@ -1,7 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
-
-namespace HerokuOperations
+using HerokuOperations;
+namespace HerokuAppWeb
 {
     /// <summary>
     /// Implements the IFloatingMenu interface for interacting with the
