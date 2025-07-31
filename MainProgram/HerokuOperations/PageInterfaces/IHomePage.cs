@@ -1,4 +1,4 @@
-﻿namespace HerokuOperations
+﻿namespace HerokuOperations.PageInterfaces
 {
     public interface IHomePage
     {

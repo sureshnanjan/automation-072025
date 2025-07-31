@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HerokuOperations
+namespace HerokuOperations.PageInterfaces
 {
     public interface IBasicAuthPage
     {
