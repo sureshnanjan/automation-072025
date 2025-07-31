@@ -20,10 +20,19 @@ public class Program
 
         //designToInterface();
 
+<<<<<<< HEAD
+        comparableDemo();
+=======
         // comparableDemo();
 
+<<<<<<< HEAD
+        DemoUser dminstance = new DemoUser(10, "AUser");
+        DemoUser copyofOne = (DemoUser)dminstance.Clone(); // Shallow copy
+>>>>>>> 4c83d42b69d81bf5f64327afb32b0617c28e862f
+=======
         //DemoUser dminstance = new DemoUser(10, "AUser");
         //DemoUser copyofOne = (DemoUser)dminstance.Clone(); // Shallow copy
+>>>>>>> 10e667814f0e67d7065ec9e42fceb6d191319c20
 
         //GenericsDemo();
 

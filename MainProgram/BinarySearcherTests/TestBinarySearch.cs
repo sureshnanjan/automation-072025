@@ -1,9 +1,14 @@
+<<<<<<< HEAD
 ﻿using BinarySearcher;
 <<<<<<< HEAD
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
 =======
+=======
+
+using BinarySearcher;
+>>>>>>> 3d17e9183df2285ed5d9df27ce6b940ae8a994b3
 using System.Collections;
 using CustomExtensions;
 >>>>>>> ad7289cc476d9913159bb7b22d7c14188d4971da
@@ -40,6 +45,7 @@ namespace BinarySearcherTests
         /// Tests when element is not found but is less than some elements in the array.
         /// </summary>
         [TestMethod]
+<<<<<<< HEAD
         public void ElementNotFound_LessThanSomeElements_ReturnsNegativeInsertionIndex()
         {
             // Arrange
@@ -61,6 +67,9 @@ namespace BinarySearcherTests
         /// </summary>
         [TestMethod]
         public void ElementNotFound_GreaterThanAllElements_ReturnsNegativeLength()
+=======
+        public void ElementNotFoundButGreaterthanAllTest()
+>>>>>>> 3d17e9183df2285ed5d9df27ce6b940ae8a994b3
         {
             // Arrange
             int[] inputArray = { 1, 2, 3, 4, 6, 7, 8, 9, 10 };

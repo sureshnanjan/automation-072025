@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+<<<<<<< HEAD
 namespace PetstoreDesktop.Properties {
     
     
@@ -19,6 +20,23 @@ namespace PetstoreDesktop.Properties {
         
         public static Settings Default {
             get {
+=======
+namespace PetstoreDesktop.Properties
+{
+
+
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
+    {
+
+        private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
+
+        public static Settings Default
+        {
+            get
+            {
+>>>>>>> 3d17e9183df2285ed5d9df27ce6b940ae8a994b3
                 return defaultInstance;
             }
         }

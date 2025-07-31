@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace HerokuOperations
 {
-    public interface ContextMenu
+    public interface IContextMenu
     {
-        void GoToPage();
+        void GoToPage();// Navigate to the context menu page
 
-        string GetTitle();
+        string GetTitle();// Get the title of the page
 
-        string GetInformation();
+        string GetInformation();// Get the information text on the page
 
-        void RIghtClickOnBox();
+        void RIghtClickOnBox();// Perform a right-click on the box element
 
-        string GetAlertText();
+        string GetAlertText();// Get the text of the alert that appears after right-clicking
 
-        void AcceptAlert();
+        void AcceptAlert();// Accept the alert that appears after right-clicking
 
 
 
