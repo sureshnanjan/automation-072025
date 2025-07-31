@@ -15,7 +15,7 @@ public class ABTestScenarios
         // Arrange
         IHomePage page;
         IABTest abpage;
-        page.GoToExample("A/B Testing");
-        string actual = abpage.GetTitle();
+        //page.GoToExample("A/B Testing");
+        //string actual = abpage.GetTitle();
     }
 }
