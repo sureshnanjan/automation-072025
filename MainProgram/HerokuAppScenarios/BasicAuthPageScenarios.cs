@@ -34,18 +34,14 @@ namespace HerokuOperationsTests
         /// Setup method executed before each test.
         /// Initializes the Chrome WebDriver and page object.
         /// </summary>
-        [SetUp]
-        public void Setup()
-        {
-            
-        }
+
 
         /// <summary>
         /// Validates that navigating to the Basic Auth page with valid credentials
         /// displays the expected page title.
         /// </summary>
         [Test]
-        public void NavigateToPage_WithValidCredentials_ShouldDisplayCorrectTitle()
+        public void NavigationPageWithValidCredentials
         {
             // Arrange
             const string username = "admin";
@@ -64,7 +60,7 @@ namespace HerokuOperationsTests
         /// Validates that after successful login, the page displays a success message.
         /// </summary>
         [Test]
-        public void GetPageDescription_ShouldReturnSuccessMessage()
+        public void PageDescriptionGivingSuccessfullyMessageForLogin
         {
             // Arrange
             const string username = "admin";
@@ -75,7 +71,7 @@ namespace HerokuOperationsTests
             var description = _basicAuthPage.GetPageDescription();
 
             // Assert
-            Assert.That(description, Does.Contain("Congratulations"),
+            Assert.That(description, Does.Contain("Logged in Successfully"),
                 "Description should indicate successful login.");
         }
 
@@ -83,14 +79,6 @@ namespace HerokuOperationsTests
         /// TearDown method executed after each test to ensure proper cleanup.
         /// Closes browser session and releases WebDriver resources.
         /// </summary>
-        [TearDown]
-        public void TearDown()
-        {
-            if (_driver != null)
-            {
-                _driver.Quit();
-                _driver.Dispose();
-            }
-        }
+        
     }
 }
