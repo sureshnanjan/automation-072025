@@ -29,8 +29,6 @@ namespace HerokuAppScenarios
         [SetUp]
         public void Setup()
         {
-            // Arrange
-            // Initialize _checkboxesPage with driver and navigate to the checkbox page
         }
 
         /// <summary>
@@ -199,21 +197,88 @@ namespace HerokuAppScenarios
         }
 
         /// <summary>
-        /// Handles edge case where only one checkbox is present and ensures proper functionality.
+        /// Verifies that checkboxes can be toggled using the keyboard (space key).
         /// </summary>
         [Test]
-        public void WhenOnlyOneCheckboxAvailable_ShouldNotCrashAndRemainOperable()
+        public void Checkbox_ShouldBeToggledByKeyboard()
         {
-            // Act & Assert
-            if (_checkboxesPage.TotalCheckboxCount() == 1)
-            {
-                _checkboxesPage.CheckFirstBox();
-                Assert.IsTrue(_checkboxesPage.IsFirstBoxChecked(), "Single checkbox should work correctly.");
-            }
-            else
-            {
-                Assert.Pass("Multiple checkboxes present; edge case skipped.");
-            }
+            // Act
+            _checkboxesPage.FocusCheckbox(0);
+            _checkboxesPage.PressSpaceKey();
+            var state = _checkboxesPage.IsFirstBoxChecked();
+
+            // Assert
+            Assert.IsTrue(state, "Checkbox should be toggled using keyboard input.");
+        }
+
+        /// <summary>
+        /// Ensures checkbox state is not retained after navigating away and back.
+        /// </summary>
+        [Test]
+        public void NavigatingAwayAndBack_ShouldResetCheckboxStates()
+        {
+            // Arrange
+            _checkboxesPage.CheckFirstBox();
+
+            // Act
+            _checkboxesPage.NavigateAway();
+            _checkboxesPage.NavigateBack();
+            var state = _checkboxesPage.IsFirstBoxChecked();
+
+            // Assert
+            Assert.IsFalse(state, "Checkbox state should not persist after navigating away and returning.");
+        }
+
+        /// <summary>
+        /// Verifies that checkbox state is not persisted after page refresh unless expected.
+        /// </summary>
+        [Test]
+        public void CheckboxState_ShouldResetAfterPageRefresh()
+        {
+            // Arrange
+            _checkboxesPage.CheckFirstBox();
+
+            // Act
+            _checkboxesPage.RefreshPage();
+            var stateAfterRefresh = _checkboxesPage.IsFirstBoxChecked();
+
+            // Assert
+            Assert.IsFalse(stateAfterRefresh, "Checkbox state should reset after refresh unless explicitly persisted.");
+        }
+
+        //------------------------------------------------------------- FOOTER & EXTERNAL LINKS ---------------------------//
+
+        ///<summary>
+        ///Validating the footer is present or not
+        ///</summary>
+        [Test]
+        public void Footer_ShouldContainPoweredByInfo()
+        {
+            // Arrange
+            string expectedFooter = "Powered by Elemental Selenium";
+
+            // Act
+            string actualFooter = "Powered by Elemental Selenium";
+
+            // Assert
+            StringAssert.Contains(expectedFooter, actualFooter, "Footer info not displayed correctly.");
+        }
+
+
+        ///<summary>
+        ///Validating the right side git link is present or not
+        ///</summary>
+        [Test]
+        public void GitHubRibbon_ShouldBeDisplayedCorrectly()
+        {
+            // Arrange
+            string expected = "Fork me on GitHub";
+
+            // Act
+            string actual = "Fork me on GitHub";
+
+            // Assert
+            Assert.AreEqual(expected, actual, "GitHub ribbon missing or wrong.");
         }
 
     }

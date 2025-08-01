@@ -26,8 +26,6 @@ namespace HerokuTests
         [SetUp]
         public void SetUp()
         {
-            // Typically you'd initialize the _domPage with a driver here.
-            // Example: _domPage = new ChallengingDOMPage(driver);
         }
 
         // ---------------- Page Meta Tests ----------------
