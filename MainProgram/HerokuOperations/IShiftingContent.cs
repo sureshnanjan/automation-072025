@@ -1,62 +1,44 @@
-<<<<<<< HEAD
-namespace HerokuOperations
-{
-    public interface IShiftingContentPage
-    {
-        string GetTitle();
-        string GetDescription();
-
-        string[] GetAllLinkTexts();
-        int GetLinkCount();
-=======
-// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IDynamicContentPage.cs" company="Keyur Nagvekar">
-//   Copyright (c) 2025 Keyur Nagvekar. All rights reserved.
-//   This file defines the interface for interacting with the Dynamic Content page
-//   on the-internet.herokuapp.com, enabling automated access to text and image elements.
-//   Redistribution or modification of this file is subject to author permissions.
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
+/*
+ * -----------------------------------------------------------------------------
+ * Project     : HerokuAppTests
+ * File        : IShiftingContentPage.cs
+ * Description : Interface defining methods to interact with the Shifting Content page.
+ * Author      : Keyur Nagvekar
+ * Created     : 2025-08-01
+ * License     : MIT License
+ * -----------------------------------------------------------------------------
+ */
 
 namespace HerokuOperations
 {
     /// <summary>
-    /// Interface for interacting with the Dynamic Content page.
-    /// Provides methods to retrieve page headings and access individual row data.
+    /// Defines contract for interacting with the Shifting Content page at /shifting_content.
+    /// Provides access to title, subtitle, and dynamic navigation link information.
     /// </summary>
-    public interface IDynamicContentPage
+    public interface IShiftingContentPage
     {
         /// <summary>
-        /// Gets the main title of the page.
+        /// Gets the main title of the shifting content page (e.g., "Shifting Content").
         /// </summary>
-        /// <returns>The page title as a string.</returns>
+        /// <returns>Page title as a string.</returns>
         string GetTitle();
 
         /// <summary>
-        /// Gets the subtitle or introductory paragraph text.
+        /// Gets the subtitle or description displayed under the title.
         /// </summary>
-        /// <returns>The subtitle as a string.</returns>
-        string GetSubTitle();
+        /// <returns>Subtitle text as a string.</returns>
+        string GetDescription();
 
         /// <summary>
-        /// Gets the number of dynamic content rows displayed on the page.
+        /// Gets the total number of navigation links present on the page.
         /// </summary>
-        /// <returns>The total number of content rows.</returns>
-        int GetRowCount();
+        /// <returns>Integer representing the link count.</returns>
+        int GetLinkCount();
 
         /// <summary>
-        /// Retrieves the text content from a specific dynamic row.
+        /// Retrieves the visible texts of all navigation links on the page.
         /// </summary>
-        /// <param name="rowIndex">Zero-based index of the row.</param>
-        /// <returns>The text content of the specified row.</returns>
-        string GetTextFromRow(int rowIndex);
-
-        /// <summary>
-        /// Retrieves the image source URL from a specific dynamic row.
-        /// </summary>
-        /// <param name="rowIndex">Zero-based index of the row.</param>
-        /// <returns>The image source (src) URL of the specified row.</returns>
-        string GetImageSourceFromRow(int rowIndex);
->>>>>>> c5d62cc8ce636b3d826eccf1daee138579b236b7
+        /// <returns>Array of link text strings.</returns>
+        string[] GetAllLinkTexts();
     }
 }
