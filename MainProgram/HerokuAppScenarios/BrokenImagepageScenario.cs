@@ -1,17 +1,12 @@
-﻿// --------------------------------------------------------------------------------------
-// Copyright (c) 2025 Arpita Neogi
-//
-// Licensed under the MIT License.
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-// --------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BrokenImagesPageTests.cs" company="Arpita Neogi">
+//   Copyright (c) 2025 Arpita Neogi. All rights reserved.
+//   This file contains automated test cases for validating the 'Broken Images' page functionality
+//   used in web automation testing scenarios. Redistribution or modification of this file
+//   is subject to author permissions.
+//   Date Created: August 1, 2025
+// </copyright>
+// --------------------------------------------------------------------------------------------------------------------
 
 using HerokuOperations;
 using NUnit.Framework;
@@ -20,37 +15,33 @@ using System.Collections.Generic;
 namespace HerokuAppScenarios
 {
     /// <summary>
-    /// Test scenarios for validating the "Broken Images" page functionality.
-    /// These tests are designed following SOLID principles to ensure high-quality, 
-    /// maintainable, and reusable automation scripts.
+    /// Contains NUnit test scenarios for validating that all images on the
+    /// "Broken Images" page are displayed and loaded correctly.
     /// </summary>
     [TestFixture]
     public class BrokenImagesPageTests
     {
         /// <summary>
-        /// Interface reference for Broken Images page object.
-        /// Promotes Dependency Inversion by allowing mock or different implementations.
+        /// Interface reference for Broken Images page.
+        /// The actual implementation should be injected during test setup.
         /// </summary>
         private IBrokenImagesPage _brokenImagesPage;
 
         /// <summary>
-        /// Setup method executed before each test to initialize test dependencies.
-        /// WebDriver initialization is expected to be handled externally
-        /// (e.g., via a BaseTest class or a dependency injection container).
+        /// Setup method that runs before each test.
+        /// Initializes the page object (implementation to be provided in actual test framework).
         /// </summary>
         [SetUp]
         public void Setup()
         {
-            // Example initialization (to be handled via dependency injection in a full framework):
-            // _brokenImagesPage = new BrokenImagesPageImplementation(driver);
+            // Example:
+            // _brokenImagesPage = new BrokenImagesPageImplementation();
         }
 
         /// <summary>
-        /// Verifies that the page navigation works and returns the correct title.
+        /// Validates that the Broken Images page displays the expected title.
         /// </summary>
         [Test]
-        [Category("BrokenImages")]
-        [Author("Arpita Neogi")]
         public void NavigateToPage_ShouldReturnExpectedTitle()
         {
             // Arrange
@@ -58,18 +49,16 @@ namespace HerokuAppScenarios
 
             // Act
             _brokenImagesPage.NavigateToPage();
-            var actualTitle = _brokenImagesPage.GetPageTitle();
+            string actualTitle = _brokenImagesPage.GetPageTitle();
 
             // Assert
             Assert.AreEqual(expectedTitle, actualTitle, "Page title does not match the expected value.");
         }
 
         /// <summary>
-        /// Verifies that the page contains one or more images.
+        /// Validates that the page contains one or more images displayed on load.
         /// </summary>
         [Test]
-        [Category("BrokenImages")]
-        [Author("Arpita Neogi")]
         public void Page_ShouldHaveImagesDisplayed()
         {
             // Arrange
@@ -83,11 +72,9 @@ namespace HerokuAppScenarios
         }
 
         /// <summary>
-        /// Verifies that there are no broken images on the page.
+        /// Validates that no images on the page are broken (failed to load).
         /// </summary>
         [Test]
-        [Category("BrokenImages")]
-        [Author("Arpita Neogi")]
         public void Page_ShouldNotHaveBrokenImages()
         {
             // Arrange
@@ -101,11 +88,10 @@ namespace HerokuAppScenarios
         }
 
         /// <summary>
-        /// Verifies that the list of broken image URLs is returned correctly if broken images exist.
+        /// Validates that the list of broken image URLs is returned correctly
+        /// if any images fail to load.
         /// </summary>
         [Test]
-        [Category("BrokenImages")]
-        [Author("Arpita Neogi")]
         public void Page_ShouldReturnBrokenImageUrls_WhenImagesAreBroken()
         {
             // Arrange
