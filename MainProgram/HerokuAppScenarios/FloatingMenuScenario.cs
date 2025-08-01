@@ -16,11 +16,6 @@ using HerokuOperations;
 
 namespace HerokuAppScenarios
 {
-    /// <summary>
-    /// Test suite to validate the UI behavior of the Floating Menu on the HerokuApp.
-    /// Covers visibility, positioning, click behavior, and accessibility across different interactions.
-    /// Uses the IFloatingMenuPage interface to abstract UI interactions.
-    /// </summary>
     public class FloatingMenuTests
     {
         /// <summary>
@@ -31,6 +26,7 @@ namespace HerokuAppScenarios
         {
             // Arrange
             string menuItem = "Home";
+            IFloatingMenuPage menuPage = new FloatingMenuPage();
 
             // Act
             bool isVisible = menuPage.IsMenuVisible(menuItem);
@@ -47,6 +43,7 @@ namespace HerokuAppScenarios
         {
             // Arrange
             string menuItem = "About";
+            IFloatingMenuPage menuPage = new FloatingMenuPage();
 
             // Act
             bool isVisible = menuPage.IsMenuVisible(menuItem);
@@ -63,6 +60,7 @@ namespace HerokuAppScenarios
         {
             // Arrange
             string menuItem = "Contact";
+            IFloatingMenuPage menuPage = new FloatingMenuPage();
 
             // Act
             bool isVisible = menuPage.IsMenuVisible(menuItem);
@@ -79,6 +77,7 @@ namespace HerokuAppScenarios
         {
             // Arrange
             string menuItem = "News";
+            IFloatingMenuPage menuPage = new FloatingMenuPage();
 
             // Act
             bool isVisible = menuPage.IsMenuVisible(menuItem);
@@ -94,7 +93,7 @@ namespace HerokuAppScenarios
         public void Menu_Floats_WhileScrollingToBottom()
         {
             // Arrange
-            // No setup required for scrolling
+            IFloatingMenuPage menuPage = new FloatingMenuPage();
 
             // Act
             menuPage.ScrollToBottom();
@@ -111,7 +110,7 @@ namespace HerokuAppScenarios
         public void Menu_Floats_WhileScrollingToMiddle()
         {
             // Arrange
-            // No setup required for scrolling
+            IFloatingMenuPage menuPage = new FloatingMenuPage();
 
             // Act
             menuPage.ScrollToMiddle();
@@ -130,6 +129,7 @@ namespace HerokuAppScenarios
             // Arrange
             string menuItem = "Home";
             string expectedSection = "home";
+            IFloatingMenuPage menuPage = new FloatingMenuPage();
 
             // Act
             string actualSection = menuPage.ClickMenu(menuItem);
@@ -147,6 +147,7 @@ namespace HerokuAppScenarios
             // Arrange
             string menuItem = "News";
             string expectedSection = "news";
+            IFloatingMenuPage menuPage = new FloatingMenuPage();
 
             // Act
             string actualSection = menuPage.ClickMenu(menuItem);
@@ -163,6 +164,7 @@ namespace HerokuAppScenarios
         {
             // Arrange
             string expectedHeading = "Floating Menu";
+            IFloatingMenuPage menuPage = new FloatingMenuPage();
 
             // Act
             string actualHeading = menuPage.GetHeading();
@@ -179,6 +181,7 @@ namespace HerokuAppScenarios
         {
             // Arrange
             int expectedParagraphCount = 3;
+            IFloatingMenuPage menuPage = new FloatingMenuPage();
 
             // Act
             var paragraphs = menuPage.GetParagraphs();
@@ -195,6 +198,7 @@ namespace HerokuAppScenarios
         {
             // Arrange
             int scrollCount = 5;
+            IFloatingMenuPage menuPage = new FloatingMenuPage();
 
             // Act
             for (int i = 0; i < scrollCount; i++)
@@ -214,6 +218,7 @@ namespace HerokuAppScenarios
             // Arrange
             string menuItem = "About";
             int clickCount = 10;
+            IFloatingMenuPage menuPage = new FloatingMenuPage();
 
             // Act
             for (int i = 0; i < clickCount; i++)
@@ -231,7 +236,7 @@ namespace HerokuAppScenarios
         public void Menu_IsAccessible_ByKeyboard()
         {
             // Arrange
-            // No setup required
+            IFloatingMenuPage menuPage = new FloatingMenuPage();
 
             // Act
             bool accessible = menuPage.CanAccessMenuWithKeyboard();
