@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-﻿// -------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------
 // © 2025 Arpita Neogi. All rights reserved.
 //
 // This file is part of the HerokuApp Automation Framework.
@@ -7,20 +6,10 @@
 // Proprietary and confidential.
 //
 // Description:
-// This test class validates the Broken Images page functionality by covering navigation,
-// image count verification, broken image detection, alt text validation, and page refresh checks.
+// This NUnit test class validates the Broken Images page functionality using the IBrokenImages interface.
+// The test suite ensures navigation, image validation, broken image detection, accessibility compliance,
+// and UI element visibility (footer and GitHub ribbon) are functioning as expected.
 // -------------------------------------------------------------------------------------------------
-=======
-// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BrokenImagesPageTests.cs" company="Arpita Neogi">
-//   Copyright (c) 2025 Arpita Neogi. All rights reserved.
-//   This file contains automated test cases for validating the 'Broken Images' page functionality
-//   used in web automation testing scenarios. Redistribution or modification of this file
-//   is subject to author permissions.
-//   Date Created: August 1, 2025
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
->>>>>>> 44b458e5e4ad580bac994356ba61e2e30c7a19c3
 
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -29,145 +18,84 @@ using HerokuOperations;
 namespace HerokuAppScenarios
 {
     /// <summary>
-<<<<<<< HEAD
-    /// NUnit test class for verifying Broken Images page behavior using the IBrokenImages interface.
-    /// Ensures all contract methods are tested with positive, negative, and edge case scenarios.
-=======
-    /// Contains NUnit test scenarios for validating that all images on the
-    /// "Broken Images" page are displayed and loaded correctly.
->>>>>>> 44b458e5e4ad580bac994356ba61e2e30c7a19c3
+    /// Test class to validate Broken Images functionality for the HerokuApp using the IBrokenImages interface.
     /// </summary>
     [TestFixture]
     public class BrokenImagesPageTests
     {
-<<<<<<< HEAD
         private IBrokenImages _brokenImagesPage;
 
         [SetUp]
         public void Setup()
         {
-            // Normally, you'd initialize a concrete implementation of IBrokenImages here.
-            // Example:
-            // _brokenImagesPage = new BrokenImagesPageImplementation();
+            // Normally, a concrete implementation of IBrokenImages is initialized here.
+            // Example: _brokenImagesPage = new BrokenImagesPageImplementation();
         }
 
         /// <summary>
-        /// Validates successful navigation to the Broken Images page.
+        /// Test to verify that navigation to the Broken Images page is successful.
         /// </summary>
         [Test]
-        public void NavigateToPage_ShouldLoadSuccessfully()
+        public void NavigateToPage_ShouldNotThrowException()
         {
             Assert.DoesNotThrow(() => _brokenImagesPage.NavigateToPage(),
-                "Navigation to Broken Images page should not throw any exception.");
+                "Navigation to Broken Images page should not throw exceptions.");
         }
 
         /// <summary>
-        /// Validates that the page title is correctly displayed.
+        /// Test to verify the page title is displayed correctly.
         /// </summary>
         [Test]
         public void GetPageTitle_ShouldReturnExpectedTitle()
-=======
-        /// <summary>
-        /// Interface reference for Broken Images page.
-        /// The actual implementation should be injected during test setup.
-        /// </summary>
-        private IBrokenImagesPage _brokenImagesPage;
-
-        /// <summary>
-        /// Setup method that runs before each test.
-        /// Initializes the page object (implementation to be provided in actual test framework).
-        /// </summary>
-        
-
-        /// <summary>
-        /// Validates that the Broken Images page displays the expected title.
-        /// </summary>
-        [Test]
-        public void NavigateToPageShouldReturnExpectedTitle()
-        {
-            // Arrange
-            const string expectedTitle = "Broken Images";
-
-            // Act
-            _brokenImagesPage.NavigateToPage();
-            string actualTitle = _brokenImagesPage.GetPageTitle();
-
-            // Assert
-            Assert.AreEqual(expectedTitle, actualTitle, "Page title does not match the expected value.");
-        }
-
-        /// <summary>
-        /// Validates that the page contains one or more images displayed on load.
-        /// </summary>
-        [Test]
-        public void PageShouldHaveImagesDisplayed()
->>>>>>> 44b458e5e4ad580bac994356ba61e2e30c7a19c3
         {
             _brokenImagesPage.NavigateToPage();
             string title = _brokenImagesPage.GetPageTitle();
 
-            Assert.That(title, Is.EqualTo("Broken Images"),
-                "Page title does not match the expected value.");
+            Assert.That(title, Is.EqualTo("Broken Images"), "Page title should match 'Broken Images'.");
         }
 
         /// <summary>
-<<<<<<< HEAD
-        /// Ensures that image count on the page is greater than zero.
+        /// Test to ensure the page has at least one image element.
         /// </summary>
         [Test]
-        public void GetImageCount_ShouldReturnPositiveValue()
-=======
-        /// Validates that no images on the page are broken (failed to load).
-        /// </summary>
-        [Test]
-        public void PageShouldNotHaveBrokenImages()
->>>>>>> 44b458e5e4ad580bac994356ba61e2e30c7a19c3
+        public void GetImageCount_ShouldBeGreaterThanZero()
         {
             _brokenImagesPage.NavigateToPage();
-            int count = _brokenImagesPage.GetImageCount();
+            int imageCount = _brokenImagesPage.GetImageCount();
 
-            Assert.That(count, Is.GreaterThan(0), "There should be at least one image on the page.");
+            Assert.Greater(imageCount, 0, "Page should contain at least one image element.");
         }
 
         /// <summary>
-<<<<<<< HEAD
-        /// Verifies that broken image count is returned correctly.
+        /// Test to verify broken image count matches expected scenario.
         /// </summary>
         [Test]
-        public void GetBrokenImageCount_ShouldReturnNonNegativeNumber()
-=======
-        /// Validates that the list of broken image URLs is returned correctly
-        /// if any images fail to load.
-        /// </summary>
-        [Test]
-        public void PageShouldReturnBrokenImageUrlsWhenImagesAreBroken()
->>>>>>> 44b458e5e4ad580bac994356ba61e2e30c7a19c3
+        public void GetBrokenImageCount_ShouldReturnValidCount()
         {
             _brokenImagesPage.NavigateToPage();
             int brokenCount = _brokenImagesPage.GetBrokenImageCount();
 
-            Assert.That(brokenCount, Is.GreaterThanOrEqualTo(0),
-                "Broken image count should be zero or greater.");
+            Assert.That(brokenCount, Is.GreaterThanOrEqualTo(0), "Broken image count should be zero or more.");
         }
 
         /// <summary>
-        /// Validates that the method returns a list of broken image URLs if any exist.
+        /// Test to verify broken image URLs are correctly retrieved.
         /// </summary>
         [Test]
-        public void GetBrokenImageUrls_ShouldReturnListOfUrls()
+        public void GetBrokenImageUrls_ShouldReturnList()
         {
             _brokenImagesPage.NavigateToPage();
             List<string> brokenUrls = _brokenImagesPage.GetBrokenImageUrls();
 
-            Assert.That(brokenUrls, Is.Not.Null, "Broken image URLs list should not be null.");
-            Assert.That(brokenUrls, Is.InstanceOf<List<string>>(), "Result should be a list of URLs.");
+            Assert.IsNotNull(brokenUrls, "Broken image URL list should not be null.");
+            Assert.IsInstanceOf<List<string>>(brokenUrls, "Result should be a list of string URLs.");
         }
 
         /// <summary>
-        /// Validates that valid image count matches total images minus broken ones.
+        /// Test to verify valid image count equals total images minus broken images.
         /// </summary>
         [Test]
-        public void GetValidImageCount_ShouldBeConsistentWithTotalImages()
+        public void GetValidImageCount_ShouldMatchExpected()
         {
             _brokenImagesPage.NavigateToPage();
             int total = _brokenImagesPage.GetImageCount();
@@ -175,11 +103,11 @@ namespace HerokuAppScenarios
             int valid = _brokenImagesPage.GetValidImageCount();
 
             Assert.That(valid, Is.EqualTo(total - broken),
-                "Valid image count should match total minus broken images.");
+                "Valid image count should match total images minus broken images.");
         }
 
         /// <summary>
-        /// Ensures that all images are valid if broken image count is zero.
+        /// Test to verify all images are valid when there are no broken images.
         /// </summary>
         [Test]
         public void AreAllImagesValid_ShouldReturnTrueIfNoBrokenImages()
@@ -188,14 +116,14 @@ namespace HerokuAppScenarios
             bool allValid = _brokenImagesPage.AreAllImagesValid();
 
             Assert.That(allValid, Is.EqualTo(_brokenImagesPage.GetBrokenImageCount() == 0),
-                "All images should be valid when there are no broken images.");
+                "All images valid should return true only when broken image count is zero.");
         }
 
         /// <summary>
-        /// Ensures no exceptions occur while waiting for images to load.
+        /// Test to verify the page can wait for images to fully load without exceptions.
         /// </summary>
         [Test]
-        public void WaitForImagesToLoad_ShouldCompleteWithoutErrors()
+        public void WaitForImagesToLoad_ShouldNotThrowException()
         {
             _brokenImagesPage.NavigateToPage();
             Assert.DoesNotThrow(() => _brokenImagesPage.WaitForImagesToLoad(),
@@ -203,27 +131,56 @@ namespace HerokuAppScenarios
         }
 
         /// <summary>
-        /// Ensures page refresh does not throw exceptions.
+        /// Test to verify page refresh maintains image count consistency.
         /// </summary>
         [Test]
-        public void RefreshPage_ShouldReloadWithoutErrors()
+        public void RefreshPage_ShouldKeepImageCountStable()
         {
             _brokenImagesPage.NavigateToPage();
-            Assert.DoesNotThrow(() => _brokenImagesPage.RefreshPage(),
-                "Refreshing the page should not cause any errors.");
+            int initialCount = _brokenImagesPage.GetImageCount();
+
+            _brokenImagesPage.RefreshPage();
+            int refreshedCount = _brokenImagesPage.GetImageCount();
+
+            Assert.That(refreshedCount, Is.EqualTo(initialCount),
+                "Image count should remain consistent after page refresh.");
         }
 
         /// <summary>
-        /// Ensures alt text of broken images is returned for accessibility validation.
+        /// Test to verify alt text for broken images is retrieved for accessibility testing.
         /// </summary>
         [Test]
-        public void GetAltTextOfBrokenImages_ShouldReturnListOfAltTexts()
+        public void GetAltTextOfBrokenImages_ShouldReturnList()
         {
             _brokenImagesPage.NavigateToPage();
             List<string> altTexts = _brokenImagesPage.GetAltTextOfBrokenImages();
 
-            Assert.That(altTexts, Is.Not.Null, "Alt text list should not be null.");
-            Assert.That(altTexts, Is.InstanceOf<List<string>>(), "Result should be a list of alt texts.");
+            Assert.IsNotNull(altTexts, "Alt text list should not be null even if empty.");
+            Assert.IsInstanceOf<List<string>>(altTexts, "Result should be a list of alt text strings.");
+        }
+
+        /// <summary>
+        /// Test to verify "Powered by Elemental Selenium" footer is visible on the page.
+        /// </summary>
+        [Test]
+        public void IsFooterPoweredByVisible_ShouldReturnTrue()
+        {
+            _brokenImagesPage.NavigateToPage();
+            bool isFooterVisible = _brokenImagesPage.IsFooterPoweredByVisible();
+
+            Assert.IsTrue(isFooterVisible, "Footer 'Powered by Elemental Selenium' should be visible.");
+        }
+
+        /// <summary>
+        /// Test to verify "Fork me on GitHub" ribbon is visible and clickable.
+        /// </summary>
+        [Test]
+        public void IsGitHubRibbonVisible_ShouldReturnTrue()
+        {
+            _brokenImagesPage.NavigateToPage();
+            bool isRibbonVisible = _brokenImagesPage.IsGitHubRibbonVisible();
+
+            Assert.IsTrue(isRibbonVisible, "GitHub ribbon should be visible and interactable.");
         }
     }
 }
