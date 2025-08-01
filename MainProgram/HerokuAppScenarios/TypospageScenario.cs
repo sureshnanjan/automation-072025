@@ -41,17 +41,13 @@ namespace HerokuAppScenarios
         [SetUp]
         public void Setup()
         {
-            // Normally, you'd initialize a concrete implementation of ITyposPage here.
-            // Example:
-            // _typosPage = new TyposPageImplementation();
+            
         }
 
         /// <summary>
         /// Test case to verify that navigating to the Typos Page returns the expected page title.
         /// </summary>
         [Test]
-        [Category("TyposPage")]
-        [Author("Arpita Neogi")]
         public void NavigateToPage_ShouldReturnExpectedTitle()
         {
             // Arrange
@@ -69,8 +65,6 @@ namespace HerokuAppScenarios
         /// Test case to verify that the Typos Page displays the correct description text.
         /// </summary>
         [Test]
-        [Category("TyposPage")]
-        [Author("Arpita Neogi")]
         public void NavigateToPage_ShouldReturnExpectedDescription()
         {
             // Arrange
@@ -88,8 +82,6 @@ namespace HerokuAppScenarios
         /// Test case to verify that the Typos Page does not contain any spelling errors or typos.
         /// </summary>
         [Test]
-        [Category("TyposPage")]
-        [Author("Arpita Neogi")]
         public void Page_ShouldNotContainAnyTypos()
         {
             // Arrange
