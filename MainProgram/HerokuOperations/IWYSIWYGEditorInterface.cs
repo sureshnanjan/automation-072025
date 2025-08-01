@@ -17,8 +17,6 @@ namespace HerokuOperations
 {
     /// <summary>
     /// Defines the contract for automating interactions with the TinyMCE WYSIWYG Editor page
-    /// available at https://the-internet.herokuapp.com/tinymce.
-    /// 
     /// This interface specifies methods for switching frames, entering, clearing, 
     /// and retrieving text within the TinyMCE editor.
     /// </summary>
@@ -42,4 +40,15 @@ namespace HerokuOperations
         void ClearEditorContent();
 
         /// <summary>
-        /// Enters the specified text into the TinyMCE editor'
+        /// Enters the specified text into the TinyMCE editor's text area.
+        /// </summary>
+        /// <param name="text">The text to be entered into the editor.</param>
+        void EnterTextInEditor(string text);
+
+        /// <summary>
+        /// Retrieves the current text content from the TinyMCE editor.
+        /// </summary>
+        /// <returns>The text currently present inside the TinyMCE editor.</returns>
+        string GetEditorContent();
+    }
+}

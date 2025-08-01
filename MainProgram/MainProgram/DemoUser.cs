@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace MainProgram
 {
+<<<<<<< HEAD
     /// <summary>
     /// Represents a demo user with a name and value.
     /// Implements comparison and cloning functionality.
     /// </summary>
     public class DemoUser : IComparable<DemoUser>, ICloneable
+=======
+    public class DemoUser: IComparable<DemoUser>, ICloneable, IComparable
+>>>>>>> 326634f46c83cfc10437afb2e96fbc03438b425b
     {
         /// <summary>
         /// Gets or sets the integer value associated with the user.
@@ -43,7 +47,11 @@ namespace MainProgram
         /// </returns>
         public int CompareTo(DemoUser? other)
         {
+<<<<<<< HEAD
             return other.Name.CompareTo(this.Name); // Note: reverse order
+=======
+            return other.Name.CompareTo(this.Name);
+>>>>>>> 326634f46c83cfc10437afb2e96fbc03438b425b
         }
 
         /// <summary>
@@ -56,11 +64,19 @@ namespace MainProgram
             throw new NotImplementedException();
         }
 
+<<<<<<< HEAD
         /// <summary>
         /// Initializes a new instance of the <see cref="DemoUser"/> class with a specified value and name.
         /// </summary>
         /// <param name="val">The integer value of the user.</param>
         /// <param name="name">The name of the user.</param>
+=======
+        public int CompareTo(object? obj)
+        {
+            throw new NotImplementedException();
+        }
+
+>>>>>>> 326634f46c83cfc10437afb2e96fbc03438b425b
         public DemoUser(int val, string name)
         {
             Value = val;
