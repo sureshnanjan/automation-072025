@@ -22,14 +22,6 @@ namespace HerokuAppScenarios
     {
         private IHorizontalSlider _slider;
 
-        /// <summary>
-        /// Initializes a fresh instance of the HorizontalSliderPage before each test.
-        /// </summary>
-        [SetUp]
-        public void Setup()
-        {
-            _slider = new HorizontalSliderPage();
-        }
 
         /// <summary>
         /// Test Case: Verify that the page title is correctly displayed as "Horizontal Slider".
@@ -95,7 +87,7 @@ namespace HerokuAppScenarios
         [Test]
         public void Footer_PoweredBy_IsVisible()
         {
-            Assert.IsTrue(_hoversPage.IsFooterPoweredByVisible());
+            Assert.IsTrue(_slider.IsFooterPoweredByVisible());
         }
 
         /// <summary>
@@ -104,7 +96,7 @@ namespace HerokuAppScenarios
         [Test]
         public void GitHubRibbon_IsVisible()
         {
-            Assert.IsTrue(_hoversPage.IsGitHubRibbonVisible());
+            Assert.IsTrue(_slider.IsGitHubRibbonVisible());
         }
     }
 }

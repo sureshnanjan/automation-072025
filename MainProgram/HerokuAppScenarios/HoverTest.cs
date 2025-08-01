@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 ﻿// -----------------------------------------------------------------------------
 // <copyright>
 //     Copyright (c) 2025 Teja Reddy. All rights reserved.
@@ -17,8 +17,8 @@
 //     • "Fork me on GitHub" ribbon visibility
 // -----------------------------------------------------------------------------
 
-=======
->>>>>>> 39d9ac82c94ebdaa9a086c8441be75d73dc53ddb
+
+
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -37,10 +37,10 @@ namespace HerokuAppScenarios
         [SetUp]
         public void Setup()
         {
-<<<<<<< HEAD
+
             _hoversPage = new HoversPage();
             _hoversPage.GotoPage();
-=======
+
             // Start Chrome browser
             driver = new ChromeDriver();
             driver.Manage().Window.Maximize();
@@ -50,18 +50,18 @@ namespace HerokuAppScenarios
 
             // Create an object for hover operations
             hover = new HoverImplementation(driver);
->>>>>>> 39d9ac82c94ebdaa9a086c8441be75d73dc53ddb
+
         }
 
         /// <summary>
         /// Verifies that the title of the Hovers page is correct.
         /// </summary>
         [Test]
-<<<<<<< HEAD
+
         public void Title_Check()
         {
             Assert.AreEqual("Hovers", _hoversPage.GetTitle());
-=======
+
         public void Title_ShouldBe_Hovers()
         {
             // Get the title from the page
@@ -69,19 +69,18 @@ namespace HerokuAppScenarios
 
             // Check if the title is "Hovers"
             Assert.That(title, Is.EqualTo("Hovers"));
->>>>>>> 39d9ac82c94ebdaa9a086c8441be75d73dc53ddb
         }
 
         /// <summary>
         /// Hover over user1's avatar and verify the displayed name is correct.
         /// </summary>
         [Test]
-<<<<<<< HEAD
+
         public void Hover_User1_Name()
         {
             _hoversPage.HoverOverAvatar(0);
             Assert.AreEqual("name: user1", _hoversPage.GetUsername(0));
-=======
+
         public void Description_ShouldNotBeEmpty()
         {
             // Get the description text
@@ -89,14 +88,14 @@ namespace HerokuAppScenarios
 
             // Check if it's not null or empty
             Assert.That(description, Is.Not.Null.And.Not.Empty);
->>>>>>> 39d9ac82c94ebdaa9a086c8441be75d73dc53ddb
+
         }
 
         /// <summary>
         /// Hover over user2's avatar and verify the displayed name is correct.
         /// </summary>
         [Test]
-<<<<<<< HEAD
+
         public void Hover_User2_Name()
         {
             _hoversPage.HoverOverAvatar(1);
@@ -111,7 +110,7 @@ namespace HerokuAppScenarios
         {
             _hoversPage.HoverOverAvatar(2);
             Assert.AreEqual("name: user3", _hoversPage.GetUsername(2));
-=======
+
         public void ShouldHave_ThreeProfileImages()
         {
             // Get the number of profile images
@@ -134,19 +133,19 @@ namespace HerokuAppScenarios
                 // Check if caption is visible
                 Assert.That(hover.IsProfileInfoDisplayed(i), Is.True);
             }
->>>>>>> 39d9ac82c94ebdaa9a086c8441be75d73dc53ddb
+
         }
 
         /// <summary>
         /// Hover over user1 and verify profile link is visible.
         /// </summary>
         [Test]
-<<<<<<< HEAD
+
         public void ProfileLink_User1_Visible()
         {
             _hoversPage.HoverOverAvatar(0);
             Assert.IsTrue(_hoversPage.IsProfileLinkVisible(0));
-=======
+
         public void Hover_ShouldShowCorrectUserNames()
         {
             int count = hover.GetProfileCount();
@@ -159,19 +158,19 @@ namespace HerokuAppScenarios
                 // Check if name starts with "name: user"
                 Assert.That(name, Does.StartWith("name: user"));
             }
->>>>>>> 39d9ac82c94ebdaa9a086c8441be75d73dc53ddb
+
         }
 
         /// <summary>
         /// Hover over user2 and verify profile link is visible.
         /// </summary>
         [Test]
-<<<<<<< HEAD
+
         public void ProfileLink_User2_Visible()
         {
             _hoversPage.HoverOverAvatar(1);
             Assert.IsTrue(_hoversPage.IsProfileLinkVisible(1));
-=======
+
         public void Hover_ShouldShowValidProfileLinks()
         {
             int count = hover.GetProfileCount();
@@ -184,7 +183,7 @@ namespace HerokuAppScenarios
                 // Check if link contains "/users/"
                 Assert.That(link, Does.Contain("/users/"));
             }
->>>>>>> 39d9ac82c94ebdaa9a086c8441be75d73dc53ddb
+
         }
 
         /// <summary>
@@ -193,7 +192,7 @@ namespace HerokuAppScenarios
         [Test]
         public void ProfileLink_User3_Visible()
         {
-<<<<<<< HEAD
+
             _hoversPage.HoverOverAvatar(2);
             Assert.IsTrue(_hoversPage.IsProfileLinkVisible(2));
         }
@@ -244,11 +243,10 @@ namespace HerokuAppScenarios
         public void GitHubRibbon_IsVisible()
         {
             Assert.IsTrue(_hoversPage.IsGitHubRibbonVisible());
-=======
+
             // Close the browser and cleanup
             driver.Quit();
             driver.Dispose();
->>>>>>> 39d9ac82c94ebdaa9a086c8441be75d73dc53ddb
         }
     }
 }

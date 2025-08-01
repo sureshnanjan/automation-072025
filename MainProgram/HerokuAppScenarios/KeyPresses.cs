@@ -126,7 +126,7 @@ namespace HerokuAppScenarios
         [Test]
         public void Footer_PoweredBy_IsVisible()
         {
-            Assert.IsTrue(_hoversPage.IsFooterPoweredByVisible());
+            Assert.IsTrue(_keyPressesPage.IsFooterPoweredByVisible());
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace HerokuAppScenarios
         [Test]
         public void GitHubRibbon_IsVisible()
         {
-            Assert.IsTrue(_hoversPage.IsGitHubRibbonVisible());
+            Assert.IsTrue(_keyPressesPage.IsGitHubRibbonVisible());
         }
     }
 }
