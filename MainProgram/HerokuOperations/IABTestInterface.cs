@@ -32,12 +32,6 @@ namespace HerokuOperations
         /// </summary>
         string GetDescription();
 
-        /// <summary>
-        /// Disables the A/B testing feature on the page.
-        /// This action can be used to standardize test results
-        /// by preventing dynamic variation during automated testing.
-        /// </summary>
-        void DisableABTest();
 
         /// <summary>
         /// Verifies if the "Powered by Elemental Selenium" footer is present and visible.
