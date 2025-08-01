@@ -1,5 +1,7 @@
-﻿using OpenQA.Selenium.Chrome;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.DevTools;
 using OpenQA.Selenium.Firefox;
 namespace HerokuAppTests
 {
@@ -18,15 +20,18 @@ namespace HerokuAppTests
             // Arrange
             var expectedTitle = "Welcome to the-internet";
             // Launch the browser and navigae to 
-            ISearchContext driver = new ChromeDriver();
-            driver = new FirefoxDriver();
-            ((IWebDriver)driver).Navigate().GoToUrl("https://the-internet.herokuapp.com/");
+            IWebDriver driver = new ChromeDriver();
+            //driver = new FirefoxDriver();
+            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
             IWebElement pageheading = driver.FindElement(By.TagName("h1"));
-            // 
-            // Act
-            var actualTitle = pageheading.Text;
-            // Assert
-            Assert.AreEqual(expectedTitle, actualTitle);
+            NetworkManager network = new NetworkManager(driver);
+            NetworkAuthenticationHandler auth = new NetworkAuthenticationHandler();
+            auth.Credentials = new PasswordCredentials("admin", "admin");
+            auth.UriMatcher = uri => true;
+            network.AddAuthenticationHandler(auth);
+
+            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/basic_auth");
+
         }
         [TestMethod]
         public void SubTitleisOK()
@@ -62,6 +67,7 @@ namespace HerokuAppTests
         }
 
         [TestMethod]
+<<<<<<< HEAD
         public void TenthExampleisOKbyCollection()
         {
             // Arrange
@@ -99,5 +105,28 @@ namespace HerokuAppTests
 
         }
 
+=======
+        public async Task NetworkAuthenticationBiDi()
+        {
+            // FirefoxOptions options = new FirefoxOptions();
+            //options.Enable
+            ChromeOptions options = new ChromeOptions();
+            ChromeDriver driver = new ChromeDriver(options);
+            
+            try
+            {
+                var devTools = driver.GetDevToolsSession();
+                driver.ExecuteCdpCommand("Network.enable", new Dictionary<string, object>());
+                //var networkInspector = devTools.
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            //Command
+
+        }
+>>>>>>> 8773420fc6cc29e183334d2d4275828caaab1a6a
     }
 }
