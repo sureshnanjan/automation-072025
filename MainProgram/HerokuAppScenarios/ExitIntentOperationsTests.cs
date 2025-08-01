@@ -19,7 +19,7 @@ namespace HerokuAppScenarios
         private IExitIntent exitIntent;
 
         /// <summary>
-        /// Initializes a fresh ExitIntentOperations instance before each test.
+        /// Initializes a new instance of ExitIntentOperations before each test.
         /// </summary>
         [SetUp]
         public void SetUp()
@@ -28,39 +28,58 @@ namespace HerokuAppScenarios
         }
 
         /// <summary>
-        /// Verifies that the popup title is empty before it is triggered.
+        /// Verifies that the popup title is initially empty before triggering.
         /// </summary>
         [Test]
         public void GetPopupTitle_ShouldBeEmpty_Initially()
         {
-            Assert.AreEqual(string.Empty, exitIntent.GetPopupTitle());
+            // Arrange
+            // (No setup required beyond initialization)
+
+            // Act
+            var title = exitIntent.GetPopupTitle();
+
+            // Assert
+            Assert.AreEqual(string.Empty, title);
         }
 
         /// <summary>
-        /// Verifies that the popup content is empty before it is triggered.
+        /// Verifies that the popup content is initially empty before triggering.
         /// </summary>
         [Test]
         public void GetPopupContent_ShouldBeEmpty_Initially()
         {
-            Assert.AreEqual(string.Empty, exitIntent.GetPopupContent());
+            // Arrange
+            // (No setup required beyond initialization)
+
+            // Act
+            var content = exitIntent.GetPopupContent();
+
+            // Assert
+            Assert.AreEqual(string.Empty, content);
         }
 
         /// <summary>
-        /// Ensures that triggering the exit intent makes the popup visible with correct title and content.
+        /// Ensures the popup displays the correct title and content when triggered.
         /// </summary>
         [Test]
         public void TriggerExitIntent_ShouldMakePopupVisible()
         {
+            // Arrange
+            // (No specific setup beyond object instantiation)
+
             // Act
             exitIntent.TriggerExitIntent();
+            var title = exitIntent.GetPopupTitle();
+            var content = exitIntent.GetPopupContent();
 
             // Assert
-            Assert.AreEqual("This is a modal window", exitIntent.GetPopupTitle());
-            Assert.AreEqual("It's commonly used to show exit intent messages.", exitIntent.GetPopupContent());
+            Assert.AreEqual("This is a modal window", title);
+            Assert.AreEqual("It's commonly used to show exit intent messages.", content);
         }
 
         /// <summary>
-        /// Confirms that after closing the popup, it becomes invisible and its title and content are empty.
+        /// Confirms that closing the popup hides the title and content.
         /// </summary>
         [Test]
         public void ClosePopup_ShouldMakePopupInvisible()
@@ -70,10 +89,12 @@ namespace HerokuAppScenarios
 
             // Act
             exitIntent.ClosePopup();
+            var titleAfterClose = exitIntent.GetPopupTitle();
+            var contentAfterClose = exitIntent.GetPopupContent();
 
             // Assert
-            Assert.AreEqual(string.Empty, exitIntent.GetPopupTitle());
-            Assert.AreEqual(string.Empty, exitIntent.GetPopupContent());
+            Assert.AreEqual(string.Empty, titleAfterClose);
+            Assert.AreEqual(string.Empty, contentAfterClose);
         }
     }
 }
