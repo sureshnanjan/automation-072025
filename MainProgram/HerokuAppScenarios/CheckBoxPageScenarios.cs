@@ -1,11 +1,11 @@
-﻿using HerokuOperations.PageClassApps;
-using HerokuOperations.PageInterfaces;
+﻿using HerokuOperations;
+using HerokuAppWeb;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.Collections.Generic;
 
-namespace HerokuAppScenarios.PageTests;
+namespace HerokuAppScenarios;
 
 public class CheckBoxPageScenarios
 {
@@ -29,6 +29,13 @@ public class CheckBoxPageScenarios
     public void TearDown()
     {
         driver.Dispose(); // Use Quit to close all browser windows and end the WebDriver session
+    }
+
+    [Test]
+    public void PageTitle_AreCorrect()
+    {
+        string title = checkBoxesPage.GetPageTitle();
+        Assert.AreEqual("Checkboxes", title);
     }
 
     [Test]

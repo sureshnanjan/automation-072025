@@ -17,7 +17,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HerokuOperations.PageInterfaces
+namespace HerokuOperations
 {
     /// <summary>
     /// Represents actions and data access methods for the Challenging DOM page

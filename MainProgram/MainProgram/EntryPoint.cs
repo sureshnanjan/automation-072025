@@ -58,8 +58,8 @@ public class Program
         // Feed the pets
         Fish[] myfishes = { };
         Cat[] mycats = { };
-        feedCAt(catinst);
-        feedFish(fishinstance);// { }
+        //feedCAt(catinst);
+        //feedFish(fishinstance);// { }
         
 
 

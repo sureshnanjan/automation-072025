@@ -17,7 +17,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HerokuOperations.PageInterfaces
+namespace HerokuOperations
 {
     /// <summary>
     /// Represents actions and state checks for the Checkboxes page
@@ -25,6 +25,9 @@ namespace HerokuOperations.PageInterfaces
     /// </summary>
     public interface ICheckBoxes
     {
+
+        string GetPageTitle();
+
         /// <summary>
         /// Checks the first checkbox if it is not already checked.
         /// </summary>

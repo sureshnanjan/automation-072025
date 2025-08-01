@@ -16,7 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace HerokuOperations.PageInterfaces
+namespace HerokuOperations
 {
     /// <summary>
     /// Represents interactions with the Status Codes page
@@ -24,6 +24,9 @@ namespace HerokuOperations.PageInterfaces
     /// </summary>
     public interface IStatusCodes
     {
+        string GetPageTitle();
+
+        string GetDescriptionText();
         /// <summary>
         /// Clicks on the link corresponding to a specific HTTP status code.
         /// </summary>

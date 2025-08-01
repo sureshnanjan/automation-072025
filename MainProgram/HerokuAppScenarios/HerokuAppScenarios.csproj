@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HerokuAppWeb\HerokuAppWeb.csproj" />
     <ProjectReference Include="..\HerokuOperations\HerokuOperations.csproj" />
   </ItemGroup>
 
