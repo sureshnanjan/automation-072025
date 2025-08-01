@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿// -------------------------------------------------------------------------------------------------
 // © 2025 Arpita Neogi. All rights reserved.
 //
@@ -11,6 +12,24 @@
 // and other content-based assertions.
 // -------------------------------------------------------------------------------------------------
 
+=======
+// --------------------------------------------------------------------------------------
+// Copyright (c) 2025 Arpita Neogi
+//
+// Licensed under the MIT License.
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+// --------------------------------------------------------------------------------------
+
+using HerokuOperations;
+>>>>>>> 44b458e5e4ad580bac994356ba61e2e30c7a19c3
 using NUnit.Framework;
 using System.Collections.Generic;
 using HerokuOperations;
@@ -26,6 +45,7 @@ namespace HerokuAppScenarios
     {
         private ITypos _typosPage;
 
+<<<<<<< HEAD
         [SetUp]
         public void Setup()
         {
@@ -33,12 +53,25 @@ namespace HerokuAppScenarios
             // Example:
             // _typosPage = new TyposPageImplementation();
         }
+=======
+        /// <summary>
+        /// Setup method that executes before each test case.
+        /// This is where the TyposPage implementation instance would normally be initialized.
+        /// Example:
+        /// <code>_typosPage = new TyposPageImplementation();</code>
+        /// </summary>
+        
+>>>>>>> 44b458e5e4ad580bac994356ba61e2e30c7a19c3
 
         /// <summary>
         /// Validates successful navigation to the Typos page.
         /// </summary>
         [Test]
+<<<<<<< HEAD
         public void NavigateToPage_ShouldLoadSuccessfully()
+=======
+        public void NavigateToPageShouldReturnExpectedTitle()
+>>>>>>> 44b458e5e4ad580bac994356ba61e2e30c7a19c3
         {
             Assert.DoesNotThrow(() => _typosPage.NavigateToPage(),
                 "Navigation to Typos page should not throw any exception.");
@@ -47,8 +80,13 @@ namespace HerokuAppScenarios
         /// <summary>
         /// Validates the page title is correctly displayed.
         /// </summary>
+        
         [Test]
+<<<<<<< HEAD
         public void GetPageTitle_ShouldReturnTyposTitle()
+=======
+        public void NavigateToPageShouldReturnExpectedDescription()
+>>>>>>> 44b458e5e4ad580bac994356ba61e2e30c7a19c3
         {
             _typosPage.NavigateToPage();
             string title = _typosPage.GetPageTitle();
@@ -59,8 +97,13 @@ namespace HerokuAppScenarios
         /// <summary>
         /// Verifies the page description is not empty and is correctly retrieved.
         /// </summary>
+        
         [Test]
+<<<<<<< HEAD
         public void GetPageDescription_ShouldReturnNonEmptyText()
+=======
+        public void PageShouldNotContainAnyTypos()
+>>>>>>> 44b458e5e4ad580bac994356ba61e2e30c7a19c3
         {
             _typosPage.NavigateToPage();
             string description = _typosPage.GetPageDescription();

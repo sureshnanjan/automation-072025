@@ -1,24 +1,42 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IAddRemoveElementsPage.cs" company="Arpita Neogi">
+// <copyright file="IABTest.cs" company="Arpita Neogi">
 //   Copyright (c) 2025 Arpita Neogi. All rights reserved.
-//   This file contains an interface defining actions for interacting with the Add/Remove Elements page
-//   used for automation testing purposes.
+//   This file defines an interface for interacting with the A/B Testing page
+//   used in automation testing scenarios. The interface provides methods to 
+//   retrieve page information and control A/B testing state.
 //   Redistribution or modification of this file is subject to author permissions.
+//   Date Created: August 1, 2025
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HerokuOperations
 {
+    /// <summary>
+    /// Represents an interface defining contract methods for interacting with the A/B Testing page.
+    /// Provides functionality to:
+    /// - Retrieve the title of the page.
+    /// - Retrieve the description displayed on the page.
+    /// - Disable A/B testing during test execution.
+    /// </summary>
     public interface IABTest
     {
+        /// <summary>
+        /// Retrieves the main title of the A/B Testing page.
+        /// </summary>
         string GetTitle();
+
+        /// <summary>
+        /// Retrieves the description text displayed on the A/B Testing page.
+        /// </summary>
         string GetDescription();
+
+        /// <summary>
+        /// Disables the A/B testing feature on the page.
+        /// This action can be used to standardize test results
+        /// by preventing dynamic variation during automated testing.
+        /// </summary>
         void DisableABTest();
     }
 }

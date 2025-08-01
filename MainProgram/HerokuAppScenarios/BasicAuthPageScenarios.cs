@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 ﻿// -------------------------------------------------------------------------------------------------
 // © 2025 Arpita Neogi. All rights reserved.
+=======
+// --------------------------------------------------------------------------------------
+// Copyright (c) 2025 Arpita Neogi
+>>>>>>> 44b458e5e4ad580bac994356ba61e2e30c7a19c3
 //
 // This file is part of the HerokuApp Automation Framework.
 // Unauthorized copying of this file, via any medium, is strictly prohibited.
@@ -17,12 +22,18 @@ using System;
 namespace HerokuAppScenarios
 {
     /// <summary>
+<<<<<<< HEAD
     /// NUnit test class for verifying the Basic Auth page behavior using the IBasicAuth interface.
     /// Covers positive, negative, and edge cases to ensure secure and functional authentication handling.
+=======
+    /// Test scenarios for Basic Authentication pop-up handling.
+    /// Implements NUnit test cases following SOLID principles for quality automation.
+>>>>>>> 44b458e5e4ad580bac994356ba61e2e30c7a19c3
     /// </summary>
     [TestFixture]
     public class BasicAuthPageTests
     {
+<<<<<<< HEAD
         private IBasicAuth _basicAuthPage;
 
         [SetUp]
@@ -38,6 +49,16 @@ namespace HerokuAppScenarios
         /// </summary>
         [Test]
         public void NavigateToPage_WithValidCredentials_ShouldLoadSuccessfully()
+=======
+        private IBasicAuthPage _basicAuthPage;
+
+        /// <summary>
+        /// Validates that navigating to the Basic Auth page with valid credentials
+        /// displays the expected page title.
+        /// </summary>
+        [Test]
+        public void NavigationPageWithValidCredentials()
+>>>>>>> 44b458e5e4ad580bac994356ba61e2e30c7a19c3
         {
             Assert.DoesNotThrow(() => _basicAuthPage.NavigateToPage("admin", "admin"),
                 "Navigation with valid credentials should not throw exceptions.");
@@ -47,6 +68,7 @@ namespace HerokuAppScenarios
         /// Ensures that invalid credentials result in an unsuccessful login.
         /// </summary>
         [Test]
+<<<<<<< HEAD
         public void IsCredentialIsCorrect_WithInvalidCredentials_ShouldReturnFalse()
         {
             bool result = _basicAuthPage.IsCredentialIsCorrect("invalid", "wrong");
@@ -156,6 +178,76 @@ namespace HerokuAppScenarios
 
             bool sessionActive = _basicAuthPage.IsSessionActive();
             Assert.IsTrue(sessionActive, "Session should remain active after page refresh.");
+=======
+        public void PageDescriptionGivingSuccessfullyMessageForLogin()
+        {
+            // Arrange
+            const string username = "admin";
+            const string password = "admin";
+
+            // Act
+            _basicAuthPage.NavigateToPage(username, password);
+            var description = _basicAuthPage.GetPageDescription();
+
+            // Assert
+            Assert.That(description, Does.Contain("Logged in Successfully")
+                .Or.Contain("Congratulations"), "Description should indicate successful login.");
+        }
+
+        /// <summary>
+        /// Validates that attempting login with incorrect credentials 
+        /// does not allow access to the page.
+        /// </summary>
+        [Test]
+        public void NavigationPageWithInvalidCredentials_ShouldFailLogin()
+        {
+            // Arrange
+            const string username = "wrongUser";
+            const string password = "wrongPass";
+
+            // Act
+            _basicAuthPage.NavigateToPage(username, password);
+            var title = _basicAuthPage.GetPageTitle();
+
+            // Assert
+            Assert.That(title, Is.Not.EqualTo("The Internet"),
+                "Page title should not match expected value for invalid credentials.");
+        }
+
+        /// <summary>
+        /// Validates that attempting login with empty username and password
+        /// shows authentication required prompt.
+        /// </summary>
+        [Test]
+        public void NavigationPageWithEmptyCredentials_ShouldShowAuthRequired()
+        {
+            // Arrange
+            const string username = "";
+            const string password = "";
+
+            // Act & Assert
+            var ex = Assert.Throws<ArgumentException>(() => _basicAuthPage.NavigateToPage(username, password));
+            Assert.That(ex.Message, Does.Contain("Username and password cannot be empty"));
+        }
+
+        /// <summary>
+        /// Validates that cancelling login attempt does not allow access to the page.
+        /// </summary>
+        [Test]
+        public void CancelLogin_ShouldNotAllowAccess()
+        {
+            // Arrange
+            const string username = "admin";
+            const string password = "admin";
+
+            // Act
+            _basicAuthPage.CancelAuthentication(); // Assuming CancelAuthentication is implemented
+            var title = _basicAuthPage.GetPageTitle();
+
+            // Assert
+            Assert.That(title, Is.Not.EqualTo("The Internet"),
+                "Page should not be accessible if login is cancelled.");
+>>>>>>> 44b458e5e4ad580bac994356ba61e2e30c7a19c3
         }
     }
 }
