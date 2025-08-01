@@ -1,71 +1,49 @@
 ﻿using HerokuOperations;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Interactions;  // For scrolling using Actions
-using System;
-using System.Threading;
-
 namespace HerokuAppWeb
 {
-    /// <summary>
-    /// Implements Infinite Scroll page using Actions class instead of JavaScriptExecutor.
-    /// </summary>
-    public class Infinity : IInfinity
+    public class HomePage : IHomePage
     {
-        private ChromeDriver driver;
-        private readonly string url = "https://the-internet.herokuapp.com/infinite_scroll";
+        private By titlelocator;
+        private By subtitleLocator;
+        private By exampleLocator;
+        private By repoLocator;
+        private IWebDriver driver;
 
-        /// <summary>
-        /// Constructor - Initializes ChromeDriver and navigates to the page.
-        /// </summary>
-        public Infinity()
+        public HomePage()
         {
             this.driver = new ChromeDriver();
-            this.driver.Manage().Window.Maximize();
-            this.driver.Navigate().GoToUrl(this.url);
+            this.repoLocator = By.XPath("/html/body/div[2]/a/img");
+            this.titlelocator = By.TagName("h1");
+            this.subtitleLocator = By.TagName("h2");
+            this.exampleLocator = By.TagName("li");
+            this.driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
         }
 
-        /// <summary>
-        /// Re-navigates to the infinite scroll page (useful in test setup).
-        /// </summary>
-        public void GotoPage()
+        public string[] getAvailableExamples()
         {
-            this.driver.Navigate().GoToUrl(this.url);
+            throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// Scrolls down by simulating "Page Down" key multiple times.
-        /// </summary>
-        public void ScrollToBottom()
+        public string GetRepoUrl()
         {
-            Actions action = new Actions(this.driver);
-            for (int i = 0; i < 5; i++) // Scroll 5 times
-            {
-                action.SendKeys(Keys.PageDown).Perform();
-                Thread.Sleep(1000); // Wait for content to load
-            }
+            return this.driver.FindElement(this.repoLocator).GetAttribute("alt");
         }
 
-        /// <summary>
-        /// Scrolls up by simulating "Page Up" key multiple times.
-        /// </summary>
-        public void ScrollToTop()
+        public string GetSubTitle()
         {
-            Actions action = new Actions(this.driver);
-            for (int i = 0; i < 5; i++) // Scroll up 5 times
-            {
-                action.SendKeys(Keys.PageUp).Perform();
-                Thread.Sleep(1000);
-            }
+            return this.driver.FindElement(this.subtitleLocator).Text;
         }
 
-        /// <summary>
-        /// Dummy scroll position (scrollY is not accessible without JS).
-        /// </summary>
-        public int GetScrollY()
+        public string GetTitle()
         {
-            Console.WriteLine("Warning: Exact scroll position can't be determined without JavaScript.");
-            return -1; // Placeholder value
+            return this.driver.FindElement(this.titlelocator).Text;
+        }
+
+        public void GoToExample(string exampleName)
+        {
+            this.driver.FindElement(By.LinkText(exampleName)).Click();
         }
     }
 }
