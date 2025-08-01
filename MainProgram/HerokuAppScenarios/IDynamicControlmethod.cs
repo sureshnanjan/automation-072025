@@ -23,16 +23,6 @@ namespace HerokuOperationsTests
         private DynamicControlsPage dynamicControls;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DynamicControlsPage"/> before each test.
-        /// In a real scenario, this would receive an active WebDriver instance.
-        /// </summary>
-        [SetUp]
-        public void Setup()
-        {
-            dynamicControls = new DynamicControlsPage(null); // Driver intentionally null for test structure only
-        }
-
-        /// <summary>
         /// Validates that the checkbox is visible when the page loads.
         /// </summary>
         [Test]
