@@ -1,88 +1,158 @@
-﻿using NUnit.Framework;
+﻿// -----------------------------------------------------------------------------
+// <copyright>
+//     Copyright (c) 2025 Teja Reddy. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------------
+//
+// This file contains NUnit test cases for validating the Hovers page functionality.
+// It covers:
+// - Title verification
+// - Hovering over 3 user avatars
+// - Displaying usernames after hover
+// - Profile link visibility per user
+// - Clicking profile links without error
+// - Footer validations including:
+//     • "Powered by Elemental Selenium" visibility
+//     • "Fork me on GitHub" ribbon visibility
+// -----------------------------------------------------------------------------
+
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using HerokuOperations;
 
-namespace HerokuAppTests
+namespace HerokuAppScenarios
 {
+    /// <summary>
+    /// Contains NUnit test cases for validating the Hovers page functionality.
+    /// </summary>
     [TestFixture]
-    public class HoverTest
+    public class HoversTests
     {
-        private IWebDriver driver;
-        private IHoverProfile hover;
+        private IHovers _hoversPage;
 
         [SetUp]
         public void Setup()
         {
-            driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/hovers");
-
-            hover = new HoverImplementation(driver);
+            _hoversPage = new HoversPage();
+            _hoversPage.GotoPage();
         }
 
+        /// <summary>
+        /// Verifies that the title of the Hovers page is correct.
+        /// </summary>
         [Test]
-        public void GetTitle_ShouldReturnCorrectTitle()
+        public void Title_Check()
         {
-            // Asserts that the page title is "Hovers"
-            Assert.That(hover.GetTitle(), Is.EqualTo("Hovers"));
+            Assert.AreEqual("Hovers", _hoversPage.GetTitle());
         }
 
+        /// <summary>
+        /// Hover over user1's avatar and verify the displayed name is correct.
+        /// </summary>
         [Test]
-        public void Description_ShouldReturnNonEmptyText()
+        public void Hover_User1_Name()
         {
-            // Asserts that the page description is not null or empty
-            Assert.That(hover.Description(), Is.Not.Null.And.Not.Empty);
+            _hoversPage.HoverOverAvatar(0);
+            Assert.AreEqual("name: user1", _hoversPage.GetUsername(0));
         }
 
+        /// <summary>
+        /// Hover over user2's avatar and verify the displayed name is correct.
+        /// </summary>
         [Test]
-        public void GetProfileCount_ShouldReturnThreeProfiles()
+        public void Hover_User2_Name()
         {
-            // Asserts that there are 3 profile figures on the page
-            Assert.That(hover.GetProfileCount(), Is.EqualTo(3));
+            _hoversPage.HoverOverAvatar(1);
+            Assert.AreEqual("name: user2", _hoversPage.GetUsername(1));
         }
 
+        /// <summary>
+        /// Hover over user3's avatar and verify the displayed name is correct.
+        /// </summary>
         [Test]
-        public void HoverOverProfileImage_ShouldShowCaption()
+        public void Hover_User3_Name()
         {
-            // Hovers over each profile and checks if caption becomes visible
-            int count = hover.GetProfileCount();
-            for (int i = 0; i < count; i++)
-            {
-                hover.HoverOverProfileImage(i);
-                Assert.That(hover.IsProfileInfoDisplayed(i), Is.True, $"Caption for profile {i} should be displayed");
-            }
+            _hoversPage.HoverOverAvatar(2);
+            Assert.AreEqual("name: user3", _hoversPage.GetUsername(2));
         }
 
+        /// <summary>
+        /// Hover over user1 and verify profile link is visible.
+        /// </summary>
         [Test]
-        public void GetProfileName_ShouldReturnCorrectName()
+        public void ProfileLink_User1_Visible()
         {
-            // After hover, the profile name should start with "name: user"
-            int count = hover.GetProfileCount();
-            for (int i = 0; i < count; i++)
-            {
-                string name = hover.GetProfileName(i);
-                Assert.That(name, Does.StartWith("name: user"), $"Profile name at index {i} should start with 'name: user'");
-            }
+            _hoversPage.HoverOverAvatar(0);
+            Assert.IsTrue(_hoversPage.IsProfileLinkVisible(0));
         }
 
+        /// <summary>
+        /// Hover over user2 and verify profile link is visible.
+        /// </summary>
         [Test]
-        public void GetProfileLink_ShouldReturnUserLink()
+        public void ProfileLink_User2_Visible()
         {
-            // After hover, the profile link should contain "/users/"
-            int count = hover.GetProfileCount();
-            for (int i = 0; i < count; i++)
-            {
-                string link = hover.GetProfileLink(i);
-                Assert.That(link, Does.Contain("/users/"), $"Profile link at index {i} should contain '/users/'");
-            }
+            _hoversPage.HoverOverAvatar(1);
+            Assert.IsTrue(_hoversPage.IsProfileLinkVisible(1));
         }
 
-        [TearDown]
-        public void TearDown()
+        /// <summary>
+        /// Hover over user3 and verify profile link is visible.
+        /// </summary>
+        [Test]
+        public void ProfileLink_User3_Visible()
         {
-            driver.Quit();
-            driver.Dispose();
+            _hoversPage.HoverOverAvatar(2);
+            Assert.IsTrue(_hoversPage.IsProfileLinkVisible(2));
+        }
+
+        /// <summary>
+        /// Clicks profile link for user1 and verifies no exception is thrown.
+        /// </summary>
+        [Test]
+        public void Click_User1_ProfileLink()
+        {
+            _hoversPage.HoverOverAvatar(0);
+            Assert.DoesNotThrow(() => _hoversPage.ClickProfileLink(0));
+        }
+
+        /// <summary>
+        /// Clicks profile link for user2 and verifies no exception is thrown.
+        /// </summary>
+        [Test]
+        public void Click_User2_ProfileLink()
+        {
+            _hoversPage.HoverOverAvatar(1);
+            Assert.DoesNotThrow(() => _hoversPage.ClickProfileLink(1));
+        }
+
+        /// <summary>
+        /// Clicks profile link for user3 and verifies no exception is thrown.
+        /// </summary>
+        [Test]
+        public void Click_User3_ProfileLink()
+        {
+            _hoversPage.HoverOverAvatar(2);
+            Assert.DoesNotThrow(() => _hoversPage.ClickProfileLink(2));
+        }
+
+        /// <summary>
+        /// Verifies that the "Powered by Elemental Selenium" footer is visible.
+        /// </summary>
+        [Test]
+        public void Footer_PoweredBy_IsVisible()
+        {
+            Assert.IsTrue(_hoversPage.IsFooterPoweredByVisible());
+        }
+
+        /// <summary>
+        /// Verifies that the "Fork me on GitHub" ribbon is visible and interactable.
+        /// </summary>
+        [Test]
+        public void GitHubRibbon_IsVisible()
+        {
+            Assert.IsTrue(_hoversPage.IsGitHubRibbonVisible());
         }
     }
 }

@@ -1,66 +1,110 @@
-﻿using NUnit.Framework;
+﻿// --------------------------------------------------------------------------------------------------
+// © 2025 Teja Reddy. All rights reserved.
+// This file is part of the HerokuApp automated test suite.
+// Unauthorized copying of this file, via any medium is strictly prohibited.
+// Proprietary and confidential.
+// --------------------------------------------------------------------------------------------------
+
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using HerokuOperations;
 
-namespace HerokuAppTests
+namespace HerokuAppScenarios
 {
+    /// <summary>
+    /// Contains NUnit test cases for validating the functionality of the 
+    /// Horizontal Slider page on the HerokuApp website.
+    /// URL: https://the-internet.herokuapp.com/horizontal_slider
+    /// </summary>
     [TestFixture]
-    public class HorizontalSliderTest
+    public class SliderTests
     {
-        private IWebDriver driver;
-        private IHorizontalSlider slider;
+        private IHorizontalSlider _slider;
 
+        /// <summary>
+        /// Initializes a fresh instance of the HorizontalSliderPage before each test.
+        /// </summary>
         [SetUp]
         public void Setup()
         {
-            driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/horizontal_slider");
-
-            slider = new HorizontalSliderImplementation(driver);
+            _slider = new HorizontalSliderPage();
         }
 
+        /// <summary>
+        /// Test Case: Verify that the page title is correctly displayed as "Horizontal Slider".
+        /// </summary>
         [Test]
-        public void GetTitle()
+        public void Title_Check()
         {
-            string title = slider.GetTitle();
-            string description = slider.GetDescription();
-
-            Assert.That(title, Is.EqualTo("Horizontal Slider"));
-            Assert.That(description, Is.Not.Null.And.Not.Empty);
+            Assert.AreEqual("Horizontal Slider", _slider.GetTitle());
         }
 
+        /// <summary>
+        /// Test Case: Verify that the slider instruction text is displayed correctly below the title.
+        /// </summary>
         [Test]
-        public void GetDescription()
+        public void Desc_Check()
         {
-            int finalValue = slider.MoveSLiderRight(4); // e.g., 4 steps
-            Assert.That(finalValue, Is.GreaterThan(0));
+            string expected = "Set the focus on the slider (click and hold) and use the arrow keys to move left/right.";
+            Assert.AreEqual(expected, _slider.GetDescription());
         }
 
+        /// <summary>
+        /// Test Case: Verify that the default value of the slider on page load is 0.
+        /// </summary>
         [Test]
-        public void MoveSliderLeft()
+        public void Default_Val()
         {
-            slider.MoveSLiderRight(5); // move right first
-            int finalValue = slider.MoveSLiderLeft(2);  // then move back
-            Assert.That(finalValue, Is.LessThanOrEqualTo(5));
+            Assert.AreEqual("0", _slider.GetValue());
         }
 
+        /// <summary>
+        /// Test Case: Move the slider from 0 to 5.0 and validate the value is updated accordingly.
+        /// </summary>
         [Test]
-        public void GetSliderValue()
+        public void Move_0_To_5()
         {
-            slider.FocusSlider();
-            slider.MoveSLiderRight(3);
-            int value = slider.GetSliderValue();
-
-            Assert.That(value, Is.InRange(0, 5)); // Slider values go from 0 to 5
+            _slider.MoveTo(5.0);
+            Assert.AreEqual("5", _slider.GetValue());
         }
 
-        [TearDown]
-        public void TearDown()
+        /// <summary>
+        /// Test Case: Move the slider to 5.0 and then back to 0.0, verifying each step.
+        /// </summary>
+        [Test]
+        public void Move_5_To_0()
         {
-            driver.Quit();
-            driver.Dispose(); // Prevents WebDriver memory leaks
+            _slider.MoveTo(5.0);
+            _slider.MoveTo(0.0);
+            Assert.AreEqual("0", _slider.GetValue());
+        }
+
+        /// <summary>
+        /// Test Case: Move the slider to 2.5 and verify the decimal value is supported and accurate.
+        /// </summary>
+        [Test]
+        public void Move_2Point5()
+        {
+            _slider.MoveTo(2.5);
+            Assert.AreEqual("2.5", _slider.GetValue());
+        }
+        /// <summary>
+        /// Verifies that the "Powered by Elemental Selenium" footer is visible.
+        /// </summary>
+        [Test]
+        public void Footer_PoweredBy_IsVisible()
+        {
+            Assert.IsTrue(_hoversPage.IsFooterPoweredByVisible());
+        }
+
+        /// <summary>
+        /// Verifies that the "Fork me on GitHub" ribbon is visible and interactable.
+        /// </summary>
+        [Test]
+        public void GitHubRibbon_IsVisible()
+        {
+            Assert.IsTrue(_hoversPage.IsGitHubRibbonVisible());
         }
     }
 }
