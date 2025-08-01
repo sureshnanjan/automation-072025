@@ -14,105 +14,98 @@ namespace HerokuAppTests
         [SetUp]
         public void Setup()
         {
-            // Arrange: Initialize WebDriver and navigate to the page
+            // Start Chrome browser
             driver = new ChromeDriver();
             driver.Manage().Window.Maximize();
+
+            // Open the Hovers page
             driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/hovers");
 
-            // Arrange: Initialize HoverImplementation with driver
+            // Create an object for hover operations
             hover = new HoverImplementation(driver);
         }
 
         [Test]
-        public void GetTitle_ShouldReturnCorrectTitle()
+        public void Title_ShouldBe_Hovers()
         {
-            // Arrange - done in Setup()
+            // Get the title from the page
+            string title = hover.GetTitle();
 
-            // Act
-            var title = hover.GetTitle();
-
-            // Assert
+            // Check if the title is "Hovers"
             Assert.That(title, Is.EqualTo("Hovers"));
         }
 
         [Test]
-        public void Description_ShouldReturnNonEmptyText()
+        public void Description_ShouldNotBeEmpty()
         {
-            // Arrange - done in Setup()
+            // Get the description text
+            string description = hover.Description();
 
-            // Act
-            var description = hover.Description();
-
-            // Assert
+            // Check if it's not null or empty
             Assert.That(description, Is.Not.Null.And.Not.Empty);
         }
 
         [Test]
-        public void GetProfileCount_ShouldReturnThreeProfiles()
+        public void ShouldHave_ThreeProfileImages()
         {
-            // Arrange - done in Setup()
+            // Get the number of profile images
+            int count = hover.GetProfileCount();
 
-            // Act
-            var count = hover.GetProfileCount();
-
-            // Assert
+            // Check if there are 3 images
             Assert.That(count, Is.EqualTo(3));
         }
 
         [Test]
-        public void HoverOverProfileImage_ShouldShowCaption()
+        public void Hover_ShouldShowCaptions()
         {
-            // Arrange - done in Setup()
             int count = hover.GetProfileCount();
 
             for (int i = 0; i < count; i++)
             {
-                // Act
+                // Hover over each profile image
                 hover.HoverOverProfileImage(i);
 
-                // Assert
-                Assert.That(hover.IsProfileInfoDisplayed(i), Is.True, $"Caption for profile {i} should be displayed");
+                // Check if caption is visible
+                Assert.That(hover.IsProfileInfoDisplayed(i), Is.True);
             }
         }
 
         [Test]
-        public void GetProfileName_ShouldReturnCorrectName()
+        public void Hover_ShouldShowCorrectUserNames()
         {
-            // Arrange - done in Setup()
             int count = hover.GetProfileCount();
 
             for (int i = 0; i < count; i++)
             {
-                // Act
+                // Get profile name after hover
                 string name = hover.GetProfileName(i);
 
-                // Assert
-                Assert.That(name, Does.StartWith("name: user"), $"Profile name at index {i} should start with 'name: user'");
+                // Check if name starts with "name: user"
+                Assert.That(name, Does.StartWith("name: user"));
             }
         }
 
         [Test]
-        public void GetProfileLink_ShouldReturnUserLink()
+        public void Hover_ShouldShowValidProfileLinks()
         {
-            // Arrange - done in Setup()
             int count = hover.GetProfileCount();
 
             for (int i = 0; i < count; i++)
             {
-                // Act
+                // Get profile link after hover
                 string link = hover.GetProfileLink(i);
 
-                // Assert
-                Assert.That(link, Does.Contain("/users/"), $"Profile link at index {i} should contain '/users/'");
+                // Check if link contains "/users/"
+                Assert.That(link, Does.Contain("/users/"));
             }
         }
 
         [TearDown]
         public void TearDown()
         {
+            // Close the browser and cleanup
             driver.Quit();
             driver.Dispose();
         }
     }
 }
-
