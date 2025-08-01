@@ -5,29 +5,27 @@
 //
 // Description:
 // This C# NUnit test class validates the behavior of the Forgot Password functionality
-// on the HerokuApp using the IForgotPasswordPage interface. The focus is on input field
+// on the HerokuApp using the IForgotPassword interface. The focus is on input field
 // acceptance, response messaging, UI visibility, usability, and edge case handling without
 // relying on any underlying implementation such as browser drivers.
 
 using NUnit.Framework;
+using HerokuOperations;
 
 namespace HerokuAppScenarios
 {
     /// <summary>
-    /// Test class for validating Forgot Password form behavior using the IForgotPasswordPage interface.
+    /// Test class for validating Forgot Password form behavior using the IForgotPassword interface.
     /// </summary>
     [TestFixture]
     public class ForgotPasswordTests
     {
-       
-        /// <summary>
-        /// ✅ Verifies the email field accepts a properly formatted valid email address.
-        /// </summary>
         [Test]
         public void EmailField_ShouldAcceptValidEmail()
         {
             // Arrange
             string testEmail = "test@example.com";
+            IForgotPassword forgotPage = new ForgotPasswordPage();
 
             // Act
             forgotPage.EnterEmail(testEmail);
@@ -37,14 +35,15 @@ namespace HerokuAppScenarios
             Assert.IsTrue(isAccepted, "Email field should accept valid email input.");
         }
 
-        /// <summary>
-        /// ✅ Verifies the system handles empty input submission gracefully.
-        /// </summary>
         [Test]
         public void EmailField_ShouldRejectEmptyInput()
         {
+            // Arrange
+            string testEmail = "";
+            IForgotPassword forgotPage = new ForgotPasswordPage();
+
             // Act
-            forgotPage.EnterEmail("");
+            forgotPage.EnterEmail(testEmail);
             forgotPage.Submit();
             string message = forgotPage.GetConfirmationMessage();
 
@@ -52,14 +51,13 @@ namespace HerokuAppScenarios
             Assert.IsNotEmpty(message, "Empty input should trigger a confirmation or error message.");
         }
 
-        /// <summary>
-        /// ✅ Verifies a success message appears after submitting a valid email.
-        /// </summary>
         [Test]
         public void Submit_ShouldTriggerSuccessMessage()
         {
             // Arrange
-            forgotPage.EnterEmail("user@domain.com");
+            string validEmail = "user@domain.com";
+            IForgotPassword forgotPage = new ForgotPasswordPage();
+            forgotPage.EnterEmail(validEmail);
 
             // Act
             forgotPage.Submit();
@@ -70,12 +68,12 @@ namespace HerokuAppScenarios
                 "Expected success message was not found after submission.");
         }
 
-        /// <summary>
-        /// ✅ Verifies that the submit button is visible on the page.
-        /// </summary>
         [Test]
         public void SubmitButton_ShouldBeVisible()
         {
+            // Arrange
+            IForgotPassword forgotPage = new ForgotPasswordPage();
+
             // Act
             bool isVisible = forgotPage.IsSubmitButtonVisible();
 
@@ -83,25 +81,26 @@ namespace HerokuAppScenarios
             Assert.IsTrue(isVisible, "Submit button should be visible to the user.");
         }
 
-        /// <summary>
-        /// ✅ Verifies the placeholder text inside the email field is set to the expected format.
-        /// </summary>
         [Test]
         public void PlaceholderText_ShouldBeEmail()
         {
+            // Arrange
+            string expectedPlaceholder = "email@example.com";
+            IForgotPassword forgotPage = new ForgotPasswordPage();
+
             // Act
-            string placeholder = forgotPage.GetEmailPlaceholder();
+            string actualPlaceholder = forgotPage.GetEmailPlaceholder();
 
             // Assert
-            Assert.AreEqual("email@example.com", placeholder, "Email field placeholder text is incorrect.");
+            Assert.AreEqual(expectedPlaceholder, actualPlaceholder, "Email field placeholder text is incorrect.");
         }
 
-        /// <summary>
-        /// ✅ Verifies the current page URL contains the keyword 'forgot_password'.
-        /// </summary>
         [Test]
         public void PageUrl_ShouldContainForgotPassword()
         {
+            // Arrange
+            IForgotPassword forgotPage = new ForgotPasswordPage();
+
             // Act
             string url = forgotPage.GetCurrentUrl();
 
@@ -110,12 +109,12 @@ namespace HerokuAppScenarios
                 "URL does not contain the expected 'forgot_password' keyword.");
         }
 
-        /// <summary>
-        /// ✅ Verifies the page title contains the text 'Forgot Password'.
-        /// </summary>
         [Test]
         public void PageTitle_ShouldBeForgotPassword()
         {
+            // Arrange
+            IForgotPassword forgotPage = new ForgotPasswordPage();
+
             // Act
             string title = forgotPage.GetPageTitle();
 
@@ -124,14 +123,13 @@ namespace HerokuAppScenarios
                 "Page title does not contain expected 'Forgot Password' text.");
         }
 
-        /// <summary>
-        /// ✅ Verifies that even an invalid email format is allowed for submission (form behavior test).
-        /// </summary>
         [Test]
         public void InvalidEmailFormat_ShouldStillAllowSubmission()
         {
             // Arrange
-            forgotPage.EnterEmail("invalid-email");
+            string invalidEmail = "invalid-email";
+            IForgotPassword forgotPage = new ForgotPasswordPage();
+            forgotPage.EnterEmail(invalidEmail);
 
             // Act
             forgotPage.Submit();
@@ -141,20 +139,21 @@ namespace HerokuAppScenarios
             Assert.IsNotNull(message, "Form did not respond to invalid email submission.");
         }
 
-        /// <summary>
-        /// ✅ Verifies that repeated submissions do not break or crash the form logic.
-        /// </summary>
         [Test]
         public void SubmitMultipleTimes_ShouldNotCrash()
         {
             // Arrange
-            forgotPage.EnterEmail("repeat@test.com");
+            string email = "repeat@test.com";
+            IForgotPassword forgotPage = new ForgotPasswordPage();
+            forgotPage.EnterEmail(email);
 
             // Act & Assert
             for (int i = 0; i < 5; i++)
             {
                 forgotPage.Submit();
                 string message = forgotPage.GetConfirmationMessage();
+
+                // Assert inside loop
                 Assert.IsNotEmpty(message, $"No message shown on submission attempt #{i + 1}.");
             }
         }
