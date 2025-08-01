@@ -14,30 +14,54 @@ namespace HerokuOperations
     /// <summary>
     /// Represents the operations available on the "Forgot Password" page
     /// of the Heroku web application.
-    /// </summary>
+    /// </summary>    
     public interface IForgotPassword
     {
         /// <summary>
-        /// Retrieves the page heading or title (typically "Forgot Password").
+        /// Enters the specified email into the email input field.
         /// </summary>
-        /// <returns>The title of the forgot password page.</returns>
-        string GetTitle();
-
-        /// <summary>
-        /// Enters the specified email address into the email input field.
-        /// </summary>
-        /// <param name="email">The email address to be entered.</param>
+        /// <param name="email">Email address to input.</param>
         void EnterEmail(string email);
 
         /// <summary>
-        /// Clicks the "Retrieve password" button to submit the form.
+        /// Submits the Forgot Password form.
         /// </summary>
-        void ClickRetrievePassword();
+        void Submit();
 
         /// <summary>
-        /// Retrieves the confirmation message shown after submitting the form.
+        /// Returns true if the email input field accepts user input.
         /// </summary>
-        /// <returns>The confirmation message text.</returns>
+        /// <returns>Boolean indicating input acceptance.</returns>
+        bool IsEmailFieldAcceptingInput();
+
+        /// <summary>
+        /// Gets the message shown after form submission, such as a success or error message.
+        /// </summary>
+        /// <returns>Displayed confirmation or error message.</returns>
         string GetConfirmationMessage();
+
+        /// <summary>
+        /// Returns true if the submit button is visible to the user.
+        /// </summary>
+        /// <returns>Boolean indicating submit button visibility.</returns>
+        bool IsSubmitButtonVisible();
+
+        /// <summary>
+        /// Retrieves the placeholder text displayed inside the email input field.
+        /// </summary>
+        /// <returns>Email field placeholder text.</returns>
+        string GetEmailPlaceholder();
+
+        /// <summary>
+        /// Gets the current page URL of the Forgot Password screen.
+        /// </summary>
+        /// <returns>The current page URL.</returns>
+        string GetCurrentUrl();
+
+        /// <summary>
+        /// Gets the title of the current page.
+        /// </summary>
+        /// <returns>Page title string.</returns>
+        string GetPageTitle();
     }
 }
