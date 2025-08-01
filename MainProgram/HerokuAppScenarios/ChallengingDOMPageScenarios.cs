@@ -15,14 +15,14 @@ public class ChallengingDOMPageScenarios
     [SetUp]
     public void Setup()
     {
-        var options = new ChromeOptions();
+       /* var options = new ChromeOptions();
         options.AddArgument("--headless"); // Optional: run in headless mode
         options.AddArgument("--disable-gpu"); // Optional: helpful for CI pipelines
 
         driver = new ChromeDriver(options); // Use options for stability
         driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/challenging_dom");
 
-        challengingDOMPage = new ChallengingDOMClassApp(driver);
+        challengingDOMPage = new ChallengingDOMClassApp(driver);*/
     }
 
     [TearDown]

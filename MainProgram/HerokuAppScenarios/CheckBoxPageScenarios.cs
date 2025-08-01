@@ -15,14 +15,14 @@ public class CheckBoxPageScenarios
     [SetUp]
     public void Setup()
     {
-        var options = new ChromeOptions();
+        /*var options = new ChromeOptions();
         options.AddArgument("--headless");
         options.AddArgument("--disable-gpu");
 
         driver = new ChromeDriver(options);
         driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/checkboxes");
 
-        checkBoxesPage = new CheckBoxesClassApp(driver); // Use the class that implements ICheckBoxes
+        checkBoxesPage = new CheckBoxesClassApp(driver); // Use the class that implements ICheckBoxes*/
     }
 
     [TearDown]
