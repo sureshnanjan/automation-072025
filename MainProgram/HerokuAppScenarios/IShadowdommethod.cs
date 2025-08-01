@@ -20,16 +20,6 @@ namespace HerokuOperationsTests
     public class ShadowDomHandlerTests
     {
         private ShadowDomHandler shadowDom;
-
-        /// <summary>
-        /// Sets up the <see cref="ShadowDomHandler"/> instance before each test.
-        /// </summary>
-        [SetUp]
-        public void Setup()
-        {
-            shadowDom = new ShadowDomHandler(null); // Omit driver for test scaffolding only
-        }
-
         /// <summary>
         /// Verifies the text content from the first shadow root host paragraph.
         /// </summary>
