@@ -1,62 +1,57 @@
-<<<<<<< HEAD
-﻿namespace HerokuOperations
-{
-    public interface IDynamicContentPage
-    {
-        string GetTitle();
-        string GetSubTitle();
-        int GetRowCount();
+/*
+ * -----------------------------------------------------------------------------
+ * Project     : HerokuAppTests
+ * File        : IDynamicContentPage.cs
+ * Description : Interface defining contracts for accessing elements of the dynamic content page.
+ * Author      : Keyur Nagvekar
+ * Created     : 2025-08-01
+ * License     : MIT License
+ * -----------------------------------------------------------------------------
+ */
 
-        string GetTextFromRow(int rowIndex);
-=======
-// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IDynamicContentPage.cs" company="Keyur Nagvekar">
-//   Copyright (c) 2025 Keyur Nagvekar. All rights reserved.
-//   This file defines the interface for interacting with the Dynamic Content page
-//   on the-internet.herokuapp.com, enabling automated access to text and image elements.
-//   Redistribution or modification of this file is subject to author permissions.
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
+using System;
 
 namespace HerokuOperations
 {
     /// <summary>
-    /// Interface for interacting with the Dynamic Content page.
-    /// Provides methods to retrieve page headings and access individual row data.
+    /// Defines behavior expected from the dynamic content page (/dynamic_content).
+    /// Provides methods to retrieve page title, subtitles, and dynamic row contents.
     /// </summary>
     public interface IDynamicContentPage
     {
         /// <summary>
-        /// Gets the main title of the page.
+        /// Gets the main page title (usually "Dynamic Content").
         /// </summary>
-        /// <returns>The page title as a string.</returns>
+        /// <returns>Title of the dynamic content page.</returns>
         string GetTitle();
 
         /// <summary>
-        /// Gets the subtitle or introductory paragraph text.
+        /// Gets the subtitle or paragraph beneath the title.
         /// </summary>
-        /// <returns>The subtitle as a string.</returns>
+        /// <returns>Subtitle or description text.</returns>
         string GetSubTitle();
 
         /// <summary>
-        /// Gets the number of dynamic content rows displayed on the page.
+        /// Gets the total number of visible content rows.
+        /// Typically expected to be 3.
         /// </summary>
-        /// <returns>The total number of content rows.</returns>
+        /// <returns>Number of content rows.</returns>
         int GetRowCount();
 
         /// <summary>
-        /// Retrieves the text content from a specific dynamic row.
+        /// Retrieves the dynamic text of the specified row.
         /// </summary>
-        /// <param name="rowIndex">Zero-based index of the row.</param>
-        /// <returns>The text content of the specified row.</returns>
+        /// <param name="rowIndex">The index of the row (0-based).</param>
+        /// <returns>Dynamic text content of the row.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if index is invalid.</exception>
         string GetTextFromRow(int rowIndex);
 
         /// <summary>
-        /// Retrieves the image source URL from a specific dynamic row.
+        /// Retrieves the image URL (src) from the specified row.
         /// </summary>
-        /// <param name="rowIndex">Zero-based index of the row.</param>
-        /// <returns>The image source (src) URL of the specified row.</returns>
->>>>>>> c5d62cc8ce636b3d826eccf1daee138579b236b7
+        /// <param name="rowIndex">The index of the row (0-based).</param>
+        /// <returns>URL of the image in the row.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if index is invalid.</exception>
         string GetImageSourceFromRow(int rowIndex);
     }
 }
