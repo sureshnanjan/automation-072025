@@ -13,7 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HerokuOperations
+namespace HerokuOperations.PageInterface
 {
     /// <summary>
     /// Interface representing actions on the Add/Remove Elements page.

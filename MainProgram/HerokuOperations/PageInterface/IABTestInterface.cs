@@ -13,12 +13,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HerokuOperations
+namespace HerokuOperations.PageInterface
 {
     public interface IABTest
     {
         string GetTitle();
         string GetDescription();
-        void DisableABTest();
     }
 }
