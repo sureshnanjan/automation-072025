@@ -1,80 +1,61 @@
-// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ShadowDomHandler.cs" company="Keyur Nagvekar">
-//   Copyright (c) 2025 Keyur Nagvekar. All rights reserved.
-//   This file provides an implementation for accessing and retrieving Shadow DOM elements
-//   using JavaScript execution with Selenium, based on the ShadowDOM interface.
-//   Redistribution or modification of this file is subject to author permissions.
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
-
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using HerokuOperations;
 using System;
 
-namespace HerokuOperations
+namespace HerokuOperationsTests
 {
-    /// <summary>
-    /// Provides access to Shadow DOM elements using JavaScript execution.
-    /// Implements the ShadowDOM interface.
-    /// </summary>
-    public class ShadowDomHandler : ShadowDOM
+    [TestClass]
+    public class ShadowDomHandlerTests
     {
-        private readonly IWebDriver driver;
-        private readonly IJavaScriptExecutor js;
+        private IWebDriver driver;
+        private ShadowDomHandler shadowDom;
 
-        public ShadowDomHandler(IWebDriver webDriver)
+        [TestInitialize]
+        public void Setup()
         {
-            driver = webDriver;
-            js = (IJavaScriptExecutor)webDriver;
+            driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/shadowdom");
+            shadowDom = new ShadowDomHandler(driver);
         }
 
-        public string GetFirstShadowHostText()
+        [TestCleanup]
+        public void Teardown()
         {
-            try
-            {
-                string script = @"
-                    const shadowHost = document.querySelector('my-paragraph');
-                    const shadowRoot = shadowHost.shadowRoot;
-                    return shadowRoot.querySelector('p').textContent.trim();";
-                return (string)js.ExecuteScript(script);
-            }
-            catch
-            {
-                return string.Empty;
-            }
+            driver.Quit();
         }
 
-        public string GetSecondShadowHostText()
+        [TestMethod]
+        public void GetFirstShadowHostText_ReturnsExpectedText()
         {
-            try
-            {
-                string script = @"
-                    const shadowHost = document.querySelector('my-paragraph');
-                    const shadowRoot = shadowHost.shadowRoot;
-                    return shadowRoot.querySelector('span').textContent.trim();";
-                return (string)js.ExecuteScript(script);
-            }
-            catch
-            {
-                return string.Empty;
-            }
+            // Arrange
+            var expectedText = "My default text";
+            // Act
+            var actualText = shadowDom.GetFirstShadowHostText();
+            // Assert
+            Assert.AreEqual(expectedText, actualText, "First Shadow Host text did not match expected value.");
         }
 
-        public string GetNestedShadowText()
+        [TestMethod]
+        public void GetSecondShadowHostText_ReturnsExpectedText()
         {
-            try
-            {
-                string script = @"
-                    const outerHost = document.querySelector('my-paragraph');
-                    const outerRoot = outerHost.shadowRoot;
-                    const nested = outerRoot.querySelector('span');
-
-                    return nested ? nested.textContent.trim() : '';";
-                return (string)js.ExecuteScript(script);
-            }
-            catch
-            {
-                return string.Empty;
-            }
+            // Arrange
+            var expectedText = "Let's have some different text!";
+            // Act
+            var actualText = shadowDom.GetSecondShadowHostText();
+            // Assert
+            Assert.AreEqual(expectedText, actualText, "Second Shadow Host text did not match expected value.");
+        }
+        [TestMethod]
+        public void GetNestedShadowText_ReturnsExpectedText()
+        {
+            // Arrange
+            var expectedText = "Let's have some different text!";
+            // Act
+            var actualText = shadowDom.GetNestedShadowText();
+            // Assert
+            Assert.AreEqual(expectedText, actualText, "Nested Shadow DOM text did not match expected value.");
         }
     }
 }
