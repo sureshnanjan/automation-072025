@@ -16,7 +16,7 @@ namespace HerokuOperations
         /// <summary>
         /// Clicks the button to remove or add the checkbox dynamically.
         /// </summary>
-        void ClickRemoveOrAddButton();
+        void RemoveOrAddButton();
 
         /// <summary>
         /// Determines whether the checkbox is currently displayed on the page.
@@ -36,7 +36,7 @@ namespace HerokuOperations
         /// <summary>
         /// Clicks the button to enable or disable the input field dynamically.
         /// </summary>
-        void ClickEnableOrDisableButton();
+        void EnableOrDisableButton();
 
         /// <summary>
         /// Checks whether the input field is currently enabled.

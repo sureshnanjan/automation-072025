@@ -44,7 +44,7 @@ namespace HerokuAppScenarios
         {
             //this is an example only
             string content = entryAd.GetAdContent();
-            Assert.AreEqual("Buy our product and enjoy amazing benefits!", content);
+            Assert.AreEqual("Model Content", content);
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace HerokuAppScenarios
             entryAd.CloseAd();
             entryAd.RelaunchAd();
             Assert.AreEqual("Entry Ad", entryAd.GetAdTitle());
-            Assert.AreEqual("Buy our product and enjoy amazing benefits!", entryAd.GetAdContent());
+            Assert.AreEqual("Model Content", entryAd.GetAdContent());
         }
     }
 }
