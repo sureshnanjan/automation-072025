@@ -1,8 +1,27 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
-using HerokuTests; // To access IDynamicControlsPage
+using OpenQA.Selenium.Chrome;
+using System;
+using System.Threading;
 
 namespace HerokuOperations
 {
+    // Interface for dynamic controls
+    public interface IDynamicControlsPage
+    {
+        // Checkbox section
+        void ClickRemoveOrAddButton();
+        bool IsCheckboxDisplayed();
+        string GetCheckboxMessage();
+
+        // Input field section
+        void ClickEnableOrDisableButton();
+        bool IsInputEnabled();
+        void EnterText(string text);
+        string GetInputMessage();
+    }
+
+    // Implementation of the interface using Selenium
     public class DynamicControlsPage : IDynamicControlsPage
     {
         private readonly IWebDriver _driver;
@@ -54,6 +73,91 @@ namespace HerokuOperations
             var inputField = _driver.FindElement(By.CssSelector("#input-example input"));
             inputField.Clear();
             inputField.SendKeys(text);
+        }
+    }
+
+    // Test cases using MSTest
+    [TestClass]
+    public class DynamicControlsTests
+    {
+        private IWebDriver driver;
+        private IDynamicControlsPage dynamicPage;
+
+        [TestInitialize]
+        public void Setup()
+        {
+            driver = new ChromeDriver();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/dynamic_controls");
+            dynamicPage = new DynamicControlsPage(driver);
+        }
+
+        [TestCleanup]
+        public void Teardown()
+        {
+            driver.Quit();
+        }
+
+        [TestMethod]
+        public void Test_PageTitle()
+        {
+            Assert.AreEqual("The Internet", driver.Title);
+        }
+
+        [TestMethod]
+        public void Test_RemoveCheckbox()
+        {
+            dynamicPage.ClickRemoveOrAddButton();
+            Thread.Sleep(2000);
+            Assert.IsFalse(dynamicPage.IsCheckboxDisplayed());
+            Assert.AreEqual("It's gone!", dynamicPage.GetCheckboxMessage());
+        }
+
+        [TestMethod]
+        public void Test_AddCheckboxBack()
+        {
+            dynamicPage.ClickRemoveOrAddButton(); // Remove first
+            Thread.Sleep(2000);
+            dynamicPage.ClickRemoveOrAddButton(); // Add back
+            Thread.Sleep(2000);
+            Assert.IsTrue(dynamicPage.IsCheckboxDisplayed());
+            Assert.AreEqual("It's back!", dynamicPage.GetCheckboxMessage());
+        }
+
+        [TestMethod]
+        public void Test_EnableInput()
+        {
+            dynamicPage.ClickEnableOrDisableButton();
+            Thread.Sleep(2000);
+            Assert.IsTrue(dynamicPage.IsInputEnabled());
+            Assert.AreEqual("It's enabled!", dynamicPage.GetInputMessage());
+        }
+
+        [TestMethod]
+        public void Test_DisableInput()
+        {
+            dynamicPage.ClickEnableOrDisableButton(); // Enable first
+            Thread.Sleep(2000);
+            dynamicPage.ClickEnableOrDisableButton(); // Then disable
+            Thread.Sleep(2000);
+            Assert.IsFalse(dynamicPage.IsInputEnabled());
+            Assert.AreEqual("It's disabled!", dynamicPage.GetInputMessage());
+        }
+
+        [TestMethod]
+        public void Test_EnterText()
+        {
+            dynamicPage.ClickEnableOrDisableButton();
+            Thread.Sleep(2000);
+            if (dynamicPage.IsInputEnabled())
+            {
+                dynamicPage.EnterText("Hello Selenium");
+                Assert.IsTrue(true); // Passed if no exception
+            }
+            else
+            {
+                Assert.Fail("Input field was not enabled.");
+            }
         }
     }
 }
