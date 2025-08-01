@@ -1,39 +1,61 @@
 ﻿// Author: Siva Sree
-// Date Created: 2025-07-30
+// Date Created: 2025-08-01
 // Copyright (c) 2025 Siva Sree
 // All Rights Reserved.
 //
 // Description:
-// This C# file defines the IRedirect interface for automating interaction 
-// with the redirection page at https://the-internet.herokuapp.com/redirector.
-// The interface includes methods to get the page title, click the redirection 
-// link, and retrieve the informational paragraph text. It is designed for use 
-// in UI test automation scenarios using tools like Selenium.
-
-using System;
+// This C# interface defines the IRedirect contract for automating interactions 
+// with the HerokuApp "Redirector" feature located at https://the-internet.herokuapp.com/redirector. 
+// It supports operations for retrieving the page title and paragraph content, 
+// performing redirection by clicking the trigger link, and verifying content 
+// on the redirected "Status Codes" page.
 
 namespace HerokuOperations
 {
     /// <summary>
-    /// Interface for interacting with the Heroku redirection page.
+    /// Interface for interacting with the HerokuApp Redirector page and verifying redirection behavior.
     /// </summary>
     public interface IRedirect
     {
         /// <summary>
-        /// Retrieves the title text from the redirection page (e.g., from the <h3> tag).
+        /// Gets the heading/title text from the Redirector page.
         /// </summary>
-        /// <returns>The title string.</returns>
+        /// <returns>The page heading text.</returns>
         string GetTitle();
 
         /// <summary>
-        /// Clicks the "here" link on the redirection page to initiate navigation.
+        /// Retrieves the main paragraph content from the Redirector page.
+        /// </summary>
+        /// <returns>The paragraph text.</returns>
+        string GetParagraphText();
+
+        /// <summary>
+        /// Clicks on the 'Click here' link to initiate redirection.
         /// </summary>
         void ClickhereLink();
 
         /// <summary>
-        /// Retrieves the paragraph text displayed below the title.
+        /// Gets the current URL after redirection has occurred.
         /// </summary>
-        /// <returns>The descriptive paragraph string.</returns>
-        string GetParagraphText();
+        /// <returns>The current browser URL as a string.</returns>
+        string GetCurrentUrl();
+
+        /// <summary>
+        /// Gets the heading/title of the Status Codes page after redirection.
+        /// </summary>
+        /// <returns>The title text from the Status Codes page.</returns>
+        string GetStatusPageTitle();
+
+        /// <summary>
+        /// Retrieves the descriptive content from the Status Codes page.
+        /// </summary>
+        /// <returns>The main content or paragraph from the page.</returns>
+        string GetStatusPageContent();
+
+        /// <summary>
+        /// Clicks on a status code link (e.g., 200, 301, 404, 500) on the Status Codes page.
+        /// </summary>
+        /// <param name="statusCode">The status code as a string (e.g., "200").</param>
+        void ClickStatusCodeLink(string statusCode);
     }
 }
