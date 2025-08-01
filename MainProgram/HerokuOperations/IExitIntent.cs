@@ -14,30 +14,45 @@ using System.Threading.Tasks;
 namespace HerokuOperations
 {
     /// <summary>
-    /// Interface defining operations for handling Exit Intent popups.
+    /// Interface defining operations for handling the Exit Intent modal
+    /// at https://the-internet.herokuapp.com/exit_intent.
+    /// This follows SOLID principles, keeping responsibilities well-defined.
     /// </summary>
     public interface IExitIntent
     {
         /// <summary>
-        /// Triggers the Exit Intent popup (simulates cursor leaving the viewport).
+        /// Simulates a mouse exit (towards the top of the viewport) to trigger the modal.
         /// </summary>
         void TriggerExitIntent();
 
         /// <summary>
-        /// Gets the title of the Exit Intent popup.
+        /// Checks whether the Exit Intent modal is currently displayed.
         /// </summary>
-        /// <returns>Title text of the Exit Intent popup..</returns>
-        string GetPopupTitle();
+        /// <returns>True if modal is visible, otherwise false.</returns>
+        bool IsModalDisplayed();
 
         /// <summary>
-        /// Gets the message/content of the Exit Intent popup.
+        /// Closes the Exit Intent modal.
         /// </summary>
-        /// <returns>Content text of the Exit Intent popup.</returns>
-        string GetPopupContent();
+        void CloseModal();
 
         /// <summary>
-        /// Closes the Exit Intent popup.
+        /// Gets the content text displayed inside the modal.
         /// </summary>
-        void ClosePopup();
+        /// <returns>The modal content text.</returns>
+        string GetModalContent();
+
+        /// <summary>
+        /// Verifies if the modal appears only after a full page load.
+        /// </summary>
+        /// <returns>True if modal appears post-load, otherwise false.</returns>
+        bool VerifyModalAppearsAfterPageLoad();
+
+        /// <summary>
+        /// Verifies if the modal triggers only when the mouse exits at the top edge.
+        /// </summary>
+        /// <param name="exitDirection">Direction of the exit (e.g., "top", "side").</param>
+        /// <returns>True if modal triggers for top exit only, false otherwise.</returns>
+        bool VerifyExitDirection(string exitDirection);
     }
 }
