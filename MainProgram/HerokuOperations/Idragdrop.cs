@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HerokuOperations.Interfaces
+namespace HerokuOperations
 {
     public interface dragdrop;
     
 
-    internal interface Idragdrop
+    public interface Idragdrop
     {
         
         /// Gets the title of the page.

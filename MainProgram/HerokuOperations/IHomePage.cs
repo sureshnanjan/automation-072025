@@ -1,4 +1,4 @@
-﻿namespace HerokuOperations.Interfaces
+﻿namespace HerokuOperations
 {
     public interface IHomePage
     {
@@ -7,6 +7,8 @@
         string GetRepoUrl();
 
         string[] getAvailableExamples();
+
+        void GoToExample(string exampleName);
 
     }
 }

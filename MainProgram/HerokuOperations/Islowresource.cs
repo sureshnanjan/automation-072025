@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HerokuOperations.Interfaces
+namespace HerokuOperations
 {
-    internal interface Islowresource
+    public interface Islowresource
     {
       
         /// Gets the page title (e.g., "Slow Resources").  

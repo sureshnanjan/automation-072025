@@ -1,7 +1,8 @@
-﻿using HerokuOperations.Interfaces;
+﻿
 using OpenQA.Selenium;
+using HerokuOperations;
 
-namespace HerokuAppScenarios.Pages
+namespace HerokuAppScenarios
 {
     /// <summary>
     /// Page object for the Slow Resources page.

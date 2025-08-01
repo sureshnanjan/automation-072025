@@ -6,8 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 
-namespace HerokuOperations.Pages
-{{
+namespace HerokuOperations
+{
     /// <summary>
     /// Page object for the Drag and Drop page.
     /// </summary>
