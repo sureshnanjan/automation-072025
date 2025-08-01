@@ -25,15 +25,6 @@ namespace HerokuOperationsTests
         private DynamicLoading dynamicLoading;
 
         /// <summary>
-        /// Sets up a fresh <see cref="DynamicLoading"/> instance before each test.
-        /// </summary>
-        [SetUp]
-        public void Setup()
-        {
-            dynamicLoading = new DynamicLoading(null); // WebDriver mocked or omitted
-        }
-
-        /// <summary>
         /// Validates that Example 1 loads the "Hello World!" message successfully after clicking Start.
         /// </summary>
         [Test]
