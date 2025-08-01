@@ -13,7 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HerokuOperations.PageInterface
+namespace HerokuOperations
 {
     /// <summary>
     /// Interface representing actions on the Add/Remove Elements page.
@@ -42,5 +42,19 @@ namespace HerokuOperations.PageInterface
         /// </summary>
         /// <returns>The count of dynamically added elements.</returns>
         int GetDeleteButtonCount();
+
+        // ───────────── FOOTER VALIDATION METHODS ─────────────
+
+        /// <summary>
+        /// Verifies if the "Powered by Elemental Selenium" footer is present and visible.
+        /// </summary>
+        /// <returns>True if the footer is visible; otherwise, false.</returns>
+        bool IsFooterPoweredByVisible();
+
+        /// <summary>
+        /// Checks if the "Fork me on GitHub" ribbon is visible and clickable.
+        /// </summary>
+        /// <returns>True if the ribbon is present and interactable; otherwise, false.</returns>
+        bool IsGitHubRibbonVisible();
     }
 }
