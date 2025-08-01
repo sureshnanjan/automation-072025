@@ -18,7 +18,11 @@ namespace HerokuAppTests
         public void TitleisOK()
         {
             // Arrange
+<<<<<<< HEAD
             var expectedTitle = "Welcome to the-internet";
+=======
+            //var expectedTitle = "Welcome to the-internet1";
+>>>>>>> a41a9228532f222f252ff64a077b287a183eed45
             // Launch the browser and navigae to 
             IWebDriver driver = new ChromeDriver();
             //driver = new FirefoxDriver();

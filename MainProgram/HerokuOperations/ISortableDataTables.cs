@@ -1,27 +1,80 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/* --------------------------------------------------------------------------------------------------------------------
+ <copyright file="SortableDataTables.cs" author="Jagadeeswar Reddy Arava">
+ © 2025 Jagadeeswar Reddy Arava. All rights reserved.
+ </copyright>
+ -------------------------------------------------------------------------------------------------------------------- */
+
+using System;
 
 namespace HerokuOperations
 {
+    /// <summary>
+    /// Interface representing actions and properties for the Sortable Data Tables page.
+    /// </summary>
     internal interface ISortableDataTables
     {
-        void GoToPage(); //Navigate to the sortable data tables page
+        /// <summary>
+        /// Navigates to the Sortable Data Tables page.
+        /// </summary>
+        void GoToPage();
 
-        string GetTitle(); // Get the title of the page
+        /// <summary>
+        /// Gets the title of the page.
+        /// </summary>
+        /// <returns>The page title as a string.</returns>
+        string GetTitle();
 
-        string GetInformation();// Get the information text on the page
+        /// <summary>
+        /// Gets the information text displayed on the page.
+        /// </summary>
+        /// <returns>The information text as a string.</returns>
+        string GetInformation();
 
-        int GetRowCount();// Get the number of rows in the table
+        /// <summary>
+        /// Gets the total number of rows in the data table.
+        /// </summary>
+        /// <returns>The row count as an integer.</returns>
+        int GetRowCount();
 
-        int GetColumnCount();// Get the number of columns in the table
+        /// <summary>
+        /// Gets the total number of columns in the data table.
+        /// </summary>
+        /// <returns>The column count as an integer.</returns>
+        int GetColumnCount();
 
-        string GetCellValue(int row, int column);// Get the value of a specific cell in the table
+        /// <summary>
+        /// Gets the value of a specific cell in the table.
+        /// </summary>
+        /// <param name="row">The row index (zero-based).</param>
+        /// <param name="column">The column index (zero-based).</param>
+        /// <returns>The value of the cell as a string.</returns>
+        string GetCellValue(int row, int column);
 
-        void ClickEditButton(int row);// Click the edit button for a specific row
+        /// <summary>
+        /// Clicks the Edit button for a specified row.
+        /// </summary>
+        /// <param name="row">The row index (zero-based) to edit.</param>
+        void ClickEditButton(int row);
 
-        void ClickDeleteButton(int row);// Click the delete button for a specific row
+        /// <summary>
+        /// Clicks the Delete button for a specified row.
+        /// </summary>
+        /// <param name="row">The row index (zero-based) to delete.</param>
+        void ClickDeleteButton(int row);
+
+
+        /// <summary>
+        /// Gets the footer text, usually contains attribution like "Powered by Elemental Selenium".
+        /// </summary>
+        /// <returns>The footer string.</returns>
+        string GetFooterText();
+
+        /// <summary>
+        /// Gets the GitHub ribbon text (usually "Fork me on GitHub").
+        /// </summary>
+        /// <returns>The GitHub ribbon text as a string.</returns>
+        string GetGitHubRibbonText();
     }
+
+
 }

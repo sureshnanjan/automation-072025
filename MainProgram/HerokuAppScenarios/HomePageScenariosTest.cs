@@ -1,11 +1,34 @@
-<<<<<<< HEAD:MainProgram/HerokuAppScenarios/Tests/HomePageScenariosTest.cs
-/*using HerokuOperations.Interfaces;
+
+using HerokuOperations.Interfaces;
 namespace HerokuAppScenarios.Tests
-=======
+﻿//using HerokuOperations;
+
+//namespace HerokuAppScenarios;
+
+//public class Tests
+//{
+//    IHomePage homepage;
+
+//    [SetUp]
+//        public void Setup()
+//        {
+//        }
+
+//        [Test]
+//        public void HerokuTitleisOK()
+//        {
+//        //IHomePage homepage;
+//            string actual = homepage.GetTitle();
+//            Assert.AreEqual("Welcome to Internet", actual);
+
+//        }
+//    }
+
+
 using HerokuOperations;
 using HerokuAppWeb;
 namespace HerokuAppScenarios
->>>>>>> 8773420fc6cc29e183334d2d4275828caaab1a6a:MainProgram/HerokuAppScenarios/HomePageScenarios.cs
+
 {
     public class Tests
     {
@@ -25,4 +48,4 @@ namespace HerokuAppScenarios
 
         }
     }
-}*/
+
