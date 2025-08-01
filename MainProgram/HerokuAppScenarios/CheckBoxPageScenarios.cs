@@ -28,7 +28,7 @@ public class CheckBoxPageScenarios
     [TearDown]
     public void TearDown()
     {
-        driver.Dispose(); // Use Quit to close all browser windows and end the WebDriver session
+        driver.Dispose();
     }
 
     [Test]

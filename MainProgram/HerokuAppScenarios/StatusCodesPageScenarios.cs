@@ -14,7 +14,11 @@ namespace HerokuAppScenarios
         [SetUp]
         public void Setup()
         {
- 
+           /* var options = new ChromeOptions();
+            options.AddArgument("--headless");
+            options.AddArgument("--disable-gpu");
+            driver = new ChromeDriver(options);
+            statusCodesPage = new StatusCodesClassApp(driver);*/
         }
 
         [TearDown]

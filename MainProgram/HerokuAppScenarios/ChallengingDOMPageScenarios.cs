@@ -15,14 +15,6 @@ public class ChallengingDOMPageScenarios
     [SetUp]
     public void Setup()
     {
-       /* var options = new ChromeOptions();
-        options.AddArgument("--headless"); // Optional: run in headless mode
-        options.AddArgument("--disable-gpu"); // Optional: helpful for CI pipelines
-
-        driver = new ChromeDriver(options); // Use options for stability
-        driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/challenging_dom");
-
-        challengingDOMPage = new ChallengingDOMClassApp(driver);*/
     }
 
     [TearDown]
@@ -54,7 +46,13 @@ public class ChallengingDOMPageScenarios
     {
         List<string> headers = challengingDOMPage.GetTableHeaders();
         Assert.IsTrue(headers.Count > 0);
-        Assert.Contains("Lorem", headers); // Known header
+        Assert.Contains("Lorem", headers); 
+        Assert.Contains("Ipsum", headers);
+        Assert.Contains("Dolor", headers); 
+        Assert.Contains("Sit", headers); 
+        Assert.Contains("Amet", headers); 
+        Assert.Contains("Diceret", headers); 
+        Assert.Contains("Action", headers); 
     }
 
     [Test]
