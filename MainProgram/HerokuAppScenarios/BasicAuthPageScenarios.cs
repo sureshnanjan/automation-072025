@@ -38,14 +38,7 @@ namespace HerokuOperationsTests
         [SetUp]
         public void Setup()
         {
-            // Initialize ChromeDriver with proper options
-            var options = new ChromeOptions();
-            options.AddArgument("--start-maximized");
-            _driver = new ChromeDriver(options);
-            _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
-
-            // Use Dependency Inversion (program to interface, not implementation)
-            _basicAuthPage = new BasicAuthPage(_driver);
+            
         }
 
         /// <summary>
@@ -53,8 +46,6 @@ namespace HerokuOperationsTests
         /// displays the expected page title.
         /// </summary>
         [Test]
-        [Category("BasicAuth")]
-        [Author("Arpita Neogi")]
         public void NavigateToPage_WithValidCredentials_ShouldDisplayCorrectTitle()
         {
             // Arrange
@@ -74,8 +65,6 @@ namespace HerokuOperationsTests
         /// Validates that after successful login, the page displays a success message.
         /// </summary>
         [Test]
-        [Category("BasicAuth")]
-        [Author("Arpita Neogi")]
         public void GetPageDescription_ShouldReturnSuccessMessage()
         {
             // Arrange
