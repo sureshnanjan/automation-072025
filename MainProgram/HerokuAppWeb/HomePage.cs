@@ -28,7 +28,7 @@ namespace HerokuAppWeb
 
         public string GetRepoUrl()
         {
-           return this.driver.FindElement(this.repoLocator).GetAttribute("alt");
+            return this.driver.FindElement(this.repoLocator).GetAttribute("alt");
         }
 
         public string GetSubTitle()
