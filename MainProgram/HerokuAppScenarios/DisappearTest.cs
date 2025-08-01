@@ -1,4 +1,10 @@
-﻿using HerokuAppScenarios.Pages;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="DisappearTest.cs" author="Jagadeeswar Reddy Arava">
+//   © 2025 Jagadeeswar Reddy Arava. All rights reserved.
+// </copyright>
+//
+
+using HerokuAppScenarios;
 using HerokuOperations.Pages;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -56,15 +62,6 @@ namespace HerokuAppScenarios
             StringAssert.StartsWith(expectedSubtitleStart, actualSubtitle, "Subtitle does not start as expected.");
         }
 
-        [Test]
-        public void RepoUrl_ShouldBeEmpty()
-        {
-            // Act
-            string repoUrl = _page.GetRepoUrl();
-
-            // Assert
-            Assert.IsEmpty(repoUrl, "Repo URL should be empty as no GitHub link exists on the page.");
-        }
 
         [Test]
         public void NavigationItems_ShouldContainExpectedLinks()

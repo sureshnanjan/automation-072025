@@ -1,7 +1,14 @@
-﻿using NUnit.Framework;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="SlowResourceTest.cs" author="Jagadeeswar Reddy Arava">
+//   © 2025 Jagadeeswar Reddy Arava. All rights reserved.
+// </copyright>
+//
+
+using HerokuOperations;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using HerokuAppScenarios.Pages;
+using OpenQA.Selenium.Support.UI;
 
 namespace HerokuAppScenarios
 {
@@ -54,5 +61,7 @@ namespace HerokuAppScenarios
             // Assert
             StringAssert.StartsWith(expectedTextStart, actualText, "Description text does not start as expected.");
         }
+
+
     }
 }

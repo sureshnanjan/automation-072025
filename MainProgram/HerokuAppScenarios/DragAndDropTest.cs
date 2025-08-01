@@ -1,4 +1,10 @@
-﻿using NUnit.Framework;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="DragAndDropTest.cs" author="Jagadeeswar Reddy Arava">
+//   © 2025 Jagadeeswar Reddy Arava. All rights reserved.
+// </copyright>
+//
+
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using HerokuOperations;
@@ -19,7 +25,8 @@ namespace HerokuAppScenarios
             _driver = new ChromeDriver();
             _driver.Manage().Window.Maximize();
             _driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/drag_and_drop");
-            _page = new DragDrop(_driver);
+            _page = new DragDrop(_driver); //Initializes your page object
+ 
         }
 
         [TearDown]
