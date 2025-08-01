@@ -1,4 +1,5 @@
 ﻿/*
+<<<<<<< HEAD
 * IABTest Interface
 * 
 * This interface defines the operations for verifying and controlling A/B Test content 
@@ -10,6 +11,19 @@
 * 
 * © 2025 Teja Reddy. All rights reserved.
 */
+=======
+ * IABTest Interface
+ * 
+ * This interface defines the operations for verifying and controlling A/B Test content 
+ * on the HerokuApp site (https://the-internet.herokuapp.com/abtest).
+ * 
+ * Author: Teja Reddy
+ * Created: August 2025
+ * License: For educational or internal use only.
+ * 
+ * © 2025 Teja Reddy. All rights reserved.
+ */
+>>>>>>> 39d9ac82c94ebdaa9a086c8441be75d73dc53ddb
 
 using System;
 

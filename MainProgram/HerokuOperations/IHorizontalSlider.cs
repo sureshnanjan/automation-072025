@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿// -----------------------------------------------------------------------
 // <copyright>
 //     Copyright (c) 2025 K Vamsi Krishna. All rights reserved.
@@ -5,11 +6,28 @@
 // -----------------------------------------------------------------------
 
 using HerokuOperations;
+=======
+﻿/*
+ * IHorizontalSlider Interface
+ * 
+ * This interface defines operations for interacting with the horizontal slider
+ * feature on the HerokuApp site (https://the-internet.herokuapp.com/horizontal_slider).
+ * It includes methods for focusing the slider, moving it left or right, and reading values.
+ * 
+ * Author: Teja Reddy
+ * Created: August 2025
+ * License: For educational or internal use only.
+ * 
+ * © 2025 Teja Reddy. All rights reserved.
+ */
+
+>>>>>>> 39d9ac82c94ebdaa9a086c8441be75d73dc53ddb
 using System;
 
 namespace HerokuOperations
 {
     /// <summary>
+<<<<<<< HEAD
     /// Provides methods to interact with the Horizontal Slider component.
     /// </summary>
     public interface IHorizontalSlider
@@ -113,6 +131,47 @@ namespace HerokuOperations
         /// </summary>
         /// <returns>True if the ribbon is present and interactable; otherwise, false.</returns>
         bool IsGitHubRibbonVisible();
+=======
+    /// Interface to define operations for testing a horizontal slider UI component.
+    /// </summary>
+    public interface IHorizontalSlider
+    {
+        /// <summary>
+        /// Gets the main title of the horizontal slider page.
+        /// </summary>
+        /// <returns>The title text as a string.</returns>
+        string GetTitle();
 
+        /// <summary>
+        /// Gets the description or instruction text from the page.
+        /// </summary>
+        /// <returns>The description string.</returns>
+        string GetDescription();
+
+        /// <summary>
+        /// Brings focus to the slider element before performing key actions.
+        /// </summary>
+        void FocusSlider();
+
+        /// <summary>
+        /// Moves the slider to the left by a given number of steps.
+        /// </summary>
+        /// <param name="steps">Number of steps to move left.</param>
+        /// <returns>The updated slider value as an integer.</returns>
+        int MoveSLiderLeft(int steps);
+
+        /// <summary>
+        /// Moves the slider to the right by a given number of steps.
+        /// </summary>
+        /// <param name="steps">Number of steps to move right.</param>
+        /// <returns>The updated slider value as an integer.</returns>
+        int MoveSLiderRight(int steps);
+>>>>>>> 39d9ac82c94ebdaa9a086c8441be75d73dc53ddb
+
+        /// <summary>
+        /// Gets the current value of the slider.
+        /// </summary>
+        /// <returns>The current slider value as an integer.</returns>
+        int GetSliderValue();
     }
 }
