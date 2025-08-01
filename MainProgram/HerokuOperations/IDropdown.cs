@@ -1,14 +1,3 @@
-namespace HerokuOperations
-{
-    public interface IDropdownPage
-    {
-        string GetTitle();
-
-        string[] GetAllOptions();
-        void SelectOptionByText(string optionText);
-        string GetSelectedOption();
-    }
-}
 // --------------------------------------------------------------------------------------------------------------------
 // <copyright file="IDropdownPage.cs" company="Keyur Nagvekar">
 //   Copyright (c) 2025 Keyur Nagvekar. All rights reserved.
