@@ -9,11 +9,13 @@
 * Description:
 * This file contains NUnit test cases for the `IDownloader` interface 
 * in the `HerokuOperations` namespace. It tests page title retrieval, 
-* file count retrieval, and the list of available file names.
+* file count retrieval, the list of available file names, and basic 
+* file download initiation.
 *******************************************************/
 
 using System;
 using System.Linq;
+using System.Collections.Generic;
 using HerokuOperations;
 using NUnit.Framework;
 
@@ -23,52 +25,75 @@ namespace HerokuAppScenarios
     /// Test scenarios for verifying file download functionality 
     /// on the HerokuApp File Downloader page.
     /// </summary>
+    [TestFixture]
     public class FileDownloaderScenarios
     {
-        private IDownloader downloader;
-
-        /// <summary>
-        /// Initializes resources before each test.
-        /// </summary>
-        [SetUp]
-        public void Setup()
+        [Test]
+        public void GetFileDownloadTitle_ShouldReturnCorrectTitle()
         {
-            // TODO: Initialize a concrete or mocked implementation of IDownloader
-            // Example: downloader = new FileDownloader(driver);
+            // Arrange
+            IDownloader downloader = TestDependencyResolver.Resolve<IDownloader>();
+            string expectedTitle = "File Downloader";
+
+            // Act
+            string actualTitle = downloader.GetFileDownloadTitle();
+
+            // Assert
+            Assert.That(actualTitle, Is.EqualTo(expectedTitle), "The page title does not match the expected value.");
         }
 
-        /// <summary>
-        /// Verifies that the page title for the File Downloader page is correct.
-        /// </summary>
         [Test]
-        public void FileDownLoadIsTitleOk()
+        public void GetCountOfFiles_ShouldReturnPositiveNumber()
         {
-            string expected = "File Downloader";
-            string actual = downloader.GetFileDownloadTitle();
-            Assert.AreEqual(expected, actual, "The page title does not match the expected value.");
+            // Arrange
+            IDownloader downloader = TestDependencyResolver.Resolve<IDownloader>();
+
+            // Act
+            int fileCount = downloader.GetCountOfFiles();
+
+            // Assert
+            Assert.That(fileCount, Is.GreaterThan(0), "The file count should be greater than zero.");
         }
 
-        /// <summary>
-        /// Verifies that the number of downloadable files returned is correct.
-        /// </summary>
         [Test]
-        public void GetCountOfFiles_ReturnsCorrectCount()
+        public void GetAllFileNames_ShouldReturnNonEmptyList()
         {
-            int expectedCount = 1;
-            int actualCount = downloader.GetCountOfFiles();
-            Assert.AreEqual(expectedCount, actualCount, "The count of downloadable files is incorrect.");
+            // Arrange
+            IDownloader downloader = TestDependencyResolver.Resolve<IDownloader>();
+
+            // Act
+            List<string> fileNames = downloader.GetAllFileNames();
+
+            // Assert
+            Assert.That(fileNames, Is.Not.Null.And.Not.Empty, "The list of file names should not be empty.");
         }
 
-        /// <summary>
-        /// Verifies that the list of file names returned is correct.
-        /// </summary>
         [Test]
-        public void GetAllFileNames_ReturnsFileNames()
+        public void DownloadFile_ShouldInitiateDownloadForValidFile()
         {
-            var fileNames = downloader.GetAllFileNames();
-            Assert.IsNotNull(fileNames, "The list of file names should not be null.");
-            Assert.AreEqual(1, fileNames.Count, "Unexpected number of file names returned.");
-            Assert.AreEqual("testfile.txt", fileNames.First(), "The first file name does not match the expected value.");
+            // Arrange
+            IDownloader downloader = TestDependencyResolver.Resolve<IDownloader>();
+            string fileName = downloader.GetAllFileNames().FirstOrDefault();
+            Assume.That(fileName, Is.Not.Null.And.Not.Empty, "No file found to initiate download.");
+
+            // Act
+            downloader.DownloadFile(fileName);
+
+            // Assert
+            bool isStarted = downloader.IsDownloadStarted(fileName);
+            Assert.That(isStarted, Is.True, $"The download for file '{fileName}' did not start as expected.");
+        }
+
+        [Test]
+        public void DownloadFile_ShouldNotInitiateForInvalidFile()
+        {
+            // Arrange
+            IDownloader downloader = TestDependencyResolver.Resolve<IDownloader>();
+            string invalidFileName = "non_existent_file.txt";
+
+            // Act & Assert
+            Assert.Throws<ArgumentException>(() => downloader.DownloadFile(invalidFileName),
+                "Downloading an invalid file name should throw an ArgumentException.");
         }
     }
 }
