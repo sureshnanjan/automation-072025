@@ -1,47 +1,91 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="IinfiniteScroll.cs" company="Varun Kumar Reddy">
+//   Copyright (c) 2025 Varun Kumar Reddy. All rights reserved.
+//   This file contains an interface that defines automation methods for interacting with the
+//   Infinite Scroll page on the HerokuApp test site. Redistribution or modification of this file
+//   is prohibited without explicit permission from the author.
+// </copyright>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 
 namespace HerokuOperations
 {
+    /// <summary>
+    /// Interface that defines contract methods for automating interactions 
+    /// with the Infinite Scroll page of HerokuApp.
+    /// Includes methods for scrolling in various directions, retrieving scroll metrics, 
+    /// and navigation.
+    /// </summary>
     public interface IinfiniteScroll
     {
-        // Navigates to the Infinite Scroll page
+        /// <summary>
+        /// Navigates the WebDriver to the Infinite Scroll page.
+        /// </summary>
         void GotoPage();
 
-        // Returns the title of the page
+        /// <summary>
+        /// Gets the title text of the Infinite Scroll page.
+        /// </summary>
+        /// <returns>Page title as a string.</returns>
         string GetTitle();
 
-        // Returns the subtitle of the page
+        /// <summary>
+        /// Gets the subtitle text of the Infinite Scroll page.
+        /// </summary>
+        /// <returns>Page subtitle as a string.</returns>
         string GetSubTitle();
 
-        // Scrolls all the way to the bottom of the page
+        /// <summary>
+        /// Scrolls vertically to the bottom of the page.
+        /// Useful for triggering dynamic content loading.
+        /// </summary>
         void ScrollToBottom();
 
-        // Returns the total scrollable height of the page
+        /// <summary>
+        /// Returns the total vertical scroll height of the page.
+        /// </summary>
+        /// <returns>Integer representing the page's total scroll height in pixels.</returns>
         int GetScrollHeight();
 
-        // Returns the total scrollable width of the page
+        /// <summary>
+        /// Returns the total horizontal scroll width of the page.
+        /// </summary>
+        /// <returns>Integer representing the page's total scroll width in pixels.</returns>
         int GetScrollWidth();
 
-        // Scrolls back to the top of the page
+        /// <summary>
+        /// Scrolls vertically to the top of the page.
+        /// </summary>
         void ScrollToTop();
 
-        // Scrolls all the way to the left side of the page
+        /// <summary>
+        /// Scrolls horizontally to the leftmost edge of the page.
+        /// </summary>
         void ScrollToLeft();
 
-        // Scrolls all the way to the right side of the page
+        /// <summary>
+        /// Scrolls horizontally to the rightmost edge of the page.
+        /// </summary>
         void ScrollToRight();
 
-        // Returns the current horizontal scroll position
+        /// <summary>
+        /// Returns the current horizontal scroll position (X-axis).
+        /// </summary>
+        /// <returns>Integer value of horizontal scroll offset.</returns>
         int GetScrollX();
 
-        // Returns the current vertical scroll position
+        /// <summary>
+        /// Returns the current vertical scroll position (Y-axis).
+        /// </summary>
+        /// <returns>Integer value of vertical scroll offset.</returns>
         int GetScrollY();
 
-        // Scrolls to a specific X and Y coordinate on the page
+        /// <summary>
+        /// Scrolls the page to a specific X and Y pixel coordinate.
+        /// </summary>
+        /// <param name="x">X-axis scroll position.</param>
+        /// <param name="y">Y-axis scroll position.</param>
         void ScrollTo(int x, int y);
     }
 }
