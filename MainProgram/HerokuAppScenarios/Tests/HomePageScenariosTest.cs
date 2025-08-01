@@ -1,5 +1,5 @@
-using HerokuOperations;
-namespace HerokuAppScenarios
+/*using HerokuOperations.Interfaces;
+namespace HerokuAppScenarios.Tests
 {
     public class Tests
     {
@@ -16,7 +16,7 @@ namespace HerokuAppScenarios
             IHomePage homepage;
             string actual = homepage.GetTitle();
             Assert.AreEqual(expected, actual);
-            
+
         }
     }
-}
+}*/

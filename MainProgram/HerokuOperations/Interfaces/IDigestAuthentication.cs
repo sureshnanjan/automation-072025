@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HerokuOperations
+namespace HerokuOperations.Interfaces
 {
     internal interface IDigestAuthentication
     {
@@ -15,8 +15,6 @@ namespace HerokuOperations
         bool IsLoggedIn();// Check if the user is logged in
         void Logout();// Perform logout
         string GetCurrentUser();// Get the current logged-in user
-
-        
 
 
     }
