@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HerokuOperations
 {
-    internal interface IBrokenImagesPage
+    internal interface IBrokenImages
     {
         // Navigates to the broken images test page.
         void NavigateToPage();
