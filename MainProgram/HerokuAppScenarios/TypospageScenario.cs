@@ -38,17 +38,13 @@ namespace HerokuAppScenarios
         /// Example:
         /// <code>_typosPage = new TyposPageImplementation();</code>
         /// </summary>
-        [SetUp]
-        public void Setup()
-        {
-            
-        }
+        
 
         /// <summary>
         /// Test case to verify that navigating to the Typos Page returns the expected page title.
         /// </summary>
         [Test]
-        public void NavigateToPage_ShouldReturnExpectedTitle()
+        public void NavigateToPageShouldReturnExpectedTitle()
         {
             // Arrange
             const string expectedTitle = "Typos Page";
@@ -64,8 +60,9 @@ namespace HerokuAppScenarios
         /// <summary>
         /// Test case to verify that the Typos Page displays the correct description text.
         /// </summary>
+        
         [Test]
-        public void NavigateToPage_ShouldReturnExpectedDescription()
+        public void NavigateToPageShouldReturnExpectedDescription()
         {
             // Arrange
             const string expectedDescription = "This is a sample page to check for typos.";
@@ -81,8 +78,9 @@ namespace HerokuAppScenarios
         /// <summary>
         /// Test case to verify that the Typos Page does not contain any spelling errors or typos.
         /// </summary>
+        
         [Test]
-        public void Page_ShouldNotContainAnyTypos()
+        public void PageShouldNotContainAnyTypos()
         {
             // Arrange
             _typosPage.NavigateToPage();
