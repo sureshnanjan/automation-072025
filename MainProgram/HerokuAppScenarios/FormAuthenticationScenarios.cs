@@ -1,80 +1,182 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+﻿/*
+* ------------------------------------------------------------------------------
+* © 2025 Sowmya Sridhar. All rights reserved.
+* This test file is part of the HerokuApp automated test suite.
+* For internal, educational, or evaluation purposes only.
+* ------------------------------------------------------------------------------
+*/
+
+using NUnit.Framework;
 using HerokuOperations;
 using HerokuAppWeb;
 
 namespace HerokuAppScenarios
 {
-    public class FormAuthenticationScenarios
+    /// <summary>     
+    /// Test Design Techniques Used:
+    /// - Black Box Testing: Verifies functionality from a user perspective.
+    /// - Equivalence Partitioning: Valid and invalid credential sets.
+    /// - Modular Testing: Each UI element and behavior is verified independently.
+    /// </summary>
+    public class FormAuthenticationPageTests
     {
-        private IWebDriver _driver;
-        private IFormAuthentication _formAuth;
-
         [SetUp]
         public void Setup()
         {
-            _driver = new ChromeDriver();
-            _driver.Manage().Window.Maximize();
-            _formAuth = new FormAuthenticationImplementation(_driver);
-            _formAuth.GoToPage();
-        }  
 
+        }
+
+        /// <summary>
+        /// Verifies the title of the login page.
+        /// </summary>
         [Test]
-        public void LoginPage_Should_Display_Title_And_Description()
+        public void LoginPage_Title_IsCorrect()
         {
-            string title = _formAuth.GetTitle();
-            string description = _formAuth.GetDescription();
+            // Arrange
+            string expected = "Login Page";
+            IFormAuthentication formPage = new FormAuthentication();
 
-            Assert.AreEqual("Login Page", title);
-            Assert.IsTrue(description.Contains("Enter tomsmith for the username"));
+            // Act
+            string actual = formPage.GetTitle();
+
+            // Assert
+            Assert.AreEqual(expected, actual);
         }
-
         [Test]
-        public void Login_Should_Succeed_With_Valid_Credentials()
+        public void LoginPage_Description_IsCorrect()
         {
-            _formAuth.EnterUserName("tomsmith");
-            _formAuth.EnterPassWord("SuperSecretPassword!");
-            _formAuth.ClickLogin();
+            // Arrange
+            string expected = "This is where you can log into the secure area. Enter tomsmith for the username and SuperSecretPassword! for the password.";
+            IFormAuthentication formPage = new FormAuthentication();
 
-            Assert.IsTrue(_formAuth.IsLoginSuccessful(), "Expected successful login with valid credentials.");
+            // Act
+            string actual = formPage.GetDescriptionText();
+
+            // Assert
+            Assert.AreEqual(expected, actual);
         }
-
+        /// <summary>
+        /// Verifies that a valid login shows the correct success message.
+        /// </summary>
         [Test]
-        public void Login_Should_Fail_With_Invalid_Credentials()
+        public void Login_WithValidCredentials_DisplaysSuccessMessage()
         {
-            _formAuth.EnterUserName("wronguser");
-            _formAuth.EnterPassWord("wrongpass");
-            _formAuth.ClickLogin();
+            // Arrange
+            string username = "tomsmith";
+            string password = "SuperSecretPassword!";
+            string expectedMessage = "You logged into a secure area!";
+            IFormAuthentication loginPage = new FormAuthentication();
 
-            string error = _formAuth.GetErrorMessage();
-            Assert.IsTrue(error.Contains("Your username is invalid!") || error.Contains("Your password is invalid!"));
+            // Act
+            string actualMessage = loginPage.LoginWith(username, password);
+
+            // Assert
+            Assert.IsTrue(actualMessage.Contains(expectedMessage));
         }
 
+        /// <summary>
+        /// Verifies that an invalid username shows the correct error message.
+        /// </summary>
         [Test]
-        public void Logout_Should_Redirect_To_Login_Page()
+        public void Login_WithInvalidUsername_DisplaysErrorMessage()
         {
-            _formAuth.EnterUserName("tomsmith");
-            _formAuth.EnterPassWord("SuperSecretPassword!");
-            _formAuth.ClickLogin();
+            // Arrange
+            string username = "wronguser";
+            string password = "SuperSecretPassword!";
+            string expectedMessage = "Your username is invalid!";
+            IFormAuthentication loginPage = new FormAuthentication();
 
-            Assert.IsTrue(_formAuth.IsLoginSuccessful());
+            // Act
+            string actualMessage = loginPage.LoginWith(username, password);
 
-            _formAuth.ClickLogout();
-
-            string title = _formAuth.GetTitle();
-            Assert.AreEqual("Login Page", title, "After logout, user should be redirected to login page.");
+            // Assert
+            Assert.IsTrue(actualMessage.Contains(expectedMessage));
         }
 
-        [TearDown]
-        public void TearDown()
+        /// <summary>
+        /// Verifies that an invalid password shows the correct error message.
+        /// </summary>
+        [Test]
+        public void Login_WithInvalidPassword_DisplaysErrorMessage()
         {
-            if (_driver != null)
-            {
-                _driver.Quit();
-                _driver.Dispose(); // This explicitly disposes the driver and avoids warnings
-            }
+            // Arrange
+            string username = "tomsmith";
+            string password = "wrongpassword";
+            string expectedMessage = "Your password is invalid!";
+            IFormAuthentication loginPage = new FormAuthentication();
+
+            // Act
+            string actualMessage = loginPage.LoginWith(username, password);
+
+            // Assert
+            Assert.IsTrue(actualMessage.Contains(expectedMessage));
         }
+
+        /// <summary>
+        /// Verifies that after successful login, the secure area title is correct.
+        /// </summary>
+        [Test]
+        public void SecureArea_AfterLogin_DisplaysCorrectTitle()
+        {
+            // Arrange
+            string expectedTitle = "Secure Area";
+            IFormAuthentication loginPage = new FormAuthentication();
+
+            // Act
+            string actualTitle = loginPage.GetSecureAreaTitle();
+
+            // Assert
+            Assert.AreEqual(expectedTitle, actualTitle);
+        }
+
+        /// <summary>
+        /// Verifies that after login, the logout button is visible.
+        /// </summary>
+        [Test]
+        public void SecureArea_AfterLogin_DisplaysLogoutButton()
+        {
+            // Arrange
+            IFormAuthentication loginPage = new FormAuthentication();
+
+            // Act
+            bool isVisible = loginPage.IsLogoutButtonVisible();
+
+            // Assert
+            Assert.IsTrue(isVisible);
+        }
+
+        /// <summary>
+        /// Verifies that clicking logout redirects back to the login page.
+        /// </summary>
+        [Test]
+        public void Logout_RedirectsToLoginPage()
+        {
+            // Arrange
+            IFormAuthentication loginPage = new FormAuthentication();
+
+            // Act
+            string currentUrl = loginPage.LogoutAndGetRedirectedUrl();
+
+            // Assert
+            Assert.IsTrue(currentUrl.Contains("/login"));
+        }
+
+        /// <summary>
+        /// Test to validate the logout pop-up message after logging out from secure area.
+        /// </summary>
+        [Test]
+        public void LogoutMessage_Displayed_AfterLogout()
+        {
+            // Arrange
+            string expectedMessage = "You logged out of the secure area!";
+
+            // Act
+            string actualMessage = _formAuth.GetLogoutMessage();
+
+            // Assert
+            Assert.AreEqual(expectedMessage, actualMessage, "Logout message does not match expected text.");
+        }
+
 
     }
 }
