@@ -76,5 +76,27 @@ namespace HerokuOperations
 
             return false;
         }
+
+
+
+
+        /// <summary>
+        /// Gets the page title of the file download page.
+        /// </summary>
+        /// <returns>The title of the page.</returns>
+        public string GetFileDownloadTitle()
+        {
+            return _driver.Title;
+        }
+
+        /// <summary>
+        /// Gets the count of downloadable files shown on the page.
+        /// </summary>
+        /// <returns>The total number of downloadable files.</returns>
+        public int GetCountOfFiles()
+        {
+            var fileElements = _driver.FindElements(By.CssSelector(".example a"));
+            return fileElements.Count;
+        }
     }
 }

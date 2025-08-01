@@ -56,3 +56,18 @@ namespace HerokuAppScenarios
         }
     }
 }
+
+
+/*
+ Type of Testcases to be written
+1 . GetTitle() - heading (Redirect link)
+2. GetContent() - get the content of the  page
+3. GetLogo() - if logo present or not .
+4.ClickHere() - link to redirect to next page.
+  4.1 Clickhere() - should redirect to the next page
+  4.2 GetTitleStatusCode() - title of status code
+  4.3 GetContentStatusCode() - paragraph 
+  4.4 Get200() - redirect to 200 content page
+
+
+ * \

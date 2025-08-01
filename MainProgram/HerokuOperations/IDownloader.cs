@@ -19,8 +19,20 @@ namespace HerokuOperations
     /// <summary>
     /// Interface for handling file downloads from the Heroku download page.
     /// </summary>
-    internal interface IDownloader
+    public interface IDownloader
     {
+        /// <summary>
+        /// Gets the page title of the file download page.
+        /// </summary>
+        /// <returns>The title of the page.</returns>
+        string GetFileDownloadTitle();
+
+        /// <summary>
+        /// Gets the count of downloadable files shown on the page.
+        /// </summary>
+        /// <returns>The total number of downloadable files.</returns>
+        int GetCountOfFiles();
+
         /// <summary>
         /// Gets the list of all downloadable file names shown on the page.
         /// </summary>
@@ -41,3 +53,8 @@ namespace HerokuOperations
         bool IsDownloadStarted(string fileName);
     }
 }
+/*
+ * Can include : 
+ 1. GetFileDownloadTitleOk() -
+ 2. GetCountOfFiles() -
+ */
