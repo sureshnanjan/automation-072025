@@ -77,5 +77,17 @@ namespace HerokuOperations
         /// </summary>
         /// <returns>List of alt text from broken images.</returns>
         List<string> GetAltTextOfBrokenImages();
+
+        /// <summary>
+        /// Verifies if the "Powered by Elemental Selenium" footer is present and visible.
+        /// </summary>
+        /// <returns>True if the footer is visible; otherwise, false.</returns>
+        bool IsFooterPoweredByVisible();
+
+        /// <summary>
+        /// Checks if the "Fork me on GitHub" ribbon is visible and clickable.
+        /// </summary>
+        /// <returns>True if the ribbon is present and interactable; otherwise, false.</returns>
+        bool IsGitHubRibbonVisible();
     }
 }
