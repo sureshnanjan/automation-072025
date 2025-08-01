@@ -8,7 +8,7 @@ namespace HerokuOperations
     /// Implementation of IBasicAuthPage interface for automating
     /// Basic Authentication page on https://the-internet.herokuapp.com/basic_auth
     /// </summary>
-    public class BasicAuthPage : IBasicAuthPage
+    public class BasicAuthPage : IBasicAuth
     {
         private readonly IWebDriver _driver;
         private readonly string _baseUrl = "https://the-internet.herokuapp.com/basic_auth";
