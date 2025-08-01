@@ -1,50 +1,76 @@
-﻿using HerokuOperations.PageInterface;
-using HerokuOperations.PageObjects;
+﻿// Copyright © 2025 Varun Kumar Reddy D.
+// All rights reserved. Unauthorized copying of this file, via any medium is strictly prohibited.
+// Proprietary and confidential.
+// Written by Varun Kumar Reddy D <your_email@example.com>, 2025.
+
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+using HerokuOperations.PageInterface;
 
 namespace HerokuTests
 {
     [TestFixture]
-    public class ABTestTests
+    public class ABTestPageTests
     {
-        private IWebDriver _driver;
+        // D — Dependency Inversion Principle:
+        // Test class depends on the IABTest interface abstraction, not on concrete implementations.
         private IABTest _abTestPage;
 
-        [SetUp]
-        public void SetUp()
+        [Test]
+        public void GetTitle_WhenCalled_ShouldReturnExpectedTitle()
         {
-            _driver = new ChromeDriver();
-            _driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/abtest");
+            // S — Single Responsibility Principle:
+            // This test only validates the title and does nothing else.
 
-            _abTestPage = new ABTestPage(_driver); // Assigning your page object correctly
-        }
+            // Arrange
+            var expectedTitle = new[] { "A/B Test Variation 1" };
 
-        [TearDown]
-        public void TearDown()
-        {
-            if (_driver != null)
-            {
-                _driver.Quit();
-                _driver.Dispose(); // Dispose to satisfy NUnit analyzer
-            }
+            // Act
+            string actualTitle = _abTestPage.GetTitle();
+
+            // Assert
+            Assert.Contains(actualTitle, expectedTitle);
         }
 
         [Test]
-        public void GetTitle_ShouldReturnNonEmptyTitle()
+        public void GetDescription_WhenCalled_ShouldReturnExpectedText()
         {
-            string title = _abTestPage.GetTitle();
-            Assert.IsNotNull(title);
-            Assert.IsNotEmpty(title);
+            // S — Single Responsibility Principle:
+            // This test only checks the description content of the page.
+
+            // Arrange
+            string expectedDescription = "Also known as split testing. This is a way in which businesses are able to simultaneously test and learn different versions of a page to see which text and/or functionality works best towards a desired outcome (e.g. a user action such as a click-through).";
+
+            // Act
+            string actualDescription = _abTestPage.GetDescription();
+
+            // Assert
+            Assert.AreEqual(expectedDescription, actualDescription);
         }
 
         [Test]
-        public void GetDescription_ShouldReturnValidText()
+        public void IsFooterPoweredByVisible_WhenCalled_ShouldReturnTrueIfVisible()
         {
-            string description = _abTestPage.GetDescription();
-            Assert.IsNotNull(description);
-            Assert.IsTrue(description.Length > 10);
+            // S — Single Responsibility Principle:
+            // This test checks only the visibility of the Elemental Selenium footer.
+
+            // Act
+            bool isFooterVisible = _abTestPage.IsFooterPoweredByVisible();
+
+            // Assert
+            Assert.IsTrue(isFooterVisible);
+        }
+
+        [Test]
+        public void IsGitHubRibbonVisible_WhenCalled_ShouldReturnTrueIfVisible()
+        {
+            // S — Single Responsibility Principle:
+            // This test checks only the visibility of the GitHub ribbon.
+
+            // Act
+            bool isGitHubRibbonVisible = _abTestPage.IsGitHubRibbonVisible();
+
+            // Assert
+            Assert.IsTrue(isGitHubRibbonVisible);
         }
     }
 }
