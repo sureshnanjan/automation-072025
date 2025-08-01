@@ -6,12 +6,12 @@ using System.Threading;
 
 namespace HerokuOperations
 {
-    public class SeleniumContextMenu : ContextMenu
+    public class ContextMenu : IContextMenu
     {
         private readonly IWebDriver driver;
         private readonly string url = "https://the-internet.herokuapp.com/context_menu";
 
-        public SeleniumContextMenu()
+        public ContextMenu()
         {
             // Launch the Chrome browser
             driver = new ChromeDriver();

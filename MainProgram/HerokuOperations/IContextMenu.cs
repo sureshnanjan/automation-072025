@@ -14,7 +14,7 @@ namespace HerokuOperations
 
         string GetInformation();
 
-        void RIghtClickOnBox();
+        void RightClickOnBox();
 
         string GetAlertText();
 
