@@ -15,14 +15,7 @@ public class CheckBoxPageScenarios
     [SetUp]
     public void Setup()
     {
-        /*var options = new ChromeOptions();
-        options.AddArgument("--headless");
-        options.AddArgument("--disable-gpu");
-
-        driver = new ChromeDriver(options);
-        driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/checkboxes");
-
-        checkBoxesPage = new CheckBoxesClassApp(driver); // Use the class that implements ICheckBoxes*/
+       
     }
 
     [TearDown]
@@ -55,7 +48,7 @@ public class CheckBoxPageScenarios
     {
         List<bool> states = checkBoxesPage.GetAllCheckboxStates();
         Assert.AreEqual(2, states.Count, "There should be two checkboxes.");
-        Assert.IsTrue(states[0] || states[1], "First checkbox state should be true or second checkbox state should be false.");
+        Assert.IsTrue(states[0] || states[1], "First checkbox state be true or second checkbox state be false.");
     }
 
     [Test]
