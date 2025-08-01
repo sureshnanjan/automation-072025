@@ -18,15 +18,17 @@ namespace HerokuAppScenarios
     /// <summary>
     /// Test class for verifying notification message behavior via the INotificationMessagePage interface.
     /// </summary>
-   
     public class NotificationMessageTests
     {
-         /// <summary>
+        /// <summary>
         /// ✅ Verifies the heading is correct and visible.
         /// </summary>
         [Test]
         public void Heading_IsDisplayedCorrectly()
         {
+            // Arrange
+            INotificationMessagePage notificationPage = new NotificationMessagePage();
+
             // Act
             string actual = notificationPage.GetPageHeading();
 
@@ -40,6 +42,9 @@ namespace HerokuAppScenarios
         [Test]
         public void Message_ShowsAfterTrigger()
         {
+            // Arrange
+            INotificationMessagePage notificationPage = new NotificationMessagePage();
+
             // Act
             notificationPage.ClickTriggerLink();
             string message = notificationPage.GetNotificationMessage();
@@ -55,6 +60,7 @@ namespace HerokuAppScenarios
         public void Message_VariesOnRepeatedTrigger()
         {
             // Arrange
+            INotificationMessagePage notificationPage = new NotificationMessagePage();
             HashSet<string> uniqueMessages = new();
 
             // Act
@@ -75,6 +81,9 @@ namespace HerokuAppScenarios
         [Test]
         public void Message_HasProperCloseSymbol()
         {
+            // Arrange
+            INotificationMessagePage notificationPage = new NotificationMessagePage();
+
             // Act
             notificationPage.ClickTriggerLink();
             string message = notificationPage.GetNotificationMessage();
@@ -89,11 +98,13 @@ namespace HerokuAppScenarios
         [Test]
         public void Message_IsStickyUntilClosed()
         {
+            // Arrange
+            INotificationMessagePage notificationPage = new NotificationMessagePage();
+
             // Act
             notificationPage.ClickTriggerLink();
             string messageBefore = notificationPage.GetNotificationMessage();
-
-            string messageAfter = notificationPage.GetNotificationMessage(); // Should be the same
+            string messageAfter = notificationPage.GetNotificationMessage();
 
             // Assert
             Assert.AreEqual(messageBefore, messageAfter, "Message should persist unless closed manually.");
@@ -106,6 +117,7 @@ namespace HerokuAppScenarios
         public void Message_CanBeSuccess()
         {
             // Arrange
+            INotificationMessagePage notificationPage = new NotificationMessagePage();
             bool successSeen = false;
 
             // Act
@@ -130,6 +142,9 @@ namespace HerokuAppScenarios
         [Test]
         public void Trigger_HandlesHighClickVolume()
         {
+            // Arrange
+            INotificationMessagePage notificationPage = new NotificationMessagePage();
+
             // Act & Assert
             Assert.DoesNotThrow(() =>
             {
@@ -147,6 +162,9 @@ namespace HerokuAppScenarios
         [Test]
         public void Message_IsNotVisibleInitially()
         {
+            // Arrange
+            INotificationMessagePage notificationPage = new NotificationMessagePage();
+
             // Act
             string initial = notificationPage.GetNotificationMessage();
 
