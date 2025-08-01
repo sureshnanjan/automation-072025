@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using HerokuOperations;
@@ -14,42 +14,63 @@ namespace HerokuAppTests
         [SetUp]
         public void Setup()
         {
+            // Arrange: Initialize WebDriver and navigate to the page
             driver = new ChromeDriver();
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/hovers");
 
+            // Arrange: Initialize HoverImplementation with driver
             hover = new HoverImplementation(driver);
         }
 
         [Test]
         public void GetTitle_ShouldReturnCorrectTitle()
         {
-            // Asserts that the page title is "Hovers"
-            Assert.That(hover.GetTitle(), Is.EqualTo("Hovers"));
+            // Arrange - done in Setup()
+
+            // Act
+            var title = hover.GetTitle();
+
+            // Assert
+            Assert.That(title, Is.EqualTo("Hovers"));
         }
 
         [Test]
         public void Description_ShouldReturnNonEmptyText()
         {
-            // Asserts that the page description is not null or empty
-            Assert.That(hover.Description(), Is.Not.Null.And.Not.Empty);
+            // Arrange - done in Setup()
+
+            // Act
+            var description = hover.Description();
+
+            // Assert
+            Assert.That(description, Is.Not.Null.And.Not.Empty);
         }
 
         [Test]
         public void GetProfileCount_ShouldReturnThreeProfiles()
         {
-            // Asserts that there are 3 profile figures on the page
-            Assert.That(hover.GetProfileCount(), Is.EqualTo(3));
+            // Arrange - done in Setup()
+
+            // Act
+            var count = hover.GetProfileCount();
+
+            // Assert
+            Assert.That(count, Is.EqualTo(3));
         }
 
         [Test]
         public void HoverOverProfileImage_ShouldShowCaption()
         {
-            // Hovers over each profile and checks if caption becomes visible
+            // Arrange - done in Setup()
             int count = hover.GetProfileCount();
+
             for (int i = 0; i < count; i++)
             {
+                // Act
                 hover.HoverOverProfileImage(i);
+
+                // Assert
                 Assert.That(hover.IsProfileInfoDisplayed(i), Is.True, $"Caption for profile {i} should be displayed");
             }
         }
@@ -57,11 +78,15 @@ namespace HerokuAppTests
         [Test]
         public void GetProfileName_ShouldReturnCorrectName()
         {
-            // After hover, the profile name should start with "name: user"
+            // Arrange - done in Setup()
             int count = hover.GetProfileCount();
+
             for (int i = 0; i < count; i++)
             {
+                // Act
                 string name = hover.GetProfileName(i);
+
+                // Assert
                 Assert.That(name, Does.StartWith("name: user"), $"Profile name at index {i} should start with 'name: user'");
             }
         }
@@ -69,11 +94,15 @@ namespace HerokuAppTests
         [Test]
         public void GetProfileLink_ShouldReturnUserLink()
         {
-            // After hover, the profile link should contain "/users/"
+            // Arrange - done in Setup()
             int count = hover.GetProfileCount();
+
             for (int i = 0; i < count; i++)
             {
+                // Act
                 string link = hover.GetProfileLink(i);
+
+                // Assert
                 Assert.That(link, Does.Contain("/users/"), $"Profile link at index {i} should contain '/users/'");
             }
         }
@@ -86,3 +115,4 @@ namespace HerokuAppTests
         }
     }
 }
+
