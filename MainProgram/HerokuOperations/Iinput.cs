@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IInputPage.cs" company="Varun Kumar Reddy">
+// <copyright file="IinfiniteScroll.cs" 
 //   Copyright (c) 2025 Varun Kumar Reddy. All rights reserved.
-//   This file defines an interface for automating interactions with the
-//   Inputs page on the HerokuApp test site. Redistribution or modification
-//   is not permitted without the author's written consent.
+//   This file contains an interface that defines automation methods for interacting with the
+//   Infinite Scroll page on the HerokuApp test site. Redistribution or modification of this file
+//   is prohibited without explicit permission from the author.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 

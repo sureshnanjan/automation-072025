@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IinfiniteScroll.cs" company="Varun Kumar Reddy">
+// <copyright file="IinfiniteScroll.cs" 
 //   Copyright (c) 2025 Varun Kumar Reddy. All rights reserved.
 //   This file contains an interface that defines automation methods for interacting with the
 //   Infinite Scroll page on the HerokuApp test site. Redistribution or modification of this file
@@ -87,5 +87,19 @@ namespace HerokuOperations
         /// <param name="x">X-axis scroll position.</param>
         /// <param name="y">Y-axis scroll position.</param>
         void ScrollTo(int x, int y);
+
+        // ───────────── FOOTER VALIDATION METHODS ─────────────
+
+        /// <summary>
+        /// Verifies if the "Powered by Elemental Selenium" footer is present and visible.
+        /// </summary>
+        /// <returns>True if the footer is visible; otherwise, false.</returns>
+        bool IsFooterPoweredByVisible();
+
+        /// <summary>
+        /// Checks if the "Fork me on GitHub" ribbon is visible and clickable.
+        /// </summary>
+        /// <returns>True if the ribbon is present and interactable; otherwise, false.</returns>
+        bool IsGitHubRibbonVisible();
     }
 }
