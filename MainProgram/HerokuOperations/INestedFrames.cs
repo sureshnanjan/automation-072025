@@ -1,17 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// -----------------------------------------------------------------------
+// <copyright>
+//     Copyright (c) 2025 K Vamsi Krishna. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
+
+using System;
 
 namespace HerokuOperations
 {
+    /// <summary>
+    /// Provides methods to interact with the Nested Frames page.
+    /// </summary>
     public interface INestedFrames
     {
-        void SwitchToTopFrame();               // Switch to the main top frame
-        void SwitchToLeftFrame();              // Switch to left frame (inside top frame)
-        void SwitchToMiddleFrame();            // Switch to middle frame (inside top frame)
-        void SwitchToRightFrame();             // Switch to right frame (inside top frame)
-        void SwitchToBottomFrame();            //Switch to Bottom frame
+        /// <summary>
+        /// Navigates to the Nested Frames page.
+        /// </summary>
+        void GotoPage();
+
+        /// <summary>
+        /// Switches to the left frame and retrieves the text inside.
+        /// </summary>
+        /// <returns>The text inside the left frame.</returns>
+        string GetLeftFrameText();
+
+        /// <summary>
+        /// Switches to the middle frame and retrieves the text inside.
+        /// </summary>
+        /// <returns>The text inside the middle frame.</returns>
+        string GetMiddleFrameText();
+
+        /// <summary>
+        /// Switches to the right frame and retrieves the text inside.
+        /// </summary>
+        /// <returns>The text inside the right frame.</returns>
+        string GetRightFrameText();
+
+        /// <summary>
+        /// Switches to the bottom frame and retrieves the text inside.
+        /// </summary>
+        /// <returns>The text inside the bottom frame.</returns>
+        string GetBottomFrameText();
     }
 }
