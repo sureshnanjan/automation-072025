@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ITinyMCEEditorPage.cs" company="Arpita Neogi">
 //   Copyright (c) 2025 Arpita Neogi. All rights reserved.
 //   This file contains an interface defining actions for interacting with the TinyMCE Editor page

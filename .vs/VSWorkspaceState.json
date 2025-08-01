@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\MainProgram",
+    "\\MainProgram\\BinarySearcher",
+    "\\MainProgram\\BinarySearcherTests",
+    "\\MainProgram\\HerokuAppScenarios",
+    "\\MainProgram\\HerokuOperations",
+    "\\MainProgram\\InterfaceTestcase",
+    "\\MainProgram\\InterfaceTestcase\\InterfaceTestcase"
+  ],
+  "SelectedNode": "\\MainProgram\\MainProgram.sln",
+  "PreviewInSolutionExplorer": false
+}
