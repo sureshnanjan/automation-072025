@@ -1,7 +1,13 @@
 ﻿// -------------------------------------------------------------------------------------------------
-// © 2025 Your Company or Name. All rights reserved.
-// This file is part of the HerokuApp automation framework interfaces.
-// It defines the contract for interacting with the Broken Images test page.
+// © 2025 Elangovan. All rights reserved.
+//
+// This file is part of the HerokuApp Automation Framework.
+// Unauthorized copying of this file, via any medium, is strictly prohibited.
+// Proprietary and confidential.
+//
+// This interface defines the contract for interacting with the Broken Images page functionality,
+// including navigation, image validation, broken image detection, and additional verification 
+// features for UI testing scenarios.
 // -------------------------------------------------------------------------------------------------
 
 using System;
@@ -27,21 +33,49 @@ namespace HerokuOperations
         string GetPageTitle();
 
         /// <summary>
-        /// Gets the total number of images on the page.
+        /// Gets the total number of <img> elements on the page.
         /// </summary>
         /// <returns>The total number of image elements found.</returns>
         int GetImageCount();
 
         /// <summary>
-        /// Returns the number of broken images (images that failed to load).
+        /// Gets the number of broken images (those that failed to load).
         /// </summary>
         /// <returns>The count of broken image elements.</returns>
         int GetBrokenImageCount();
 
         /// <summary>
-        /// Returns a list of all image source URLs that failed to load.
+        /// Gets a list of all broken image URLs (image sources that failed to load).
         /// </summary>
-        /// <returns>List of URLs pointing to broken image sources.</returns>
+        /// <returns>List of broken image source URLs.</returns>
         List<string> GetBrokenImageUrls();
+
+        /// <summary>
+        /// Gets the number of images that loaded successfully.
+        /// </summary>
+        /// <returns>The count of valid images that rendered correctly.</returns>
+        int GetValidImageCount();
+
+        /// <summary>
+        /// Checks if all images on the page are valid.
+        /// </summary>
+        /// <returns>True if no broken images are found; otherwise, false.</returns>
+        bool AreAllImagesValid();
+
+        /// <summary>
+        /// Waits for all images to be fully loaded on the page.
+        /// </summary>
+        void WaitForImagesToLoad();
+
+        /// <summary>
+        /// Refreshes the Broken Images page.
+        /// </summary>
+        void RefreshPage();
+
+        /// <summary>
+        /// Gets alt attributes of all broken images for accessibility testing.
+        /// </summary>
+        /// <returns>List of alt text from broken images.</returns>
+        List<string> GetAltTextOfBrokenImages();
     }
 }

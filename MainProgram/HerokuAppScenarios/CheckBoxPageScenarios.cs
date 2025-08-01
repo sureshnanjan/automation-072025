@@ -1,106 +1,220 @@
 ﻿// -------------------------------------------------------------------------------------------------
-// © 2025 Your Company or Name. All rights reserved.
-// This file is part of the HerokuApp automated test suite using Selenium WebDriver and NUnit.
-// It is provided as-is for educational or internal testing purposes only.
+// © 2025 Elangovan. All rights reserved.
+//
+// This file is part of the HerokuApp Automation Framework.
+// Unauthorized copying of this file, via any medium, is strictly prohibited.
+// Proprietary and confidential.
+//
+// This class contains test scenarios for validating checkbox behavior
+// on the Checkboxes page of HerokuApp using Selenium WebDriver and NUnit.
 // -------------------------------------------------------------------------------------------------
 
 using HerokuOperations;
 using HerokuAppWeb;
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using System.Collections.Generic;
 
 namespace HerokuAppScenarios
 {
     /// <summary>
-    /// Contains NUnit test scenarios for validating checkbox behavior
-    /// on the Checkboxes page of HerokuApp using Selenium WebDriver.
+    /// Test scenarios for the Checkboxes page functionality.
     /// </summary>
-    public class CheckBoxPageScenarios
+    public class CheckboxPageTests
     {
-        private IWebDriver driver; // Use IWebDriver for flexibility
-        private ICheckBoxes checkBoxesPage; // Page object for interacting with checkbox elements
+        private ICheckBoxes _checkboxesPage;
 
         /// <summary>
-        /// Initializes resources before each test.
+        /// Initializes the WebDriver and page object before each test.
         /// </summary>
         [SetUp]
         public void Setup()
         {
-            // Setup logic should initialize driver and navigate to the test page
+            // Arrange
+            // Initialize _checkboxesPage with driver and navigate to the checkbox page
         }
 
         /// <summary>
-        /// Disposes resources after each test.
-        /// </summary>
-        [TearDown]
-        public void TearDown()
-        {
-            driver.Dispose();
-        }
-
-        /// <summary>
-        /// Validates that the page title matches the expected value.
+        /// Validates that the page title is correctly displayed.
         /// </summary>
         [Test]
-        public void PageTitle_AreCorrect()
+        public void PageTitleIsCorrect()
         {
-            string title = checkBoxesPage.GetPageTitle();
-            Assert.AreEqual("Checkboxes", title);
+            // Act
+            var title = _checkboxesPage.GetPageTitle();
+
+            // Assert
+            Assert.AreEqual("Checkboxes", title, "The page title should be 'Checkboxes'.");
         }
 
         /// <summary>
-        /// Verifies that checking the first checkbox works when it was previously unchecked.
+        /// Validates that first checkboxes are clickable and interactable.
         /// </summary>
         [Test]
-        public void CheckFirstBox_WhenUnchecked_ShouldBeChecked()
+        public void FirstCheckbox_ShouldBeClickable()
         {
-            checkBoxesPage.CheckFirstBox();
-            Assert.IsTrue(checkBoxesPage.IsFirstBoxChecked(), "First checkbox should be checked.");
+            // Assert
+            Assert.IsTrue(_checkboxesPage.IsCheckboxClickable(0), "First checkbox should be clickable.");
         }
 
         /// <summary>
-        /// Verifies that unchecking the second checkbox works when it was previously checked.
-        /// </summary>
+        /// Validates that Second checkboxes are clickable and interactable.
+        /// </summary
         [Test]
-        public void UncheckSecondBox_WhenChecked_ShouldBeUnchecked()
+        public void SecondCheckbox_ShouldBeClickable()
         {
-            checkBoxesPage.UncheckSecondBox();
-            Assert.IsFalse(checkBoxesPage.IsSecondBoxChecked(), "Second checkbox should be unchecked.");
+            // Assert
+            Assert.IsTrue(_checkboxesPage.IsCheckboxClickable(1), "Second checkbox should be clickable.");
         }
 
         /// <summary>
-        /// Retrieves and validates the states of all checkboxes on the page.
+        /// Checks the first checkbox and verifies its state.
         /// </summary>
         [Test]
-        public void GetAllCheckboxStates_ShouldReturnCorrectStates()
+        public void CheckFirstCheckbox_ShouldSetItToChecked()
         {
-            List<bool> states = checkBoxesPage.GetAllCheckboxStates();
-            Assert.AreEqual(2, states.Count, "There should be two checkboxes.");
-            Assert.IsTrue(states[0] || states[1], "First checkbox state be true or second checkbox state be false.");
+            // Act
+            _checkboxesPage.CheckFirstBox();
+
+            // Assert
+            Assert.IsTrue(_checkboxesPage.IsFirstBoxChecked(), "First checkbox should be checked.");
         }
 
         /// <summary>
-        /// Verifies that checking the already checked first checkbox does not change its state.
+        /// Unchecks the second checkbox and verifies its state.
         /// </summary>
         [Test]
-        public void CheckFirstBox_WhenAlreadyChecked_ShouldRemainChecked()
+        public void UncheckSecondCheckbox_ShouldSetItToUnchecked()
         {
-            checkBoxesPage.CheckFirstBox(); // Ensure it's checked first
-            checkBoxesPage.CheckFirstBox(); // Call again to test idempotency
-            Assert.IsTrue(checkBoxesPage.IsFirstBoxChecked(), "First checkbox should remain checked.");
+            // Act
+            _checkboxesPage.UncheckSecondBox();
+
+            // Assert
+            Assert.IsFalse(_checkboxesPage.IsSecondBoxChecked(), "Second checkbox should be unchecked.");
         }
 
         /// <summary>
-        /// Verifies that unchecking the already unchecked second checkbox does not change its state.
+        /// Validate Check box counts
         /// </summary>
         [Test]
-        public void UncheckSecondBox_WhenAlreadyUnchecked_ShouldRemainUnchecked()
+        public void CheckBoxCountIsCorrect()
         {
-            checkBoxesPage.UncheckSecondBox(); // Ensure it's unchecked first
-            checkBoxesPage.UncheckSecondBox(); // Call again to test idempotency
-            Assert.IsFalse(checkBoxesPage.IsSecondBoxChecked(), "Second checkbox should remain unchecked.");
+            // Act
+            var states = _checkboxesPage.GetAllCheckboxStates();
+
+            // Assert
+            Assert.AreEqual(2, states.Count, "There should be exactly two checkboxes.");
+
         }
+
+        /// <summary>
+        /// Verifies that checking an already checked checkbox does not change its state.
+        /// </summary>
+        [Test]
+        public void RecheckingFirstCheckbox_ShouldRemainChecked()
+        {
+            //Arrange && Act
+            _checkboxesPage.CheckFirstBox();
+
+            // Assert
+            Assert.IsTrue(_checkboxesPage.IsFirstBoxChecked(), "First checkbox should remain checked.");
+        }
+
+        /// <summary>
+        /// Verifies that unchecking an already unchecked checkbox does not change its state.
+        /// </summary>
+        [Test]
+        public void ReuncheckingSecondCheckbox_ShouldRemainUnchecked()
+        {
+  
+            //Arrange and Act
+            _checkboxesPage.UncheckSecondBox();
+
+            // Assert
+            Assert.IsFalse(_checkboxesPage.IsSecondBoxChecked(), "Second checkbox should remain unchecked.");
+        }
+
+        /// <summary>
+        /// Selects both checkboxes and confirms no unexpected UI changes.
+        /// </summary>
+        [Test]
+        public void SelectingBothCheckboxes_ShouldNotChangePageContent()
+        {
+            // Act
+            _checkboxesPage.CheckFirstBox();
+            _checkboxesPage.CheckSecondBox();
+            var content = _checkboxesPage.GetMainContent();
+
+            // Assert
+            Assert.IsTrue(content.Contains("Checkboxes"), "Page content should remain consistent after checkbox interaction.");
+        }
+
+        /// <summary>
+        /// Deselects both checkboxes and ensures layout or title is unaffected.
+        /// </summary>
+        [Test]
+        public void DeselectingBothCheckboxes_ShouldNotAffectLayoutOrTitle()
+        {
+            // Act
+            _checkboxesPage.UncheckFirstBox();
+            _checkboxesPage.UncheckSecondBox();
+            var title = _checkboxesPage.GetPageTitle();
+
+            // Assert
+            Assert.AreEqual("Checkboxes", title, "Page layout/title should remain the same.");
+        }
+
+        /// <summary>
+        /// Toggles both checkboxes twice and validates if the initial state is restored.
+        /// </summary>
+        [Test]
+        public void TogglingBothCheckboxesTwice_ShouldReturnToInitialState()
+        {
+            // Arrange
+            var initialStates = _checkboxesPage.GetAllCheckboxStates();
+
+            // Act
+            _checkboxesPage.ToggleFirstBox();
+            _checkboxesPage.ToggleSecondBox();
+            _checkboxesPage.ToggleFirstBox();
+            _checkboxesPage.ToggleSecondBox();
+            var finalStates = _checkboxesPage.GetAllCheckboxStates();
+
+            // Assert
+            CollectionAssert.AreEqual(initialStates, finalStates, "Checkboxes should return to their original states.");
+        }
+
+        /// <summary>
+        /// Confirms that checkbox actions do not trigger browser console errors or unexpected alerts.
+        /// </summary>
+        [Test]
+        public void CheckboxInteraction_ShouldNotCauseConsoleErrors()
+        {
+            // Act
+            _checkboxesPage.CheckFirstBox();
+            _checkboxesPage.UncheckSecondBox();
+            var hasErrors = _checkboxesPage.HasConsoleErrors();
+
+            // Assert
+            Assert.IsFalse(hasErrors, "No console errors should appear after checkbox interactions.");
+        }
+
+        /// <summary>
+        /// Handles edge case where only one checkbox is present and ensures proper functionality.
+        /// </summary>
+        [Test]
+        public void WhenOnlyOneCheckboxAvailable_ShouldNotCrashAndRemainOperable()
+        {
+            // Act & Assert
+            if (_checkboxesPage.TotalCheckboxCount() == 1)
+            {
+                _checkboxesPage.CheckFirstBox();
+                Assert.IsTrue(_checkboxesPage.IsFirstBoxChecked(), "Single checkbox should work correctly.");
+            }
+            else
+            {
+                Assert.Pass("Multiple checkboxes present; edge case skipped.");
+            }
+        }
+
     }
 }

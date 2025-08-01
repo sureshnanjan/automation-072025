@@ -1,7 +1,12 @@
 ﻿// -------------------------------------------------------------------------------------------------
-// © 2025 Your Company or Name. All rights reserved.
-// This file is part of the HerokuApp automation framework interfaces.
-// It defines the contract for interacting with the Basic Auth page functionality.
+// © 2025 Elangovan. All rights reserved.
+// 
+// This file is part of the HerokuApp Automation Framework.
+// Unauthorized copying of this file, via any medium, is strictly prohibited.
+// Proprietary and confidential.
+//
+// This interface defines the contract for interacting with the Basic Auth page functionality,
+// including navigation, credential handling via browser alerts, and content validation.
 // -------------------------------------------------------------------------------------------------
 
 using System;
@@ -14,31 +19,72 @@ namespace HerokuOperations
     /// </summary>
     public interface IBasicAuth
     {
+ 
         /// <summary>
         /// Navigates to the Basic Auth page using the provided credentials.
         /// </summary>
-        /// <param name="username">The username for authentication.</param>
-        /// <param name="password">The password for authentication.</param>
         void NavigateToPage(string username, string password);
+
+        /// <summary>
+        /// Handles browser Basic Auth via alert prompt by injecting credentials directly.
+        /// </summary>
+        void HandleAuthAlert(string username, string password);
+
 
         /// <summary>
         /// Checks if the credentials provided grant access to the Basic Auth page.
         /// </summary>
-        /// <param name="username">The username to verify.</param>
-        /// <param name="password">The password to verify.</param>
-        /// <returns>True if credentials are correct; otherwise, false.</returns>
         bool IsCredentialIsCorrect(string username, string password);
 
         /// <summary>
         /// Gets the page title after a successful login.
         /// </summary>
-        /// <returns>The page title as a string.</returns>
         string GetPageTitle();
 
         /// <summary>
         /// Gets the description text displayed on the Basic Auth page.
         /// </summary>
-        /// <returns>The description text as a string.</returns>
         string GetPageDescription();
+
+
+        /// <summary>
+        /// Gets the HTTP status code of the response when accessing the page.
+        /// </summary>
+        int GetHttpStatusCode();
+
+        /// <summary>
+        /// Verifies whether the login was successful based on UI elements.
+        /// </summary>
+        bool IsLoginSuccessful();
+
+        /// <summary>
+        /// Gets the error message displayed after a failed login attempt.
+        /// </summary>
+        string GetLoginErrorMessage();
+
+        /// <summary>
+        /// Checks if the login form or basic auth prompt is currently visible.
+        /// </summary>
+        bool IsLoginPromptVisible();
+
+        /// <summary>
+        /// Logs out from the Basic Auth session, if applicable.
+        /// </summary>
+        void Logout();
+
+        /// <summary>
+        /// Verifies if the user session is still active.
+        /// </summary>
+        bool IsSessionActive();
+
+        /// <summary>
+        /// Waits for the Basic Auth page to fully load.
+        /// </summary>
+        void WaitForPageToLoad();
+
+        /// <summary>
+        /// Refreshes the current Basic Auth page.
+        /// </summary>
+        void RefreshPage();
     }
 }
