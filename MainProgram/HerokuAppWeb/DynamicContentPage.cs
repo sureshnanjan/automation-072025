@@ -1,8 +1,9 @@
 ﻿using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
+using HerokuOperations;
 
-namespace HerokuOperations
+namespace HerokuAppWeb
 {
     public class DynamicContentPage : IDynamicContentPage
     {

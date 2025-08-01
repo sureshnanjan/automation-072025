@@ -2,8 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using HerokuOperations;
 
-namespace HerokuOperations
+namespace HerokuAppWeb
 {
     public class ShiftingContentPage : IShiftingContentPage
     {

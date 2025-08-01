@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
+using HerokuOperations;
 
-namespace HerokuOperations.Classes
+namespace HerokuAppWeb
 {
     public class DropdownPageAsDynamicContent : IDynamicContentPage
     {

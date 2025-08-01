@@ -2,8 +2,9 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using HerokuOperations;
-using HerokuOperations.Classes;
+using HerokuOperations;
 using System;
+using HerokuAppWeb;
 
 namespace HerokuAppScenarios
 {
@@ -17,6 +18,11 @@ namespace HerokuAppScenarios
         [SetUp]
         public void Setup()
         {
+
+            var options = new ChromeOptions();
+            options.AddArgument("--headless"); // Run in headless mode
+            options.AddArgument("--disable-gpu"); // Disable GPU hardware acceleration
+
             driver = new ChromeDriver();
             driver.Navigate().GoToUrl("http://the-internet.herokuapp.com/dropdown");
             dropdownPage = new DropdownPageAsDynamicContent(driver);
