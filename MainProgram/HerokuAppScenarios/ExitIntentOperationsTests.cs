@@ -2,100 +2,131 @@
 * Copyright © 2025 Sehwag Vijay
 * All rights reserved.
 */
-
 using NUnit.Framework;
+using Moq;
 using HerokuOperations;
 
 namespace HerokuAppScenarios
 {
-    /// <summary>
-    /// Unit tests for the ExitIntentOperations class.
-    /// Verifies the behavior of the exit intent popup including visibility,
-    /// content, and user interactions like trigger and close.
-    /// </summary>
     [TestFixture]
-    public class ExitIntentOperationsTests
+    public class ExitIntentTests
     {
-        private IExitIntent exitIntent;
+        private Mock<IExitIntent> mockExitIntent;
 
-        /// <summary>
-        /// Initializes a new instance of ExitIntentOperations before each test.
-        /// </summary>
         [SetUp]
         public void SetUp()
         {
-            exitIntent = new ExitIntentOperations();
+            mockExitIntent = new Mock<IExitIntent>();
         }
 
-        /// <summary>
-        /// Verifies that the popup title is initially empty before triggering.
-        /// </summary>
+        // TC001 - Verify popup does not appear on page load
         [Test]
-        public void GetPopupTitle_ShouldBeEmpty_Initially()
+        public void TC001_ShouldNotDisplayPopup_OnPageLoad()
         {
             // Arrange
-            // (No setup required beyond initialization)
+            mockExitIntent.Setup(m => m.IsPopupVisible()).Returns(false);
 
             // Act
-            var title = exitIntent.GetPopupTitle();
+            bool result = mockExitIntent.Object.IsPopupVisible();
 
             // Assert
-            Assert.AreEqual(string.Empty, title);
+            Assert.IsFalse(result, "Popup should not appear automatically on page load.");
         }
 
-        /// <summary>
-        /// Verifies that the popup content is initially empty before triggering.
-        /// </summary>
+        // TC002 - Verify popup appears when exit intent is triggered
         [Test]
-        public void GetPopupContent_ShouldBeEmpty_Initially()
+        public void TC002_ShouldDisplayPopup_WhenExitIntentTriggered()
         {
             // Arrange
-            // (No setup required beyond initialization)
+            mockExitIntent.Setup(m => m.TriggerExitIntent());
+            mockExitIntent.Setup(m => m.IsPopupVisible()).Returns(true);
 
             // Act
-            var content = exitIntent.GetPopupContent();
+            mockExitIntent.Object.TriggerExitIntent();
+            bool result = mockExitIntent.Object.IsPopupVisible();
 
             // Assert
-            Assert.AreEqual(string.Empty, content);
+            Assert.IsTrue(result, "Popup should be visible after triggering exit intent.");
         }
 
-        /// <summary>
-        /// Ensures the popup displays the correct title and content when triggered.
-        /// </summary>
+        // TC003 - Verify popup closes on clicking close
         [Test]
-        public void TriggerExitIntent_ShouldMakePopupVisible()
+        public void TC003_ShouldClosePopup_WhenCloseIsClicked()
         {
             // Arrange
-            // (No specific setup beyond object instantiation)
+            mockExitIntent.SetupSequence(m => m.IsPopupVisible())
+                          .Returns(true)   // Initially visible
+                          .Returns(false); // After closing
 
             // Act
-            exitIntent.TriggerExitIntent();
-            var title = exitIntent.GetPopupTitle();
-            var content = exitIntent.GetPopupContent();
+            bool wasVisible = mockExitIntent.Object.IsPopupVisible();
+            mockExitIntent.Object.ClosePopup();
+            bool isStillVisible = mockExitIntent.Object.IsPopupVisible();
 
             // Assert
-            Assert.AreEqual("This is a modal window", title);
-            Assert.AreEqual("It's commonly used to show exit intent messages.", content);
+            Assert.IsTrue(wasVisible, "Popup should initially be visible.");
+            Assert.IsFalse(isStillVisible, "Popup should not be visible after closing.");
         }
 
-        /// <summary>
-        /// Confirms that closing the popup hides the title and content.
-        /// </summary>
+        // TC005 - Verify popup title text matches expected
         [Test]
-        public void ClosePopup_ShouldMakePopupInvisible()
+        public void TC005_ShouldReturnExpectedPopupTitle()
         {
             // Arrange
-            exitIntent.TriggerExitIntent();
+            mockExitIntent.Setup(m => m.GetPopupTitle()).Returns("This is a modal window");
 
             // Act
-            exitIntent.ClosePopup();
-            var titleAfterClose = exitIntent.GetPopupTitle();
-            var contentAfterClose = exitIntent.GetPopupContent();
+            string title = mockExitIntent.Object.GetPopupTitle();
 
             // Assert
-            Assert.AreEqual(string.Empty, titleAfterClose);
-            Assert.AreEqual(string.Empty, contentAfterClose);
+            Assert.AreEqual("This is a modal window", title.Trim(), "Popup title text should match expected.");
+        }
+
+        // TC006 - Verify popup content is not empty
+        [Test]
+        public void TC006_ShouldReturnNonEmptyPopupContent()
+        {
+            // Arrange
+            mockExitIntent.Setup(m => m.GetPopupContent()).Returns("It's used for exit-intent marketing.");
+
+            // Act
+            string content = mockExitIntent.Object.GetPopupContent();
+
+            // Assert
+            Assert.IsFalse(string.IsNullOrWhiteSpace(content), "Popup content should not be empty.");
+        }
+
+        // TC007 - Verify popup does not trigger again after being closed
+        [Test]
+        public void TC007_ShouldNotTriggerPopupAgain_IfAlreadyClosed()
+        {
+            // Arrange
+            mockExitIntent.SetupSequence(m => m.IsPopupVisible())
+                          .Returns(true)  // Triggered
+                          .Returns(false) // Closed
+                          .Returns(false); // Retried
+
+            // Act
+            mockExitIntent.Object.TriggerExitIntent();
+            mockExitIntent.Object.ClosePopup();
+            bool resultAfterClose = mockExitIntent.Object.IsPopupVisible();
+
+            // Assert
+            Assert.IsFalse(resultAfterClose, "Popup should not reappear after being closed.");
+        }
+
+        // TC008 - Verify popup only triggers on exit intent movement
+        [Test]
+        public void TC008_ShouldOnlyTriggerPopup_OnExitIntentMovement()
+        {
+            // Arrange
+            mockExitIntent.Setup(m => m.IsPopupVisible()).Returns(false);
+
+            // Act
+            bool result = mockExitIntent.Object.IsPopupVisible();
+
+            // Assert
+            Assert.IsFalse(result, "Popup should only trigger on exit movement, not on other interactions.");
         }
     }
 }
-

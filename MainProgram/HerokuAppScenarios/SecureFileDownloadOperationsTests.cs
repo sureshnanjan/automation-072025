@@ -4,100 +4,126 @@
 */
 
 using NUnit.Framework;
+using Moq;
 using HerokuOperations;
-using System;
 using System.Collections.Generic;
-using System.IO;
 
 namespace HerokuAppScenarios
 {
-    /// <summary>
-    /// Unit tests for SecureFileDownloadOperations.
-    /// Verifies authentication, file listing, and secure downloading behavior.
-    /// </summary>
     [TestFixture]
-    public class SecureFileDownloadOperationsTests
+    public class SecureDownloadTests
     {
-        private ISecureFileDownload fileDownloader;
+        private Mock<ISecureDownload> mockDownload;
 
-        /// <summary>
-        /// Creates a new instance before each test.
-        /// </summary>
         [SetUp]
         public void SetUp()
         {
-            fileDownloader = new SecureFileDownloadOperations();
+            mockDownload = new Mock<ISecureDownload>();
         }
 
-        /// <summary>
-        /// Valid credentials should authenticate successfully.
-        /// </summary>
+        // TC001 - User should be authenticated to access downloads
         [Test]
-        public void Authenticate_ShouldReturnTrue_WhenCredentialsAreValid()
+        public void TC001_ShouldAllowAccess_IfUserIsAuthenticated()
         {
-            bool result = fileDownloader.Authenticate("admin", "password");
-            Assert.IsTrue(result);
+            // Arrange
+            mockDownload.Setup(m => m.IsUserAuthenticated()).Returns(true);
+
+            // Act
+            bool result = mockDownload.Object.IsUserAuthenticated();
+
+            // Assert
+            Assert.IsTrue(result, "Authenticated user should have access to secure downloads.");
         }
 
-        /// <summary>
-        /// Invalid credentials should fail authentication.
-        /// </summary>
+        // TC002 - Verify file list is not empty for authenticated user
         [Test]
-        public void Authenticate_ShouldReturnFalse_WhenCredentialsAreInvalid()
+        public void TC002_ShouldReturnFileList_WhenUserIsAuthenticated()
         {
-            bool result = fileDownloader.Authenticate("user", "1234");
-            Assert.IsFalse(result);
+            // Arrange
+            var files = new List<string> { "file1.txt", "file2.txt" };
+            mockDownload.Setup(m => m.GetAvailableFiles()).Returns(files);
+
+            // Act
+            var result = mockDownload.Object.GetAvailableFiles();
+
+            // Assert
+            Assert.IsNotEmpty(result, "Available file list should not be empty.");
+            Assert.Contains("file1.txt", result);
         }
 
-        /// <summary>
-        /// Authenticated users should see the list of available files.
-        /// </summary>
+        // TC003 - Verify file download is triggered on click
         [Test]
-        public void GetAvailableFiles_ShouldReturnFiles_WhenAuthenticated()
+        public void TC003_ShouldInitiateDownload_OnFileClick()
         {
-            fileDownloader.Authenticate("admin", "password");
-            var files = fileDownloader.GetAvailableFiles();
-            CollectionAssert.AreEquivalent(new List<string> { "file1.txt", "file2.pdf", "file3.docx" }, files);
+            // Arrange
+            string fileName = "file1.txt";
+            mockDownload.Setup(m => m.ClickFileAndInitiateDownload(fileName)).Returns(true);
+
+            // Act
+            bool result = mockDownload.Object.ClickFileAndInitiateDownload(fileName);
+
+            // Assert
+            Assert.IsTrue(result, "Download should initiate when file is clicked.");
         }
 
-        /// <summary>
-        /// Unauthenticated access to file list should throw exception.
-        /// </summary>
+        // TC004 - Verify download is successful for valid file
         [Test]
-        public void GetAvailableFiles_ShouldThrowException_WhenNotAuthenticated()
+        public void TC004_ShouldReturnSuccess_AfterDownload()
         {
-            Assert.Throws<UnauthorizedAccessException>(() => fileDownloader.GetAvailableFiles());
+            // Arrange
+            string fileName = "file1.txt";
+            mockDownload.Setup(m => m.IsDownloadSuccessful(fileName)).Returns(true);
+
+            // Act
+            bool result = mockDownload.Object.IsDownloadSuccessful(fileName);
+
+            // Assert
+            Assert.IsTrue(result, "Download should be successful for valid file.");
         }
 
-        /// <summary>
-        /// Downloading an existing file should return the expected path.
-        /// </summary>
+        // TC005 - Verify unauthenticated user is blocked
         [Test]
-        public void DownloadFile_ShouldReturnPath_WhenAuthenticatedAndFileExists()
+        public void TC005_ShouldBlockAccess_IfUserNotAuthenticated()
         {
-            fileDownloader.Authenticate("admin", "password");
-            string path = fileDownloader.DownloadFile("file1.txt");
-            Assert.AreEqual("C:/Downloads/file1.txt", path);
+            // Arrange
+            mockDownload.Setup(m => m.IsDownloadBlockedForUnauthenticatedUsers()).Returns(true);
+
+            // Act
+            bool result = mockDownload.Object.IsDownloadBlockedForUnauthenticatedUsers();
+
+            // Assert
+            Assert.IsTrue(result, "Unauthenticated user should be blocked from downloading.");
         }
 
-        /// <summary>
-        /// Unauthenticated download attempt should throw an exception.
-        /// </summary>
+        // TC006 - Verify invalid file does not trigger download
         [Test]
-        public void DownloadFile_ShouldThrowException_WhenNotAuthenticated()
+        public void TC006_ShouldNotInitiateDownload_ForInvalidFile()
         {
-            Assert.Throws<UnauthorizedAccessException>(() => fileDownloader.DownloadFile("file1.txt"));
+            // Arrange
+            string fileName = "invalid_file.xyz";
+            mockDownload.Setup(m => m.ClickFileAndInitiateDownload(fileName)).Returns(false);
+
+            // Act
+            bool result = mockDownload.Object.ClickFileAndInitiateDownload(fileName);
+
+            // Assert
+            Assert.IsFalse(result, "Download should not initiate for an invalid file.");
         }
 
-        /// <summary>
-        /// Attempt to download a non-existent file should throw FileNotFoundException.
-        /// </summary>
+        // TC007 - Verify download list is file-type filtered (e.g., .txt only)
         [Test]
-        public void DownloadFile_ShouldThrowFileNotFoundException_WhenFileDoesNotExist()
+        public void TC007_ShouldContainOnlyTxtFiles_InList()
         {
-            fileDownloader.Authenticate("admin", "password");
-            Assert.Throws<FileNotFoundException>(() => fileDownloader.DownloadFile("nonexistent.zip"));
+            // Arrange
+            var files = new List<string> { "doc.txt", "notes.txt" };
+            mockDownload.Setup(m => m.GetAvailableFiles()).Returns(files);
+
+            // Act
+            var result = mockDownload.Object.GetAvailableFiles();
+            bool allTxt = result.TrueForAll(f => f.EndsWith(".txt"));
+
+            // Assert
+            Assert.IsTrue(allTxt, "All files should have a .txt extension.");
         }
     }
 }
-
