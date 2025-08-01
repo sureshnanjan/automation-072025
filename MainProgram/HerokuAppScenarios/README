@@ -1,0 +1,70 @@
+# Test Planning Documentation
+
+**Interface by:** Shreya SG  
+**Test Cases by:** Sehwag Vijay  
+
+---
+
+## 🔍 Test Case Design Strategy
+
+The test cases are functionally prioritized and designed using:
+
+- **Equivalence Partitioning (EP):** Group inputs that should be treated the same to avoid exhaustive testing.
+- **Boundary Value Analysis (BVA):** Ensure test coverage at the edges of partitions to catch off-by-one or range errors.
+- **Priority Ranking:** Each test case is tagged with a priority based on functional impact.
+
+---
+
+## 🧪 Entry Ad (IEntryAd)
+
+**Behavior Summary:**  
+Displays a modal advertisement on first page load. Once closed, it doesn’t appear unless reset using the "click here" link.
+
+| TC ID  | Test Case Description                                       | Design Technique                         | Expected Result             | Priority |
+|--------|-------------------------------------------------------------|------------------------------------------|-----------------------------|----------|
+| TC001  | Verify modal appears on first page load                     | EP (valid partition – fresh session)     | Modal appears               | High     |
+| TC002  | Verify modal does not appear after closing and refreshing   | EP (valid partition – modal dismissed)   | Modal does not appear       | High     |
+| TC003  | Verify modal appears again on clicking “click here”         | EP (valid partition – user resets modal) | Modal appears again         | High     |
+| TC004  | Verify close button closes the modal                        | EP (valid partition – modal interaction) | Modal disappears            | High     |
+| TC005  | Verify modal does not reappear across same session          | EP (invalid partition – no reset)        | Modal does not reappear     | Medium   |
+| TC006  | Verify modal appears in new session                         | EP (valid partition – fresh session)     | Modal appears               | High     |
+| TC008  | Verify ad stays hidden without “click here” trigger         | EP (invalid partition – no user reset)   | Modal does not appear       | Medium   |
+| TC009  | Verify "click here" works multiple times                    | BVA (min-max toggles)                    | Modal toggles as expected   | Medium   |
+| TC011  | Verify modal behavior on tab duplication                    | EP (valid partition – same session)      | Modal does not appear       | Low      |
+
+---
+
+## 🧪 Exit Intent (IExitIntent)
+
+**Behavior Summary:**  
+Displays a modal window when the user moves their mouse out of the viewport (exit intent).
+
+| TC ID  | Test Case Description                                      | Design Technique                       | Expected Result                    | Priority |
+|--------|------------------------------------------------------------|----------------------------------------|------------------------------------|----------|
+| TC001  | Verify modal appears when mouse exits viewport            | EP (valid partition – normal exit)     | Modal appears                      | High     |
+| TC002  | Verify modal does not appear when mouse moves within page | EP (invalid partition – no exit)       | Modal does not appear              | High     |
+| TC003  | Verify modal reappears on repeated exit attempts          | BVA (repeated edge interactions)       | Modal reappears on each exit       | Medium   |
+| TC005  | Verify modal close button functionality                   | EP (modal interaction)                 | Modal closes                       | High     |
+| TC007  | Verify user can interact with page after closing modal    | EP                                      | Page is interactive                | High     |
+| TC008  | Verify modal does not block page scroll                   | EP                                      | Page scroll blocked while modal    | Medium   |
+| TC009  | Verify modal appears only after full page load            | BVA (timing boundary)                  | Modal appears after DOM ready      | Medium   |
+| TC010  | Verify modal appears only for top exit                    | BVA                                     | Modal appears only for top exit    | Medium   |
+
+---
+
+## 🔐 Secure File Download
+
+**Behavior Summary:**  
+Only authenticated users can download files. Direct access redirects unauthenticated users to the login page.
+
+| TC ID  | Test Case Description                                       | Design Technique                           | Expected Result                 | Priority |
+|--------|-------------------------------------------------------------|--------------------------------------------|----------------------------------|----------|
+| TC001  | Unauthenticated user is redirected to login                 | EP (invalid partition – not logged in)      | Redirect to login page           | High     |
+| TC002  | Authenticated user can access secure page                   | EP (valid partition – logged in)            | File list is displayed           | High     |
+| TC003  | File is downloaded on click                                 | EP (authenticated action)                   | File download starts             | High     |
+| TC004  | Download triggers valid HTTP response                       | BVA (valid/invalid download link)           | Response 200 OK                  | Medium   |
+| TC005  | Session expiry triggers redirect                            | BVA (session timeout)                       | Redirect to login                | Medium   |
+| TC008  | Back navigation blocked post logout                         | BVA (session invalidation boundary)         | Redirect to login                | Medium   |
+| TC009  | Direct file link without session is protected               | EP (invalid partition – direct access)      | Redirect to login                | High     |
+
+---
