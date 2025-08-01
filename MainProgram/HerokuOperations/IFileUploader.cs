@@ -1,46 +1,61 @@
-﻿// Author: Siva Sree
-// Date Created: 2025-07-30
-// Copyright (c) 2025 Siva Sree
-// All Rights Reserved.
+﻿// Author: Siva Sree  
+// Date Created: 2025-08-01  
+// Copyright (c) 2025 Siva Sree  
+// All Rights Reserved.  
 //
-// Description:
-// This C# file defines the IFileUploader interface, which provides method 
-// declarations for interacting with the file upload functionality on the 
-// HerokuApp page (https://the-internet.herokuapp.com/upload). The interface 
-// includes methods to select a file, perform the upload, verify success, 
-// and retrieve the name of the uploaded file. It is designed for use in 
-// UI automation scenarios with tools such as Selenium.
-
-using System;
+// Description:  
+// This C# file defines the IFileUploader interface for automating interactions  
+// with the File Upload page at https://the-internet.herokuapp.com/upload.  
+// The interface supports retrieving the page title and content, selecting a file,  
+// uploading it, and verifying upload success. It is structured to support functional  
+// UI test automation using techniques like Equivalence Partitioning and Boundary Value Analysis.
 
 namespace HerokuOperations
 {
     /// <summary>
-    /// Interface for handling file upload functionality on the Heroku upload page.
+    /// Interface for interacting with the File Upload page on HerokuApp.
     /// </summary>
-    internal interface IFileUploader
+    public interface IFileUploader
     {
         /// <summary>
-        /// Selects a file to upload by setting the file input path.
+        /// Retrieves the title of the File Upload page.
         /// </summary>
-        /// <param name="filePath">The full path of the file to be uploaded.</param>
+        /// <returns>The page title as a string.</returns>
+        string GetPageTitle();
+
+        /// <summary>
+        /// Retrieves the instructional content or message from the page.
+        /// </summary>
+        /// <returns>Content string found on the page.</returns>
+        string GetPageContent();
+
+        /// <summary>
+        /// Chooses a file to be uploaded.
+        /// </summary>
+        /// <param name="filePath">Absolute path to the file.</param>
         void ChooseFile(string filePath);
 
         /// <summary>
-        /// Clicks the "Upload" button to submit the selected file.
+        /// Chooses multiple files (if supported by the UI).
+        /// </summary>
+        /// <param name="filePaths">Array of absolute file paths.</param>
+        void ChooseMultipleFiles(string[] filePaths);
+
+        /// <summary>
+        /// Returns the name of the file selected for upload.
+        /// </summary>
+        /// <returns>File name as displayed in the UI.</returns>
+        string GetUploadedFileName();
+
+        /// <summary>
+        /// Clicks the upload button on the page.
         /// </summary>
         void ClickUploadButton();
 
         /// <summary>
-        /// Checks whether the file upload was successful.
+        /// Verifies whether the file upload was successful.
         /// </summary>
-        /// <returns>True if the upload succeeded; otherwise, false.</returns>
+        /// <returns>True if upload is successful, otherwise false.</returns>
         bool IsUploadSuccessful();
-
-        /// <summary>
-        /// Retrieves the name of the uploaded file as shown on the confirmation page.
-        /// </summary>
-        /// <returns>The name of the uploaded file.</returns>
-        string GetUploadedFileName();
     }
 }
