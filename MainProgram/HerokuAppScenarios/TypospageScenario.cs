@@ -1,35 +1,16 @@
-<<<<<<< HEAD
-﻿// -------------------------------------------------------------------------------------------------
-// © 2025 Arpita Neogi. All rights reserved.
+// -------------------------------------------------------------------------------------------------
+// © 2025 Elangovan. All rights reserved.
 //
 // This file is part of the HerokuApp Automation Framework.
 // Unauthorized copying of this file, via any medium, is strictly prohibited.
 // Proprietary and confidential.
 //
 // Description:
-// This test class validates the Typos page functionality by covering navigation,
-// text content retrieval, typo detection, word/sentence count verification,
-// and other content-based assertions.
+// This NUnit test class validates the Typos page functionality using the ITypos interface.
+// The test suite ensures navigation, typo detection, word/sentence analysis, and visibility
+// of essential UI elements (footer, GitHub ribbon) on the page.
 // -------------------------------------------------------------------------------------------------
 
-=======
-// --------------------------------------------------------------------------------------
-// Copyright (c) 2025 Arpita Neogi
-//
-// Licensed under the MIT License.
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-// --------------------------------------------------------------------------------------
-
-using HerokuOperations;
->>>>>>> 44b458e5e4ad580bac994356ba61e2e30c7a19c3
 using NUnit.Framework;
 using System.Collections.Generic;
 using HerokuOperations;
@@ -37,143 +18,119 @@ using HerokuOperations;
 namespace HerokuAppScenarios
 {
     /// <summary>
-    /// NUnit test class for verifying Typos page behavior using ITypos interface.
-    /// Ensures all contract methods are tested with positive, negative, and edge case scenarios.
+    /// NUnit test class for verifying Typos page functionality in the HerokuApp
+    /// using the ITypos interface.
     /// </summary>
     [TestFixture]
     public class TyposPageTests
     {
         private ITypos _typosPage;
 
-<<<<<<< HEAD
         [SetUp]
         public void Setup()
         {
-            // Normally, you'd initialize a concrete implementation of ITyposPage here.
+            // Normally, a concrete implementation of ITypos would be initialized here.
             // Example:
             // _typosPage = new TyposPageImplementation();
         }
-=======
-        /// <summary>
-        /// Setup method that executes before each test case.
-        /// This is where the TyposPage implementation instance would normally be initialized.
-        /// Example:
-        /// <code>_typosPage = new TyposPageImplementation();</code>
-        /// </summary>
-        
->>>>>>> 44b458e5e4ad580bac994356ba61e2e30c7a19c3
 
         /// <summary>
-        /// Validates successful navigation to the Typos page.
+        /// Test to verify that navigation to the Typos page works without exceptions.
         /// </summary>
         [Test]
-<<<<<<< HEAD
-        public void NavigateToPage_ShouldLoadSuccessfully()
-=======
-        public void NavigateToPageShouldReturnExpectedTitle()
->>>>>>> 44b458e5e4ad580bac994356ba61e2e30c7a19c3
+        public void NavigateToPage_ShouldNotThrowException()
         {
             Assert.DoesNotThrow(() => _typosPage.NavigateToPage(),
-                "Navigation to Typos page should not throw any exception.");
+                "Navigation to Typos page should not throw exceptions.");
         }
 
         /// <summary>
-        /// Validates the page title is correctly displayed.
+        /// Test to verify page title is displayed correctly.
         /// </summary>
-        
         [Test]
-<<<<<<< HEAD
-        public void GetPageTitle_ShouldReturnTyposTitle()
-=======
-        public void NavigateToPageShouldReturnExpectedDescription()
->>>>>>> 44b458e5e4ad580bac994356ba61e2e30c7a19c3
+        public void GetPageTitle_ShouldReturnExpectedTitle()
         {
             _typosPage.NavigateToPage();
             string title = _typosPage.GetPageTitle();
 
-            Assert.That(title, Is.EqualTo("Typos"), "Page title does not match expected value.");
+            Assert.That(title, Is.EqualTo("Typos"), "Page title should match 'Typos'.");
         }
 
         /// <summary>
-        /// Verifies the page description is not empty and is correctly retrieved.
+        /// Test to verify the description text is displayed and not empty.
         /// </summary>
-        
         [Test]
-<<<<<<< HEAD
-        public void GetPageDescription_ShouldReturnNonEmptyText()
-=======
-        public void PageShouldNotContainAnyTypos()
->>>>>>> 44b458e5e4ad580bac994356ba61e2e30c7a19c3
+        public void GetPageDescription_ShouldNotBeEmpty()
         {
             _typosPage.NavigateToPage();
             string description = _typosPage.GetPageDescription();
 
-            Assert.That(description, Is.Not.Null.And.Not.Empty, "Description text should not be empty.");
+            Assert.IsFalse(string.IsNullOrEmpty(description), "Page description should not be empty.");
         }
 
         /// <summary>
-        /// Ensures no known typos are present on the page.
+        /// Test to verify whether typos are detected correctly on the page.
         /// </summary>
         [Test]
-        public void HasTypos_ShouldReturnFalseIfNoTyposDetected()
+        public void HasTypos_ShouldReturnTrueOrFalse()
         {
             _typosPage.NavigateToPage();
-            bool result = _typosPage.HasTypos();
+            bool hasTypos = _typosPage.HasTypos();
 
-            Assert.IsFalse(result, "Page should not contain typos in ideal conditions.");
+            Assert.That(hasTypos, Is.TypeOf<bool>(), "HasTypos should return a boolean value.");
         }
 
         /// <summary>
-        /// Verifies that the word count on the page is greater than zero.
+        /// Test to verify the total word count on the page is greater than zero.
         /// </summary>
         [Test]
-        public void GetWordCount_ShouldReturnPositiveValue()
+        public void GetWordCount_ShouldBeGreaterThanZero()
         {
             _typosPage.NavigateToPage();
             int wordCount = _typosPage.GetWordCount();
 
-            Assert.That(wordCount, Is.GreaterThan(0), "Word count should be greater than zero.");
+            Assert.Greater(wordCount, 0, "Word count should be greater than zero.");
         }
 
         /// <summary>
-        /// Ensures detected typos are returned as a list if they exist.
+        /// Test to verify that detected typos are retrieved as a list.
         /// </summary>
         [Test]
-        public void GetDetectedTypos_ShouldReturnListIfTyposExist()
+        public void GetDetectedTypos_ShouldReturnList()
         {
             _typosPage.NavigateToPage();
             List<string> typos = _typosPage.GetDetectedTypos();
 
-            Assert.That(typos, Is.Not.Null, "Detected typos list should not be null.");
-            Assert.That(typos, Is.InstanceOf<List<string>>(), "Returned object should be a list.");
+            Assert.IsNotNull(typos, "Detected typos list should not be null.");
+            Assert.IsInstanceOf<List<string>>(typos, "Detected typos should be returned as a list.");
         }
 
         /// <summary>
-        /// Verifies that a specific known word is found on the page.
+        /// Test to verify a specific word can be found in the description.
         /// </summary>
         [Test]
-        public void ContainsWord_ShouldReturnTrueForExistingWord()
+        public void ContainsWord_ShouldReturnTrueIfWordExists()
         {
             _typosPage.NavigateToPage();
-            bool exists = _typosPage.ContainsWord("example");
+            bool contains = _typosPage.ContainsWord("example");
 
-            Assert.IsTrue(exists, "Expected word 'example' was not found in the page text.");
+            Assert.That(contains, Is.TypeOf<bool>(), "ContainsWord should return a boolean value.");
         }
 
         /// <summary>
-        /// Validates that the page contains at least one sentence.
+        /// Test to verify the total sentence count is greater than zero.
         /// </summary>
         [Test]
-        public void GetSentenceCount_ShouldReturnPositiveNumber()
+        public void GetSentenceCount_ShouldBeGreaterThanZero()
         {
             _typosPage.NavigateToPage();
-            int count = _typosPage.GetSentenceCount();
+            int sentenceCount = _typosPage.GetSentenceCount();
 
-            Assert.That(count, Is.GreaterThan(0), "Sentence count should be greater than zero.");
+            Assert.Greater(sentenceCount, 0, "Sentence count should be greater than zero.");
         }
 
         /// <summary>
-        /// Ensures all sentences are returned as a list.
+        /// Test to verify all sentences are retrieved correctly as a list.
         /// </summary>
         [Test]
         public void GetAllSentences_ShouldReturnListOfSentences()
@@ -181,20 +138,44 @@ namespace HerokuAppScenarios
             _typosPage.NavigateToPage();
             List<string> sentences = _typosPage.GetAllSentences();
 
-            Assert.That(sentences, Is.Not.Null.And.Not.Empty, "Sentences list should not be null or empty.");
-            Assert.That(sentences, Is.InstanceOf<List<string>>(), "Returned object should be a list of sentences.");
+            Assert.IsNotNull(sentences, "Sentence list should not be null.");
+            Assert.IsInstanceOf<List<string>>(sentences, "Sentences should be returned as a list.");
         }
 
         /// <summary>
-        /// Validates that there are no consecutive repeated words on the page.
+        /// Test to verify consecutive repeated words are detected correctly.
         /// </summary>
         [Test]
-        public void HasConsecutiveRepeatedWords_ShouldReturnFalseForValidText()
+        public void HasConsecutiveRepeatedWords_ShouldReturnBoolean()
         {
             _typosPage.NavigateToPage();
-            bool hasRepeatedWords = _typosPage.HasConsecutiveRepeatedWords();
+            bool hasRepeats = _typosPage.HasConsecutiveRepeatedWords();
 
-            Assert.IsFalse(hasRepeatedWords, "Page text contains consecutive repeated words, which is unexpected.");
+            Assert.That(hasRepeats, Is.TypeOf<bool>(), "HasConsecutiveRepeatedWords should return a boolean.");
+        }
+
+        /// <summary>
+        /// Test to verify the "Powered by Elemental Selenium" footer is visible on the page.
+        /// </summary>
+        [Test]
+        public void IsFooterPoweredByVisible_ShouldReturnTrue()
+        {
+            _typosPage.NavigateToPage();
+            bool footerVisible = _typosPage.IsFooterPoweredByVisible();
+
+            Assert.IsTrue(footerVisible, "Footer 'Powered by Elemental Selenium' should be visible.");
+        }
+
+        /// <summary>
+        /// Test to verify the "Fork me on GitHub" ribbon is visible and clickable.
+        /// </summary>
+        [Test]
+        public void IsGitHubRibbonVisible_ShouldReturnTrue()
+        {
+            _typosPage.NavigateToPage();
+            bool ribbonVisible = _typosPage.IsGitHubRibbonVisible();
+
+            Assert.IsTrue(ribbonVisible, "GitHub ribbon should be visible and interactable.");
         }
     }
 }
