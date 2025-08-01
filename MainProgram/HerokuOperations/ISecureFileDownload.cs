@@ -16,29 +16,41 @@ using System.Threading.Tasks;
 namespace HerokuOperations
 {
     /// <summary>
-    /// Interface defining operations for handling Secure File Downloads.
+    /// Interface defining operations for handling secure file downloads.
+    /// Adheres to the Single Responsibility Principle (SRP) by focusing only on secure file retrieval and access control.
     /// </summary>
     public interface ISecureFileDownload
     {
         /// <summary>
-        /// Authenticates the user for accessing the secure file download page.
+        /// Checks if the current user is authenticated for secure download access.
         /// </summary>
-        /// <param name="username">Username for basic auth.</param>
-        /// <param name="password">Password for basic auth.</param>
-        /// <returns>True if authentication is successful, otherwise false.</returns>
-        bool Authenticate(string username, string password);
+        /// <returns>True if the user is authenticated; otherwise, false.</returns>
+        bool IsUserAuthenticated();
 
         /// <summary>
-        /// Gets the list of available downloadable files.
+        /// Gets the list of available files for download.
         /// </summary>
-        /// <returns>List of file names.</returns>
-        List<string> GetAvailableFiles();
+        /// <returns>A collection of file names accessible to the authenticated user.</returns>
+        IEnumerable<string> GetAvailableFiles();
 
         /// <summary>
-        /// Downloads a specified file from the secure directory..
+        /// Downloads the specified file securely.
         /// </summary>
         /// <param name="fileName">Name of the file to download.</param>
-        /// <returns>Path where the file is downloaded.</returns>
-        string DownloadFile(string fileName);
+        /// <returns>Byte array representing the file contents.</returns>
+        byte[] DownloadFile(string fileName);
+
+        /// <summary>
+        /// Logs out the current user and clears secure session.
+        /// </summary>
+        void Logout();
+
+        /// <summary>
+        /// Attempts to re-authenticate the user using credentials (for session expiration cases).
+        /// </summary>
+        /// <param name="username">Username for login.</param>
+        /// <param name="password">Password for login.</param>
+        /// <returns>True if re-authentication is successful; otherwise, false.</returns>
+        bool ReAuthenticate(string username, string password);
     }
 }
