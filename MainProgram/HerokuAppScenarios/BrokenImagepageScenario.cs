@@ -31,18 +31,13 @@ namespace HerokuAppScenarios
         /// Setup method that runs before each test.
         /// Initializes the page object (implementation to be provided in actual test framework).
         /// </summary>
-        [SetUp]
-        public void Setup()
-        {
-            // Example:
-            // _brokenImagesPage = new BrokenImagesPageImplementation();
-        }
+        
 
         /// <summary>
         /// Validates that the Broken Images page displays the expected title.
         /// </summary>
         [Test]
-        public void NavigateToPage_ShouldReturnExpectedTitle()
+        public void NavigateToPageShouldReturnExpectedTitle()
         {
             // Arrange
             const string expectedTitle = "Broken Images";
@@ -59,7 +54,7 @@ namespace HerokuAppScenarios
         /// Validates that the page contains one or more images displayed on load.
         /// </summary>
         [Test]
-        public void Page_ShouldHaveImagesDisplayed()
+        public void PageShouldHaveImagesDisplayed()
         {
             // Arrange
             _brokenImagesPage.NavigateToPage();
@@ -75,7 +70,7 @@ namespace HerokuAppScenarios
         /// Validates that no images on the page are broken (failed to load).
         /// </summary>
         [Test]
-        public void Page_ShouldNotHaveBrokenImages()
+        public void PageShouldNotHaveBrokenImages()
         {
             // Arrange
             _brokenImagesPage.NavigateToPage();
@@ -92,7 +87,7 @@ namespace HerokuAppScenarios
         /// if any images fail to load.
         /// </summary>
         [Test]
-        public void Page_ShouldReturnBrokenImageUrls_WhenImagesAreBroken()
+        public void PageShouldReturnBrokenImageUrlsWhenImagesAreBroken()
         {
             // Arrange
             _brokenImagesPage.NavigateToPage();
