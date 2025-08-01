@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HerokuOperations
+{
+    public interface ContextMenu
+    {
+        void GoToPage();
+
+        string GetTitle();
+
+        string GetInformation();
+
+        void RIghtClickOnBox();
+
+        string GetAlertText();
+
+        void AcceptAlert();
+
+
+
+
+    }
+}
