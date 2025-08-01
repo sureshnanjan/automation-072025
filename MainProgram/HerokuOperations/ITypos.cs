@@ -1,23 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// -------------------------------------------------------------------------------------------------
+// © 2025 Your Company or Name. All rights reserved.
+// This file is part of the HerokuApp automation framework interfaces.
+// It defines the contract for interacting with the Typos test page.
+// -------------------------------------------------------------------------------------------------
+
+using System;
 
 namespace HerokuOperations
 {
-    internal interface ITyposPage
+    /// <summary>
+    /// Interface for interacting with the Typos page in the HerokuApp.
+    /// Provides methods for navigation, text content retrieval, and typo detection.
+    /// </summary>
+    internal interface ITypos
     {
-        //Navigates to the Typos page.
+        /// <summary>
+        /// Navigates to the Typos page.
+        /// </summary>
         void NavigateToPage();
 
-        //Gets the page title after successful navigation.
+        /// <summary>
+        /// Gets the page title after successful navigation.
+        /// </summary>
+        /// <returns>The page title as a string.</returns>
         string GetPageTitle();
 
-        //Gets the description text on the page.
+        /// <summary>
+        /// Gets the description text displayed on the page.
+        /// </summary>
+        /// <returns>The page description as a string.</returns>
         string GetPageDescription();
 
-        //Returns a boolean if any typo find on the page.
+        /// <summary>
+        /// Returns a boolean indicating whether any typos were found on the page.
+        /// </summary>
+        /// <returns>True if typos are present; otherwise, false.</returns>
         bool HasTypos();
     }
 }
