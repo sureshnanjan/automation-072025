@@ -1,22 +1,69 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿/*
+ * IHoverProfile Interface
+ * 
+ * This interface defines the contract for performing hover operations and validations
+ * on the "Hovers" page of the HerokuApp site (https://the-internet.herokuapp.com/hovers).
+ * It includes methods to get the title, description, profile details, and handle hover actions.
+ * 
+ * Author: Teja Reddy
+ * Created: August 2025
+ * License: For educational or internal use only.
+ * 
+ * © 2025 Teja Reddy. All rights reserved.
+ */
+
+using System;
 
 namespace HerokuOperations
 {
+    /// <summary>
+    /// Interface to define operations related to the Hover feature on HerokuApp.
+    /// </summary>
     public interface IHoverProfile
     {
-        string GetTitle();    // Check the Title
-        string Description();   // Check the Decription
-        string GetProfileName(int index);      // Checks the Profile Name
-        string GetProfileLink(int index);     // Checks the Link
-        bool IsProfileInfoDisplayed(int index);       // Checks if caption is shown after hovering
-        int GetProfileCount();    // Total number of hoverable profile images
-        void HoverOverProfileImage(int index);       // Hover over the profile image at a specific index
+        /// <summary>
+        /// Gets the main heading title of the page.
+        /// </summary>
+        /// <returns>The title text, e.g., "Hovers".</returns>
+        string GetTitle();
 
+        /// <summary>
+        /// Gets the description text of the page (if any).
+        /// </summary>
+        /// <returns>The description string.</returns>
+        string Description();
 
+        /// <summary>
+        /// Gets the name of the user shown after hovering over the profile image.
+        /// </summary>
+        /// <param name="index">Index of the profile image (0-based).</param>
+        /// <returns>User name string like "name: user1".</returns>
+        string GetProfileName(int index);
+
+        /// <summary>
+        /// Gets the profile link shown in the caption after hovering.
+        /// </summary>
+        /// <param name="index">Index of the profile image (0-based).</param>
+        /// <returns>URL string, e.g., "/users/1".</returns>
+        string GetProfileLink(int index);
+
+        /// <summary>
+        /// Checks if the caption (name and link) is displayed after hovering.
+        /// </summary>
+        /// <param name="index">Index of the profile image (0-based).</param>
+        /// <returns>True if caption is visible; otherwise, false.</returns>
+        bool IsProfileInfoDisplayed(int index);
+
+        /// <summary>
+        /// Gets the total number of profile images available for hovering.
+        /// </summary>
+        /// <returns>Integer count of profile images.</returns>
+        int GetProfileCount();
+
+        /// <summary>
+        /// Performs hover action over the profile image at the given index.
+        /// </summary>
+        /// <param name="index">Index of the profile image (0-based).</param>
+        void HoverOverProfileImage(int index);
     }
 }
