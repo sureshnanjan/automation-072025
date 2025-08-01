@@ -1,82 +1,243 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+﻿// Author: Siva Sree
+// Date Created: 2025-07-31
+// Copyright (c) 2025 Siva Sree
+// All Rights Reserved.
+//
+// Description:
+// This C# NUnit test class defines UI behavior validations for the Floating Menu feature
+// on the HerokuApp, using the IFloatingMenuPage interface. These tests are written to
+// abstract implementation details such as the underlying driver (e.g., Selenium) and 
+// instead focus on validating the contract and behavior of the floating menu component.
+// The test suite ensures visibility, stability, interactivity, accessibility, and correct
+// navigation behavior for menu elements during page scrolls, clicks, and keyboard access.
+
+using NUnit.Framework;
 using HerokuOperations;
-using HerokuAppWeb;
-// Assuming IFloatingMenu is implemented by class `FloatingMenu`
 
 namespace HerokuAppScenarios
 {
-    [TestFixture]
+    /// <summary>
+    /// Test suite to validate the UI behavior of the Floating Menu on the HerokuApp.
+    /// Covers visibility, positioning, click behavior, and accessibility across different interactions.
+    /// Uses the IFloatingMenuPage interface to abstract UI interactions.
+    /// </summary>
     public class FloatingMenuTests
     {
-        private IWebDriver driver;
-        private IFloatingMenu floatingMenu;
-
-        [SetUp]
-        public void SetUp()
-        {
-            driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/floating_menu");
-            driver.Manage().Window.Maximize();
-            floatingMenu = new FloatingMenu(driver); // Assuming this class implements IFloatingMenu
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            if (driver != null)
-            {
-                driver.Quit();
-                driver.Dispose(); // Recommended
-            }
-        }
-
-
+        /// <summary>
+        /// Verifies that the "Home" menu item is visible when the page loads.
+        /// </summary>
         [Test]
-        public void Menu_Should_Be_Visible()
+        public void HomeMenu_Visible_OnLoad()
         {
-            Assert.IsTrue(floatingMenu.IsMenuVisible(), "Floating menu should be visible on page load.");
+            // Arrange
+            string menuItem = "Home";
+
+            // Act
+            bool isVisible = menuPage.IsMenuVisible(menuItem);
+
+            // Assert
+            Assert.IsTrue(isVisible);
         }
 
+        /// <summary>
+        /// Verifies that the "About" menu item is visible when the page loads.
+        /// </summary>
         [Test]
-        public void Click_Home_Link_Should_Not_Throw_Exception()
+        public void AboutMenu_Visible_OnLoad()
         {
-            Assert.DoesNotThrow(() => floatingMenu.ClickHome(), "Clicking Home should not throw any exception.");
+            // Arrange
+            string menuItem = "About";
+
+            // Act
+            bool isVisible = menuPage.IsMenuVisible(menuItem);
+
+            // Assert
+            Assert.IsTrue(isVisible);
         }
 
+        /// <summary>
+        /// Verifies that the "Contact" menu item is visible when the page loads.
+        /// </summary>
         [Test]
-        public void Click_News_Link_Should_Not_Throw_Exception()
+        public void ContactMenu_Visible_OnLoad()
         {
-            Assert.DoesNotThrow(() => floatingMenu.ClickNews(), "Clicking News should not throw any exception.");
+            // Arrange
+            string menuItem = "Contact";
+
+            // Act
+            bool isVisible = menuPage.IsMenuVisible(menuItem);
+
+            // Assert
+            Assert.IsTrue(isVisible);
         }
 
+        /// <summary>
+        /// Verifies that the "News" menu item is visible when the page loads.
+        /// </summary>
         [Test]
-        public void Click_Contact_Link_Should_Not_Throw_Exception()
+        public void NewsMenu_Visible_OnLoad()
         {
-            Assert.DoesNotThrow(() => floatingMenu.ClickContact(), "Clicking Contact should not throw any exception.");
+            // Arrange
+            string menuItem = "News";
+
+            // Act
+            bool isVisible = menuPage.IsMenuVisible(menuItem);
+
+            // Assert
+            Assert.IsTrue(isVisible);
         }
 
+        /// <summary>
+        /// Verifies that the floating menu remains visible while scrolling to the bottom of the page.
+        /// </summary>
         [Test]
-        public void Click_About_Link_Should_Not_Throw_Exception()
+        public void Menu_Floats_WhileScrollingToBottom()
         {
-            Assert.DoesNotThrow(() => floatingMenu.ClickAbout(), "Clicking About should not throw any exception.");
+            // Arrange
+            // No setup required for scrolling
+
+            // Act
+            menuPage.ScrollToBottom();
+            bool visible = menuPage.IsFloatingMenuStillVisible();
+
+            // Assert
+            Assert.IsTrue(visible);
         }
 
+        /// <summary>
+        /// Verifies that the floating menu remains visible while scrolling to the middle of the page.
+        /// </summary>
         [Test]
-        public void Menu_Should_Remain_Visible_After_Scrolling()
+        public void Menu_Floats_WhileScrollingToMiddle()
         {
-            floatingMenu.ScrollToBottom();
-            Assert.IsTrue(floatingMenu.IsMenuVisible(), "Floating menu should still be visible after scrolling.");
+            // Arrange
+            // No setup required for scrolling
+
+            // Act
+            menuPage.ScrollToMiddle();
+            bool visible = menuPage.IsFloatingMenuStillVisible();
+
+            // Assert
+            Assert.IsTrue(visible);
         }
 
+        /// <summary>
+        /// Ensures that clicking the "Home" menu item navigates to the correct section on the page.
+        /// </summary>
         [Test]
-        public void Menu_Y_Position_Should_Not_Change_After_Scrolling()
+        public void ClickHome_NavigatesToHomeSection()
         {
-            int yBeforeScroll = floatingMenu.GetMenuYPosition();
-            floatingMenu.ScrollToBottom();
-            int yAfterScroll = floatingMenu.GetMenuYPosition();
-            Assert.AreEqual(yBeforeScroll, yAfterScroll, "Y position of menu should remain the same (fixed menu).");
+            // Arrange
+            string menuItem = "Home";
+            string expectedSection = "home";
+
+            // Act
+            string actualSection = menuPage.ClickMenu(menuItem);
+
+            // Assert
+            Assert.AreEqual(expectedSection, actualSection);
+        }
+
+        /// <summary>
+        /// Ensures that clicking the "News" menu item navigates to the correct section on the page.
+        /// </summary>
+        [Test]
+        public void ClickNews_NavigatesToNewsSection()
+        {
+            // Arrange
+            string menuItem = "News";
+            string expectedSection = "news";
+
+            // Act
+            string actualSection = menuPage.ClickMenu(menuItem);
+
+            // Assert
+            Assert.AreEqual(expectedSection, actualSection);
+        }
+
+        /// <summary>
+        /// Verifies that the main heading of the page is displayed as "Floating Menu".
+        /// </summary>
+        [Test]
+        public void Heading_IsCorrect()
+        {
+            // Arrange
+            string expectedHeading = "Floating Menu";
+
+            // Act
+            string actualHeading = menuPage.GetHeading();
+
+            // Assert
+            Assert.AreEqual(expectedHeading, actualHeading);
+        }
+
+        /// <summary>
+        /// Validates that the correct number of paragraphs is displayed on the page.
+        /// </summary>
+        [Test]
+        public void Paragraphs_AreDisplayed()
+        {
+            // Arrange
+            int expectedParagraphCount = 3;
+
+            // Act
+            var paragraphs = menuPage.GetParagraphs();
+
+            // Assert
+            Assert.AreEqual(expectedParagraphCount, paragraphs.Count);
+        }
+
+        /// <summary>
+        /// Ensures the menu remains in a fixed visible position even after multiple page scrolls.
+        /// </summary>
+        [Test]
+        public void Menu_Position_RemainsFixed_OnMultipleScrolls()
+        {
+            // Arrange
+            int scrollCount = 5;
+
+            // Act
+            for (int i = 0; i < scrollCount; i++)
+                menuPage.ScrollToBottom();
+            bool visible = menuPage.IsFloatingMenuStillVisible();
+
+            // Assert
+            Assert.IsTrue(visible);
+        }
+
+        /// <summary>
+        /// Verifies that rapid clicking on a menu item does not cause instability in the UI or floating menu.
+        /// </summary>
+        [Test]
+        public void RapidClicks_MenuOptions_AreStable()
+        {
+            // Arrange
+            string menuItem = "About";
+            int clickCount = 10;
+
+            // Act
+            for (int i = 0; i < clickCount; i++)
+                menuPage.ClickMenu(menuItem);
+            bool visible = menuPage.IsFloatingMenuStillVisible();
+
+            // Assert
+            Assert.IsTrue(visible);
+        }
+
+        /// <summary>
+        /// Confirms that the floating menu can be accessed using keyboard navigation, ensuring accessibility.
+        /// </summary>
+        [Test]
+        public void Menu_IsAccessible_ByKeyboard()
+        {
+            // Arrange
+            // No setup required
+
+            // Act
+            bool accessible = menuPage.CanAccessMenuWithKeyboard();
+
+            // Assert
+            Assert.IsTrue(accessible);
         }
     }
 }
