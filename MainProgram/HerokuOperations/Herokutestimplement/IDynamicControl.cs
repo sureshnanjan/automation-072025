@@ -1,64 +1,51 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="DynamicControlsPage.cs" company="Keyur Nagvekar">
+//   Copyright (c) 2025 Keyur Nagvekar. All rights reserved.
+//   This file contains an implementation of the IDynamicControlsPage interface,
+//   providing automated interaction with checkbox and input field controls
+//   on the Dynamic Controls page for testing purposes.
+//   Redistribution or modification of this file is subject to author permissions.
+// </copyright>
+// --------------------------------------------------------------------------------------------------------------------
+
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 using System;
 
-namespace HerokuTests
+namespace HerokuOperations
 {
-    [TestClass]
-    public class DynamicControlsTests
+    /// <summary>
+    /// Implementation of IDynamicControlsPage interface.
+    /// Handles interaction with dynamic checkbox and input field.
+    /// </summary>
+    public class DynamicControlsPage : IDynamicControlsPage
     {
-        private IWebDriver driver;
+        private readonly IWebDriver driver;
+        private readonly WebDriverWait wait;
 
-        [TestInitialize]
-        public void Setup()
+        public DynamicControlsPage(IWebDriver webDriver)
         {
-            driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/dynamic_controls");
+            driver = webDriver;
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
 
-        [TestMethod]
-        public void Test_RemoveAndAddCheckbox()
+        public void ClickRemoveOrAddButton()
         {
-            var removeButton = driver.FindElement(By.XPath("//form[@id='checkbox-example']//button"));
-            removeButton.Click();
+            var button = driver.FindElement(By.XPath("//form[@id='checkbox-example']//button"));
+            button.Click();
 
-            var wait = new OpenQA.Selenium.Support.UI.WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(d => !IsElementPresent(By.Id("checkbox")));
-
-            Assert.IsFalse(IsElementPresent(By.Id("checkbox")), "Checkbox should be removed.");
-
-            var addButton = driver.FindElement(By.XPath("//form[@id='checkbox-example']//button"));
-            addButton.Click();
-
-            wait.Until(d => IsElementPresent(By.Id("checkbox")));
-            Assert.IsTrue(IsElementPresent(By.Id("checkbox")), "Checkbox should be added back.");
+            wait.Until(d =>
+            {
+                var message = d.FindElement(By.Id("message"));
+                return message.Displayed && !string.IsNullOrEmpty(message.Text);
+            });
         }
 
-        [TestMethod]
-        public void Test_EnableAndDisableTextbox()
-        {
-            var enableButton = driver.FindElement(By.XPath("//form[@id='input-example']//button"));
-            enableButton.Click();
-
-            var wait = new OpenQA.Selenium.Support.UI.WebDriverWait(driver, TimeSpan.FromSeconds(10));
-            wait.Until(d => d.FindElement(By.XPath("//form[@id='input-example']/input")).Enabled);
-
-            Assert.IsTrue(driver.FindElement(By.XPath("//form[@id='input-example']/input")).Enabled, "Textbox should be enabled.");
-
-            enableButton = driver.FindElement(By.XPath("//form[@id='input-example']//button"));
-            enableButton.Click();
-
-            wait.Until(d => !d.FindElement(By.XPath("//form[@id='input-example']/input")).Enabled);
-            Assert.IsFalse(driver.FindElement(By.XPath("//form[@id='input-example']/input")).Enabled, "Textbox should be disabled.");
-        }
-
-        private bool IsElementPresent(By by)
+        public bool IsCheckboxDisplayed()
         {
             try
             {
-                driver.FindElement(by);
-                return true;
+                return driver.FindElement(By.Id("checkbox")).Displayed;
             }
             catch (NoSuchElementException)
             {
@@ -66,10 +53,43 @@ namespace HerokuTests
             }
         }
 
-        [TestCleanup]
-        public void Teardown()
+        public string GetCheckboxMessage()
         {
-            driver.Quit();
+            return driver.FindElement(By.Id("message")).Text;
+        }
+
+        public void ClickEnableOrDisableButton()
+        {
+            var button = driver.FindElement(By.XPath("//form[@id='input-example']//button"));
+            button.Click();
+
+            wait.Until(d =>
+            {
+                var input = d.FindElement(By.XPath("//form[@id='input-example']/input"));
+                return input.Enabled || !input.Enabled;
+            });
+
+            wait.Until(d => d.FindElement(By.Id("message")).Displayed);
+        }
+
+        public bool IsInputEnabled()
+        {
+            return driver.FindElement(By.XPath("//form[@id='input-example']/input")).Enabled;
+        }
+
+        public void EnterText(string text)
+        {
+            var input = driver.FindElement(By.XPath("//form[@id='input-example']/input"));
+            if (input.Enabled)
+            {
+                input.Clear();
+                input.SendKeys(text);
+            }
+        }
+
+        public string GetInputMessage()
+        {
+            return driver.FindElement(By.Id("message")).Text;
         }
     }
 }
