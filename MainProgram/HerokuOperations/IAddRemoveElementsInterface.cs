@@ -24,12 +24,12 @@ namespace HerokuOperations
         /// <summary>
         /// Clicks on the "Add Element" button to dynamically add a new element on the page.
         /// </summary>
-        void ClickAddElementButton();
+        void AddElements();
 
         /// <summary>
         /// Clicks on the "Delete" button to remove an element from the page.
         /// </summary>
-        void ClickDeleteButton();
+        void DeleteElements();
 
         /// <summary>
         /// Checks whether the "Delete" button is visible on the page.
