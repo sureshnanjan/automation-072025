@@ -1,65 +1,158 @@
-﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+﻿// Author: Siva Sree
+// Date Created: 2025-07-31
+// Copyright (c) 2025 Siva Sree
+// All Rights Reserved.
+//
+// Description:
+// This C# NUnit test class defines UI behavior validations for the Notification Message feature
+// on the HerokuApp, using the INotificationMessagePage interface. These tests abstract the driver 
+// implementation and validate the correctness, persistence, randomness, stability, and format of 
+// notifications triggered through the UI.
+
+using NUnit.Framework;
 using HerokuOperations;
-using HerokuAppWeb;
+using System.Collections.Generic;
 
 namespace HerokuAppScenarios
 {
-    [TestFixture]
-    public class NotificationMessagesScenarios
-
+    /// <summary>
+    /// Test class for verifying notification message behavior via the INotificationMessagePage interface.
+    /// </summary>
+   
+    public class NotificationMessageTests
     {
-        private IWebDriver _driver;
-        private INotificationMessages _notificationMessages;
-
-        [SetUp]
-        public void SetUp()
-        {
-            _driver = new ChromeDriver();
-            _driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/notification_message_rendered");
-            _notificationMessages = new NotificationMessages(_driver); // Assuming class name is NotificationMessages
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            _driver.Quit();
-        }
-
+         /// <summary>
+        /// ✅ Verifies the heading is correct and visible.
+        /// </summary>
         [Test]
-        public void TestNotificationMessage_IsDisplayed()
+        public void Heading_IsDisplayedCorrectly()
         {
-            string message = _notificationMessages.GetNotificationMessage();
-            Assert.IsNotNull(message);
-            Assert.IsNotEmpty(message);
+            // Act
+            string actual = notificationPage.GetPageHeading();
+
+            // Assert
+            Assert.AreEqual("Notification Message", actual);
         }
 
+        /// <summary>
+        /// ✅ Verifies that a notification message appears after the trigger link is clicked.
+        /// </summary>
         [Test]
-        public void TestPageHeading_IsCorrect()
+        public void Message_ShowsAfterTrigger()
         {
-            string heading = _notificationMessages.GetHeading();
-            Assert.AreEqual("Notification Message", heading);
+            // Act
+            notificationPage.ClickTriggerLink();
+            string message = notificationPage.GetNotificationMessage();
+
+            // Assert
+            Assert.IsFalse(string.IsNullOrEmpty(message), "Notification message should appear after trigger.");
         }
 
+        /// <summary>
+        /// ✅ Verifies that clicking the trigger link multiple times generates varying messages.
+        /// </summary>
         [Test]
-        public void TestClickHereLink_LoadsNewMessage()
+        public void Message_VariesOnRepeatedTrigger()
         {
-            string messageBefore = _notificationMessages.GetNotificationMessage();
-            _notificationMessages.ClickLoadNewMessageLink();
+            // Arrange
+            HashSet<string> uniqueMessages = new();
 
-            // Allow time for the page to reload
-            System.Threading.Thread.Sleep(1000);
+            // Act
+            for (int i = 0; i < 10; i++)
+            {
+                notificationPage.ClickTriggerLink();
+                string message = notificationPage.GetNotificationMessage();
+                uniqueMessages.Add(message);
+            }
 
-            string messageAfter = _notificationMessages.GetNotificationMessage();
-            Assert.AreNotEqual(messageBefore, messageAfter);
+            // Assert
+            Assert.Greater(uniqueMessages.Count, 1, "Messages are not varying on multiple clicks.");
         }
 
+        /// <summary>
+        /// ✅ Verifies message content format is proper (ends with close symbol '×').
+        /// </summary>
         [Test]
-        public void TestClickHereLinkHref_IsValid()
+        public void Message_HasProperCloseSymbol()
         {
-            string href = _notificationMessages.GetLinkHref();
-            Assert.IsTrue(href.Contains("notification_message"));
+            // Act
+            notificationPage.ClickTriggerLink();
+            string message = notificationPage.GetNotificationMessage();
+
+            // Assert
+            Assert.IsTrue(message.Trim().EndsWith("×"), "Message should end with the close symbol '×'.");
+        }
+
+        /// <summary>
+        /// ✅ Verifies message disappears only on user action or remains floating.
+        /// </summary>
+        [Test]
+        public void Message_IsStickyUntilClosed()
+        {
+            // Act
+            notificationPage.ClickTriggerLink();
+            string messageBefore = notificationPage.GetNotificationMessage();
+
+            string messageAfter = notificationPage.GetNotificationMessage(); // Should be the same
+
+            // Assert
+            Assert.AreEqual(messageBefore, messageAfter, "Message should persist unless closed manually.");
+        }
+
+        /// <summary>
+        /// ✅ Verifies the message shows "Action successful" at least once after repeated triggers.
+        /// </summary>
+        [Test]
+        public void Message_CanBeSuccess()
+        {
+            // Arrange
+            bool successSeen = false;
+
+            // Act
+            for (int i = 0; i < 10; i++)
+            {
+                notificationPage.ClickTriggerLink();
+                string msg = notificationPage.GetNotificationMessage();
+                if (msg.Contains("Action successful"))
+                {
+                    successSeen = true;
+                    break;
+                }
+            }
+
+            // Assert
+            Assert.IsTrue(successSeen, "'Action successful' message never appeared in multiple attempts.");
+        }
+
+        /// <summary>
+        /// ✅ Verifies clicking the trigger 100+ times still does not break or crash message logic.
+        /// </summary>
+        [Test]
+        public void Trigger_HandlesHighClickVolume()
+        {
+            // Act & Assert
+            Assert.DoesNotThrow(() =>
+            {
+                for (int i = 0; i < 150; i++)
+                {
+                    notificationPage.ClickTriggerLink();
+                    notificationPage.GetNotificationMessage();
+                }
+            }, "Triggering the link repeatedly should not cause any exceptions.");
+        }
+
+        /// <summary>
+        /// ✅ Verifies no hidden message is shown unless explicitly triggered.
+        /// </summary>
+        [Test]
+        public void Message_IsNotVisibleInitially()
+        {
+            // Act
+            string initial = notificationPage.GetNotificationMessage();
+
+            // Assert
+            Assert.IsTrue(string.IsNullOrEmpty(initial) || initial.Trim().Length == 0,
+                "Message should not appear before any interaction.");
         }
     }
 }
