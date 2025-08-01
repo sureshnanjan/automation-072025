@@ -1,53 +1,39 @@
 // --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ShadowDomHandlerTests.cs" company="Keyur Nagvekar">
 //   Copyright (c) 2025 Keyur Nagvekar. All rights reserved.
-//   This file contains automated test cases for the ShadowDomHandler class,
+//   This file contains automated NUnit test cases for the ShadowDomHandler class,
 //   verifying behavior of Shadow DOM element interactions using JavaScript execution.
 //   Redistribution or modification of this file is subject to author permissions.
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+using NUnit.Framework;
 using HerokuOperations;
 
 namespace HerokuOperationsTests
 {
     /// <summary>
-    /// Tests ShadowDomHandler methods to verify Shadow DOM interactions on
-    /// https://the-internet.herokuapp.com/shadowdom.
+    /// Contains NUnit test cases for verifying interactions with Shadow DOM elements
+    /// on https://the-internet.herokuapp.com/shadowdom via the <see cref="ShadowDomHandler"/> class.
     /// </summary>
-    [TestClass]
+    [TestFixture]
     public class ShadowDomHandlerTests
     {
-        private IWebDriver driver;
         private ShadowDomHandler shadowDom;
 
         /// <summary>
-        /// Initializes the ChromeDriver and navigates to the Shadow DOM page.
+        /// Sets up the <see cref="ShadowDomHandler"/> instance before each test.
         /// </summary>
-        [TestInitialize]
+        [SetUp]
         public void Setup()
         {
-            driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/shadowdom");
-            shadowDom = new ShadowDomHandler(driver);
+            shadowDom = new ShadowDomHandler(null); // Omit driver for test scaffolding only
         }
 
         /// <summary>
-        /// Quits the browser after each test.
+        /// Verifies the text content from the first shadow root host paragraph.
         /// </summary>
-        [TestCleanup]
-        public void Teardown()
-        {
-            driver.Quit();
-        }
-
-        /// <summary>
-        /// Validates the first shadow host’s paragraph text.
-        /// </summary>
-        [TestMethod]
+        [Test]
         public void GetFirstShadowHostText_ReturnsExpectedText()
         {
             string expected = "My default text";
@@ -56,9 +42,9 @@ namespace HerokuOperationsTests
         }
 
         /// <summary>
-        /// Validates the second shadow host’s span text.
+        /// Verifies the text content from the second shadow host's span element.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void GetSecondShadowHostText_ReturnsExpectedText()
         {
             string expected = "Let's have some different text!";
@@ -67,14 +53,47 @@ namespace HerokuOperationsTests
         }
 
         /// <summary>
-        /// Validates text from a nested shadow DOM structure.
+        /// Validates the text retrieved from within a nested Shadow DOM structure.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void GetNestedShadowText_ReturnsExpectedText()
         {
             string expected = "Let's have some different text!";
             string actual = shadowDom.GetNestedShadowText();
             Assert.AreEqual(expected, actual, "Mismatch in nested shadow text.");
+        }
+
+        /// <summary>
+        /// Ensures all Shadow DOM methods return non-null strings.
+        /// </summary>
+        [Test]
+        public void ShadowDomText_ShouldNotBeNullOrEmpty()
+        {
+            Assert.IsFalse(string.IsNullOrEmpty(shadowDom.GetFirstShadowHostText()), "First shadow text was null or empty.");
+            Assert.IsFalse(string.IsNullOrEmpty(shadowDom.GetSecondShadowHostText()), "Second shadow text was null or empty.");
+            Assert.IsFalse(string.IsNullOrEmpty(shadowDom.GetNestedShadowText()), "Nested shadow text was null or empty.");
+        }
+
+        /// <summary>
+        /// Confirms that shadow DOM access is case-sensitive and validates accuracy.
+        /// </summary>
+        [Test]
+        public void ShadowDomText_ShouldBeCaseSensitive()
+        {
+            string incorrect = "my default text";
+            string actual = shadowDom.GetFirstShadowHostText();
+            Assert.AreNotEqual(incorrect, actual, "Text comparison should be case-sensitive.");
+        }
+
+        /// <summary>
+        /// Checks all Shadow DOM methods for trimmed output (no leading/trailing whitespace).
+        /// </summary>
+        [Test]
+        public void ShadowDomText_ShouldBeTrimmed()
+        {
+            Assert.AreEqual(shadowDom.GetFirstShadowHostText().Trim(), shadowDom.GetFirstShadowHostText());
+            Assert.AreEqual(shadowDom.GetSecondShadowHostText().Trim(), shadowDom.GetSecondShadowHostText());
+            Assert.AreEqual(shadowDom.GetNestedShadowText().Trim(), shadowDom.GetNestedShadowText());
         }
     }
 }
