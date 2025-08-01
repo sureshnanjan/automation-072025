@@ -1,45 +1,55 @@
+/*
+ * -----------------------------------------------------------------------------
+ * Project     : HerokuAppTests
+ * File        : IDropdownPage.cs
+ * Description : Interface defining methods to interact with the dropdown list page.
+ * Author      : Keyur Nagvekar
+ * Created     : 2025-08-01
+ * License     : MIT License
+ * -----------------------------------------------------------------------------
+ */
 
-// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IDropdownPage.cs" company="Keyur Nagvekar">
-//   Copyright (c) 2025 Keyur Nagvekar. All rights reserved.
-//   This file defines an interface for interacting with the Dropdown page
-//   on the-internet.herokuapp.com, allowing automated testing of dropdown behavior.
-//   Redistribution or modification of this file is subject to author permissions.
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
+using System;
 
 namespace HerokuOperations
 {
     /// <summary>
-    /// Represents the contract for interacting with a dropdown page.
-    /// Provides methods to retrieve the title, list all options,
-    /// select an option, and retrieve the currently selected value.
+    /// Represents contract for interacting with the dropdown list page (/dropdown).
+    /// Supports retrieval of title, subtitle, and dropdown option data.
     /// </summary>
     public interface IDropdownPage
     {
         /// <summary>
-        /// Gets the title of the dropdown page.
+        /// Gets the main title of the dropdown page (e.g., "Dropdown List").
         /// </summary>
-        /// <returns>The page title as a string.</returns>
+        /// <returns>Page title as a string.</returns>
         string GetTitle();
 
         /// <summary>
-        /// Retrieves all available options in the dropdown.
+        /// Gets the description or subtitle text under the title.
         /// </summary>
-        /// <returns>An array of option texts.</returns>
-        string[] GetAllOptions();
+        /// <returns>Subtitle text as a string.</returns>
+        string GetSubTitle();
 
         /// <summary>
-        /// Selects an option from the dropdown using visible text.
+        /// Returns the total number of dropdown options.
         /// </summary>
-        /// <param name="optionText">The visible text of the option to select.</param>
-        void SelectOptionByText(string optionText);
+        /// <returns>Count of dropdown options.</returns>
+        int GetRowCount();
 
         /// <summary>
-        /// Gets the currently selected dropdown option.
+        /// Retrieves the visible text for a specific dropdown option.
         /// </summary>
-        /// <returns>The selected option's visible text.</returns>
->>>>>>> c5d62cc8ce636b3d826eccf1daee138579b236b7
-        string GetSelectedOption();
+        /// <param name="rowIndex">Index of the dropdown option (0-based).</param>
+        /// <returns>Text of the dropdown option.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when index is out of valid range.</exception>
+        string GetTextFromRow(int rowIndex);
+
+        /// <summary>
+        /// Returns the image source if applicable. If no image exists, returns a fixed message.
+        /// </summary>
+        /// <param name="rowIndex">Index of the option (optional, ignored here).</param>
+        /// <returns>String indicating absence of image.</returns>
+        string GetImageSourceFromRow(int rowIndex);
     }
 }
