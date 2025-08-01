@@ -28,7 +28,6 @@ namespace HerokuOperationsTests
     [TestFixture]
     public class BasicAuthPageScenarios
     {
-        private IWebDriver _driver;
         private IBasicAuthPage _basicAuthPage;
 
         /// <summary>
