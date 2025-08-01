@@ -1,4 +1,4 @@
-﻿using OpenQA.Selenium;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using HerokuOperations;
@@ -50,20 +50,9 @@ namespace HerokuAppWeb
             var rows = driver.FindElements(By.CssSelector("#content .row"));
             if (rowIndex < 0 || rowIndex >= rows.Count)
                 throw new ArgumentOutOfRangeException(nameof(rowIndex), "Row index out of range.");
-            
+
             var imageElement = rows[rowIndex].FindElement(By.CssSelector(".large-2 img"));
             return imageElement.GetAttribute("src");
         }
-
-        public void NavigateTo()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<string> GetImageSources()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
-

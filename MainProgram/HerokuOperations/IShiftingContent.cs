@@ -7,5 +7,8 @@ namespace HerokuOperations
 
         string[] GetAllLinkTexts();
         int GetLinkCount();
+        bool IsGitHubRibbonVisible();
+        string GetGitHubRibbonUrl();
+        bool IsGitHubRibbonImageLoaded();
     }
 }

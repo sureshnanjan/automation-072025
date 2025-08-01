@@ -40,6 +40,21 @@ namespace HerokuAppWeb
         {
             return driver.FindElements(By.CssSelector(".example a")).Count;
         }
+
+        public static string GetGitHubRibbonUrl()
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool IsGitHubRibbonVisible()
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool IsGitHubRibbonImageLoaded()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 
