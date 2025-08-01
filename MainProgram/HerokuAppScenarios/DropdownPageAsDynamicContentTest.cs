@@ -19,13 +19,13 @@ namespace HerokuAppScenarios
         public void Setup()
         {
 
-            var options = new ChromeOptions();
-            options.AddArgument("--headless"); // Run in headless mode
-            options.AddArgument("--disable-gpu"); // Disable GPU hardware acceleration
+            //var options = new ChromeOptions();
+            //options.AddArgument("--headless"); // Run in headless mode
+            //options.AddArgument("--disable-gpu"); // Disable GPU hardware acceleration
 
-            driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("http://the-internet.herokuapp.com/dropdown");
-            dropdownPage = new DropdownPageAsDynamicContent(driver);
+            //driver = new ChromeDriver();
+            //driver.Navigate().GoToUrl("http://the-internet.herokuapp.com/dropdown");
+            //dropdownPage = new DropdownPageAsDynamicContent(driver);
         }
 
         [TearDown]
