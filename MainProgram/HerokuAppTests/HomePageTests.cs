@@ -1,6 +1,11 @@
-﻿using OpenQA.Selenium.Chrome;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.DevTools;
+>>>>>>> 8773420fc6cc29e183334d2d4275828caaab1a6a
 using OpenQA.Selenium.Firefox;
 =======
 >>>>>>> db678ac573450ce1a0523e5e90e890c6e87cc9cf
@@ -25,6 +30,7 @@ namespace HerokuAppTests
             var expectedTitle = "Welcome to the-internet";
 <<<<<<< HEAD
             // Launch the browser and navigae to 
+<<<<<<< HEAD
             ISearchContext driver = new ChromeDriver();
             driver = new FirefoxDriver();
             ((IWebDriver)driver).Navigate().GoToUrl("https://the-internet.herokuapp.com/");
@@ -33,12 +39,20 @@ namespace HerokuAppTests
             ChromeDriver driver = new ChromeDriver();
             driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
 >>>>>>> db678ac573450ce1a0523e5e90e890c6e87cc9cf
+=======
+            IWebDriver driver = new ChromeDriver();
+            //driver = new FirefoxDriver();
+            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
+>>>>>>> 8773420fc6cc29e183334d2d4275828caaab1a6a
             IWebElement pageheading = driver.FindElement(By.TagName("h1"));
-            // 
-            // Act
-            var actualTitle = pageheading.Text;
-            // Assert
-            Assert.AreEqual(expectedTitle, actualTitle);
+            NetworkManager network = new NetworkManager(driver);
+            NetworkAuthenticationHandler auth = new NetworkAuthenticationHandler();
+            auth.Credentials = new PasswordCredentials("admin", "admin");
+            auth.UriMatcher = uri => true;
+            network.AddAuthenticationHandler(auth);
+
+            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/basic_auth");
+
         }
         [TestMethod]
         public void SubTitleisOK()
@@ -147,6 +161,29 @@ namespace HerokuAppTests
 
             // Cleanup
             driver.Quit();
+        }
+
+        [TestMethod]
+        public async Task NetworkAuthenticationBiDi()
+        {
+            // FirefoxOptions options = new FirefoxOptions();
+            //options.Enable
+            ChromeOptions options = new ChromeOptions();
+            ChromeDriver driver = new ChromeDriver(options);
+            
+            try
+            {
+                var devTools = driver.GetDevToolsSession();
+                driver.ExecuteCdpCommand("Network.enable", new Dictionary<string, object>());
+                //var networkInspector = devTools.
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            //Command
+
         }
     }
 }
