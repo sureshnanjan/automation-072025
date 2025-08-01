@@ -9,8 +9,9 @@
 
 using System;
 using OpenQA.Selenium;
+using HerokuOperations;
 
-namespace HerokuOperations
+namespace HerokuAppWeb
 {
     /// <summary>
     /// Implements interaction logic for the redirection page.

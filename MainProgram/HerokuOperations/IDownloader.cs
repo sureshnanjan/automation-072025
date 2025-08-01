@@ -19,7 +19,7 @@ namespace HerokuOperations
     /// <summary>
     /// Interface for handling file downloads from the Heroku download page.
     /// </summary>
-    internal interface IDownloader
+     public interface IDownloader
     {
         /// <summary>
         /// Gets the list of all downloadable file names shown on the page.

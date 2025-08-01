@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HerokuOperations", "HerokuO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomExtensions", "CustomExtensions\CustomExtensions.csproj", "{C53C7B80-EF64-5BBC-CFA7-CF33E9F8F566}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HerokuAppWeb", "HerokuAppWeb\HerokuAppWeb.csproj", "{818E333E-0F25-96B4-FF98-08518212E945}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{C53C7B80-EF64-5BBC-CFA7-CF33E9F8F566}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C53C7B80-EF64-5BBC-CFA7-CF33E9F8F566}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C53C7B80-EF64-5BBC-CFA7-CF33E9F8F566}.Release|Any CPU.Build.0 = Release|Any CPU
+		{818E333E-0F25-96B4-FF98-08518212E945}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{818E333E-0F25-96B4-FF98-08518212E945}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{818E333E-0F25-96B4-FF98-08518212E945}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{818E333E-0F25-96B4-FF98-08518212E945}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
