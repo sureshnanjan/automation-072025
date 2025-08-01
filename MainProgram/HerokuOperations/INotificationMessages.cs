@@ -18,29 +18,23 @@ namespace HerokuOperations
     /// <summary>
     /// Defines the operations available on the Notification Message page.
     /// </summary>
-    public interface INotificationMessages
+    public interface INotificationMessagePage
     {
         /// <summary>
-        /// Gets the alert/notification message shown at the top (e.g., "Action unsuccessful, please try again").
+        /// Clicks the link that triggers a new notification message.
         /// </summary>
-        /// <returns>The notification message text.</returns>
+        void ClickTriggerLink();
+
+        /// <summary>
+        /// Retrieves the current notification message text displayed on the page.
+        /// </summary>
+        /// <returns>The visible notification message text (if any).</returns>
         string GetNotificationMessage();
 
         /// <summary>
-        /// Gets the static heading of the page (e.g., "Notification Message").
+        /// Retrieves the heading text from the Notification Message page.
         /// </summary>
-        /// <returns>The heading text.</returns>
-        string GetHeading();
-
-        /// <summary>
-        /// Clicks the "Click here" link to load a new message.
-        /// </summary>
-        void ClickLoadNewMessageLink();
-
-        /// <summary>
-        /// Gets the URL the "Click here" link points to.
-        /// </summary>
-        /// <returns>The hyperlink's URL as a string.</returns>
-        string GetLinkHref();
+        /// <returns>The heading text, e.g., "Notification Message".</returns>
+        string GetPageHeading();
     }
 }
