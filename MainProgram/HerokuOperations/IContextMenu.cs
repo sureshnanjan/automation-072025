@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HerokuOperations
 {
-    public interface ContextMenu
+    public interface IContextMenu
     {
         void GoToPage();
 
