@@ -1,66 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/*
+ * ------------------------------------------------------------------------------
+ * © 2025 Teja Reddy. All rights reserved.
+ * This interface is part of the HerokuApp automated test suite.
+ * For internal, educational, or evaluation purposes only.
+ * ------------------------------------------------------------------------------
+ */
 
 namespace HerokuOperations
 {
     /// <summary>
-    /// Interface for interacting with the Form Authentication page on herokuapp.
-    /// Defines actions like logging in, retrieving messages, and logging out.
+    /// Interface for interacting with the Form Authentication functionality on HerokuApp.
+    /// Encapsulates login, logout, and validation methods for secure area behavior.
     /// </summary>
     public interface IFormAuthentication
     {
         /// <summary>
-        /// Navigates to the Form Authentication page.
+        /// Gets the title of the login page.
         /// </summary>
-        void GoToPage();
-
-        /// <summary>
-        /// Enters the specified username into the username input field.
-        /// </summary>
-        /// <param name="userName">The username to enter.</param>
-        void EnterUserName(string userName);
-
-        /// <summary>
-        /// Enters the specified password into the password input field.
-        /// </summary>
-        /// <param name="passWord">The password to enter.</param>
-        void EnterPassWord(string passWord);
-
-        /// <summary>
-        /// Clicks the login button to attempt to authenticate.
-        /// </summary>
-        void ClickLogin();
-
-        /// <summary>
-        /// Gets the page title text.
-        /// </summary>
-        /// <returns>The title text of the page.</returns>
         string GetTitle();
 
         /// <summary>
-        /// Gets the page description or subtitle text.
+        /// Gets the description text from the login page.
         /// </summary>
-        /// <returns>The description text displayed on the page.</returns>
-        string GetDescription();
+        string GetDescriptionText();
 
         /// <summary>
-        /// Retrieves the error message shown after a failed login attempt.
+        /// Logs in using the provided credentials.
         /// </summary>
-        /// <returns>The error message text.</returns>
-        string GetErrorMessage();
+        /// <param name="username">The username to enter.</param>
+        /// <param name="password">The password to enter.</param>
+        /// <returns>A string containing the resulting success or error message.</returns>
+        string LoginWith(string username, string password);
 
         /// <summary>
-        /// Clicks the logout button to log out the user.
+        /// Gets the title displayed in the secure area after a successful login.
         /// </summary>
-        void ClickLogout();
+        string GetSecureAreaTitle();
 
         /// <summary>
-        /// Checks whether the login was successful.
+        /// Checks if the logout button is visible in the secure area.
         /// </summary>
-        /// <returns>True if login succeeded; otherwise, false.</returns>
-        bool IsLoginSuccessful();
+        /// <returns>True if logout button is visible; otherwise false.</returns>
+        bool IsLogoutButtonVisible();
+
+        /// <summary>
+        /// Logs the user out and returns the URL of the redirected page.
+        /// </summary>
+        /// <returns>The URL of the login page after logout.</returns>
+        string LogoutAndGetRedirectedUrl();
+
+        /// <summary>
+        /// Retrieves the logout message shown after logging out from the secure area.
+        /// </summary>
+        /// <returns>A string containing the logout confirmation message.</returns>
+        string GetLogoutMessage();
     }
 }

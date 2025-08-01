@@ -1,91 +1,130 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/*
+ * ------------------------------------------------------------------------------
+ * © 2025 Teja Reddy. All rights reserved.
+ * This interface is part of the HerokuApp automated test suite.
+ * For internal, educational, or evaluation purposes only.
+ * ------------------------------------------------------------------------------
+ */
 
 namespace HerokuOperations
 {
     /// <summary>
-    /// Interface to interact with Frames main page,
-    /// Nested Frames page, and iFrame editor page on the herokuapp site.
+    /// Interface for interacting with the Frames and iFrame sections of the HerokuApp website.
+    /// Provides methods for navigating and interacting with nested frames and WYSIWYG editor.
     /// </summary>
     public interface IFrames
     {
-        /// <summary>
-        /// Navigates to the Frames main page.
-        /// </summary>
-        void GoToPage();
+        // ------------------ Common Frames Page ------------------
 
         /// <summary>
-        /// Clicks the "Nested Frames" link on the Frames main page.
+        /// Gets the heading text of the Frames page.
         /// </summary>
-        void ClickNestedFrames();
+        string GetHeading();
 
         /// <summary>
-        /// Clicks the "iFrame" link on the Frames main page.
+        /// Clicks the link to navigate to the Nested Frames page.
         /// </summary>
-        void ClickIFrame();
+        void ClickNestedFrameLink();
 
         /// <summary>
-        /// Navigates directly to the Nested Frames page.
+        /// Clicks the link to navigate to the iFrame editor page.
         /// </summary>
-        void GoToNestedFramesPage();
+        void ClickIFrameLink();
+
+        // ------------------ Nested Frames ------------------
 
         /// <summary>
-        /// Gets the text content from the left frame inside the Nested Frames page.
+        /// Retrieves the text from the left frame.
         /// </summary>
-        /// <returns>Text inside the left frame</returns>
         string GetLeftFrameText();
 
         /// <summary>
-        /// Gets the text content from the middle frame inside the Nested Frames page.
+        /// Retrieves the text from the middle frame.
         /// </summary>
-        /// <returns>Text inside the middle frame</returns>
         string GetMiddleFrameText();
 
         /// <summary>
-        /// Gets the text content from the right frame inside the Nested Frames page.
+        /// Retrieves the text from the right frame.
         /// </summary>
-        /// <returns>Text inside the right frame</returns>
         string GetRightFrameText();
 
         /// <summary>
-        /// Gets the text content from the bottom frame inside the Nested Frames page.
+        /// Retrieves the text from the bottom frame.
         /// </summary>
-        /// <returns>Text inside the bottom frame</returns>
         string GetBottomFrameText();
 
         /// <summary>
-        /// Navigates directly to the iFrame editor page.
+        /// Determines if the frame layout includes a horizontal split.
         /// </summary>
-        void GoToIFramePage();
+        /// <returns>True if horizontally split; otherwise false.</returns>
+        bool IsHorizontallySplit();
 
         /// <summary>
-        /// Switches the WebDriver context to the iFrame.
+        /// Determines if the top frame includes a vertical split.
         /// </summary>
-        void SwitchToIFrame();
+        /// <returns>True if vertically split; otherwise false.</returns>
+        bool IsVerticallySplit();
 
         /// <summary>
-        /// Clears any existing text inside the iFrame editor.
+        /// Gets the margin value of the top frame.
         /// </summary>
-        void ClearEditor();
+        int GetTopFrameMargin();
 
         /// <summary>
-        /// Enters the specified text into the iFrame editor.
+        /// Gets the margin value of the bottom frame.
         /// </summary>
-        /// <param name="text">Text to enter into the editor</param>
-        void EnterText(string text);
+        int GetBottomFrameMargin();
+
+        // ------------------ iFrame Editor ------------------
 
         /// <summary>
-        /// Retrieves the current text content from the iFrame editor.
+        /// Gets the heading of the iFrame editor page.
         /// </summary>
-        /// <returns>Text inside the editor</returns>
-        string GetEditorText();
+        string GetIFramePageHeading();
 
         /// <summary>
-        /// Switches the WebDriver context back to the default content (main page).
+        /// Gets the current text inside the editor iframe.
         /// </summary>
-        void SwitchToDefaultContent();
+        string GetTextFromEditor();
+
+        /// <summary>
+        /// Clears the text content inside the editor.
+        /// </summary>
+        void ClearEditorText();
+
+        /// <summary>
+        /// Enters the specified text into the editor.
+        /// </summary>
+        /// <param name="text">Text to be entered.</param>
+        void EnterTextInEditor(string text);
+
+        /// <summary>
+        /// Selects all the text inside the editor.
+        /// </summary>
+        void SelectAllText();
+
+        /// <summary>
+        /// Clicks the Bold button on the editor toolbar.
+        /// </summary>
+        void ClickBoldButton();
+
+        /// <summary>
+        /// Verifies if the given toolbar option (e.g., "Bold", "Italic") is visible.
+        /// </summary>
+        /// <param name="option">Toolbar option name.</param>
+        /// <returns>True if visible, otherwise false.</returns>
+        bool IsToolbarOptionVisible(string option);
+
+        /// <summary>
+        /// Checks if the selected text is bold.
+        /// </summary>
+        /// <returns>True if bold, otherwise false.</returns>
+        bool IsTextBold();
+
+        /// <summary>
+        /// Checks whether the "Powered by Tiny" link is visible.
+        /// </summary>
+        /// <returns>True if visible, otherwise false.</returns>
+        bool IsPoweredByTinyLinkVisible();
     }
 }

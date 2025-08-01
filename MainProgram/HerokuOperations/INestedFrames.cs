@@ -1,44 +1,65 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/*
+ * ------------------------------------------------------------------------------
+ * © 2025 Teja Reddy. All rights reserved.
+ * This interface is part of the HerokuApp automated test suite.
+ * For internal, educational, or evaluation purposes only.
+ * ------------------------------------------------------------------------------
+ */
+
+using System;
 
 namespace HerokuOperations
 {
     /// <summary>
-    /// Interface to interact with the Nested Frames page on herokuapp.
-    /// Provides methods to navigate and retrieve text from different frames.
+    /// Interface for interacting with the Nested Frames page on the HerokuApp website.
+    /// Defines methods to extract frame-specific text and verify frame layout structure.
     /// </summary>
     public interface INestedFrames
     {
         /// <summary>
-        /// Navigates to the Nested Frames page.
+        /// Returns the text displayed in the left frame.
         /// </summary>
-        void GoToPage();
-
-        /// <summary>
-        /// Retrieves the text content from the left frame inside the nested frames.
-        /// </summary>
-        /// <returns>Text inside the left frame.</returns>
         string GetLeftFrameText();
 
         /// <summary>
-        /// Retrieves the text content from the middle frame inside the nested frames.
+        /// Returns the text displayed in the middle frame.
         /// </summary>
-        /// <returns>Text inside the middle frame.</returns>
         string GetMiddleFrameText();
 
         /// <summary>
-        /// Retrieves the text content from the right frame inside the nested frames.
+        /// Returns the text displayed in the right frame.
         /// </summary>
-        /// <returns>Text inside the right frame.</returns>
         string GetRightFrameText();
 
         /// <summary>
-        /// Retrieves the text content from the bottom frame inside the nested frames.
+        /// Returns the text displayed in the bottom frame.
         /// </summary>
-        /// <returns>Text inside the bottom frame.</returns>
         string GetBottomFrameText();
+
+        /// <summary>
+        /// Checks whether the nested frames are split horizontally
+        /// (i.e., presence of both top and bottom frames).
+        /// </summary>
+        /// <returns>True if horizontal split exists, otherwise false.</returns>
+        bool IsHorizontallySplit();
+
+        /// <summary>
+        /// Checks whether the top frame is vertically split
+        /// into left, middle, and right frames.
+        /// </summary>
+        /// <returns>True if vertical split exists inside the top frame, otherwise false.</returns>
+        bool IsVerticallySplit();
+
+        /// <summary>
+        /// Returns the margin value of the top frame.
+        /// </summary>
+        /// <returns>Integer representing top frame margin (in pixels).</returns>
+        int GetTopFrameMargin();
+
+        /// <summary>
+        /// Returns the margin value of the bottom frame.
+        /// </summary>
+        /// <returns>Integer representing bottom frame margin (in pixels).</returns>
+        int GetBottomFrameMargin();
     }
 }
