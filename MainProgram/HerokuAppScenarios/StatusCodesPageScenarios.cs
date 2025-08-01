@@ -14,7 +14,6 @@ namespace HerokuAppScenarios
         [SetUp]
         public void Setup()
         {
- 
         }
 
         [TearDown]

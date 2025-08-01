@@ -69,4 +69,21 @@ public class ChallengingDOMPageScenarios
         Assert.DoesNotThrow(() => challengingDOMPage.ClickEdit(0));
         Assert.DoesNotThrow(() => challengingDOMPage.ClickDelete(0));
     }
+
+    [Test]
+    public void IsEditButtonWorking()
+    {
+        challengingDOMPage.ClickEdit(0);
+        Assert.IsTrue(driver.FindElement(By.CssSelector(".modal")).Displayed, "Edit modal should be displayed.");
+    }
+
+    [Test]
+    public void IsDeleteButtonWorking()
+    {
+        challengingDOMPage.ClickDelete(0);
+        Assert.IsTrue(driver.SwitchTo().Alert().Text.Contains("Are you sure"), "Delete confirmation alert should appear.");
+    }
+
+
 }
+
