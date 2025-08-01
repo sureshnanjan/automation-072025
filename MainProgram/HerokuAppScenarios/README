@@ -5,7 +5,7 @@
 
 ---
 
-## 🔍 Test Case Design Strategy
+## Test Case Design Strategy
 
 The test cases are functionally prioritized and designed using:
 
@@ -15,7 +15,7 @@ The test cases are functionally prioritized and designed using:
 
 ---
 
-## 🧪 Entry Ad (IEntryAd)
+## Entry Ad (IEntryAd)
 
 **Behavior Summary:**  
 Displays a modal advertisement on first page load. Once closed, it doesn’t appear unless reset using the "click here" link.
@@ -34,7 +34,7 @@ Displays a modal advertisement on first page load. Once closed, it doesn’t app
 
 ---
 
-## 🧪 Exit Intent (IExitIntent)
+## Exit Intent (IExitIntent)
 
 **Behavior Summary:**  
 Displays a modal window when the user moves their mouse out of the viewport (exit intent).
@@ -52,7 +52,7 @@ Displays a modal window when the user moves their mouse out of the viewport (exi
 
 ---
 
-## 🔐 Secure File Download
+## Secure File Download
 
 **Behavior Summary:**  
 Only authenticated users can download files. Direct access redirects unauthenticated users to the login page.
