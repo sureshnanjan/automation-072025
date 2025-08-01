@@ -1,4 +1,13 @@
-﻿using OpenQA.Selenium;
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ShadowDomHandler.cs" company="Keyur Nagvekar">
+//   Copyright (c) 2025 Keyur Nagvekar. All rights reserved.
+//   This file provides an implementation for accessing and retrieving Shadow DOM elements
+//   using JavaScript execution with Selenium, based on the ShadowDOM interface.
+//   Redistribution or modification of this file is subject to author permissions.
+// </copyright>
+// --------------------------------------------------------------------------------------------------------------------
+
+using OpenQA.Selenium;
 using System;
 
 namespace HerokuOperations
@@ -18,10 +27,6 @@ namespace HerokuOperations
             js = (IJavaScriptExecutor)webDriver;
         }
 
-        /// <summary>
-        /// Gets the text content of the first shadow host's paragraph.
-        /// Example: "My default text"
-        /// </summary>
         public string GetFirstShadowHostText()
         {
             try
@@ -32,16 +37,12 @@ namespace HerokuOperations
                     return shadowRoot.querySelector('p').textContent.trim();";
                 return (string)js.ExecuteScript(script);
             }
-            catch (Exception)
+            catch
             {
                 return string.Empty;
             }
         }
 
-        /// <summary>
-        /// Gets the text content of the second shadow host's span element.
-        /// Example: "Let's have some different text!"
-        /// </summary>
         public string GetSecondShadowHostText()
         {
             try
@@ -52,16 +53,12 @@ namespace HerokuOperations
                     return shadowRoot.querySelector('span').textContent.trim();";
                 return (string)js.ExecuteScript(script);
             }
-            catch (Exception)
+            catch
             {
                 return string.Empty;
             }
         }
 
-        /// <summary>
-        /// Gets the text from a nested shadow DOM element if present.
-        /// Adjust selectors inside JavaScript if nesting is deeper.
-        /// </summary>
         public string GetNestedShadowText()
         {
             try
@@ -72,10 +69,9 @@ namespace HerokuOperations
                     const nested = outerRoot.querySelector('span');
 
                     return nested ? nested.textContent.trim() : '';";
-
                 return (string)js.ExecuteScript(script);
             }
-            catch (Exception)
+            catch
             {
                 return string.Empty;
             }
