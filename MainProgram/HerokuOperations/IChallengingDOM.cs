@@ -20,57 +20,144 @@ namespace HerokuOperations
     public interface IChallengingDOM
     {
         /// <summary>
-        /// Gets the title of the page.
+        /// Gets the page title.
         /// </summary>
-        /// <returns>The page title text.</returns>
-        string GetPageTitle();
+        string Title { get; }
 
         /// <summary>
-        /// Gets the description text below the title.
+        /// Gets the main description text of the page.
         /// </summary>
-        /// <returns>The description paragraph text.</returns>
-        string GetDescriptionText();
+        string Description { get; }
 
         /// <summary>
-        /// Clicks the blue button labeled "qux".
+        /// Clicks the blue button.
         /// </summary>
         void ClickBlueButton();
 
         /// <summary>
-        /// Clicks the red button labeled "foo".
+        /// Clicks the red button.
         /// </summary>
         void ClickRedButton();
 
         /// <summary>
-        /// Clicks the green button labeled "bar".
+        /// Clicks the green button.
         /// </summary>
         void ClickGreenButton();
 
         /// <summary>
-        /// Retrieves the headers of the table.
+        /// Gets the current text inside the dynamic answer box.
         /// </summary>
-        /// <returns>List of header names as strings.</returns>
+        /// <returns>Answer text as string.</returns>
+        string GetAnswerBoxText();
+
+        /// <summary>
+        /// Gets the label text of the blue button.
+        /// </summary>
+        string GetBlueButtonText();
+
+        /// <summary>
+        /// Gets the label text of the red button.
+        /// </summary>
+        string GetRedButtonText();
+
+        /// <summary>
+        /// Gets the label text of the green button.
+        /// </summary>
+        string GetGreenButtonText();
+
+        /// <summary>
+        /// Executes a button click and returns updated answer box text.
+        /// </summary>
+        /// <param name="clickAction">Action that performs a button click.</param>
+        /// <returns>Updated answer text.</returns>
+        string ClickButtonAndReturnAnswer(System.Action clickAction);
+
+        /// <summary>
+        /// Returns the list of table header labels.
+        /// </summary>
         List<string> GetTableHeaders();
 
         /// <summary>
-        /// Retrieves the data from all table rows.
+        /// Returns the number of rows in the table.
         /// </summary>
-        /// <returns>
-        /// A list of rows, where each row is a list of column cell values as strings.
-        /// </returns>
-        List<List<string>> GetTableRows();
+        int GetTableRowCount();
 
         /// <summary>
-        /// Clicks the "edit" link for a specific row in the table.
+        /// Returns the number of columns in a specific row.
         /// </summary>
         /// <param name="rowIndex">Zero-based index of the row.</param>
+        int GetColumnCountInRow(int rowIndex);
+
+        /// <summary>
+        /// Gets all cell text values from the specified row.
+        /// </summary>
+        /// <param name="rowIndex">Zero-based index of the row.</param>
+        List<string> GetRowData(int rowIndex);
+
+        /// <summary>
+        /// Returns whether the specified row is currently editable.
+        /// </summary>
+        /// <param name="rowIndex">Zero-based index of the row.</param>
+        bool IsRowEditable(int rowIndex);
+
+        /// <summary>
+        /// Clicks the Edit button in a specific row.
+        /// </summary>
+        /// <param name="rowIndex">Zero-based row index.</param>
         void ClickEdit(int rowIndex);
-        
 
         /// <summary>
-        /// Clicks the "delete" link for a specific row in the table.
+        /// Clicks the Delete button in a specific row.
         /// </summary>
-        /// <param name="rowIndex">Zero-based index of the row.</param>
+        /// <param name="rowIndex">Zero-based row index.</param>
         void ClickDelete(int rowIndex);
+
+        /// <summary>
+        /// Returns whether the Edit button is present in the given row.
+        /// </summary>
+        bool HasEditButton(int rowIndex);
+
+        /// <summary>
+        /// Returns whether the Delete button is present in the given row.
+        /// </summary>
+        bool HasDeleteButton(int rowIndex);
+
+        /// <summary>
+        /// Returns whether the edit modal or edit section is currently displayed.
+        /// </summary>
+        bool IsEditModalDisplayed();
+
+        /// <summary>
+        /// Updates the content of a specific cell during editing.
+        /// </summary>
+        /// <param name="rowIndex">Row index.</param>
+        /// <param name="columnIndex">Column index.</param>
+        /// <param name="newValue">New value to insert.</param>
+        void UpdateCell(int rowIndex, int columnIndex, string newValue);
+
+        /// <summary>
+        /// Saves the edits for the specified row.
+        /// </summary>
+        /// <param name="rowIndex">Row index.</param>
+        void SaveEdit(int rowIndex);
+
+        /// <summary>
+        /// Retrieves the value of a specific cell.
+        /// </summary>
+        /// <param name="rowIndex">Row index.</param>
+        /// <param name="columnIndex">Column index.</param>
+        /// <returns>Cell text as string.</returns>
+        string GetCellValue(int rowIndex, int columnIndex);
+
+
+        /// <summary>
+        /// Returns the text content of the page footer.
+        /// </summary>
+        string GetFooterText();
+
+        /// <summary>
+        /// Returns the GitHub ribbon message (if any).
+        /// </summary>
+        string GetGitHubRibbonText();
     }
 }

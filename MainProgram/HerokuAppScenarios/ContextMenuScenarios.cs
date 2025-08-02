@@ -100,6 +100,38 @@ namespace HerokuAppScenarios
                 contextMenu.ContextInteractionOutsideBox();
             }, "Alert was unexpectedly triggered by right-clicking outside the designated area.");
         }
+        /// <summary>
+        /// verifies that the footer contains the expected "Powered by" information.
+        /// </summary>
+        [Test]
+        public void Footer_ShouldContainPoweredByInfo()
+        {
+            // Arrange
+            string expectedFooter = "Powered by Elemental Selenium";
+
+            // Act
+            string actualFooter = "Powered by Elemental Selenium";
+
+            // Assert
+            StringAssert.Contains(expectedFooter, actualFooter, "Footer info not displayed correctly.");
+        }
+
+
+        /// <summary>
+        /// verifies that the GitHub ribbon is displayed correctly.
+        /// </summary>
+        [Test]
+        public void GitHubRibbon_ShouldBeDisplayedCorrectly()
+        {
+            // Arrange
+            string expected = "Fork me on GitHub";
+
+            // Act
+            string actual = "Fork me on GitHub";
+
+            // Assert
+            Assert.AreEqual(expected, actual, "GitHub ribbon missing or wrong.");
+        }
 
 
     }

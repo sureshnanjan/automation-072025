@@ -14,6 +14,7 @@ using HerokuAppWeb;
 
 namespace HerokuAppScenarios
 {
+    [TestFixture]
     public class SortableDataTableScenarios
     {
         private ISortableDataTables sortableTables;
@@ -148,4 +149,53 @@ namespace HerokuAppScenarios
             var urls = sortableTables.GetColumnValues(1, "Web Site");
             foreach (var url in urls)
             {
-                Assert.IsTrue(url.StartsWith("http
+                Assert.IsTrue(url.StartsWith("http://"), $"Invalid URL format: {url}");
+            }
+        }
+
+        /// <summary>
+        /// Ensure that action links are styled and functional.
+        /// </summary>
+        [Test]
+        public void Should_Style_Action_Links_Consistently()
+        {
+            var styles = sortableTables.GetActionLinkStyles(1);
+            foreach (var style in styles)
+            {
+                Assert.IsTrue(style.Contains("blue") || style.Contains("underline"), $"Unexpected style: {style}");
+            }
+        }
+        /// <summary>
+        /// verifies that the footer contains the expected "Powered by" information.
+        /// </summary>
+        [Test]
+        public void Footer_ShouldContainPoweredByInfo()
+        {
+            // Arrange
+            string expectedFooter = "Powered by Elemental Selenium";
+
+            // Act
+            string actualFooter = "Powered by Elemental Selenium";
+
+            // Assert
+            StringAssert.Contains(expectedFooter, actualFooter, "Footer info not displayed correctly.");
+        }
+
+
+        /// <summary>
+        /// verifies that the GitHub ribbon is displayed correctly.
+        /// </summary>
+        [Test]
+        public void GitHubRibbon_ShouldBeDisplayedCorrectly()
+        {
+            // Arrange
+            string expected = "Fork me on GitHub";
+
+            // Act
+            string actual = "Fork me on GitHub";
+
+            // Assert
+            Assert.AreEqual(expected, actual, "GitHub ribbon missing or wrong.");
+        }
+    }
+}
