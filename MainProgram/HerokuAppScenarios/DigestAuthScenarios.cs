@@ -165,5 +165,6 @@ namespace HerokuAppScenarios
             // Assert
             Assert.AreEqual(expected, actual, "GitHub ribbon missing or wrong.");
         }
+
     }
 }
