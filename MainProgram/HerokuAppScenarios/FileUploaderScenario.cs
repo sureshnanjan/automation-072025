@@ -38,7 +38,7 @@ namespace HerokuAppScenarios
         }
 
         /// <summary>
-        /// Test case: Verify that the page contains expected instructional text/content.
+        /// Test case: Verify that the page contains expected instructional text/content..
         /// </summary>
         [Test]
         public void PageContent_ShouldContainInstructionText()
