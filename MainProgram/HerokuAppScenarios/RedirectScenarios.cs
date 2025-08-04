@@ -17,165 +17,116 @@ using HerokuOperations;
 
 namespace HerokuAppScenarios
 {
-    /// <summary>
-    /// NUnit test cases for validating the Redirector page
-    /// using the IRedirect interface, following AAA (Arrange-Act-Assert) pattern.
-    /// </summary>
     public class RedirectScenarios
     {
         /// <summary>
-        /// Verifies that the heading text on the Redirector page is correct.
+        /// Validate that the page title is "Redirection".
         /// </summary>
         [Test]
-        public void GetTitle_ShouldReturnCorrectText()
+        public void GetTitle_ShouldReturnRedirection()
         {
-            // Arrange
-            IRedirect redirect = TestObjectFactory.CreateRedirect();
-
-            // Act
+            IRedirect redirect = new RedirectPage();
             string title = redirect.GetTitle();
-
-            // Assert
-            Assert.That(title, Is.EqualTo("Redirection"), "The page title does not match the expected value.");
+            Assert.That(title, Is.EqualTo("Redirection"));
         }
 
         /// <summary>
-        /// Verifies that the paragraph text on the Redirector page contains the expected keyword.
+        /// Validate that the paragraph text contains the word "redirect".
         /// </summary>
         [Test]
-        public void GetParagraphText_ShouldContainExpectedMessage()
+        public void GetParagraphText_ShouldContainRedirect()
         {
-            // Arrange
-            IRedirect redirect = TestObjectFactory.CreateRedirect();
-
-            // Act
+            IRedirect redirect = new RedirectPage();
             string paragraph = redirect.GetParagraphText();
-
-            // Assert
-            StringAssert.Contains("redirect", paragraph.ToLower(), "The paragraph does not contain the expected keyword.");
+            StringAssert.Contains("redirect", paragraph.ToLower());
         }
 
         /// <summary>
-        /// Verifies that clicking the 'Click here' link redirects to the Status Codes page.
+        /// Validate that clicking "here" navigates to the Status Codes page.
         /// </summary>
         [Test]
-        public void ClickhereLink_ShouldRedirectToStatusCodesPage()
+        public void ClickhereLink_ShouldNavigateToStatusCodesPage()
         {
-            // Arrange
-            IRedirect redirect = TestObjectFactory.CreateRedirect();
-
-            // Act
+            IRedirect redirect = new RedirectPage();
             redirect.ClickhereLink();
             string currentUrl = redirect.GetCurrentUrl();
-
-            // Assert
-            Assert.That(currentUrl, Does.Contain("/status_codes"), "The page did not redirect to the Status Codes page.");
+            Assert.That(currentUrl, Does.Contain("/status_codes"));
         }
 
         /// <summary>
-        /// Verifies that the Status Codes page displays the correct title after redirection.
+        /// Validate that the Status Codes page shows the correct title.
         /// </summary>
         [Test]
-        public void AfterClickhereLink_StatusCodesPage_ShouldDisplayCorrectTitle()
+        public void GetStatusPageTitle_ShouldReturnStatusCodes()
         {
-            // Arrange
-            IRedirect redirect = TestObjectFactory.CreateRedirect();
-
-            // Act
+            IRedirect redirect = new RedirectPage();
             redirect.ClickhereLink();
             string title = redirect.GetStatusPageTitle();
-
-            // Assert
-            Assert.That(title, Is.EqualTo("Status Codes"), "The Status Codes page title does not match the expected value.");
+            Assert.That(title, Is.EqualTo("Status Codes"));
         }
 
         /// <summary>
-        /// Verifies that the Status Codes page contains descriptive content after redirection.
+        /// Validate that the Status Codes page contains descriptive content.
         /// </summary>
         [Test]
-        public void AfterClickhereLink_StatusCodesPage_ShouldContainExpectedContent()
+        public void GetStatusPageContent_ShouldContainStatusCodes()
         {
-            // Arrange
-            IRedirect redirect = TestObjectFactory.CreateRedirect();
-
-            // Act
+            IRedirect redirect = new RedirectPage();
             redirect.ClickhereLink();
             string content = redirect.GetStatusPageContent();
-
-            // Assert
-            StringAssert.Contains("status codes", content.ToLower(), "The Status Codes page does not contain the expected content.");
+            StringAssert.Contains("status codes", content.ToLower());
         }
 
         /// <summary>
-        /// Verifies that clicking on the 200 Status Code link navigates to the correct page.
+        /// Validate that clicking the 200 link navigates to the correct page.
         /// </summary>
         [Test]
-        public void AfterClickhereLink_Click200_ShouldNavigateToCorrectStatusPage()
+        public void ClickStatusCodeLink_200_ShouldShowCorrectContent()
         {
-            // Arrange
-            IRedirect redirect = TestObjectFactory.CreateRedirect();
-
-            // Act
+            IRedirect redirect = new RedirectPage();
             redirect.ClickhereLink();
             redirect.ClickStatusCodeLink("200");
             string content = redirect.GetStatusPageContent();
-
-            // Assert
-            StringAssert.Contains("200 status code", content.ToLower(), "The 200 Status Code page does not display the expected content.");
+            StringAssert.Contains("200 status code", content.ToLower());
         }
 
         /// <summary>
-        /// Verifies that clicking on the 301 Status Code link navigates to the correct page.
+        /// Validate that clicking the 301 link navigates to the correct page.
         /// </summary>
         [Test]
-        public void AfterClickhereLink_Click301_ShouldNavigateToCorrectStatusPage()
+        public void ClickStatusCodeLink_301_ShouldShowCorrectContent()
         {
-            // Arrange
-            IRedirect redirect = TestObjectFactory.CreateRedirect();
-
-            // Act
+            IRedirect redirect = new RedirectPage();
             redirect.ClickhereLink();
             redirect.ClickStatusCodeLink("301");
             string content = redirect.GetStatusPageContent();
-
-            // Assert
-            StringAssert.Contains("301 status code", content.ToLower(), "The 301 Status Code page does not display the expected content.");
+            StringAssert.Contains("301 status code", content.ToLower());
         }
 
         /// <summary>
-        /// Verifies that clicking on the 404 Status Code link navigates to the correct page.
+        /// Validate that clicking the 404 link navigates to the correct page.
         /// </summary>
         [Test]
-        public void AfterClickhereLink_Click404_ShouldNavigateToCorrectStatusPage()
+        public void ClickStatusCodeLink_404_ShouldShowCorrectContent()
         {
-            // Arrange
-            IRedirect redirect = TestObjectFactory.CreateRedirect();
-
-            // Act
+            IRedirect redirect = new RedirectPage();
             redirect.ClickhereLink();
             redirect.ClickStatusCodeLink("404");
             string content = redirect.GetStatusPageContent();
-
-            // Assert
-            StringAssert.Contains("404 status code", content.ToLower(), "The 404 Status Code page does not display the expected content.");
+            StringAssert.Contains("404 status code", content.ToLower());
         }
 
         /// <summary>
-        /// Verifies that clicking on the 500 Status Code link navigates to the correct page.
+        /// Validate that clicking the 500 link navigates to the correct page.
         /// </summary>
         [Test]
-        public void AfterClickhereLink_Click500_ShouldNavigateToCorrectStatusPage()
+        public void ClickStatusCodeLink_500_ShouldShowCorrectContent()
         {
-            // Arrange
-            IRedirect redirect = TestObjectFactory.CreateRedirect();
-
-            // Act
+            IRedirect redirect = new RedirectPage();
             redirect.ClickhereLink();
             redirect.ClickStatusCodeLink("500");
             string content = redirect.GetStatusPageContent();
-
-            // Assert
-            StringAssert.Contains("500 status code", content.ToLower(), "The 500 Status Code page does not display the expected content.");
+            StringAssert.Contains("500 status code", content.ToLower());
         }
     }
 }
