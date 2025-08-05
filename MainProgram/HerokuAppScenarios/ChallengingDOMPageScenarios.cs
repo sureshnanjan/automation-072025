@@ -28,7 +28,7 @@ namespace HerokuTests
         {
         }
 
-        // ---------------- Page Meta Tests ----------------
+        // -------------------------------------------------------- Page Meta Tests -------------------------------------------- //
 
         /// <summary>
         /// Validates that the page title matches the expected value.
@@ -62,7 +62,7 @@ namespace HerokuTests
             Assert.AreEqual(expectedDescription, actualDescription);
         }
 
-        // ---------------- Button Tests ----------------
+        // ---------------------------------------------- Button Tests ------------------------------------------ //
 
         /// <summary>
         /// Ensures Blue button is clickable.
@@ -196,7 +196,7 @@ namespace HerokuTests
             Assert.AreNotEqual(initial, updated);
         }
 
-        // ---------------- Table Tests ----------------
+        // ------------------------------------------------------- Table Tests -------------------------------------//
 
         /// <summary>
         /// Verifies that table headers match expected values.
@@ -340,7 +340,7 @@ namespace HerokuTests
             Assert.AreEqual(initial - 1, updated);
         }
 
-        // ---------------- Dynamic Answer Box Tests ----------------
+        // ------------------------------------------------------- Dynamic Answer Box Tests ----------------------------//
 
         /// <summary>
         /// Validates Blue and Red buttons generate different answers.
@@ -385,7 +385,7 @@ namespace HerokuTests
             Assert.AreNotEqual(blue, green);
         }
 
-        // ---------------- Additional Tests You May Add ----------------
+        // ------------------------------------------ Additional Tests You May Add --------------------------------------//
 
         /// <summary>
         /// Validates that deleting a row removes the correct content.
@@ -423,7 +423,7 @@ namespace HerokuTests
             Assert.AreEqual(newValue, cellText);
         }
 
-        // ───────────── FOOTER & EXTERNAL LINKS ─────────────//
+        //------------------------------------------------------------- FOOTER & EXTERNAL LINKS ---------------------------//
 
         ///<summary>
         ///Validating the footer is present or not

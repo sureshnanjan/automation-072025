@@ -79,5 +79,16 @@ namespace HerokuOperations
         /// </summary>
         /// <returns>True if repeated words are found; otherwise, false.</returns>
         bool HasConsecutiveRepeatedWords();
+
+        /// <summary>
+        /// Checks if the footer "Powered by Elemental Selenium" is visible.
+        /// </summary>
+        bool IsFooterPoweredByVisible();
+
+        /// <summary>
+        /// Checks if the GitHub ribbon is visible and interactable.
+        /// </summary>
+        bool IsGitHubRibbonVisible();
+
     }
 }

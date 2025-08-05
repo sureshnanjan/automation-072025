@@ -86,5 +86,16 @@ namespace HerokuOperations
         /// Refreshes the current Basic Auth page.
         /// </summary>
         void RefreshPage();
+
+        /// <summary>
+        /// Checks if the footer "Powered by Elemental Selenium" is visible.
+        /// </summary>
+        bool IsFooterPoweredByVisible();
+
+        /// <summary>
+        /// Checks if the GitHub ribbon is visible.
+        /// </summary>
+        bool IsGitHubRibbonVisible();
+
     }
 }
