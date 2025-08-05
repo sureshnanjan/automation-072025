@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HerokuAppMobile\HerokuAppMobile.csproj" />
     <ProjectReference Include="..\HerokuAppWeb\HerokuAppWeb.csproj" />
     <ProjectReference Include="..\HerokuOperations\HerokuOperations.csproj" />
   </ItemGroup>

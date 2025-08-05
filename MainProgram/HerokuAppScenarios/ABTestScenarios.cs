@@ -1,4 +1,5 @@
-﻿using HerokuOperations;
+﻿using HerokuAppWeb;
+using HerokuOperations;
 
 namespace HerokuAppScenarios;
 
@@ -17,5 +18,31 @@ public class ABTestScenarios
         IABTest abpage;
         //page.GoToExample("A/B Testing");
         //string actual = abpage.GetTitle();
+    }
+
+    [Test]
+    public void ABTestEnabedWorks()
+    {
+        // Arrange
+        IHomePage page;
+        IABTest abpage;
+        //abpage.DisableABTest();
+        page.GoToExample("A/B Testing");
+        string expected = "NO A/B Test";
+        string actual = abpage.GetTitle();
+        Assert.AreEqual(expected, actual);
+    }
+
+    [Test]
+    public void ABTestDisabledWorks()
+    {
+        // Arrange
+        IHomePage page = new HomePage();
+        IABTest abpage = new AB
+        //abpage.DisableABTest();
+        page.GoToExample("A/B Testing");
+        string expected = "NO A/B Test";
+        string actual = abpage.GetTitle();
+        Assert.AreEqual(expected, actual);
     }
 }
