@@ -1,4 +1,18 @@
-﻿using OpenQA.Selenium;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="MultipleWindowsPage.cs" company="Keyur Nagvekar">
+//   Copyright (c) 2025 Keyur Nagvekar. All rights reserved.
+//   This file provides the implementation of the IWindowPage interface for automating 
+//   interactions with the Multiple Windows page on the-internet.herokuapp.com.
+//   Redistribution or modification of this file is prohibited without explicit permission 
+//   from the author. Unauthorized use may result in legal consequences.
+// </copyright>
+// <summary>
+//   Defines the MultipleWindowsPage class which provides methods to navigate to the Multiple Windows page,
+//   click the link to open a new browser window, and switch between windows using Selenium WebDriver.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 
