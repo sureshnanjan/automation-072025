@@ -4,6 +4,7 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Edge;
+using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -788,8 +789,8 @@ namespace WebAutomation.Core
         {
             try
             {
-                //var alert = _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.AlertIsPresent());
-                //alert.Accept();
+                var alert = _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.AlertIsPresent());
+                alert.Accept();
                 _logger.Log(LogLevel.Debug, "Accepted alert");
             }
             catch (Exception ex)
@@ -803,8 +804,8 @@ namespace WebAutomation.Core
         {
             try
             {
-                //var alert = _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.AlertIsPresent());
-                //alert.Dismiss();
+                var alert = _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.AlertIsPresent());
+                alert.Dismiss();
                 _logger.Log(LogLevel.Debug, "Dismissed alert");
             }
             catch (Exception ex)
@@ -818,8 +819,8 @@ namespace WebAutomation.Core
         {
             try
             {
-                //var alert = _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.AlertIsPresent());
-                var text = String.Empty;//alert.Text;
+                var alert = _wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.AlertIsPresent());
+                var text = alert.Text;
                 _logger.Log(LogLevel.Debug, $"Alert text: {text}");
                 return text;
             }
