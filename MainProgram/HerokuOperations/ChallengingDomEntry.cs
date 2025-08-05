@@ -7,13 +7,5 @@ using System.Threading.Tasks;
 
 namespace HerokuOperations
 {
-    class ChallengingDomEntry
-    {
-        string Lorem;
-        string Ipsum
-        string Dolor
-        string Sit;
-        string Amet;
-        string Diceret;
-    }
+    
 }

@@ -24,8 +24,8 @@ public class ABTestScenarios
     public void ABTestEnabedWorks()
     {
         // Arrange
-        IHomePage page;
-        IABTest abpage;
+        IHomePage page = new HomePage();
+        IABTest abpage = new ABTesting();
         //abpage.DisableABTest();
         page.GoToExample("A/B Testing");
         string expected = "NO A/B Test";
@@ -38,7 +38,7 @@ public class ABTestScenarios
     {
         // Arrange
         IHomePage page = new HomePage();
-        IABTest abpage = new AB
+        IABTest abpage = new ABTesting();
         //abpage.DisableABTest();
         page.GoToExample("A/B Testing");
         string expected = "NO A/B Test";

@@ -13,6 +13,6 @@ namespace HerokuOperations
         void EditRow(int rownum);
         void DeleteRow(int rownum);
 
-        List<ChallengingDomEntry> GetEntries();
+       // List<ChallengingDomEntry> GetEntries();
     }
 }
