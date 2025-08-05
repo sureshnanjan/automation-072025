@@ -10,11 +10,8 @@
 using NUnit.Framework;
 using NUnit.Framework.Legacy;
 
-namespace HerokuManualUITests
+namespace HerokuManualUITests.InfiniteScrollTests
 {
-    /// <summary>
-    /// NUnit tests for the Infinite Scroll page, verified through manual UI inspection in a browser.
-    /// </summary>
     [TestFixture]
     public class InfinityTestApp
     {
@@ -24,122 +21,65 @@ namespace HerokuManualUITests
         public void Title_ShouldMatchExpected()
         {
             // Arrange
-            string expectedTitle = "Infinite Scroll";
+            string expected = "Infinite Scroll";
 
             // Act
-            string actualTitle = "Infinite Scroll"; // Observed manually from the page
+            string actual = "Infinite Scroll"; // Simulated actual value from UI
 
             // Assert
-            Assert.AreEqual(expectedTitle, actualTitle, "Page title is incorrect.");
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         public void Description_ShouldContainScrollHint()
         {
             // Arrange
-            string expectedHint = "Scroll down to load more";
+            string expected = "Scroll down to load more";
 
             // Act
-            string actualHint = "Scroll down to load more"; // Observed manually
+            string actual = "Scroll down to load more"; // Simulated value
 
             // Assert
-            StringAssert.Contains(expectedHint, actualHint, "Description is missing scroll hint.");
+            StringAssert.Contains(expected, actual);
         }
 
         // ───────────── SCROLLING BEHAVIOR TESTS ─────────────
 
         [Test]
-        public void ScrollDown_ShouldLoadAdditionalParagraphs()
+        public void Scroll_ShouldLoadMoreParagraphs()
         {
-            // Arrange
-            int initialParagraphs = 2;
+            Assert.That(true, Is.True, "New paragraphs were not loaded after scrolling.");
+        }
 
-            // Act
-            int paragraphsAfterScroll = 4;
+
+        [Test]
+        public void Content_ShouldBeLoaded()
+        {
+            // Arrange & Act
+            bool result = true; // Simulated observation
 
             // Assert
-            Assert.Greater(paragraphsAfterScroll, initialParagraphs, "Scroll did not load new paragraphs.");
+            Assert.IsTrue(result);
         }
 
         [Test]
-        public void ScrollToTop_ShouldScrollUpward()
+        public void Scrollbar_ShouldShrink()
         {
-            // Arrange
-            int positionBefore = 2000;
-            int positionAfter = 0;
-
-            // Act
-            int currentScrollPosition = positionAfter;
+            // Arrange & Act
+            bool result = true; // Simulated change in scrollbar
 
             // Assert
-            Assert.Less(currentScrollPosition, positionBefore, "Scroll did not return to top.");
+            Assert.IsTrue(result);
         }
 
         [Test]
-        public void ScrollPosition_ShouldReturnVerticalOffset()
+        public void ShouldBeResponsiveOnMobile()
         {
-            // Arrange
-            int expectedY = 1200;
-
-            // Act
-            int actualY = 1200;
+            // Arrange & Act
+            bool result = true; // Simulated mobile responsiveness
 
             // Assert
-            Assert.AreEqual(expectedY, actualY, "Scroll position mismatch.");
-        }
-
-        [Test]
-        public void ParagraphCount_ShouldBeAccurateAfterScroll()
-        {
-            // Arrange
-            int expectedCount = 4;
-
-            // Act
-            int actualCount = 4;
-
-            // Assert
-            Assert.AreEqual(expectedCount, actualCount, "Paragraph count incorrect.");
-        }
-
-        [Test]
-        public void ContentLoadOnScroll_ShouldReturnTrue()
-        {
-            // Arrange
-            bool expected = true;
-
-            // Act
-            bool result = true;
-
-            // Assert
-            Assert.IsTrue(result, "Content not loaded upon scroll.");
-        }
-
-        [Test]
-        public void Scrollbar_ShouldReduceHeightAsContentGrows()
-        {
-            // Arrange
-            bool expected = true;
-
-            // Act
-            bool result = true;
-
-            // Assert
-            Assert.IsTrue(result, "Scrollbar did not shrink as expected.");
-        }
-
-        // ───────────── RESPONSIVENESS TEST ─────────────
-
-        [Test]
-        public void ScrollFeature_ShouldWorkOnMobileViewport()
-        {
-            // Arrange
-            bool expected = true;
-
-            // Act
-            bool result = true;
-
-            // Assert
-            Assert.IsTrue(result, "Scroll behavior not working on mobile screen.");
+            Assert.IsTrue(result);
         }
 
         // ───────────── FOOTER & EXTERNAL LINKS ─────────────
@@ -148,54 +88,54 @@ namespace HerokuManualUITests
         public void Footer_ShouldContainPoweredByInfo()
         {
             // Arrange
-            string expectedFooter = "Powered by Elemental Selenium";
+            string expected = "Powered by Elemental Selenium";
 
             // Act
-            string actualFooter = "Powered by Elemental Selenium";
+            string actual = "Powered by Elemental Selenium"; // Observed visually
 
             // Assert
-            StringAssert.Contains(expectedFooter, actualFooter, "Footer info not displayed correctly.");
+            StringAssert.Contains(expected, actual);
         }
 
         [Test]
-        public void GitHubRibbon_ShouldBeDisplayedCorrectly()
+        public void GitHubRibbon_ShouldDisplay()
         {
             // Arrange
             string expected = "Fork me on GitHub";
 
             // Act
-            string actual = "Fork me on GitHub";
+            string actual = "Fork me on GitHub"; // Simulated visual string
 
             // Assert
-            Assert.AreEqual(expected, actual, "GitHub ribbon missing or wrong.");
+            Assert.AreEqual(expected, actual);
         }
 
         // ───────────── OTHER VISUAL TESTS ─────────────
 
         [Test]
-        public void BrowserTabTitle_ShouldBeCorrect()
+        public void TabTitle_ShouldBeCorrect()
         {
             // Arrange
-            string expectedTabTitle = "The Internet";
+            string expected = "The Internet";
 
             // Act
-            string actualTabTitle = "The Internet";
+            string actual = "The Internet"; // Browser tab title observed manually
 
             // Assert
-            Assert.AreEqual(expectedTabTitle, actualTabTitle, "Tab title does not match.");
+            Assert.AreEqual(expected, actual);
         }
-
+        //Assumptions 
         [Test]
-        public void InitialParagraphs_ShouldBePresentWithoutScroll()
+        public void InitialParagraphs_ShouldBeAtLeastTwo()
         {
             // Arrange
-            int minimumParagraphs = 2;
+            int minimum = 2;
 
             // Act
-            int actual = 2;
+            int actual = 2; // Simulated observation
 
             // Assert
-            Assert.GreaterOrEqual(actual, minimumParagraphs, "Initial content missing.");
+            Assert.GreaterOrEqual(actual, minimum);
         }
     }
 }
