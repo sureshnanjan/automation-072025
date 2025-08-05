@@ -7,6 +7,7 @@ using Automator;
 using MainProgram;
 using Models;
 using System.Collections.Generic;
+using System.Net.Mail;
 using System.Reflection;
 
 
@@ -65,6 +66,19 @@ public class Program
 
 
     }
+
+
+    private static void sendEmail() {
+
+        string sender = "tester@ascendion.com";
+        string receiver = "qagroup@ascendion.com";
+        SmtpClient serveice;
+        string message = "Sending Automation Results";
+        FileStream attachments;
+        
+    }
+
+    private static void sendEmailDI(string sender, string receiver, SmtpClient service, string mess, FileStream attach) { }
 
     private static void feedFish(Fish fish, object fishinstance)
     {
