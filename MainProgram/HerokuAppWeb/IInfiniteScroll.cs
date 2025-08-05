@@ -1,4 +1,18 @@
-﻿using OpenQA.Selenium;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="InfiniteScrollPage.cs" company="Keyur Nagvekar">
+//   Copyright (c) 2025 Keyur Nagvekar. All rights reserved.
+//   This file implements the IinfiniteScroll interface for automating interactions with 
+//   the Infinite Scroll page on the-internet.herokuapp.com using Selenium WebDriver and JavaScript execution.
+//   Redistribution or modification of this file is prohibited without explicit permission 
+//   from the author. Unauthorized use may result in legal consequences.
+// </copyright>
+// <summary>
+//   Defines the InfiniteScrollPage class which provides methods to scroll programmatically,
+//   retrieve scroll dimensions, and validate visibility of footer and GitHub ribbon on the page.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 
