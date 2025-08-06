@@ -1,170 +1,118 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="MultipleWindowsTests.cs">
 //     Copyright (c) 2025 K Vamsi Krishna. All rights reserved.
-//     This file contains manually written NUnit tests to validate visual behavior of
+//     This file contains manually written NUnit tests to validate UI behavior of
 //     the Multiple Windows page at https://the-internet.herokuapp.com/windows.
-//     Tests are written in AAA format, follow C# coding conventions, and adhere to SOLID principles.
-// </copyright>
+//     Tests are structured using the AAA pattern and interface abstraction (IWindows).
 // --------------------------------------------------------------------------------------------------------------------
-
 using NUnit.Framework;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using HerokuOperations;
+using System;
 
 namespace HerokuAppScenarios
 {
-    /// <summary>
-    /// NUnit tests for the Multiple Windows page, verified through manual UI inspection in a browser.
-    /// </summary>
     [TestFixture]
-    public class MultipleWindowsTests
+    public class WindowsTest
     {
-        // _______________Header and Page Validation________________ //
+        private IWebDriver driver;
+        private IWindows windowsPage;
 
-        /// <summary>
-        /// Verifies that the page title is displayed correctly.
-        /// </summary>
+        [SetUp]
+        public void SetUp()
+        {
+            driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/windows");
+            driver.Manage().Window.Maximize();
+            windowsPage = new Windows(driver);
+        }
+
         [Test]
-        public void PageTitle_ShouldBeCorrect()
+        public void Should_Display_MainWindow_Heading_Correctly()
         {
             // Arrange
-            string expectedTitle = "Opening a new window";
+            string expected = "Opening a new window";
 
             // Act
-            string actualTitle = "Opening a new window"; // Manually observed value
+            string actual = windowsPage.GetMainWindowHeading();
 
             // Assert
-            Assert.AreEqual(expectedTitle, actualTitle, "Page title should be 'Opening a new window'.");
+            Assert.AreEqual(expected, actual, "Main window heading mismatch.");
         }
 
-        /// <summary>
-        /// Verifies that the browser tab title is correct.
-        /// </summary>
         [Test]
-        public void BrowserTab_ShouldHaveCorrectTitle()
+        public void Should_Open_New_Window_And_Display_Expected_Heading()
         {
             // Arrange
-            string expectedTabTitle = "The Internet";
+            string expectedNewHeading = "New Window";
 
             // Act
-            string actualTabTitle = "The Internet"; // Observed in browser tab
+            windowsPage.OpenNewWindow();
+            string actualNewHeading = windowsPage.GetNewWindowHeading();
 
             // Assert
-            Assert.AreEqual(expectedTabTitle, actualTabTitle, "Browser tab title should be 'The Internet'.");
+            Assert.AreEqual(expectedNewHeading, actualNewHeading, "New window heading mismatch.");
         }
 
-        // _______________Main Link Behavior________________ //
-
-        /// <summary>
-        /// Verifies that clicking the link opens a new window.
-        /// </summary>
         [Test]
-        public void ClickHereLink_ShouldOpenNewWindow()
+        public void Should_Have_One_Window_Before_Click()
         {
-            // Arrange
-            bool isNewWindowOpened = true; // Manually confirm by clicking the link
+            // Arrange & Act
+            int numberOfWindows = windowsPage.GetNumberOfWindows();
 
-            // Act & Assert
-            Assert.IsTrue(isNewWindowOpened, "Clicking the link should open a new window.");
+            // Assert
+            Assert.AreEqual(1, numberOfWindows, "Unexpected number of windows before clicking.");
         }
 
-        /// <summary>
-        /// Verifies that the new window shows correct text.
-        /// </summary>
         [Test]
-        public void NewWindow_ShouldHaveCorrectText()
+        public void Should_Have_Two_Windows_After_Click()
         {
             // Arrange
-            string expectedText = "New Window";
+            windowsPage.OpenNewWindow();
 
             // Act
-            string actualText = "New Window"; // Manually read from new window
+            bool isOpened = windowsPage.IsNewWindowOpened();
 
             // Assert
-            Assert.AreEqual(expectedText, actualText, "New window text should be 'New Window'.");
+            Assert.IsTrue(isOpened, "New window was not opened.");
         }
 
-        /// <summary>
-        /// Verifies that the focus remains on the original window after opening a new one.
-        /// </summary>
         [Test]
-        public void Focus_ShouldRemainOnOriginalWindowAfterOpen()
+        public void Should_Close_New_Window_And_Return_To_Main()
         {
             // Arrange
-            bool isFocusOnOriginal = true; // Manual focus check
-
-            // Act & Assert
-            Assert.IsTrue(isFocusOnOriginal, "Focus should remain on the original window after opening a new one.");
-        }
-
-        // _______________Mouse Interaction Tests________________ //
-
-        /// <summary>
-        /// Verifies that right-clicking the link shows the browser context menu.
-        /// </summary>
-        [Test]
-        public void RightClickOnLink_ShouldShowContextMenu()
-        {
-            // Arrange
-            bool isContextMenuShown = true; // Manual right-click shows context menu
-
-            // Act & Assert
-            Assert.IsTrue(isContextMenuShown, "Right-clicking the link should show the context menu.");
-        }
-
-        /// <summary>
-        /// Verifies that middle-clicking the link opens in a background tab.
-        /// </summary>
-        [Test]
-        public void MiddleClickOnLink_ShouldOpenInBackgroundTab()
-        {
-            // Arrange
-            bool isOpenedInBackground = true; // Manual middle-click opens tab
-
-            // Act & Assert
-            Assert.IsTrue(isOpenedInBackground, "Middle-clicking the link should open it in a background tab.");
-        }
-
-        // _______________Footer________________ //
-
-        /// <summary>
-        /// Verifies that the footer displays "Powered by Elemental Selenium".
-        /// </summary>
-        [Test]
-        public void Footer_ShouldDisplayPoweredByText()
-        {
-            // Arrange
-            string expectedFooter = "Powered by Elemental Selenium";
+            string expectedMain = "Opening a new window";
+            windowsPage.OpenNewWindow();
+            string newWindowHeading = windowsPage.GetNewWindowHeading();
 
             // Act
-            string actualFooter = "Powered by Elemental Selenium"; // Visual footer
+            string mainHeadingAfterReturn = windowsPage.GetMainWindowHeading();
 
             // Assert
-            Assert.AreEqual(expectedFooter, actualFooter, "Footer should display 'Powered by Elemental Selenium'.");
+            Assert.AreEqual("New Window", newWindowHeading, "New window heading mismatch.");
+            Assert.AreEqual(expectedMain, mainHeadingAfterReturn, "Did not return to main window correctly.");
         }
 
-        /// <summary>
-        /// Verifies that the GitHub "Fork me" ribbon is visible.
-        /// </summary>
         [Test]
-        public void GitHubRibbon_ShouldBeVisible()
+        public void Should_Throw_Exception_If_New_Window_Not_Opened()
         {
             // Arrange
-            bool isRibbonVisible = true; // Visually checked
+            var originalHandle = driver.CurrentWindowHandle;
+            var handlesBefore = driver.WindowHandles.Count;
 
             // Act & Assert
-            Assert.IsTrue(isRibbonVisible, "GitHub ribbon should be visible on the top-right corner.");
+            Assert.Throws<Exception>(() =>
+            {
+                // Trying to fetch new window without clicking
+                windowsPage.GetNewWindowHeading();
+            }, "Expected exception not thrown when new window is not opened.");
         }
 
-        /// <summary>
-        /// Verifies that the GitHub ribbon changes on hover (if any visual cue is seen).
-        /// </summary>
-        [Test]
-        public void GitHubRibbon_ShouldRespondToHover()
+        [TearDown]
+        public void TearDown()
         {
-            // Arrange
-            bool doesRibbonReactToHover = true; // Hover to check visual feedback
-
-            // Act & Assert
-            Assert.IsTrue(doesRibbonReactToHover, "GitHub ribbon should respond visually to hover.");
+            driver.Quit();
         }
     }
 }

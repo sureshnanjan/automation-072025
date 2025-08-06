@@ -1,254 +1,173 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="InputsTestApp.cs">
-//     Copyright (c) 2025 K Vamsi Krishna. All rights reserved.
-//     This file contains manually written NUnit tests to validate visual behavior of
-//     the Inputs page at https://the-internet.herokuapp.com/inputs.
-//     Tests are written in AAA format, follow C# coding conventions, and adhere to SOLID principles.
+// <copyright file="InputPageTest.cs" company="K Vamsi Krishna">
+//   Copyright (c) 2025 K Vamsi Krishna. All rights reserved.
 // </copyright>
+// <summary>
+//   NUnit test cases for validating the Inputs page behavior at https://the-internet.herokuapp.com/inputs.
+//   Tests follow the AAA (Arrange, Act, Assert) format and use mocked interface interactions.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+
+using HerokuOperations;
 using NUnit.Framework;
 
-namespace HerokuAppScenarios
+namespace HerokuTests
 {
     /// <summary>
-    /// NUnit tests for the Inputs page, verified through manual UI inspection in a browser.
+    /// Test suite for the Inputs Page on HerokuApp.
+    /// Covers numeric input behaviors, including edge cases.
     /// </summary>
     [TestFixture]
-    public class InputsPageTest
+    public class InputPageTest
     {
-        // ───────────── TEXT VALIDATION TESTS ─────────────
+        private Iinput inputPage;
 
-        /// <summary>
-        /// Verifies the page title is 'Inputs'.
-        /// </summary>
-        [Test]
-        public void PageTitle_ShouldBeInputs()
+        [SetUp]
+        public void SetUp()
         {
-            // Arrange
-            string expectedTitle = "Inputs";
-
-            // Act
-            string actualTitle = "Inputs"; // Observed manually
-
-            // Assert
-            Assert.AreEqual(expectedTitle, actualTitle, "The page title should be 'Inputs'.");
-        }
-
-        // ───────────── VALID INPUT TESTS ─────────────
-
-        /// <summary>
-        /// Verifies that the input accepts a positive integer.
-        /// </summary>
-        [Test]
-        public void NumberInputField_ShouldAcceptPositiveInteger()
-        {
-            // Arrange
-            string input = "12345";
-
-            // Act
-            string result = "12345";
-
-            // Assert
-            Assert.AreEqual(input, result, "Positive integers should be accepted.");
+            inputPage = new MockInputPage(); // Stubbed dependency or mock
         }
 
         /// <summary>
-        /// Verifies that the input accepts a negative integer.
+        /// Validates that a positive integer input is accepted and returned correctly.
         /// </summary>
         [Test]
-        public void NumberInputField_ShouldAcceptNegativeInteger()
+        public void Should_AcceptPositiveInteger()
         {
             // Arrange
-            string input = "-789";
+            string input = "123";
 
             // Act
-            string result = "-789";
+            inputPage.EnterNumber(input);
+            string output = inputPage.GetInputValue();
 
             // Assert
-            Assert.AreEqual(input, result, "Negative integers should be accepted.");
+            Assert.AreEqual(input, output);
         }
 
         /// <summary>
-        /// Checks if decimal values are accepted.
+        /// Validates that a negative integer input is accepted and returned correctly.
         /// </summary>
         [Test]
-        public void NumberInputField_ShouldAcceptDecimalValue()
+        public void Should_AcceptNegativeInteger()
         {
             // Arrange
-            string input = "45.67";
+            string input = "-456";
 
             // Act
-            string result = "45.67";
+            inputPage.EnterNumber(input);
+            string output = inputPage.GetInputValue();
 
             // Assert
-            Assert.AreEqual(input, result, "Decimal values should be accepted.");
+            Assert.AreEqual(input, output);
         }
 
         /// <summary>
-        /// Verifies that large numbers (scientific notation) are accepted.
+        /// Validates that decimal values are accepted or appropriately handled.
         /// </summary>
         [Test]
-        public void NumberInputField_ShouldAcceptLargeNumbers()
+        public void Should_AcceptDecimalInput()
         {
             // Arrange
-            string largeNumber = "999999999999999999999";
+            string input = "123.45";
 
             // Act
-            string result = "1e+21"; // Observed as auto-converted in Chrome
+            inputPage.EnterNumber(input);
+            string output = inputPage.GetInputValue();
 
             // Assert
-            Assert.AreEqual("1e+21", result, "Large numbers should be accepted in scientific notation.");
+            Assert.AreEqual(input, output);
         }
 
-        // ───────────── INVALID INPUT TESTS ─────────────
-
         /// <summary>
-        /// Verifies that the input field does not accept alphabetic characters.
+        /// Validates that alphabetic characters are ignored or rejected.
         /// </summary>
         [Test]
-        public void NumberInputField_ShouldNotAcceptAlphabets()
+        public void Should_RejectAlphabeticInput()
         {
             // Arrange
             string input = "abc";
 
             // Act
-            string result = ""; // Not accepted
+            inputPage.EnterNumber(input);
+            string output = inputPage.GetInputValue();
 
             // Assert
-            Assert.AreEqual("", result, "Alphabetic characters should be rejected.");
+            Assert.AreNotEqual(input, output);
         }
 
         /// <summary>
-        /// Verifies that the input field does not accept the string 'Infinity'.
+        /// Validates special characters do not affect the numeric field.
         /// </summary>
         [Test]
-        public void NumberInputField_ShouldNotAcceptInfinityDirectly()
+        public void Should_IgnoreSpecialCharacters()
         {
             // Arrange
-            string input = "Infinity";
+            string input = "@#!$";
 
             // Act
-            string result = ""; // Not accepted
+            inputPage.EnterNumber(input);
+            string output = inputPage.GetInputValue();
 
             // Assert
-            Assert.AreEqual("", result, "The field should not accept the word 'Infinity'.");
+            Assert.AreNotEqual(input, output);
         }
 
         /// <summary>
-        /// Verifies that special characters are not accepted.
+        /// Validates that empty input returns empty value.
         /// </summary>
         [Test]
-        public void NumberInputField_ShouldRejectSpecialCharacters()
+        public void Should_ReturnEmpty_WhenInputIsCleared()
         {
             // Arrange
-            string input = "@#$%";
+            string input = "";
 
             // Act
-            string result = ""; // Not accepted
+            inputPage.EnterNumber(input);
+            string output = inputPage.GetInputValue();
 
             // Assert
-            Assert.AreEqual("", result, "Special characters should be rejected.");
+            Assert.AreEqual(string.Empty, output);
         }
 
         /// <summary>
-        /// Verifies that whitespace input is either ignored or rejected.
+        /// Validates large numeric inputs are handled without error.
         /// </summary>
         [Test]
-        public void NumberInputField_ShouldRejectWhitespaceInput()
+        public void Should_HandleLargeNumericInput()
         {
             // Arrange
-            string input = "     ";
+            string input = "9999999999";
 
             // Act
-            string result = ""; // Not accepted
+            inputPage.EnterNumber(input);
+            string output = inputPage.GetInputValue();
 
             // Assert
-            Assert.AreEqual("", result, "Whitespace input should be ignored.");
+            Assert.AreEqual(input, output);
+        }
+    }
+
+    /// <summary>
+    /// Mock implementation of the Iinput interface for testing purposes only.
+    /// </summary>
+    public class MockInputPage : Iinput
+    {
+        private string value = string.Empty;
+
+        public void EnterNumber(string input)
+        {
+            // Simulate filtering invalid input as the real browser would
+            if (decimal.TryParse(input, out _))
+                value = input;
+            else if (string.IsNullOrWhiteSpace(input))
+                value = string.Empty;
         }
 
-        // ───────────── KEYBOARD INTERACTION TESTS ─────────────
-
-        /// <summary>
-        /// Verifies that pressing the up arrow key increases the number by 1.
-        /// </summary>
-        [Test]
-        public void NumberInputField_ShouldAllowArrowKeyIncrement()
+        public string GetInputValue()
         {
-            // Arrange
-            int initial = 5;
-
-            // Act
-            int incremented = initial + 1;
-
-            // Assert
-            Assert.AreEqual(6, incremented, "Up arrow should increment the number.");
-        }
-
-        /// <summary>
-        /// Verifies that pressing the down arrow key decreases the number by 1.
-        /// </summary>
-        [Test]
-        public void NumberInputField_ShouldAllowArrowKeyDecrement()
-        {
-            // Arrange
-            int initial = 5;
-
-            // Act
-            int decremented = initial - 1;
-
-            // Assert
-            Assert.AreEqual(4, decremented, "Down arrow should decrement the number.");
-        }
-
-        // ───────────── FOOTER & VISUAL ELEMENTS ─────────────
-
-        /// <summary>
-        /// Verifies the footer contains 'Powered by Elemental Selenium'.
-        /// </summary>
-        [Test]
-        public void Footer_ShouldDisplayPoweredByText()
-        {
-            // Arrange
-            string expected = "Powered by Elemental Selenium";
-
-            // Act
-            string actual = "Powered by Elemental Selenium";
-
-            // Assert
-            Assert.AreEqual(expected, actual, "Footer should show 'Powered by Elemental Selenium'.");
-        }
-
-        /// <summary>
-        /// Verifies that the GitHub ribbon is visible on the page.
-        /// </summary>
-        [Test]
-        public void GitHubRibbon_ShouldBeVisible()
-        {
-            // Arrange
-            bool isRibbonVisible = true;
-
-            // Act
-            bool observed = isRibbonVisible;
-
-            // Assert
-            Assert.IsTrue(observed, "GitHub ribbon should be visible.");
-        }
-
-        /// <summary>
-        /// Verifies that the browser tab shows the correct page title.
-        /// </summary>
-        [Test]
-        public void BrowserTab_ShouldHaveCorrectTitle()
-        {
-            // Arrange
-            string expected = "The Internet";
-
-            // Act
-            string actual = "The Internet";
-
-            // Assert
-            Assert.AreEqual(expected, actual, "Tab title should be 'The Internet'.");
+            return value;
         }
     }
 }
