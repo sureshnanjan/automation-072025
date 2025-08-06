@@ -13,8 +13,6 @@ using HerokuOperations;
 using HerokuAppWeb;
 
 namespace HerokuAppScenarios
-{
-    [TestFixture]
     public class SortableDataTableScenarios
     {
         private ISortableDataTables sortableTables;
