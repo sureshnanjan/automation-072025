@@ -1,5 +1,6 @@
 using HerokuOperations;
 using HerokuAppWeb;
+using MobileApp = HerokuAppMobile.HomePage;
 namespace HerokuAppScenarios
 {
     public class Tests
@@ -14,7 +15,7 @@ namespace HerokuAppScenarios
         {
             // Arrange
             string expected = "Welcome to Internet";
-            IHomePage homepage = new HomePage();
+           IHomePage homepage = new HomePage(); // Web
             string actual = homepage.GetTitle();
             Assert.AreEqual(expected, actual);
             

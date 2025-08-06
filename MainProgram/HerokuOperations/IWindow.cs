@@ -14,7 +14,7 @@ namespace HerokuOperations
     /// <summary>
     /// Provides methods to interact with the Multiple Windows component.
     /// </summary>
-    public interface IMultipleWindowPage
+    public interface IWindow
     {
         // ───────────── UI TEXT VALIDATION METHODS ─────────────
 

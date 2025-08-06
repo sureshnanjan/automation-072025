@@ -17,7 +17,7 @@ namespace HerokuAppScenarios
     public class WindowsTest
     {
         private IWebDriver driver;
-        private IWindows windowsPage;
+        private IWindow windowsPage;
 
         [SetUp]
         public void SetUp()
