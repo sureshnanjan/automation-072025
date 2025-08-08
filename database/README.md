@@ -43,12 +43,19 @@ For sha = `mysql < test_shopping_website_sha.sql`
 **Output will be like this**
 
 
+### ✅ INFO
+
+```text
 +----------------------+
 | INFO                 |
 +----------------------+
 | TESTING INSTALLATION |
 +----------------------+
+```
 
+### 📊 Expected Table Details
+
+```text
 +---------------------+------------------+----------------------------------+
 | table_name          | expected_records | expected_crc                     |
 +---------------------+------------------+----------------------------------+
@@ -66,7 +73,11 @@ For sha = `mysql < test_shopping_website_sha.sql`
 | user_account        |               50 | 033ec9496994f252720e16572d9ec4e3 |
 | user_address        |               50 | 4a3c52fe92ed7f2cdefdabadad1088c8 |
 +---------------------+------------------+----------------------------------+
+```
 
+### 📥 Found Table Data
+
+```text
 +---------------------+---------------+----------------------------------+
 | table_name          | found_records | found_crc                        |
 +---------------------+---------------+----------------------------------+
@@ -84,7 +95,11 @@ For sha = `mysql < test_shopping_website_sha.sql`
 | user_account        |            50 | 033ec9496994f252720e16572d9ec4e3 |
 | user_address        |            50 | 4a3c52fe92ed7f2cdefdabadad1088c8 |
 +---------------------+---------------+----------------------------------+
+```
 
+### ✅ Match Results
+
+```text
 +---------------------+---------------+-----------+
 | table_name          | records_match | crc_match |
 +---------------------+---------------+-----------+
@@ -102,6 +117,7 @@ For sha = `mysql < test_shopping_website_sha.sql`
 | user_account        | OK            | ok        |
 | user_address        | OK            | ok        |
 +---------------------+---------------+-----------+
+```
 
 **Usage**
 
@@ -123,4 +139,5 @@ http://creativecommons.org/licenses/by-sa/3.0/
 
 Or send correspondence to:
 Creative Commons, 171 Second Street, Suite 300, San Francisco, California, 94105, USA.
+
 
