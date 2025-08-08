@@ -1,6 +1,6 @@
 
 using HerokuOperations.Interfaces;
-namespace HerokuAppScenarios.Tests
+namespace HerokuAppScenarios.Tests;
 ﻿//using HerokuOperations;
 
 //namespace HerokuAppScenarios;
@@ -27,6 +27,7 @@ namespace HerokuAppScenarios.Tests
 
 using HerokuOperations;
 using HerokuAppWeb;
+
 namespace HerokuAppScenarios
 
 {
@@ -48,4 +49,5 @@ namespace HerokuAppScenarios
 
         }
     }
+}
 

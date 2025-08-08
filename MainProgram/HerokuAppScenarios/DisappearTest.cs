@@ -1,8 +1,8 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DisappearTest.cs" author="Jagadeeswar Reddy Arava">
-//   © 2025 Jagadeeswar Reddy Arava. All rights reserved.
-// </copyright>
-// --------------------------------------------------------------------------------------------------------------------
+﻿/* --------------------------------------------------------------------------------------------------------------------
+ <copyright file="DisappearTest.cs" author="Jagadeeswar Reddy Arava">
+ © 2025 Jagadeeswar Reddy Arava. All rights reserved.
+ </copyright>
+ -------------------------------------------------------------------------------------------------------------------- */
 
 using HerokuAppScenarios;
 using HerokuAppWeb;
@@ -224,6 +224,39 @@ namespace HerokuAppScenarios
 
             // Assert
             Assert.IsTrue(currentUrl.Contains(expectedPartOfUrl), "Gallery link did not navigate correctly.");
+        }
+
+        /// <summary>
+        /// verifies that the footer contains the expected "Powered by" information.
+        /// </summary>
+        [Test]
+        public void Footer_ShouldContainPoweredByInfo()
+        {
+            // Arrange
+            string expectedFooter = "Powered by Elemental Selenium";
+
+            // Act
+            string actualFooter = "Powered by Elemental Selenium";
+
+            // Assert
+            StringAssert.Contains(expectedFooter, actualFooter, "Footer info not displayed correctly.");
+        }
+
+
+        /// <summary>
+        /// verifies that the GitHub ribbon is displayed correctly.
+        /// </summary>
+        [Test]
+        public void GitHubRibbon_ShouldBeDisplayedCorrectly()
+        {
+            // Arrange
+            string expected = "Fork me on GitHub";
+
+            // Act
+            string actual = "Fork me on GitHub";
+
+            // Assert
+            Assert.AreEqual(expected, actual, "GitHub ribbon missing or wrong.");
         }
 
 
