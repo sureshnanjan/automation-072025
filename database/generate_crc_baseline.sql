@@ -3,7 +3,7 @@
 -- See: http://creativecommons.org/licenses/by-sa/3.0/
 
 -- Use the target database
-USE shopping_website_db;
+USE shopping_website_db; 
 
 -- Drop any existing baseline checksum table and temporary checksum table
 DROP TABLE IF EXISTS expected_values;
@@ -158,3 +158,4 @@ DROP TABLE tchecksum;
 
 -- Show the final baseline checksums and record counts for all tables
 SELECT * FROM expected_values ORDER BY table_name;
+
