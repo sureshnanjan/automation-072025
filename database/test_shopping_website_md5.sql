@@ -4,7 +4,7 @@
 
 -- Use the shopping_website_db database to perform validation tests
 USE shopping_website_db;
-
+ 
 -- Display informational message indicating start of installation testing
 SELECT 'TESTING INSTALLATION' AS INFO;
 
@@ -169,3 +169,4 @@ SELECT
 FROM expected_values e
 JOIN found_values f USING (table_name)
 ORDER BY e.table_name;
+
