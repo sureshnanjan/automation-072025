@@ -1,4 +1,46 @@
--- Select the database to use
+/*
+--------------------------------------------------------------------------------
+ Title      : Airline Reservation Database Schema
+ Description: This SQL script defines the structure for an Airline Reservation 
+              System. It includes tables for managing countries, cities, airports,
+              aircrafts, flights, customers, bookings, and related entities.
+              
+ Author     : Keyur Nagvekar
+ Created On : August 8, 2025
+ Last Edited: August 8, 2025
+
+ --------------------------------------------------------------------------------
+ Table Summary:
+ --------------------------------------------------------------------------------
+ 1. country         : Stores country information.
+ 2. city            : Stores city details with a reference to its country.
+ 3. airport         : Stores airport data linked to a city.
+ 4. manufacturer    : Stores aircraft manufacturers.
+ 5. aircraft_model  : Stores aircraft models linked to manufacturers.
+ 6. airline         : Stores airline company details.
+ 7. aircraft        : Stores aircrafts linked to a model and owning airline.
+ 8. seat_class      : Stores different seat class types (e.g., Economy, Business).
+ 9. aircraft_seat   : Stores individual seats linked to aircrafts and seat class.
+10. flight          : Stores basic flight details linked to airlines.
+11. leg             : Stores each leg (segment) of a flight, with departure and 
+                      arrival details.
+12. customer        : Stores customer information including contact details.
+13. booking         : Stores customer bookings made through an airline.
+14. booking_leg     : Stores seat assignments and pricing per leg per booking.
+
+ --------------------------------------------------------------------------------
+ Copyright Notice:
+ --------------------------------------------------------------------------------
+ © 2025 Keyur Nagvekar. All rights reserved.
+
+ This script is provided for academic, demonstration, and development purposes.
+ Unauthorized distribution or use of this script, in part or in full, for commercial 
+ purposes without the author's explicit permission is prohibited.
+
+ You are free to use and modify this script for educational or non-commercial 
+ projects, provided this notice remains intact.-- Select the database to use
+ 
+*/
 CREATE DATABASE IF NOT EXISTS airline_reservations;
 USE airline_reservations;
 
