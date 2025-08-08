@@ -19,7 +19,7 @@ VALUES
 ('Panasonic Camera', 3, 17, 2, 1, 4),
 ('Philips Blender', 4, 18, 3, 1, 6),
 ('Toshiba Hard Drive', 3, 19, 4, 1, 6),
-('Sharp Microwave', 4, 20, 5, 1, 6),
+('Sharp Microwave', 4, 20, 5, 1, 6), 
 ('New Balance Sneakers', 1, 21, 6, 2, 1),
 ('Vans Casual Shoes', 1, 22, 7, 2, 1),
 ('Converse High Tops', 1, 23, 8, 2, 1),
