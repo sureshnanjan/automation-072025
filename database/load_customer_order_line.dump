@@ -6,7 +6,7 @@ INSERT INTO customer_order_line (order_id, product_id, qty, discount, price) VAL
 INSERT INTO customer_order_line (order_id, product_id, qty, discount, price) VALUES (18, 49, 2, 5.29, 103.55);
 INSERT INTO customer_order_line (order_id, product_id, qty, discount, price) VALUES (2, 22, 2, 7.97, 298.97);
 INSERT INTO customer_order_line (order_id, product_id, qty, discount, price) VALUES (16, 40, 5, 8.37, 314.64);
-INSERT INTO customer_order_line (order_id, product_id, qty, discount, price) VALUES (45, 13, 5, 6.0, 191.44);
+INSERT INTO customer_order_line (order_id, product_id, qty, discount, price) VALUES (45, 13, 5, 6.0, 191.44); 
 INSERT INTO customer_order_line (order_id, product_id, qty, discount, price) VALUES (27, 23, 3, 2.85, 46.37);
 INSERT INTO customer_order_line (order_id, product_id, qty, discount, price) VALUES (19, 25, 4, 0.97, 188.66);
 INSERT INTO customer_order_line (order_id, product_id, qty, discount, price) VALUES (5, 14, 2, 2.03, 430.2);
