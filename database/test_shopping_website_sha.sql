@@ -1,7 +1,7 @@
 -- Switch to the shopping_website_db database
 USE shopping_website_db;
 
--- Print a simple info message indicating the start of the test process
+-- Print a simple info message indicating the start of the test process 
 SELECT 'TESTING INSTALLATION' AS INFO;
 
 -- Drop existing tables if they exist to ensure clean state for this test run
@@ -168,3 +168,4 @@ SELECT
 FROM expected_values e
 JOIN found_values f USING (table_name)
 ORDER BY e.table_name;
+
