@@ -8,7 +8,7 @@ INSERT INTO supplier_order_line (order_id, product_id, qty, discount, price) VAL
 INSERT INTO supplier_order_line (order_id, product_id, qty, discount, price) VALUES (28, 21, 2, 6.25, 268.19);
 INSERT INTO supplier_order_line (order_id, product_id, qty, discount, price) VALUES (50, 24, 5, 9.64, 394.77);
 INSERT INTO supplier_order_line (order_id, product_id, qty, discount, price) VALUES (9, 47, 2, 6.55, 337.95);
-INSERT INTO supplier_order_line (order_id, product_id, qty, discount, price) VALUES (37, 27, 1, 8.47, 283.8);
+INSERT INTO supplier_order_line (order_id, product_id, qty, discount, price) VALUES (37, 27, 1, 8.47, 283.8);  
 INSERT INTO supplier_order_line (order_id, product_id, qty, discount, price) VALUES (39, 21, 1, 2.94, 310.04);
 INSERT INTO supplier_order_line (order_id, product_id, qty, discount, price) VALUES (28, 36, 2, 7.36, 103.38);
 INSERT INTO supplier_order_line (order_id, product_id, qty, discount, price) VALUES (38, 35, 1, 8.88, 51.45);
