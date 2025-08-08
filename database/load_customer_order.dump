@@ -6,7 +6,7 @@ INSERT INTO customer_order (order_discount, shipping_address, billing_address, u
 INSERT INTO customer_order (order_discount, shipping_address, billing_address, username, order_date) VALUES (2.26, 45, 13, 'user4', '2024-11-22');
 INSERT INTO customer_order (order_discount, shipping_address, billing_address, username, order_date) VALUES (16.8, 45, 23, 'user9', '2024-05-18');
 INSERT INTO customer_order (order_discount, shipping_address, billing_address, username, order_date) VALUES (11.54, 49, 49, 'user19', '2021-12-10');
-INSERT INTO customer_order (order_discount, shipping_address, billing_address, username, order_date) VALUES (6.43, 32, 42, 'user39', '2024-07-08');
+INSERT INTO customer_order (order_discount, shipping_address, billing_address, username, order_date) VALUES (6.43, 32, 42, 'user39', '2024-07-08'); 
 INSERT INTO customer_order (order_discount, shipping_address, billing_address, username, order_date) VALUES (19.06, 49, 24, 'user28', '2020-01-27');
 INSERT INTO customer_order (order_discount, shipping_address, billing_address, username, order_date) VALUES (15.97, 7, 33, 'user10', '2022-01-29');
 INSERT INTO customer_order (order_discount, shipping_address, billing_address, username, order_date) VALUES (14.73, 21, 41, 'user35', '2024-06-09');
