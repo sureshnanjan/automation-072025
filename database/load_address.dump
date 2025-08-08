@@ -4,7 +4,7 @@ INSERT INTO address (house_unit_no, address_line1, address_line2, city, region, 
 INSERT INTO address (house_unit_no, address_line1, address_line2, city, region, postal_code, country) VALUES ('4', 'Street 4', 'Apt 4', 'Houston', 'NY', '10003', 'Canada');
 INSERT INTO address (house_unit_no, address_line1, address_line2, city, region, postal_code, country) VALUES ('5', 'Street 5', 'Apt 5', 'Los Angeles', 'AZ', '10004', 'Canada');
 INSERT INTO address (house_unit_no, address_line1, address_line2, city, region, postal_code, country) VALUES ('6', 'Street 6', 'Apt 6', 'Los Angeles', 'NY', '10005', 'Canada');
-INSERT INTO address (house_unit_no, address_line1, address_line2, city, region, postal_code, country) VALUES ('7', 'Street 7', 'Apt 7', 'Chicago', 'TX', '10006', 'Canada');
+INSERT INTO address (house_unit_no, address_line1, address_line2, city, region, postal_code, country) VALUES ('7', 'Street 7', 'Apt 7', 'Chicago', 'TX', '10006', 'Canada'); 
 INSERT INTO address (house_unit_no, address_line1, address_line2, city, region, postal_code, country) VALUES ('8', 'Street 8', 'Apt 8', 'Chicago', 'CA', '10007', 'USA');
 INSERT INTO address (house_unit_no, address_line1, address_line2, city, region, postal_code, country) VALUES ('9', 'Street 9', 'Apt 9', 'Los Angeles', 'TX', '10008', 'Canada');
 INSERT INTO address (house_unit_no, address_line1, address_line2, city, region, postal_code, country) VALUES ('10', 'Street 10', 'Apt 10', 'Houston', 'AZ', '10009', 'USA');
