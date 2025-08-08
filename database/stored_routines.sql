@@ -6,7 +6,7 @@ USE shopping_website_db;
 
 DELIMITER $$
 
--- Stored Procedure: GetCustomerOrders
+-- Stored Procedure: GetCustomerOrders 
 -- Input: cust_username (VARCHAR) - username of the customer
 -- Output: All orders placed by the given customer
 CREATE PROCEDURE GetCustomerOrders(IN cust_username VARCHAR(50))
@@ -32,3 +32,4 @@ BEGIN
 END $$
 
 DELIMITER ;
+
