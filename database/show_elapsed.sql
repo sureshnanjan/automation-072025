@@ -3,7 +3,7 @@
 -- See: http://creativecommons.org/licenses/by-sa/3.0/
 
 -- show_elapsed.sql
--- This script calculates the approximate duration between the earliest table creation
+-- This script calculates the approximate duration between the earliest table creation 
 -- and the latest table update within the 'shopping_website_db' database.
 -- It provides an estimate of the total data load or modification time.
 
@@ -18,3 +18,4 @@ SELECT TIMEDIFF(
      FROM information_schema.tables
      WHERE table_schema = 'shopping_website_db')
 ) AS data_load_time_diff;
+
