@@ -3,3 +3,4 @@ INSERT INTO product_category (category_name) VALUES ('Clothing');
 INSERT INTO product_category (category_name) VALUES ('Books');
 INSERT INTO product_category (category_name) VALUES ('Home');
 INSERT INTO product_category (category_name) VALUES ('Sports'); 
+ 
