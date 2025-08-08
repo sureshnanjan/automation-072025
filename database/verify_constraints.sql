@@ -6,7 +6,7 @@ USE shopping_website_db;
 
 -- Check 1: Verify there are no NULL values in mandatory fields across important tables.
 -- This helps ensure essential data integrity by identifying missing required information.
-SELECT 'Checking for NULL values in mandatory fields...' AS check_name;
+SELECT 'Checking for NULL values in mandatory fields...' AS check_name; 
 
 -- Check user_account table for missing usernames or email addresses (both required).
 SELECT 'user_account table', COUNT(*) AS null_count
@@ -40,3 +40,4 @@ WHERE order_id NOT IN (SELECT order_id FROM customer_order);
 SELECT order_line_id
 FROM customer_order_line
 WHERE product_id NOT IN (SELECT product_id FROM product);
+
