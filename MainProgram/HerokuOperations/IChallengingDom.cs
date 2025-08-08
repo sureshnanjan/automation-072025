@@ -24,7 +24,7 @@ namespace HerokuOperations
         /// </summary>
         string Title { get; }
 
-        /// <summary>
+       /// <summary>
         /// Gets the main description text of the page.
         /// </summary>
         string Description { get; }
@@ -159,5 +159,6 @@ namespace HerokuOperations
         /// Returns the GitHub ribbon message (if any).
         /// </summary>
         string GetGitHubRibbonText();
+
     }
 }

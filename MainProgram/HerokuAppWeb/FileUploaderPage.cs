@@ -16,6 +16,7 @@
 
 
 using OpenQA.Selenium;
+using OpenQA.Selenium.DevTools.V136.Page;
 using System;
 using System.IO;
 
@@ -31,6 +32,7 @@ namespace HerokuOperations
         private readonly string _url = "https://the-internet.herokuapp.com/upload";
 
         // Locators
+        private readonly By pageContentLocator = By.TagName("h3");
         private readonly By fileInput = By.Id("file-upload");
         private readonly By uploadButton = By.Id("file-submit");
         private readonly By uploadedFiles = By.Id("uploaded-files");
@@ -62,7 +64,7 @@ namespace HerokuOperations
         /// <returns>The text content of the main header.</returns>
         public string GetPageContent()
         {
-            return _driver.FindElement(By.TagName("h3")).Text;
+            return _driver.FindElement(pageContentLocator).Text;
         }
 
         /// <summary>

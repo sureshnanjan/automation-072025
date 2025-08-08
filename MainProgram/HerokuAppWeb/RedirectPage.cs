@@ -14,7 +14,6 @@
 // using Selenium WebDriver.
 // -------------------------------------------------------------------------------------------------
 
-
 using OpenQA.Selenium;
 using System;
 using System.Linq;
