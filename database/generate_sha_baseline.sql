@@ -7,7 +7,7 @@ USE shopping_website_db;
 
 -- Drop any existing 'found_values' and temporary checksum table to avoid conflicts
 DROP TABLE IF EXISTS found_values;
-DROP TABLE IF EXISTS tchecksum;
+DROP TABLE IF EXISTS tchecksum;  
 
 -- Create a table to store the current (found) record counts and SHA1 checksums per table
 CREATE TABLE found_values (
@@ -158,3 +158,4 @@ DROP TABLE tchecksum;
 
 -- Output the current record counts and checksums for each table for comparison or verification
 SELECT * FROM found_values ORDER BY table_name;
+
