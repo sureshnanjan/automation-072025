@@ -1,0 +1,10 @@
+INSERT INTO colour (colour_name)
+VALUES 
+('Red'),
+('Black'),
+('Green'),
+('White'),
+('Brown'),
+('Pink'),
+('Blue'),
+('Ash');
