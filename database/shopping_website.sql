@@ -5,7 +5,7 @@
 -- Description:
 -- This script sets up the shopping_website_db database from scratch.
 -- It includes:
---   - Dropping and creating the database
+--   - Dropping and creating the database 
 --   - Creating all necessary tables with relationships and constraints
 --   - Creating useful views for reporting
 --   - Loading data dumps into each table in a dependency-safe order
@@ -280,4 +280,5 @@ source load_supplier_order_line.dump;
 
 -- Useful for performance monitoring during loading and setup
 source show_elapsed.sql;
+
 
