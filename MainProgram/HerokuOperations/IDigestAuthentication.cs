@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HerokuOperations
 {
-    internal interface IDigestAuthentication
+    public interface IDigestAuthentication
     {
         void GoToPage();// Navigate to the digest authentication page
 
