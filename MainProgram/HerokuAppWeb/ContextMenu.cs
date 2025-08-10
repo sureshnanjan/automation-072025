@@ -1,56 +1,92 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
-using System;
+﻿/*
+* -------------------------------------------------------------------------------------
+*  Copyright (c) 2025 Sowmya Sridhar
+*  All Rights Reserved.
+*  
+*  Permission is hereby granted to use and modify this code for personal 
+*  and educational purposes only. Redistribution or commercial use without 
+*  prior written consent is prohibited.
+* -------------------------------------------------------------------------------------
+*/
 
-namespace HerokuOperations
+using System;
+using HerokuOperations;
+using OpenQA.Selenium;
+using WebAutomation.Core;
+
+namespace HerokuOperations.Implementations
 {
+    /// <summary>
+    /// Represents the Context Menu page in the application using the Page Object Model pattern.
+    /// Provides methods to interact with the right-click box and verify related UI behaviors.
+    /// </summary>
     public class ContextMenuPage : IContextMenu
     {
-        private readonly IWebDriver _driver;
-        private readonly string _url = "https://the-internet.herokuapp.com/context_menu";
+        private readonly WebDriverWrapper _driver;
 
         // Locators
-        private readonly By _titleLocator = By.TagName("h3");
-        private readonly By _infoTextLocator = By.CssSelector(".example p");
-        private readonly By _boxLocator = By.Id("hot-spot");
+        private readonly ElementLocator _boxLocator = new ElementLocator(By.Id("hot-spot"), "Right-Click Box");
+        private readonly ElementLocator _infoTextLocator = new ElementLocator(By.XPath("//h3"), "Information Text");
 
-        public ContextMenuPage(IWebDriver driver)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ContextMenuPage"/> class.
+        /// </summary>
+        /// <param name="driver">Instance of WebDriverWrapper for interacting with the browser.</param>
+        /// <exception cref="ArgumentNullException">Thrown when driver is null.</exception>
+        public ContextMenuPage(WebDriverWrapper driver)
         {
-            _driver = driver;
+            _driver = driver ?? throw new ArgumentNullException(nameof(driver));
         }
 
+        /// <summary>
+        /// Navigates to the Context Menu page.
+        /// </summary>
         public void GoToPage()
         {
-            _driver.Navigate().GoToUrl(_url);
+            _driver.Driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/context_menu");
         }
 
+        /// <summary>
+        /// Retrieves the title of the current page.
+        /// </summary>
+        /// <returns>The title of the browser page as a string.</returns>
         public string GetTitle()
         {
-            return _driver.FindElement(_titleLocator).Text;
+            return _driver.Driver.Title;
         }
 
+        /// <summary>
+        /// Retrieves the informational text displayed on the page.
+        /// </summary>
+        /// <returns>The page's header text.</returns>
         public string GetInformation()
         {
-            return _driver.FindElement(_infoTextLocator).Text;
+            return _driver.GetText(_infoTextLocator);
         }
 
+        /// <summary>
+        /// Performs a right-click action on the designated box element.
+        /// </summary>
         public void RIghtClickOnBox()
         {
-            IWebElement box = _driver.FindElement(_boxLocator);
-            Actions actions = new Actions(_driver);
-            actions.ContextClick(box).Perform(); // Right-click
+            _driver.RightClick(_boxLocator);
         }
 
+        /// <summary>
+        /// Retrieves the text from the alert displayed after a right-click.
+        /// </summary>
+        /// <returns>The alert message as a string.</returns>
         public string GetAlertText()
         {
-            IAlert alert = _driver.SwitchTo().Alert();
-            return alert.Text;
+            return _driver.GetAlertText();
         }
 
+        /// <summary>
+        /// Accepts and closes the currently active browser alert.
+        /// </summary>
         public void AcceptAlert()
         {
-            IAlert alert = _driver.SwitchTo().Alert();
-            alert.Accept();
+            _driver.AcceptAlert();
         }
     }
 }

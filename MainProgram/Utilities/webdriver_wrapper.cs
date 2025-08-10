@@ -332,8 +332,8 @@ namespace WebAutomation.Core
             try
             {
                 var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeoutSeconds));
-                //var element = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator.By));
-                bool? element = null;
+                var element = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator.By));
+                //bool? element = null;
                 return element != null;
             }
             catch (WebDriverTimeoutException)
@@ -347,7 +347,7 @@ namespace WebAutomation.Core
             try
             {
                 var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeoutSeconds));
-                bool element = false;  //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(locator.By));
+                bool element = false;  wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(locator.By));
 
                 return element;
             }
@@ -656,8 +656,8 @@ namespace WebAutomation.Core
             try
             {
                 var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(locator.TimeoutSeconds));
-                //return wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator.By));
-                return null;
+                return wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator.By));
+                // return null;
             }
             catch (WebDriverTimeoutException ex)
             {
@@ -670,8 +670,8 @@ namespace WebAutomation.Core
             try
             {
                 var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(locator.TimeoutSeconds));
-                //return wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(locator.By));
-                return null;
+                return wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(locator.By));
+                //return null;
             }
             catch (WebDriverTimeoutException ex)
             {
@@ -679,13 +679,13 @@ namespace WebAutomation.Core
             }
         }
 
-        public void WaitForElementToDisappear(ElementLocator locator, int timeoutSeconds = 30)
+        public object WaitForElementToDisappear(ElementLocator locator, int timeoutSeconds = 30)
         {
             try
             {
                 var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(timeoutSeconds));
-                //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.InvisibilityOfElementLocated(locator.By));
-                //return null ;
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.InvisibilityOfElementLocated(locator.By));
+                return null ;
             }
             catch (WebDriverTimeoutException ex)
             {
