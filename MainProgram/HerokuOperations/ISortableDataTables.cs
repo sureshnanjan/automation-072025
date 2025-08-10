@@ -11,7 +11,7 @@ namespace HerokuOperations
     /// <summary>
     /// Interface representing actions and properties for the Sortable Data Tables page.
     /// </summary>
-    internal interface ISortableDataTables
+    public interface ISortableDataTables
     {
         /// <summary>
         /// Navigates to the Sortable Data Tables page.
