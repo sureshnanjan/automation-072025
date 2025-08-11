@@ -1,4 +1,4 @@
-CREATE DEFINER=`root`@`localhost` PROCEDURE `ValidateAllTablesMD5`()
+CREATE DEFINER=`root`@`localhost` PROCEDURE `md5_StoredProcedure`()
 BEGIN
     DECLARE done INT DEFAULT 0;
     DECLARE tname VARCHAR(64);
@@ -90,3 +90,4 @@ BEGIN
     JOIN found_values f USING (table_name)
     ORDER BY e.table_name;
 END
+
