@@ -1,0 +1,2 @@
+INSERT INTO size (size_name) VALUES
+('S'), ('M'), ('L'), ('XL'), ('XXL');
