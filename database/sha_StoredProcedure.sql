@@ -1,41 +1,6 @@
-DELIMITER $$
 
--- -------------------------------------------------------------------------------------------------
--- © 2025 Elangovan R. All rights reserved.
--- This file is part of the Database Validation Suite.
--- Unauthorized copying or distribution of this code, via any medium, is strictly prohibited.
--- Proprietary and confidential.
---
--- Author: Elangovan R.
--- Created On: 2025-08-11
---
--- Description:
--- This stored procedure ValidateAllTablesSHA1 validates data integrity for all tables listed in the
--- 'expected_values' table within the current database schema. It computes a SHA1 checksum over the
--- concatenated row data of each table, ordered by primary key columns (or all columns if no primary key),
--- and compares the result against expected baseline values.
---
--- The procedure performs the following:
--- 1. Iterates through all table names in 'expected_values'.
--- 2. For each table:
---    - Retrieves a list of all columns, wrapping NULLs safely.
---    - Retrieves the primary key columns or falls back to all columns for ordering.
---    - Computes the row count and a SHA1 hash of concatenated column values, ordered by the PK.
--- 3. Inserts the computed counts and hashes into a temporary 'found_values' table.
--- 4. Outputs three result sets:
---    a. Expected baseline values.
---    b. Computed found values.
---    c. Comparison results showing if record counts and checksums match.
---
--- Usage:
--- CALL ValidateAllTablesSHA1();
---
--- Notes:
--- - The procedure sets the session variable 'group_concat_max_len' to a high value to avoid truncation.
--- - NULL values are represented as '<NULL>' in concatenation for checksum stability.
--- -------------------------------------------------------------------------------------------------
 
-CREATE PROCEDURE ValidateAllTablesSHA1()
+CREATE PROCEDURE sha_StoredProcedure()
 BEGIN
     DECLARE done INT DEFAULT 0;
     DECLARE tname VARCHAR(64);
@@ -126,5 +91,6 @@ BEGIN
     JOIN found_values f USING (table_name)
     ORDER BY e.table_name;
 END$$
+
 
 DELIMITER ;
