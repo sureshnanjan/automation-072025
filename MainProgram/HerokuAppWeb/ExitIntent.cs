@@ -1,5 +1,5 @@
 ﻿/*******************************************************
-* Copyright (c) 2025, Shreya S G
+* Copyright (c) 2025, Arpita Neogi
 * All rights reserved.
 * 
 * File: ExitIntentPage.cs
