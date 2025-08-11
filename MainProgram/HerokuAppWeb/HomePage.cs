@@ -11,9 +11,9 @@ namespace HerokuAppWeb
         private By repoLocator;
         private IWebDriver driver;
 
-        public HomePage(IWebDriver driver)
+        public HomePage()
         {
-            this.driver = driver;
+            this.driver = new ChromeDriver();
             this.repoLocator = By.XPath("/html/body/div[2]/a/img");
             this.titlelocator = By.TagName("h1");
             this.subtitleLocator = By.TagName("h2");
@@ -33,7 +33,9 @@ namespace HerokuAppWeb
 
         public string[] getAvailableExamples()
         {
+
             this.driver.FindElements(exampleLocator);
+            return new string[]{"","" };
         }
 
         public string GetRepoUrl()
@@ -61,6 +63,8 @@ namespace HerokuAppWeb
 
         public string GetTitle()
         {
+            Console.WriteLine($"Fetching the Title from {this.driver.Title}");
+            Console.WriteLine($"Using the locator {titlelocator}");
             return this.driver.FindElement(this.titlelocator).Text;
         }
 
