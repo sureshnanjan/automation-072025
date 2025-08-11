@@ -6,11 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-<<<<<<< HEAD
   <ItemGroup>
-    <PackageReference Include="Selenium.Support" Version="4.34.0" />
+    <PackageReference Include="Appium.WebDriver" Version="8.0.0" />
   </ItemGroup>
 
-=======
->>>>>>> e61a7b07dfaee872f7c92bafa503b62494e5548e
+  <ItemGroup>
+    <ProjectReference Include="..\HerokuOperations\HerokuOperations.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -2,6 +2,13 @@ using Automator;
 using MainProgram;
 using Models;
 using System.Collections.Generic;
+<<<<<<< HEAD
+=======
+using System.Net.Mail;
+using System.Reflection;
+
+
+>>>>>>> e61a7b07dfaee872f7c92bafa503b62494e5548e
 public class Program
 {
     public delegate void MyMethodwithNoArguments();
@@ -30,6 +37,84 @@ public class Program
         //GreetUser("Holiday");
         //MyMethodwithNoArguments method1 = delegatesDemo();
 
+        //UsingDelegatesDemo();
+
+        //pubSubDemo();
+        //eventFiringDemo();
+        // Feed the pets
+        Fish[] myfishes = { };
+        Cat[] mycats = { };
+        //feedCAt(catinst);
+        //feedFish(fishinstance);// { }
+        
+
+
+
+    }
+
+
+    private static void sendEmail() {
+
+        string sender = "tester@ascendion.com";
+        string receiver = "qagroup@ascendion.com";
+        SmtpClient serveice;
+        string message = "Sending Automation Results";
+        FileStream attachments;
+        
+    }
+
+    private static void sendEmailDI(string sender, string receiver, SmtpClient service, string mess, FileStream attach) { }
+
+    private static void feedFish(Fish fish, object fishinstance)
+    {
+        throw new NotImplementedException();
+    }
+
+    private static void feedCAt(Cat cat, object catinst)
+    {
+        throw new NotImplementedException();
+    }
+
+    private static void eventFiringDemo()
+    {
+        TypeWithEvent typeWithEvent = new TypeWithEvent();
+        typeWithEvent.Event += sendSMS;
+        typeWithEvent.Event += sendEmail;
+        typeWithEvent.Event += (s, ea) => { Console.WriteLine($"Handling the Event from  WHATS APP{s} with data {ea.ToString()}"); };
+        typeWithEvent.FireEvent();
+    }
+
+    private static void sendSMS(object? sender, EventArgs e)
+    {
+        Console.WriteLine($"Handling the Event from  SMS {sender} with data {e.ToString()}");
+    }
+    private static void sendEmail(object? sender, EventArgs e)
+    {
+        Console.WriteLine($"Handling the Event from  EMAIL {sender} with data {e.ToString()}");
+    }
+
+    private static void pubSubDemo()
+    {
+        EventEmitter eventEmitter = new EventEmitter();
+        EventSubscriber mailnotification = new EventSubscriber("Email Notification");
+        EventSubscriber smsnotification = new EventSubscriber("SMS Notification");
+        EventSubscriber whatsapp = new EventSubscriber("Whats App Notification");
+        eventEmitter.Subscribe(mailnotification);
+        eventEmitter.Subscribe(smsnotification);
+        eventEmitter.Subscribe(whatsapp);
+        try
+        {
+            eventEmitter.PublishEvent(new EventArgs());
+        }
+        catch (Exception)
+        {
+
+            throw;
+        }
+    }
+
+    private static void UsingDelegatesDemo()
+    {
         doExecution(Method1);
         doExecution(() => Console.WriteLine("This is something different"));
         Action<string> strOp = (arg) => Console.WriteLine($"{arg}-{arg}-{arg}");
@@ -42,8 +127,11 @@ public class Program
 
         SuperMan superMan = new SuperMan();
         superMan.Play(() => { Console.WriteLine("PLaywith English"); });
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> e61a7b07dfaee872f7c92bafa503b62494e5548e
     }
 
     private static MyMethodwithNoArguments delegatesDemo()

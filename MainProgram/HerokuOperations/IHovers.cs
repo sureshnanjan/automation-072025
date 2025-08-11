@@ -1,12 +1,11 @@
-<<<<<<< HEAD
-﻿// -----------------------------------------------------------------------
+// -----------------------------------------------------------------------
 // <copyright>
 //     Copyright (c) 2025 K Vamsi Krishna. All rights reserved.
 // </copyright>
 // -----------------------------------------------------------------------
 
 using HerokuOperations;
-=======
+
 ﻿/*
  * IHoverProfile Interface
  * 
@@ -21,13 +20,12 @@ using HerokuOperations;
  * © 2025 Teja Reddy. All rights reserved.
  */
 
->>>>>>> 39d9ac82c94ebdaa9a086c8441be75d73dc53ddb
+
 using System;
 
 namespace HerokuOperations
 {
     /// <summary>
-<<<<<<< HEAD
     /// Provides methods to interact with the Hovers page.
     /// </summary>
     public interface IHovers
@@ -82,7 +80,7 @@ namespace HerokuOperations
         /// </summary>
         /// <returns>True if the ribbon is present and interactable; otherwise, false.</returns>
         bool IsGitHubRibbonVisible();
-=======
+
     /// Interface to define operations related to the Hover feature on HerokuApp.
     /// </summary>
     public interface IHoverProfile
@@ -98,7 +96,7 @@ namespace HerokuOperations
         /// </summary>
         /// <returns>The description string.</returns>
         string Description();
->>>>>>> 39d9ac82c94ebdaa9a086c8441be75d73dc53ddb
+
 
         /// <summary>
         /// Gets the name of the user shown after hovering over the profile image.

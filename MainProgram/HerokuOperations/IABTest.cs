@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿/*
 <<<<<<< HEAD
 * IABTest Interface
@@ -49,6 +50,20 @@ namespace HerokuOperations
         /// <summary>
         /// Disables the A/B test by navigating with a query parameter or custom logic.
         /// </summary>
+=======
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HerokuOperations
+{
+    public interface IABTest
+    {
+        string GetTitle();
+        string GetDescription();
+>>>>>>> e61a7b07dfaee872f7c92bafa503b62494e5548e
         void DisableABTest();
     }
 }

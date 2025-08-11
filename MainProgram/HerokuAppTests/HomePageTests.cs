@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+=======
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+>>>>>>> e61a7b07dfaee872f7c92bafa503b62494e5548e
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.DevTools;
@@ -51,7 +55,11 @@ namespace HerokuAppTests
             //options.Enable
             ChromeOptions options = new ChromeOptions();
             ChromeDriver driver = new ChromeDriver(options);
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> e61a7b07dfaee872f7c92bafa503b62494e5548e
             try
             {
                 var devTools = driver.GetDevToolsSession();

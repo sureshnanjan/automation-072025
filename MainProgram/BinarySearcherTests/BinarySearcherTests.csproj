@@ -13,8 +13,19 @@
 		<PackageReference Include="MSTest.TestAdapter" Version="3.6.1" />
 	</ItemGroup>
 
+<<<<<<< HEAD
 	<ItemGroup>
 		<ProjectReference Include="..\BinarySearcher\BinarySearcher.csproj" />
 	</ItemGroup>
+=======
+  <ItemGroup>
+    <ProjectReference Include="..\BinarySearcher\BinarySearcher.csproj" />
+    <ProjectReference Include="..\CustomExtensions\CustomExtensions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
+  </ItemGroup>
+>>>>>>> e61a7b07dfaee872f7c92bafa503b62494e5548e
 
 </Project>

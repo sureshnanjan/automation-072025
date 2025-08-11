@@ -18,12 +18,32 @@ namespace HerokuAppWeb
             this.titlelocator = By.TagName("h1");
             this.subtitleLocator = By.TagName("h2");
             this.exampleLocator = By.TagName("li");
+<<<<<<< HEAD
             this.driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
+=======
+            try
+            {
+                this.driver.Navigate().GoToUrl("https://the-internet.herokuapp.com/");
+
+            }
+            catch (ArgumentNullException ex)
+            {
+
+                throw;
+            }
+            
+>>>>>>> e61a7b07dfaee872f7c92bafa503b62494e5548e
         }
 
         public string[] getAvailableExamples()
         {
+<<<<<<< HEAD
             throw new NotImplementedException();
+=======
+
+            this.driver.FindElements(exampleLocator);
+            return new string[]{"","" };
+>>>>>>> e61a7b07dfaee872f7c92bafa503b62494e5548e
         }
 
         public string GetRepoUrl()
@@ -33,11 +53,33 @@ namespace HerokuAppWeb
 
         public string GetSubTitle()
         {
+<<<<<<< HEAD
             return this.driver.FindElement(this.subtitleLocator).Text;
+=======
+            try
+            {
+                return this.driver.FindElement(this.subtitleLocator).Text;
+
+            }
+            catch (ArgumentNullException)
+            {
+
+                throw;
+            }
+            catch (NoSuchElementException elemnotfound) {
+                throw;
+            }
+            
+>>>>>>> e61a7b07dfaee872f7c92bafa503b62494e5548e
         }
 
         public string GetTitle()
         {
+<<<<<<< HEAD
+=======
+            Console.WriteLine($"Fetching the Title from {this.driver.Title}");
+            Console.WriteLine($"Using the locator {titlelocator}");
+>>>>>>> e61a7b07dfaee872f7c92bafa503b62494e5548e
             return this.driver.FindElement(this.titlelocator).Text;
         }
 

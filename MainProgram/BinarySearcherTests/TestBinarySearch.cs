@@ -1,5 +1,10 @@
 ﻿using BinarySearcher;
+<<<<<<< HEAD
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+=======
+using System.Collections;
+using CustomExtensions;
+>>>>>>> e61a7b07dfaee872f7c92bafa503b62494e5548e
 namespace BinarySearcherTests
 {
     [TestClass]
@@ -49,6 +54,15 @@ namespace BinarySearcherTests
             int actualresult = SUT.doBinarySearch(inputArray, elementToFind);
             // Assert
             Assert.AreEqual(expectedIndex, actualresult, "The element was not found at the expected index.");
+        }
+        [TestMethod]
+        public void ElementFoundForRangeOK() {
+            int[] inputArray = { 1, 2, 3, 4, 6, 7, 8, 9, 10 };
+            //inputArray.Add
+          
+            int elementToFind = 0;
+            int actual = Array.BinarySearch(inputArray, 1,5,elementToFind);
+
         }
     }
 }
