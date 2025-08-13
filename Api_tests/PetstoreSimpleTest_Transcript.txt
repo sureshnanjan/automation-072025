@@ -1,0 +1,75 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20250812164926
+Username: ASCENDI-6COJU9A\Ascendion
+RunAs User: ASCENDI-6COJU9A\Ascendion
+Configuration Name: 
+Machine: ASCENDI-6COJU9A (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 1380
+PSVersion: 5.1.26100.4652
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.4652
+BuildVersion: 10.0.26100.4652
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Users\Ascendion\Desktop\PetstoreSimpleTest_Transcript.txt
+PS C:\Users\Ascendion> try {
+    Write-Host "=== Starting Petstore Simple Test ===" -ForegroundColor Cyan
+
+    # Create a new pet with random ID
+    $newPet = @{
+        id = (Get-Random -Minimum 100000 -Maximum 999999)
+        name = "SimpleTestPet_" + (Get-Date -Format "HHmmss")
+        status = "available"
+    }
+    Write-Host "`nCreating pet..."
+    $addPetResp = Invoke-RestMethod -Uri "$BaseUrl/pet" -Method Post -ContentType "application/json" -Body ($newPet | ConvertTo-Json)
+    Write-Host "Created Pet ID: $($addPetResp.id)"
+
+    # Use created pet ID to fetch pet
+    $PetId = $addPetResp.id
+    Write-Host "`nFetching pet by ID $PetId..."
+    $getPetResp = Invoke-RestMethod -Uri "$BaseUrl/pet/$PetId" -Method Get
+    Write-Host "Got Pet Data:" ($getPetResp | ConvertTo-Json -Depth 5)
+}
+catch {
+    Write-Host "An error occurred:" $_ -ForegroundColor Red
+}
+=== Starting Petstore Simple Test ===
+
+Creating pet...
+Created Pet ID: 164253
+
+Fetching pet by ID 164253...
+PS C:\Users\Ascendion> TerminatingError(Invoke-RestMethod): "The remote server returned an error: (404) Not Found."
+An error occurred: The remote server returned an error: (404) Not Found.
+PS C:\Users\Ascendion> finally {
+    Write-Host "`n=== Test Complete. Stopping transcript ===" -ForegroundColor Cyan
+    Stop-Transcript
+}
+finally : The term 'finally' is not recognized as the name of a cmdlet, function, script file, or operable program. 
+Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ finally {
++ ~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (finally:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+finally : The term 'finally' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling
+of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ finally {
++ ~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (finally:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Users\Ascendion> cd Downloads
+PS C:\Users\Ascendion\Downloads> Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+PS C:\Users\Ascendion\Downloads> .\PetstoreSimpleTest.ps1
+**********************
+Windows PowerShell transcript end
+End time: 20250812165222
+**********************
