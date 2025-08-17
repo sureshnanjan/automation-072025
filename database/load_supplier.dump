@@ -1,0 +1,6 @@
+INSERT INTO supplier (supplier_name) VALUES ('SupplierA');
+INSERT INTO supplier (supplier_name) VALUES ('SupplierB'); 
+INSERT INTO supplier (supplier_name) VALUES ('SupplierC');
+INSERT INTO supplier (supplier_name) VALUES ('SupplierD');
+INSERT INTO supplier (supplier_name) VALUES ('SupplierE');
+INSERT INTO supplier (supplier_name) VALUES ('SupplierF');
