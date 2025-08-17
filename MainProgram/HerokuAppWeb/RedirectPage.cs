@@ -15,6 +15,7 @@
 // -------------------------------------------------------------------------------------------------
 
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using System;
 using System.Linq;
 
@@ -40,9 +41,13 @@ namespace HerokuOperations
         /// </summary>
         /// <param name="driver">Instance of Selenium WebDriver.</param>
         /// <exception cref="ArgumentNullException">Thrown if driver is null.</exception>
-        public RedirectPage(IWebDriver driver)
+        public RedirectPage()
         {
-            _driver = driver ?? throw new ArgumentNullException(nameof(driver));
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddArgument("--headless"); // Optional: headless mode for speed
+            _driver = new ChromeDriver(chromeOptions);
+
+            _driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
             _driver.Navigate().GoToUrl(_baseUrl);
         }
 
