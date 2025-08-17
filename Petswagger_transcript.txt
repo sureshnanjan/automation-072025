@@ -1,0 +1,97 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20250817211146
+Username: ASCENDI-8POD398\Ascendion
+RunAs User: ASCENDI-8POD398\Ascendion
+Configuration Name: 
+Machine: ASCENDI-8POD398 (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 8592
+PSVersion: 5.1.26100.4768
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.4768
+BuildVersion: 10.0.26100.4768
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Users\Ascendion\Desktop\Petswagger.txt
+PS C:\Users\Ascendion> curl -X POST https://petstore.swagger.io/v2/pet `
+  -H "Content-Type: application/json" `
+  -d '{
+    "id": 123,
+    "name": "Fluffy",
+    "status": "available"
+  }'
+PS C:\Users\Ascendion> TerminatingError(Invoke-WebRequest): "Cannot bind parameter 'Headers'. Cannot convert the "Content-Type: application/json" value of type "System.String" to type "System.Collections.IDictionary"."
+Invoke-WebRequest : Cannot bind parameter 'Headers'. Cannot convert the "Content-Type: application/json" value of type 
+"System.String" to type "System.Collections.IDictionary".
+At line:2 char:6
++   -H "Content-Type: application/json" `
++      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Invoke-WebRequest], ParameterBindingException
+    + FullyQualifiedErrorId : CannotConvertArgumentNoMessage,Microsoft.PowerShell.Commands.InvokeWebRequestCommand
+Invoke-WebRequest : Cannot bind parameter 'Headers'. Cannot convert the "Content-Type: application/json" value of type
+"System.String" to type "System.Collections.IDictionary".
+At line:2 char:6
++   -H "Content-Type: application/json" `
++      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Invoke-WebRequest], ParameterBindingException
+    + FullyQualifiedErrorId : CannotConvertArgumentNoMessage,Microsoft.PowerShell.Commands.InvokeWebRequestCommand
+
+PS C:\Users\Ascendion>  curl.exe -X POST https://petstore.swagger.io/v2/pet -H "Content-Type: application/json" -d '{ "id": 123,  "name": "Fluffy",   "status": "available"  }'
+{"code":400,"type":"unknown","message":"bad input"}
+PS C:\Users\Ascendion> curl.exe -X POST https://petstore.swagger.io/v2/pet -H "Content-Type: application/json" -d '{\"id\":123,\"name\":\"Fluffy\",\"status\":\"available\"}'
+{"id":123,"name":"Fluffy","photoUrls":[],"tags":[],"status":"available"}
+PS C:\Users\Ascendion> curl.exe -X PUT https://petstore.swagger.io/v2/pet -H "Content-Type: application/json" -d '{\"id\":123,\"name\":\"Fluffy\",\"status\":\"sold\"}'
+{"id":123,"name":"Fluffy","photoUrls":[],"tags":[],"status":"sold"}
+PS C:\Users\Ascendion> curl.exe -X GET https://petstore.swagger.io/v2/pet/123 -H "Accept: application/json"
+{"id":123,"name":"Fluffy","photoUrls":[],"tags":[],"status":"available"}
+PS C:\Users\Ascendion> curl.exe -X DELETE https://petstore.swagger.io/v2/pet/123 -H "api_key: special-key"
+{"code":200,"type":"unknown","message":"123"}
+PS C:\Users\Ascendion> curl.exe -X GET "https://petstore.swagger.io/v2/pet/findByStatus?status=available" -H "Accept: application/json"
+y":{"id":2,"name":"dog"},"name":"doggie-yoggie","photoUrls":[],"tags":[],"status":"available"}]
+PS C:\Users\Ascendion> curl.exe -X GET "https://petstore.swagger.io/v2/pet/findByTags?tags=tag1,tag2" -H "Accept: application/json"
+"available"}]
+PS C:\Users\Ascendion> curl.exe -X POST "https://petstore.swagger.io/v2/pet/123/uploadImage" -H "Content-Type: multipart/form-data" -F "file=@C:\path\to\image.jpg"
+
+PS C:\Users\Ascendion> curl.exe -X POST "https://petstore.swagger.io/v2/pet/123/uploadImage" -H "Content-Type: multipart/form-data" -F "file=@C:\Users\Ascendion\Downloads\dog.jpg"
+{"code":200,"type":"unknown","message":"additionalMetadata: null\nFile uploaded to ./dog.jpg, 760178 bytes"}
+PS C:\Users\Ascendion> curl.exe -X GET "https://petstore.swagger.io/v2/pet/123" -H "Accept: application/json"
+{"code":1,"type":"error","message":"Pet not found"}
+PS C:\Users\Ascendion> curl.exe -X GET "https://petstore.swagger.io/v2/store/inventory" -H "Accept: application/json"
+":1,"Rabta":1,"123":9,"inactive":1,"true":10,"Booked":1,"Available":1}
+PS C:\Users\Ascendion> curl.exe -X POST "https://petstore.swagger.io/v2/store/order" -H "Content-Type: application/json" -d '{ "id": 1, "petId": 123, "quantity": 1, "shipDate": "2025-08-17T00:00:00.000Z", "status": "placed", "complete": true }'
+{"code":400,"type":"unknown","message":"bad input"}
+PS C:\Users\Ascendion> curl.exe -X GET "https://petstore.swagger.io/v2/store/order/1" -H "Accept: application/json"
+{"code":1,"type":"error","message":"Order not found"}
+PS C:\Users\Ascendion> curl.exe -X POST "https://petstore.swagger.io/v2/pet" -H "Content-Type: application/json" -d '{ "id": 5555, "name": "Fluffy", "photoUrls": [""], "status": "available" }'
+{"code":400,"type":"unknown","message":"bad input"}
+PS C:\Users\Ascendion> curl.exe -X POST "https://petstore.swagger.io/v2/pet" -H "Content-Type: application/json" -d '{ "id": 5555, "name": "Fluffy", "category": {"id":1,"name":"dogs"}, "photoUrls": ["https://example.com/fluffy.jpg"], "tags": [{"id":1,"name":"cute"}], "status": "available" }'
+{"code":400,"type":"unknown","message":"bad input"}
+PS C:\Users\Ascendion> curl.exe -X POST "https://petstore.swagger.io/v2/pet" -H "Content-Type: application/json" -d '{\"id\":5555,\"name\":\"Fluffy\",\"category\":{\"id\":1,\"name\":\"dogs\"},\"photoUrls\":[\"\"],\"tags\":[{\"id\":1,\"name\":\"cute\"}],\"status\":\"available\"}'
+{"id":5555,"category":{"id":1,"name":"dogs"},"name":"Fluffy","photoUrls":[""],"tags":[{"id":1,"name":"cute"}],"status":"available"}
+PS C:\Users\Ascendion> curl.exe -X GET "https://petstore.swagger.io/v2/pet/5555" -H "Accept: application/json"
+{"id":5555,"category":{"id":1,"name":"dogs"},"name":"Fluffy","photoUrls":[""],"tags":[{"id":1,"name":"cute"}],"status":"available"}
+PS C:\Users\Ascendion> curl.exe -X PUT "https://petstore.swagger.io/v2/pet" -H "Content-Type: application/json" -d '{\"id\":5555,\"name\":\"FluffyUpdated\",\"category\":{\"id\":1,\"name\":\"dogs\"},\"photoUrls\":[\"\"],\"tags\":[{\"id\":1,\"name\":\"cute\"}],\"status\":\"sold\"}'
+{"id":5555,"category":{"id":1,"name":"dogs"},"name":"FluffyUpdated","photoUrls":[""],"tags":[{"id":1,"name":"cute"}],"status":"sold"}
+PS C:\Users\Ascendion> curl.exe -X POST "https://petstore.swagger.io/v2/user" -H "Content-Type: application/json" -d '{\"id\":1,\"username\":\"john_doe\",\"firstName\":\"John\",\"lastName\":\"Doe\",\"email\":\"john.doe@example.com\",\"password\":\"password123\",\"phone\":\"123-456-7890\",\"userStatus\":1}'
+{"code":200,"type":"unknown","message":"1"}
+PS C:\Users\Ascendion> curl.exe -X GET "https://petstore.swagger.io/v2/user/john_doe" -H "Accept: application/json"
+3-456-7890","userStatus":1}
+PS C:\Users\Ascendion> curl.exe -X PUT "https://petstore.swagger.io/v2/user/john_doe" -H "Content-Type: application/json" -d '{\"firstName\":\"Jonathan\",\"lastName\":\"Doe\",\"email\":\"jonathan.doe@example.com\"}'
+{"code":200,"type":"unknown","message":"0"}
+PS C:\Users\Ascendion> curl.exe -X DELETE "https://petstore.swagger.io/v2/user/john_doe"
+
+PS C:\Users\Ascendion> curl.exe -X GET "https://petstore.swagger.io/v2/user/login?username=john_doe&password=password123" -H "Accept: application/json"
+{"code":200,"type":"unknown","message":"logged in user session:1755448819625"}
+PS C:\Users\Ascendion> curl.exe -X GET "https://petstore.swagger.io/v2/user/logout" -H "Accept: application/json"
+{"code":200,"type":"unknown","message":"ok"}
+PS C:\Users\Ascendion> curl.exe -X GET "https://petstore.swagger.io/v2/ping" -H "Accept: application/json"
+{"code":404,"type":"unknown","message":"null for uri: http://petstore.swagger.io/v2/ping"}
+PS C:\Users\Ascendion> stop-Transcript
+**********************
+Windows PowerShell transcript end
+End time: 20250817221118
+**********************
