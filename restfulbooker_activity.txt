@@ -1743,43 +1743,7 @@ At line:1 char:37
 +                                     ~
 The hash literal was incomplete.
 At line:1 char:37
-+ PS C:\Users\Ascendion> $headers = @{
-+                                     ~
-The hash literal was incomplete.
-    + CategoryInfo          : ParserError: (:) [], ParentContainsErrorRecordException
-    + FullyQualifiedErrorId : IncompleteHashLiteral
 
-PS C:\Users\Ascendion> >>     Accept = "application/json"
->> : The term '>>' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
-spelling of the name, or if a path was included, verify that the path is correct and try again.
-At line:1 char:1
-+ >>     Accept = "application/json"
-+ ~~
-    + CategoryInfo          : ObjectNotFound: (>>:String) [], CommandNotFoundException
-    + FullyQualifiedErrorId : CommandNotFoundException
->> : The term '>>' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
-spelling of the name, or if a path was included, verify that the path is correct and try again.
-At line:1 char:1
-+ >>     Accept = "application/json"
-+ ~~
-    + CategoryInfo          : ObjectNotFound: (>>:String) [], CommandNotFoundException
-    + FullyQualifiedErrorId : CommandNotFoundException
-
-PS C:\Users\Ascendion> >>     Authorization = $basicAuth
->> : The term '>>' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
-spelling of the name, or if a path was included, verify that the path is correct and try again.
-At line:1 char:1
-+ >>     Authorization = $basicAuth
-+ ~~
-    + CategoryInfo          : ObjectNotFound: (>>:String) [], CommandNotFoundException
-    + FullyQualifiedErrorId : CommandNotFoundException
->> : The term '>>' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
-spelling of the name, or if a path was included, verify that the path is correct and try again.
-At line:1 char:1
-+ >>     Authorization = $basicAuth
-+ ~~
-    + CategoryInfo          : ObjectNotFound: (>>:String) [], CommandNotFoundException
-    + FullyQualifiedErrorId : CommandNotFoundException
 
 PS C:\Users\Ascendion> $headers = @{ Cookie = "token=$token"; Accept = "application/json"; Authorization = "Basic " + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("admin:password123")) }
 PS C:\Users\Ascendion> $updateBody = '{"firstname":"James","lastname":"Brown","totalprice":222,"depositpaid":true,"bookingdates":{"checkin":"2025-08-12","checkout":"2025-08-15"},"additionalneeds":"Breakfast and Lunch"}'
