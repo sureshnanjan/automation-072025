@@ -1,0 +1,73 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20250813103204
+Username: ASCENDI-L9OUVIN\Ascendion
+RunAs User: ASCENDI-L9OUVIN\Ascendion
+Configuration Name: 
+Machine: ASCENDI-L9OUVIN (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 7424
+PSVersion: 5.1.26100.4652
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.4652
+BuildVersion: 10.0.26100.4652
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Users\Ascendion\Documents\transcript.txt
+PS C:\Users\Ascendion> curl.exe -i -X POST https://restful-booker.herokuapp.com/auth -H "Content-Type: application/json" -d '{\"username\":\"admin\",\"password\":\"password123\"}'
+HTTP/1.1 200 OK
+Content-Length: 27
+Content-Type: application/json; charset=utf-8
+Date: Wed, 13 Aug 2025 05:02:58 GMT
+Etag: W/"1b-vqy4QvF2wK7JFRFwhNDBWYdaG4s"
+Nel: {"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fraction":0.1}
+Report-To: {"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=mTnrrvCOCxHdI9Nk79K5t%2FsPaacxaKayCL1%2FooWK%2FRA%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-b
+fafa16c5add\u0026ts=1755061378"}],"max_age":3600}
+Reporting-Endpoints: heroku-nel="https://nel.heroku.com/reports?s=mTnrrvCOCxHdI9Nk79K5t%2FsPaacxaKayCL1%2FooWK%2FRA%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1755061378"
+Server: Heroku
+Via: 1.1 heroku-router
+X-Powered-By: Express
+
+{"token":"f5962eac693e2af"}
+PS C:\Users\Ascendion> curl.exe -i -X GET https://restful-booker.herokuapp.com/booking
+{"bookingid":121},{"bookingid":2237},{"bookingid":1908},{"bookingid":154},{"bookingid":2293},{"bookingid":1481},{"bookingid":1982},{"bookingid":2310},{"bookingid":1962},{"boo
+kingid":2185},{"bookingid":2164},{"bookingid":1839},{"bookingid":682},{"bookingid":1852},{"bookingid":1322},{"bookingid":68},{"bookingid":1438},{"bookingid":244},{"bookingid"
+:1484},{"bookingid":974},{"bookingid":617},{"bookingid":561},{"bookingid":842},{"bookingid":1949},{"bookingid":5},{"bookingid":468},{"bookingid":1318},{"bookingid":510},{"boo
+kingid":795},{"bookingid":2230},{"bookingid":73},{"bookingid":362},{"bookingid":401},{"bookingid":1933},{"bookingid":486},{"bookingid":883},{"bookingid":690},{"bookingid":201
+2},{"bookingid":1571},{"bookingid":1245},{"bookingid":948},{"bookingid":1658},{"bookingid":82},{"bookingid":606},{"bookingid":2322},{"bookingid":1120},{"bookingid":1340},{"bo
+okingid":155},{"bookingid":791},{"bookingid":327},{"bookingid":936},{"bookingid":390},{"bookingid":2005},{"bookingid":797},{"bookingid":1924},{"bookingid":65},{"bookingid":90
+2},{"bookingid":1774},{"bookingid":1892},{"bookingid":488},{"bookingid":2212},{"bookingid":2260},{"bookingid":1859},{"bookingid":1903},{"bookingid":278},{"bookingid":1589},{"
+bookingid":1696},{"bookingid":605},{"bookingid":11},{"bookingid":1013},{"bookingid":2277},{"bookingid":1919},{"bookingid":1952},{"bookingid":447},{"bookingid":1756},{"booking
+id":316},{"bookingid":812},{"bookingid":2108},{"bookingid":1126},{"bookingid":1031},{"bookingid":695},{"bookingid":2051},{"bookingid":295},{"bookingid":134},{"bookingid":2299
+},{"bookingid":1448},{"bookingid":1981},{"bookingid":320},{"bookingid":1265},{"bookingid":1572},{"bookingid":2294},{"bookingid":1232},{"bookingid":1316},{"bookingid":2244},{"
+bookingid":408},{"bookingid":967},{"bookingid":659},{"bookingid":1161},{"bookingid":1509},{"bookingid":556},{"bookingid":1169},{"bookingid":993},{"bookingid":2262},{"bookingi
+d":2218},{"bookingid":1079},{"bookingid":533},{"bookingid":440},{"bookingid":1545},{"bookingid":339},{"bookingid":1632},{"bookingid":865},{"bookingid":1947},{"bookingid":1793
+},{"bookingid":889},{"bookingid":1832},{"bookingid":1770},{"bookingid":755},{"bookingid":836},{"bookingid":253},{"bookingid":2213},{"bookingid":1303},{"bookingid":190},{"book
+ingid":1689},{"bookingid":197},{"bookingid":1414},{"bookingid":2233},{"bookingid":706},{"bookingid":230},{"bookingid":2140},{"bookingid":614},{"bookingid":1030},{"bookingid":
+2291},{"bookingid":2131},{"bookingid":1621},{"bookingid":1764},{"bookingid":24},{"bookingid":2321},{"bookingid":1814},{"bookingid":313},{"bookingid":1114},{"bookingid":44},{"
+bookingid":1150},{"bookingid":949},{"bookingid":1619},{"bookingid":2285},{"bookingid":2155}]
+PS C:\Users\Ascendion>  curl.exe -i -X GET "https://restful-booker.herokuapp.com/booking/1"
+{"firstname":"James","lastname":"Brown","totalprice":115,"depositpaid":true,"bookingdates":{"checkin":"2018-01-01","checkout":"2019-01-01"},"additionalneeds":"Breakfast"}
+PS C:\Users\Ascendion>  curl.exe -i -X POST https://restful-booker.herokuapp.com/booking -H "Content-Type: application/json" -d '{\"firstname\":\"Jim\",\"lastname\":\"Brown\",\"totalprice\":111,\"depositpaid\":true,\"bookingdates\":{\"checkin\":\"2018-01-01\",\"checkout\":\"2019-01-01\"},\"additionalneeds\":\"Breakfast\"}'
+nalneeds":"Breakfast"}}
+PS C:\Users\Ascendion>  curl.exe -i -X PUT https://restful-booker.herokuapp.com/booking/1 -H "Content-Type: application/json"  -H "Accept: application/json" -H "Authorization: Basic YWRtaW46cGFzc3dvcmQxMjM=" -d '{\"firstname\":\"James\",\"lastname\":\"Brown\",\"totalprice\":111,\"depositpaid\":true,\"bookingdates\":{\"checkin\":\"2018-01-01\",\"checkout\":\"2019-01-01\"},\"additionalneeds\":\"Breakfast\"}'
+{"firstname":"James","lastname":"Brown","totalprice":111,"depositpaid":true,"bookingdates":{"checkin":"2018-01-01","checkout":"2019-01-01"},"additionalneeds":"Breakfast"}
+PS C:\Users\Ascendion> curl.exe -i -X PATCH "https://restful-booker.herokuapp.com/booking/1" `
+  -H "Content-Type: application/json" `
+  -H "Accept: application/json" `
+  -H "Authorization: Basic YWRtaW46cGFzc3dvcmQxMjM=" `
+  -d '{ "firstname": "James", "lastname": "Brown" }'
+Bad Request
+PS C:\Users\Ascendion>  curl.exe -i https://restful-booker.herokuapp.com/ping
+Via: 1.1 heroku-router
+X-Powered-By: Express
+
+Created
+PS C:\Users\Ascendion> Stop-Transcript
+**********************
+Windows PowerShell transcript end
+End time: 20250813104637
+**********************
