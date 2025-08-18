@@ -1,0 +1,52 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20250813100226
+Username: ASCENDI-7V67EKU\Ascendion
+RunAs User: ASCENDI-7V67EKU\Ascendion
+Configuration Name: 
+Machine: ASCENDI-7V67EKU (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 5320
+PSVersion: 5.1.26100.4652
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.4652
+BuildVersion: 10.0.26100.4652
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\petstore_transcript.txt
+PS C:\Users\Ascendion\Desktop\apipractice\petstore-swagger-tests> @'
+{
+  "id": 1111,
+  "category": { "id": 1, "name": "dogs" },
+  "name": "rex",
+  "photoUrls": ["https://example.com/rex.jpg"],
+  "tags": [{"id": 1, "name": "friendly"}],
+  "status": "available"
+}
+'@ | Out-File -FilePath .\pet.json -Encoding utf8
+PS C:\Users\Ascendion\Desktop\apipractice\petstore-swagger-tests> curl.exe --location --request POST "https://petstore.swagger.io/v2/pet" --header "Content-Type: application/json" --data-binary "@pet.json"
+{"id":1111,"category":{"id":1,"name":"dogs"},"name":"rex","photoUrls":["http
+s://example.com/rex.jpg"],"tags":[{"id":1,"name":"friendly"}],"status":"avai
+lable"}
+PS C:\Users\Ascendion\Desktop\apipractice\petstore-swagger-tests> curl.exe --location --request PUT "https://petstore.swagger.io/v2/pet" --header "Content-Type: application/json" --data-binary "@pet.json"
+lable"}
+PS C:\Users\Ascendion\Desktop\apipractice\petstore-swagger-tests> curl.exe --location --request GET "https://petstore.swagger.io/v2/pet/findByStatus?status=available" --header "accept: application/json"
+[],"status":"available"}]
+PS C:\Users\Ascendion\Desktop\apipractice\petstore-swagger-tests> curl.exe --location --request GET "https://petstore.swagger.io/v2/pet/findByTags?tags=friendly" --header "accept: application/json"
+tatus":"available"}]
+PS C:\Users\Ascendion\Desktop\apipractice\petstore-swagger-tests> curl.exe --location --request GET "https://petstore.swagger.io/v2/pet/1111" --header "accept: application/json"
+lable"}
+PS C:\Users\Ascendion\Desktop\apipractice\petstore-swagger-tests> curl.exe --location --request POST "https://petstore.swagger.io/v2/pet/1111" --header "Content-Type: application/x-www-form-urlencoded" --data "name=RexUpdated&status=sold"
+{"code":200,"type":"unknown","message":"1111"}
+PS C:\Users\Ascendion\Desktop\apipractice\petstore-swagger-tests> curl.exe --location --request POST "https://petstore.swagger.io/v2/pet/1111/uploadImage" --form "additionalMetadata=Sample photo" --form "file=@photo.jpg"
+
+PS C:\Users\Ascendion\Desktop\apipractice\petstore-swagger-tests> curl.exe --location --request DELETE "https://petstore.swagger.io/v2/pet/1111"
+{"code":200,"type":"unknown","message":"1111"}
+PS C:\Users\Ascendion\Desktop\apipractice\petstore-swagger-tests> Stop-Transcript
+**********************
+Windows PowerShell transcript end
+End time: 20250813103025
+**********************

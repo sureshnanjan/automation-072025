@@ -1,0 +1,8 @@
+﻿{
+  "id": 1111,
+  "category": { "id": 1, "name": "dogs" },
+  "name": "rex",
+  "photoUrls": ["https://example.com/rex.jpg"],
+  "tags": [{"id": 1, "name": "friendly"}],
+  "status": "available"
+}
