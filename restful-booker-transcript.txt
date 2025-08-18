@@ -1,0 +1,120 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20250813103805
+Username: ASCENDI-8530I37\Ascendion
+RunAs User: ASCENDI-8530I37\Ascendion
+Configuration Name: 
+Machine: ASCENDI-8530I37 (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 8312
+PSVersion: 5.1.26100.4652
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.4652
+BuildVersion: 10.0.26100.4652
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Users\Ascendion\OneDrive\Documents\API_Practice\restful-booker-transcript.txt
+PS C:\Users\Ascendion> # Ensure TLS 1.2 for secure calls
+PS C:\Users\Ascendion> [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+PS C:\Users\Ascendion> $baseUrl = "https://restful-booker.herokuapp.com"
+PS C:\Users\Ascendion> # 1. Create booking.json
+PS C:\Users\Ascendion> @'
+{
+  "firstname": "Alex",
+  "lastname": "Taylor",
+  "totalprice": 222,
+  "depositpaid": true,
+  "bookingdates": {
+    "checkin": "2025-03-10",
+    "checkout": "2025-03-15"
+  },
+  "additionalneeds": "Dinner"
+}
+'@ | Out-File -FilePath "C:\Users\Ascendion\OneDrive\Documents\API_Practice\booking.json" -Encoding utf8
+PS C:\Users\Ascendion> Write-Host "Created booking.json"
+Created booking.json
+PS C:\Users\Ascendion> # 2. Create new booking
+PS C:\Users\Ascendion> $createResponseRaw = curl.exe -s -X POST "$baseUrl/booking" -H "Content-Type: application/json" --data "@C:\Users\Ascendion\OneDrive\Documents\API_Practice\booking.json"
+PS C:\Users\Ascendion> $createResponse = $createResponseRaw | ConvertFrom-Json
+PS C:\Users\Ascendion> $bookingId = $createResponse.bookingid
+PS C:\Users\Ascendion> Write-Host "Booking created with ID: $bookingId"
+Booking created with ID: 3459
+PS C:\Users\Ascendion> if (-not $bookingId) {
+    Write-Error "Booking creation failed. Exiting script."
+    Stop-Transcript
+    exit
+}
+PS C:\Users\Ascendion> # 3. Create auth.json for login
+PS C:\Users\Ascendion> @'
+{
+  "username": "admin",
+  "password": "password123"
+}
+'@ | Out-File -FilePath "C:\Users\Ascendion\OneDrive\Documents\API_Practice\auth.json" -Encoding utf8
+PS C:\Users\Ascendion> Write-Host "Created auth.json"
+Created auth.json
+PS C:\Users\Ascendion> # 4. Get auth token
+PS C:\Users\Ascendion> $authResponseRaw = curl.exe -s -X POST "$baseUrl/auth" -H "Content-Type: application/json" --data "@C:\Users\Ascendion\OneDrive\Documents\API_Practice\auth.json"
+PS C:\Users\Ascendion> $authResponse = $authResponseRaw | ConvertFrom-Json
+PS C:\Users\Ascendion> $token = $authResponse.token
+PS C:\Users\Ascendion> Write-Host "Received token: $token"
+Received token: ed22d54aea0db89
+PS C:\Users\Ascendion> if (-not $token) {
+    Write-Error "Authentication failed. Exiting script."
+    Stop-Transcript
+    exit
+}
+PS C:\Users\Ascendion> # 5. Create update_booking.json
+PS C:\Users\Ascendion> @'
+{
+  "firstname": "Chris",
+  "lastname": "Evans",
+  "totalprice": 300,
+  "depositpaid": false,
+  "bookingdates": {
+    "checkin": "2025-04-01",
+    "checkout": "2025-04-05"
+  },
+  "additionalneeds": "Lunch"
+}
+'@ | Out-File -FilePath "C:\Users\Ascendion\OneDrive\Documents\API_Practice\update_booking.json" -Encoding utf8
+PS C:\Users\Ascendion> Write-Host "Created update_booking.json"
+Created update_booking.json
+PS C:\Users\Ascendion> # 6. Update booking
+PS C:\Users\Ascendion> Write-Host "Updating booking ID $bookingId..."
+Updating booking ID 3459...
+PS C:\Users\Ascendion> $updateResponseRaw = curl.exe -s -X PUT "$baseUrl/booking/$bookingId" `
+    -H "Content-Type: application/json" `
+    -H "Accept: application/json" `
+    -H "Cookie: token=$token" `
+    --data "@C:\Users\Ascendion\OneDrive\Documents\API_Practice\update_booking.json"
+PS C:\Users\Ascendion> Write-Host "Update response:"
+Update response:
+PS C:\Users\Ascendion> Write-Host $updateResponseRaw
+{"firstname":"Chris","lastname":"Evans","totalprice":300,"depositpaid":false,"bookingdates":{"checkin":"2025-04-01","checkout":"2025-04-05"},"additionalneeds":"Lunch"}
+PS C:\Users\Ascendion> # 7. Delete booking
+PS C:\Users\Ascendion> Write-Host "Deleting booking ID $bookingId..."
+Deleting booking ID 3459...
+PS C:\Users\Ascendion> $deleteResponseRaw = curl.exe -s -X DELETE "$baseUrl/booking/$bookingId" -H "Cookie: token=$token"
+PS C:\Users\Ascendion> Write-Host "Delete response: $deleteResponseRaw"
+Delete response: Created
+PS C:\Users\Ascendion> # 8. Verify deletion
+PS C:\Users\Ascendion> Write-Host "Verifying deletion..."
+Verifying deletion...
+PS C:\Users\Ascendion> $verifyResponseRaw = curl.exe -s -X GET "$baseUrl/booking/$bookingId" -H "Accept: application/json"
+PS C:\Users\Ascendion> Write-Host "Get after delete response:"
+Get after delete response:
+PS C:\Users\Ascendion> Write-Host $verifyResponseRaw
+Not Found
+PS C:\Users\Ascendion> Write-Host "`nScript completed."
+
+Script completed.
+PS C:\Users\Ascendion> # Stop transcript
+PS C:\Users\Ascendion> Stop-Transcript
+**********************
+Windows PowerShell transcript end
+End time: 20250813103816
+**********************
