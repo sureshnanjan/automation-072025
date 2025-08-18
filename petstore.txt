@@ -1,0 +1,86 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20250818173016
+Username: ASCENDI-8530I37\Ascendion
+RunAs User: ASCENDI-8530I37\Ascendion
+Configuration Name: 
+Machine: ASCENDI-8530I37 (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 5624
+PSVersion: 5.1.26100.4768
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.4768
+BuildVersion: 10.0.26100.4768
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Users\Ascendion\OneDrive\Documents\API_Practice\petstore.txt
+PS C:\Users\Ascendion> Write-Host "Transcript started at $transPath" -ForegroundColor Green
+Transcript started at C:\Users\Ascendion\OneDrive\Documents\API_Practice\petstore.txt
+PS C:\Users\Ascendion> # Ensure TLS 1.2 for secure API calls
+PS C:\Users\Ascendion> [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+PS C:\Users\Ascendion> # Petstore Base URL
+PS C:\Users\Ascendion> $baseUrl = "https://petstore.swagger.io/v2"
+PS C:\Users\Ascendion> # Create sample pet JSON file in the same folder
+PS C:\Users\Ascendion> $jsonFile = "C:\Users\Ascendion\OneDrive\Documents\API_Practice\mypet.json"
+PS C:\Users\Ascendion> @"
+{
+  "id": 123456,
+  "category": { "id": 1, "name": "Dogs" },
+  "name": "JagadeeswarPet",
+  "photoUrls": ["http://example.com/photo"],
+  "tags": [{ "id": 1, "name": "test" }],
+  "status": "available"
+}
+"@ | Out-File -FilePath $jsonFile -Encoding UTF8 -Force
+PS C:\Users\Ascendion> # 1) Add a new pet (POST)
+PS C:\Users\Ascendion> Write-Host "`n=== POST /pet ===" -ForegroundColor Cyan
+
+=== POST /pet ===
+PS C:\Users\Ascendion> Invoke-WebRequest -Uri "$baseUrl/pet" -Method POST -InFile $jsonFile -ContentType "application/json" | Select-Object -ExpandProperty Content
+{"id":123456,"category":{"id":1,"name":"Dogs"},"name":"JagadeeswarPet","photoUrls":["http://example.com/photo"],"tags":[{"id":1,"name":"test"}],"status":"available"}
+PS C:\Users\Ascendion> # 2) Update pet (PUT)
+PS C:\Users\Ascendion> Write-Host "`n=== PUT /pet ===" -ForegroundColor Cyan
+
+=== PUT /pet ===
+PS C:\Users\Ascendion> (Get-Content $jsonFile -Raw).Replace("available","sold") | Out-File $jsonFile -Encoding UTF8
+PS C:\Users\Ascendion> Invoke-WebRequest -Uri "$baseUrl/pet" -Method PUT -InFile $jsonFile -ContentType "application/json" | Select-Object -ExpandProperty Content
+{"id":123456,"category":{"id":1,"name":"Dogs"},"name":"JagadeeswarPet","photoUrls":["http://example.com/photo"],"tags":[{"id":1,"name":"test"}],"status":"sold"}
+PS C:\Users\Ascendion> # 3) Get pet by ID (GET)
+PS C:\Users\Ascendion> Write-Host "`n=== GET /pet/123456 ===" -ForegroundColor Cyan
+
+=== GET /pet/123456 ===
+PS C:\Users\Ascendion> Invoke-WebRequest -Uri "$baseUrl/pet/123456" -Method GET | Select-Object -ExpandProperty Content
+{"id":123456,"category":{"id":1,"name":"Dogs"},"name":"JagadeeswarPet","photoUrls":["http://example.com/photo"],"tags":[{"id":1,"name":"test"}],"status":"available"}
+PS C:\Users\Ascendion> # 4) Delete pet (DELETE)
+PS C:\Users\Ascendion> Write-Host "`n=== DELETE /pet/123456 ===" -ForegroundColor Cyan
+
+=== DELETE /pet/123456 ===
+PS C:\Users\Ascendion> Invoke-WebRequest -Uri "$baseUrl/pet/123456" -Method DELETE | Select-Object -ExpandProperty Content
+{"code":200,"type":"unknown","message":"123456"}
+PS C:\Users\Ascendion> # 5) Try GET after delete (expect 404)
+PS C:\Users\Ascendion> Write-Host "`n=== GET /pet/123456 after DELETE (expect 404) ===" -ForegroundColor Cyan
+
+=== GET /pet/123456 after DELETE (expect 404) ===
+PS C:\Users\Ascendion> try {
+    Invoke-WebRequest -Uri "$baseUrl/pet/123456" -Method GET -ErrorAction Stop
+} catch {
+    Write-Host "Expected not found: $($_.Exception.Message)" -ForegroundColor Yellow
+}
+>> TerminatingError(Invoke-WebRequest): "The remote server returned an error: (404) Not Found."
+Expected not found: The remote server returned an error: (404) Not Found.
+PS C:\Users\Ascendion> # 6) Find pets by status
+PS C:\Users\Ascendion> Write-Host "`n=== GET /pet/findByStatus?status=sold ===" -ForegroundColor Cyan
+
+=== GET /pet/findByStatus?status=sold ===
+PS C:\Users\Ascendion> $response = Invoke-WebRequest -Uri "$baseUrl/pet/findByStatus?status=sold" -Method GET
+PS C:\Users\Ascendion> $response.Content.Substring(0,400) + "..."
+[{"id":1234567,"category":{"id":0,"name":"string"},"name":"doggie","photoUrls":["string"],"tags":[{"id":0,"name":"sold"}],"status":"sold"},{"id":13,"category":{"id":0,"name":"cats"},"photoUrls":["string"],"tags":[{"id":0,"name":"string"}],"status":"sold"},{"id":9223372036854743000,"name":"dodo","photoUrls":["https://upload.wikimedia.org/wikipedia/commons/c/c6/Alligator_Anahuac_NWR_High_Island_TX_2...
+PS C:\Users\Ascendion> # Stop transcript
+PS C:\Users\Ascendion> Stop-Transcript
+**********************
+Windows PowerShell transcript end
+End time: 20250818173022
+**********************
