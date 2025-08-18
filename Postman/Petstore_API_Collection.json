@@ -1,0 +1,149 @@
+{
+  "info": {
+    "name": "Petstore API Network",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Postman collection for Petstore Octoperf endpoints (Catalog.action)"
+  },
+  "item": [
+    {
+      "name": "Get Categories",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://petstore.octoperf.com/actions/Catalog.action",
+          "protocol": "https",
+          "host": [
+            "petstore",
+            "octoperf",
+            "com"
+          ],
+          "path": [
+            "actions",
+            "Catalog.action"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Products in Category",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://petstore.octoperf.com/actions/Catalog.action?viewCategory=&categoryId={{categoryId}}",
+          "protocol": "https",
+          "host": [
+            "petstore",
+            "octoperf",
+            "com"
+          ],
+          "path": [
+            "actions",
+            "Catalog.action"
+          ],
+          "query": [
+            {
+              "key": "viewCategory",
+              "value": ""
+            },
+            {
+              "key": "categoryId",
+              "value": "{{categoryId}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Product Details",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://petstore.octoperf.com/actions/Catalog.action?viewProduct=&productId={{productId}}",
+          "protocol": "https",
+          "host": [
+            "petstore",
+            "octoperf",
+            "com"
+          ],
+          "path": [
+            "actions",
+            "Catalog.action"
+          ],
+          "query": [
+            {
+              "key": "viewProduct",
+              "value": ""
+            },
+            {
+              "key": "productId",
+              "value": "{{productId}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Item Details",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://petstore.octoperf.com/actions/Catalog.action?viewItem=&itemId={{itemId}}",
+          "protocol": "https",
+          "host": [
+            "petstore",
+            "octoperf",
+            "com"
+          ],
+          "path": [
+            "actions",
+            "Catalog.action"
+          ],
+          "query": [
+            {
+              "key": "viewItem",
+              "value": ""
+            },
+            {
+              "key": "itemId",
+              "value": "{{itemId}}"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Search Products",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://petstore.octoperf.com/actions/Catalog.action?keyword={{keyword}}&searchProducts=",
+          "protocol": "https",
+          "host": [
+            "petstore",
+            "octoperf",
+            "com"
+          ],
+          "path": [
+            "actions",
+            "Catalog.action"
+          ],
+          "query": [
+            {
+              "key": "keyword",
+              "value": "{{keyword}}"
+            },
+            {
+              "key": "searchProducts",
+              "value": ""
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
