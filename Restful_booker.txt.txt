@@ -1,0 +1,187 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20250812145519
+Username: ASCENDI-9P6AH5O\Ascendion
+RunAs User: ASCENDI-9P6AH5O\Ascendion
+Configuration Name: 
+Machine: ASCENDI-9P6AH5O (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 7104
+PSVersion: 5.1.26100.4652
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.4652
+BuildVersion: 10.0.26100.4652
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Users\Ascendion\OneDrive\Curl\Curl_Octoperf.txt.txt
+PS C:\Users\Ascendion> curl -i https://restful-booker.herokuapp.com/booking
+PS C:\Users\Ascendion> TerminatingError(Invoke-WebRequest): "Cannot find drive. A drive with the name 'https' does not exist."
+curl : Cannot find drive. A drive with the name 'https' does not exist.
+At line:1 char:1
++ curl -i https://restful-booker.herokuapp.com/booking
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (https:String) [Invoke-WebRequest], DriveNotFoundException
+    + FullyQualifiedErrorId : DriveNotFound,Microsoft.PowerShell.Commands.InvokeWebRequestCommand
+curl : Cannot find drive. A drive with the name 'https' does not exist.
+At line:1 char:1
++ curl -i https://restful-booker.herokuapp.com/booking
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (https:String) [Invoke-WebRequest], DriveNotFoundException
+    + FullyQualifiedErrorId : DriveNotFound,Microsoft.PowerShell.Commands.InvokeWebRequestCommand
+
+PS C:\Users\Ascendion> curl https://restful-booker.herokuapp.com/booking
+
+
+StatusCode        : 200
+StatusDescription : OK
+Content           : [{"bookingid":628},{"bookingid":522},{"bookingid":243},{"bookingid":499},{"bookingid":300},{"bookingid":20},{"bo
+                    okingid":125},{"bookingid":289},{"bookingid":646},{"bookingid":335},{"bookingid":672},{"...
+RawContent        : HTTP/1.1 200 OK
+                    Nel: {"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_fracti
+                    on":0.1}
+                    Report-To: {"group":"heroku-nel","endpoints":[{"url":"https:/...
+Forms             : {}
+Headers           : {[Nel, {"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failure_frac
+                    tion":0.1}], [Report-To, {"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/reports?s=qXDd6gDqzeG
+                    bbjYbuJgs57MB1j1wuqiSXC1GCN5Y4z0%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u0026ts=1754991155"}],"max_age
+                    ":3600}], [Reporting-Endpoints, heroku-nel="https://nel.heroku.com/reports?s=qXDd6gDqzeGbbjYbuJgs57MB1j1wuqiSXC1
+                    GCN5Y4z0%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1754991155"], [Content-Length, 10185]...}
+Images            : {}
+InputFields       : {}
+Links             : {}
+ParsedHtml        : System.__ComObject
+RawContentLength  : 10185
+
+
+
+PS C:\Users\Ascendion> curl.exe -i https://restful-booker.herokuapp.com/ping
+Created
+PS C:\Users\Ascendion> curl.exe -i https://restful-booker.herokuapp.com/booking
+okingid":1369}]
+PS C:\Users\Ascendion> Invoke-WebRequest -Uri "https://restful-booker.herokuapp.com/booking"
+
+
+StatusCode        : 200
+StatusDescription : OK
+Content           : [{"bookingid":3},{"bookingid":254},{"bookingid":166},{"bookingid":63},{"bookingid":604},{"bookingid":45
+                    0},{"bookingid":54},{"bookingid":142},{"bookingid":301},{"bookingid":239},{"bookingid":14},{"book...
+RawContent        : HTTP/1.1 200 OK
+                    Nel: {"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"failu
+                    re_fraction":0.1}
+                    Report-To: {"group":"heroku-nel","endpoints":[{"url":"https:/...
+Forms             : {}
+Headers           : {[Nel, {"report_to":"heroku-nel","response_headers":["Via"],"max_age":3600,"success_fraction":0.01,"fai
+                    lure_fraction":0.1}], [Report-To, {"group":"heroku-nel","endpoints":[{"url":"https://nel.heroku.com/rep
+                    orts?s=r5yB4g8PVrP7AuQAtbCA607aA1TYr0wKpS4zGzoUnpY%3D\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\u00
+                    26ts=1754992363"}],"max_age":3600}], [Reporting-Endpoints, heroku-nel="https://nel.heroku.com/reports?s
+                    =r5yB4g8PVrP7AuQAtbCA607aA1TYr0wKpS4zGzoUnpY%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1754992363"
+                    ], [Content-Length, 10582]...}
+Images            : {}
+InputFields       : {}
+Links             : {}
+ParsedHtml        : System.__ComObject
+RawContentLength  : 10582
+
+
+
+PS C:\Users\Ascendion> curl.exe -i "https://restful-booker.herokuapp.com/booking?lastname=Brown"
+bookingid":69},{"bookingid":273},{"bookingid":625},{"bookingid":498}]
+PS C:\Users\Ascendion> curl.exe -i "https://restful-booker.herokuapp.com/booking?checkin=2024-01-01"
+{"bookingid":1148},{"bookingid":394}]
+PS C:\Users\Ascendion> curl.exe -i "https://restful-booker.herokuapp.com/booking?checkout=2024-01-10"
+{"bookingid":498},{"bookingid":318},{"bookingid":719}]
+PS C:\Users\Ascendion> curl.exe -i "https://restful-booker.herokuapp.com/booking?firstname=Jim&lastname=Brown"
+[{"bookingid":755},{"bookingid":625},{"bookingid":498}]
+PS C:\Users\Ascendion> curl -i https://restful-booker.herokuapp.com/booking/1
+>> TerminatingError(Invoke-WebRequest): "Cannot find drive. A drive with the name 'https' does not exist."
+curl : Cannot find drive. A drive with the name 'https' does not exist.
+At line:1 char:1
++ curl -i https://restful-booker.herokuapp.com/booking/1
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (https:String) [Invoke-WebRequest], DriveNotFoundException
+    + FullyQualifiedErrorId : DriveNotFound,Microsoft.PowerShell.Commands.InvokeWebRequestCommand
+curl : Cannot find drive. A drive with the name 'https' does not exist.
+At line:1 char:1
++ curl -i https://restful-booker.herokuapp.com/booking/1
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (https:String) [Invoke-WebRequest], DriveNotFoundException
+    + FullyQualifiedErrorId : DriveNotFound,Microsoft.PowerShell.Commands.InvokeWebRequestCommand
+
+PS C:\Users\Ascendion> curl -X POST \
+>> TerminatingError(Invoke-WebRequest): "A parameter cannot be found that matches parameter name 'X'."
+Invoke-WebRequest : A parameter cannot be found that matches parameter name 'X'.
+At line:1 char:6
++ curl -X POST \
++      ~~
+    + CategoryInfo          : InvalidArgument: (:) [Invoke-WebRequest], ParameterBindingException
+    + FullyQualifiedErrorId : NamedParameterNotFound,Microsoft.PowerShell.Commands.InvokeWebRequestCommand
+Invoke-WebRequest : A parameter cannot be found that matches parameter name 'X'.
+At line:1 char:6
++ curl -X POST \
++      ~~
+    + CategoryInfo          : InvalidArgument: (:) [Invoke-WebRequest], ParameterBindingException
+    + FullyQualifiedErrorId : NamedParameterNotFound,Microsoft.PowerShell.Commands.InvokeWebRequestCommand
+
+PS C:\Users\Ascendion>   https://restful-booker.herokuapp.com/booking \
+https://restful-booker.herokuapp.com/booking : The term 'https://restful-booker.herokuapp.com/booking' is not 
+recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a 
+path was included, verify that the path is correct and try again.
+At line:1 char:3
++   https://restful-booker.herokuapp.com/booking \
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (https://restful...app.com/booking:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+https://restful-booker.herokuapp.com/booking : The term 'https://restful-booker.herokuapp.com/booking' is not recognized
+as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was
+included, verify that the path is correct and try again.
+At line:1 char:3
++   https://restful-booker.herokuapp.com/booking \
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (https://restful...app.com/booking:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Users\Ascendion>   -H 'Content-Type: application/json' \
+-H : The term '-H' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:3
++   -H 'Content-Type: application/json' \
++   ~~
+    + CategoryInfo          : ObjectNotFound: (-H:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+-H : The term '-H' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:3
++   -H 'Content-Type: application/json' \
++   ~~
+    + CategoryInfo          : ObjectNotFound: (-H:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Users\Ascendion>   -d '{
+    "firstname" : "Jim",
+    "lastname" : "Brown",
+    "totalprice" : 111,
+    "depositpaid" : true,
+    "bookingdates" : {
+        "checkin" : "2018-01-01",
+        "checkout" : "2019-01-01"
+    },
+    "additionalneeds" : "Breakfast"
+}'
+-d : The term '-d' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:3
++   -d '{
++   ~~
+    + CategoryInfo          : ObjectNotFound: (-d:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+-d : The term '-d' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:3
++   -d '{
++   ~~
+    + CategoryInfo          : ObjectNotFound: (-d:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
