@@ -1,0 +1,58 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20250818103529
+Username: ASCENDI-9P6AH5O\Ascendion
+RunAs User: ASCENDI-9P6AH5O\Ascendion
+Configuration Name: 
+Machine: ASCENDI-9P6AH5O (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 8312
+PSVersion: 5.1.26100.4768
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.4768
+BuildVersion: 10.0.26100.4768
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Users\Ascendion\OneDrive\Curl\Pet_Swagger_transcript.txt.txt
+PS C:\Users\Ascendion> curl.exe -X POST "https://petstore.swagger.io/v2/pet" -H "Content-Type: application/json" -H "Accept: application/json" -d '{\"id\":123,\"category\":{\"id\":123,\"name\":\"test\"},\"name\":\"fluffy\",\"photoUrls\":[\"string\"],\"tags\":[{\"id\":0,\"name\":\"string\"}],\"status\":\"available\"}'
+{"id":123,"category":{"id":123,"name":"test"},"name":"fluffy","photoUrls":["string"],"tags":[{"id":0,"name":"string"}],"status":"avai
+lable"}
+PS C:\Users\Ascendion> curl.exe -X PUT "https://petstore.swagger.io/v2/pet" -H "Content-Type: application/json" -H "Accept: application/json" -d '{\"id\":123,\"category\":{\"id\":123,\"name\":\"test\"},\"name\":\"fluffy_updated\",\"photoUrls\":[\"string\"],\"tags\":[{\"id\":0,\"name\":\"string\"}],\"status\":\"available\"}'
+{"id":123,"category":{"id":123,"name":"test"},"name":"fluffy_updated","photoUrls":["string"],"tags":[{"id":0,"name":"string"}],"statu
+s":"available"}
+PS C:\Users\Ascendion> curl.exe -X GET "https://petstore.swagger.io/v2/pet/123" -H "Accept: application/json"
+{"id":123,"category":{"id":123,"name":"rosu1"},"name":"rosu1","photoUrls":[],"tags":[{"id":123,"name":"rosu1"}],"status":"available"}
+PS C:\Users\Ascendion> curl.exe -X DELETE "https://petstore.swagger.io/v2/pet/123" -H "Accept: application/json"
+{"code":200,"type":"unknown","message":"123"}
+PS C:\Users\Ascendion> curl.exe -X POST "https://petstore.swagger.io/v2/pet" -H "Content-Type: application/json" -H "Accept: application/json" -d "@mypet.json"
+curl: Failed to open mypet.json
+curl: option -d: error encountered when reading a file
+curl: try 'curl --help' for more information
+PS C:\Users\Ascendion> curl.exe -X GET "https://petstore.swagger.io/v2/store/inventory" -H "Accept: application/json"
+{"sold":14,"EVOMASTER":1,"string":681,"pending":11,"available":193,"barking":1,"2 Nos available":1}
+PS C:\Users\Ascendion> curl.exe -X POST "https://petstore.swagger.io/v2/store/order" -H "Content-Type: application/json" -H "Accept: application/json" -d '{\"id\":1001,\"petId\":123,\"quantity\":1,\"shipDate\":\"2025-08-18T10:00:00.000Z\",\"status\":\"placed\",\"complete\":false}'
+{"id":1001,"petId":123,"quantity":1,"shipDate":"2025-08-18T10:00:00.000+0000","status":"placed","complete":false}
+PS C:\Users\Ascendion> curl.exe -X GET "https://petstore.swagger.io/v2/store/order/1001" -H "Accept: application/json"
+{"id":1001,"petId":123,"quantity":1,"shipDate":"2025-08-18T10:00:00.000+0000","status":"placed","complete":false}
+PS C:\Users\Ascendion> curl.exe -X DELETE "https://petstore.swagger.io/v2/store/order/1001" -H "Accept: application/json"
+{"code":200,"type":"unknown","message":"1001"}
+PS C:\Users\Ascendion> curl.exe -X POST "https://petstore.swagger.io/v2/user" -H "Content-Type: application/json" -H "Accept: application/json" -d '{\"id\":2001,\"username\":\"johndoe\",\"firstName\":\"John\",\"lastName\":\"Doe\",\"email\":\"john.doe@example.com\",\"password\":\"pass123\",\"phone\":\"1234567890\",\"userStatus\":1}'
+{"code":200,"type":"unknown","message":"2001"}
+PS C:\Users\Ascendion> curl.exe -X GET "https://petstore.swagger.io/v2/user/login?username=johndoe&password=pass123" -H "Accept: application/json"
+{"code":200,"type":"unknown","message":"logged in user session:1755494218618"}
+PS C:\Users\Ascendion> curl.exe -X GET "https://petstore.swagger.io/v2/user/logout" -H "Accept: application/json"
+{"code":200,"type":"unknown","message":"ok"}
+PS C:\Users\Ascendion> curl.exe -X GET "https://petstore.swagger.io/v2/user/johndoe" -H "Accept: application/json"
+567890","userStatus":1}
+PS C:\Users\Ascendion> curl.exe -X PUT "https://petstore.swagger.io/v2/user/johndoe" -H "Content-Type: application/json" -H "Accept: application/json" -d '{\"firstName\":\"John\",\"lastName\":\"DoeUpdated\",\"email\":\"john.updated@example.com\",\"password\":\"newpass\",\"phone\":\"0987654321\",\"userStatus\":1}'
+{"code":200,"type":"unknown","message":"0"}
+PS C:\Users\Ascendion> curl.exe -X DELETE "https://petstore.swagger.io/v2/user/johndoe" -H "Accept: application/json"
+
+PS C:\Users\Ascendion> Stop-Transcript
+**********************
+Windows PowerShell transcript end
+End time: 20250818104857
+**********************
