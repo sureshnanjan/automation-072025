@@ -1,0 +1,587 @@
+{
+  "info": {
+    "name": "Redocly Museum API \u2014 Full Collection",
+    "_postman_id": "de75e6dc-b085-4906-8c60-dc8a475e6d33",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Auto-generated Postman collection for the Redocly Museum API (from musuem.yaml). Includes chained tests and environment variables."
+  },
+  "item": [
+    {
+      "name": "Museum Hours",
+      "item": [
+        {
+          "name": "Get museum hours",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/museum-hours",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "museum-hours"
+              ]
+            },
+            "description": "Returns daily hours with pagination. Use startDate/page/limit query params as needed."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"JSON content-type\", () => pm.expect(pm.response.headers.get('Content-Type') || '').to.include('application/json'));",
+                  "const data = pm.response.json();",
+                  "pm.test(\"Body is an array\", () => pm.expect(data).to.be.an('array'));",
+                  "const timeRe = /^([01]\\d|2[0-3]):?([0-5]\\d)$/; // allows HHmm or HH:mm to match spec",
+                  "if (data.length) {",
+                  "  const d = data[0];",
+                  "  pm.test(\"Item has date/timeOpen/timeClose\", () => {",
+                  "    pm.expect(d).to.have.property(\"date\");",
+                  "    pm.expect(d).to.have.property(\"timeOpen\");",
+                  "    pm.expect(d).to.have.property(\"timeClose\");",
+                  "  });",
+                  "  pm.test(\"timeOpen/timeClose format\", () => {",
+                  "    pm.expect(timeRe.test(String(d.timeOpen))).to.eql(true);",
+                  "    pm.expect(timeRe.test(String(d.timeClose))).to.eql(true);",
+                  "  });",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get museum hours (with params)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/museum-hours?startDate={{startDate}}&page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "museum-hours"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "{{startDate}}"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Same as 'Get museum hours' but includes startDate, page, limit query params."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"JSON content-type\", () => pm.expect(pm.response.headers.get('Content-Type') || '').to.include('application/json'));",
+                  "const data = pm.response.json();",
+                  "pm.test(\"Body is an array\", () => pm.expect(data).to.be.an('array'));",
+                  "const timeRe = /^([01]\\d|2[0-3]):?([0-5]\\d)$/; // allows HHmm or HH:mm to match spec",
+                  "if (data.length) {",
+                  "  const d = data[0];",
+                  "  pm.test(\"Item has date/timeOpen/timeClose\", () => {",
+                  "    pm.expect(d).to.have.property(\"date\");",
+                  "    pm.expect(d).to.have.property(\"timeOpen\");",
+                  "    pm.expect(d).to.have.property(\"timeClose\");",
+                  "  });",
+                  "  pm.test(\"timeOpen/timeClose format\", () => {",
+                  "    pm.expect(timeRe.test(String(d.timeOpen))).to.eql(true);",
+                  "    pm.expect(timeRe.test(String(d.timeClose))).to.eql(true);",
+                  "  });",
+                  "}"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Special Events",
+      "item": [
+        {
+          "name": "Create special event",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/special-events",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "special-events"
+              ]
+            },
+            "description": "Creates a special event and saves {{eventId}} for chaining.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Night at the Museum\",\n  \"location\": \"Main Hall\",\n  \"eventDescription\": \"After-hours guided tour with curator Q&A.\",\n  \"dates\": [\n    \"2025-10-01\",\n    \"2025-10-02\"\n  ],\n  \"price\": 25.0\n}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 201 (Created)\", () => pm.response.to.have.status(201));",
+                  "pm.test(\"JSON content-type\", () => pm.expect(pm.response.headers.get('Content-Type') || '').to.include('application/json'));",
+                  "const ev = pm.response.json();",
+                  "pm.test(\"Has eventId\", () => pm.expect(ev).to.have.property('eventId'));",
+                  "pm.environment.set(\"eventId\", String(ev.eventId || ev.id || ''));",
+                  "pm.test(\"Has basic fields\", () => {",
+                  "  pm.expect(ev).to.have.property('name');",
+                  "  pm.expect(ev).to.have.property('dates');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "List special events",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/special-events",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "special-events"
+              ]
+            },
+            "description": "Lists special events (supports startDate, endDate, page, limit)."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"JSON content-type\", () => pm.expect(pm.response.headers.get('Content-Type') || '').to.include('application/json'));",
+                  "const list = pm.response.json();",
+                  "pm.test(\"Response is array\", () => pm.expect(list).to.be.an('array'));",
+                  "if (list.length) {",
+                  "  pm.environment.set(\"eventId\", String(list[0].eventId || list[0].id || ''));",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "List special events (with params)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/special-events?startDate={{startDate}}&endDate={{endDate}}&page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "special-events"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "{{startDate}}"
+                },
+                {
+                  "key": "endDate",
+                  "value": "{{endDate}}"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": ""
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"JSON content-type\", () => pm.expect(pm.response.headers.get('Content-Type') || '').to.include('application/json'));",
+                  "const list = pm.response.json();",
+                  "pm.test(\"Response is array\", () => pm.expect(list).to.be.an('array'));",
+                  "if (list.length) {",
+                  "  pm.environment.set(\"eventId\", String(list[0].eventId || list[0].id || ''));",
+                  "}"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get special event by id",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/special-events/{{eventId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "special-events",
+                "{{eventId}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+                  "const ev = pm.response.json();",
+                  "pm.test(\"Has correct event structure\", () => {",
+                  "  pm.expect(ev).to.have.property('name');",
+                  "  pm.expect(ev).to.have.property('dates');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Update special event (PATCH)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/special-events/{{eventId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "special-events",
+                "{{eventId}}"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"price\": 30.0,\n  \"location\": \"East Wing\"\n}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+                  "const ev = pm.response.json();",
+                  "pm.test(\"Fields patched\", () => {",
+                  "  pm.expect(ev.price).to.eql(30.0);",
+                  "  pm.expect(ev.location).to.eql(\"East Wing\");",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Delete special event",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/special-events/{{eventId}}",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "special-events",
+                "{{eventId}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 204 (No Content)\", () => pm.response.to.have.status(204));",
+                  "// Verify 404 on subsequent GET",
+                  "pm.sendRequest({",
+                  "  url: pm.environment.get(\"baseUrl\") + \"/special-events/\" + pm.environment.get(\"eventId\"),",
+                  "  method: \"GET\",",
+                  "  header: { Accept: \"application/json\" }",
+                  "}, (err, res) => {",
+                  "  pm.test(\"Subsequent GET returns 404\", () => pm.expect(res.code).to.eql(404));",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Tickets",
+      "item": [
+        {
+          "name": "Buy museum tickets",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/tickets",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tickets"
+              ]
+            },
+            "description": "Creates a ticket purchase and stores {{ticketId}}.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ticketDate\": \"2025-11-01\",\n  \"ticketType\": \"general\",\n  \"email\": \"guest@example.com\"\n}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 201 (Created)\", () => pm.response.to.have.status(201));",
+                  "pm.test(\"JSON content-type\", () => pm.expect(pm.response.headers.get('Content-Type') || '').to.include('application/json'));",
+                  "const res = pm.response.json();",
+                  "pm.test(\"Has ticketId and confirmationCode\", () => {",
+                  "  pm.expect(res).to.have.property(\"ticketId\");",
+                  "  pm.expect(res).to.have.property(\"confirmationCode\");",
+                  "});",
+                  "pm.environment.set(\"ticketId\", String(res.ticketId || res.id || ''));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get ticket QR code",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/tickets/{{ticketId}}/qr",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "tickets",
+                "{{ticketId}}",
+                "qr"
+              ]
+            },
+            "description": "Fetches the QR image for a ticket (image/png)."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
+                  "pm.test(\"Content-Type is image/png\", () => pm.expect(pm.response.headers.get('Content-Type') || '').to.include('image/png'));",
+                  "pm.test(\"QR bytes returned\", () => pm.expect(pm.response.text().length).to.be.above(0));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Webhooks (Sample Payloads)",
+      "item": [
+        {
+          "name": "publishNewEvent (sample webhook payload)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}https://example.com/your-webhook-endpoint",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "https:",
+                "example.com",
+                "your-webhook-endpoint"
+              ]
+            },
+            "description": "Sample request you can re-point to your webhook consumer to test payload shape.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"eventId\": \"00000000-0000-4000-8000-000000000001\",\n  \"name\": \"Curator Spotlight\",\n  \"location\": \"Auditorium\",\n  \"eventDescription\": \"Deep dive into recent acquisitions.\",\n  \"dates\": [\n    \"2025-12-05\"\n  ],\n  \"price\": 0\n}"
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "// This is a sample call to YOUR webhook receiver (replace URL).",
+                  "// Expect 2xx from your server; no schema tests here.",
+                  "pm.test(\"2xx from your webhook receiver (mock)\", () => pm.expect(pm.response.code).to.be.within(200,299));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://redocly.com/_mock/docs/openapi/museum-api"
+    },
+    {
+      "key": "basicUsername",
+      "value": "demo-user"
+    },
+    {
+      "key": "basicPassword",
+      "value": "demo-pass"
+    },
+    {
+      "key": "eventId",
+      "value": ""
+    },
+    {
+      "key": "ticketId",
+      "value": ""
+    },
+    {
+      "key": "startDate",
+      "value": "2025-09-01"
+    },
+    {
+      "key": "endDate",
+      "value": "2025-09-30"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicPassword}}",
+        "type": "string"
+      }
+    ]
+  }
+}
