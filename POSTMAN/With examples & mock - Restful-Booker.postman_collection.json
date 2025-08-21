@@ -1,0 +1,1435 @@
+{
+	"info": {
+		"_postman_id": "ec4e264b-8214-431c-9a05-a9e70953f0bb",
+		"name": "Restful-Booker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47554331"
+	},
+	"item": [
+		{
+			"name": "GET /booking (all IDs) ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Check status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Response should be an array\r",
+							"pm.test(\"Response is an array\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.be.an(\"array\");\r",
+							"});\r",
+							"\r",
+							"// Save first booking ID into environment (to use later)\r",
+							"var jsonData = pm.response.json();\r",
+							"if (jsonData.length > 0) {\r",
+							"    pm.environment.set(\"bookingId\", jsonData[0].bookingid || jsonData[0].bookingid || jsonData[0].bookingid);\r",
+							"    // Some responses return as \"bookingid\" others \"bookingid\"\r",
+							"    pm.environment.set(\"bookingId\", jsonData[0].bookingid || jsonData[0].bookingid || jsonData[0].bookingid);\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/booking?firstname=John&lastname=Smith",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"booking"
+					],
+					"query": [
+						{
+							"key": "firstname",
+							"value": "John"
+						},
+						{
+							"key": "lastname",
+							"value": "Smith"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 SUCCESS",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{mock_url}}/booking?firstname=John&lastname=Smith",
+							"host": [
+								"{{mock_url}}"
+							],
+							"path": [
+								"booking"
+							],
+							"query": [
+								{
+									"key": "firstname",
+									"value": "John"
+								},
+								{
+									"key": "lastname",
+									"value": "Smith"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "3217"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Aug 2025 09:12:18 GMT"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"c91-Ruam0AiVEOEFI/AC75rXjC2vzuI\""
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=csccedOure2hb6lQMFHkHjCepejB4cY2wm%2BFtFpbK3k%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1755767538\"}],\"max_age\":3600}"
+						},
+						{
+							"key": "Reporting-Endpoints",
+							"value": "heroku-nel=\"https://nel.heroku.com/reports?s=csccedOure2hb6lQMFHkHjCepejB4cY2wm%2BFtFpbK3k%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1755767538\""
+						},
+						{
+							"key": "Server",
+							"value": "Heroku"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 heroku-router"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"bookingid\": 540\n    },\n    {\n        \"bookingid\": 209\n    },\n    {\n        \"bookingid\": 411\n    },\n    {\n        \"bookingid\": 274\n    },\n    {\n        \"bookingid\": 424\n    },\n    {\n        \"bookingid\": 503\n    },\n    {\n        \"bookingid\": 207\n    },\n    {\n        \"bookingid\": 52\n    },\n    {\n        \"bookingid\": 620\n    },\n    {\n        \"bookingid\": 88\n    },\n    {\n        \"bookingid\": 613\n    },\n    {\n        \"bookingid\": 472\n    },\n    {\n        \"bookingid\": 651\n    },\n    {\n        \"bookingid\": 548\n    },\n    {\n        \"bookingid\": 310\n    },\n    {\n        \"bookingid\": 48\n    },\n    {\n        \"bookingid\": 191\n    },\n    {\n        \"bookingid\": 340\n    },\n    {\n        \"bookingid\": 431\n    },\n    {\n        \"bookingid\": 303\n    },\n    {\n        \"bookingid\": 231\n    },\n    {\n        \"bookingid\": 353\n    },\n    {\n        \"bookingid\": 74\n    },\n    {\n        \"bookingid\": 409\n    },\n    {\n        \"bookingid\": 632\n    },\n    {\n        \"bookingid\": 644\n    },\n    {\n        \"bookingid\": 290\n    },\n    {\n        \"bookingid\": 378\n    },\n    {\n        \"bookingid\": 689\n    },\n    {\n        \"bookingid\": 325\n    },\n    {\n        \"bookingid\": 94\n    },\n    {\n        \"bookingid\": 317\n    },\n    {\n        \"bookingid\": 636\n    },\n    {\n        \"bookingid\": 406\n    },\n    {\n        \"bookingid\": 532\n    },\n    {\n        \"bookingid\": 354\n    },\n    {\n        \"bookingid\": 556\n    },\n    {\n        \"bookingid\": 464\n    },\n    {\n        \"bookingid\": 199\n    },\n    {\n        \"bookingid\": 184\n    },\n    {\n        \"bookingid\": 678\n    },\n    {\n        \"bookingid\": 335\n    },\n    {\n        \"bookingid\": 430\n    },\n    {\n        \"bookingid\": 542\n    },\n    {\n        \"bookingid\": 523\n    },\n    {\n        \"bookingid\": 27\n    },\n    {\n        \"bookingid\": 386\n    },\n    {\n        \"bookingid\": 629\n    },\n    {\n        \"bookingid\": 14\n    },\n    {\n        \"bookingid\": 327\n    },\n    {\n        \"bookingid\": 124\n    },\n    {\n        \"bookingid\": 251\n    },\n    {\n        \"bookingid\": 492\n    },\n    {\n        \"bookingid\": 205\n    },\n    {\n        \"bookingid\": 656\n    },\n    {\n        \"bookingid\": 257\n    },\n    {\n        \"bookingid\": 266\n    },\n    {\n        \"bookingid\": 368\n    },\n    {\n        \"bookingid\": 379\n    },\n    {\n        \"bookingid\": 125\n    },\n    {\n        \"bookingid\": 586\n    },\n    {\n        \"bookingid\": 114\n    },\n    {\n        \"bookingid\": 522\n    },\n    {\n        \"bookingid\": 361\n    },\n    {\n        \"bookingid\": 664\n    },\n    {\n        \"bookingid\": 64\n    },\n    {\n        \"bookingid\": 320\n    },\n    {\n        \"bookingid\": 631\n    },\n    {\n        \"bookingid\": 563\n    },\n    {\n        \"bookingid\": 506\n    },\n    {\n        \"bookingid\": 685\n    },\n    {\n        \"bookingid\": 84\n    },\n    {\n        \"bookingid\": 85\n    },\n    {\n        \"bookingid\": 392\n    },\n    {\n        \"bookingid\": 478\n    },\n    {\n        \"bookingid\": 439\n    },\n    {\n        \"bookingid\": 304\n    },\n    {\n        \"bookingid\": 283\n    },\n    {\n        \"bookingid\": 296\n    },\n    {\n        \"bookingid\": 385\n    },\n    {\n        \"bookingid\": 92\n    },\n    {\n        \"bookingid\": 71\n    },\n    {\n        \"bookingid\": 616\n    },\n    {\n        \"bookingid\": 134\n    },\n    {\n        \"bookingid\": 592\n    },\n    {\n        \"bookingid\": 590\n    },\n    {\n        \"bookingid\": 29\n    },\n    {\n        \"bookingid\": 312\n    },\n    {\n        \"bookingid\": 670\n    },\n    {\n        \"bookingid\": 597\n    },\n    {\n        \"bookingid\": 504\n    },\n    {\n        \"bookingid\": 561\n    },\n    {\n        \"bookingid\": 211\n    },\n    {\n        \"bookingid\": 116\n    },\n    {\n        \"bookingid\": 662\n    },\n    {\n        \"bookingid\": 449\n    },\n    {\n        \"bookingid\": 313\n    },\n    {\n        \"bookingid\": 677\n    },\n    {\n        \"bookingid\": 607\n    },\n    {\n        \"bookingid\": 608\n    },\n    {\n        \"bookingid\": 185\n    },\n    {\n        \"bookingid\": 109\n    },\n    {\n        \"bookingid\": 39\n    },\n    {\n        \"bookingid\": 543\n    },\n    {\n        \"bookingid\": 245\n    },\n    {\n        \"bookingid\": 604\n    },\n    {\n        \"bookingid\": 674\n    },\n    {\n        \"bookingid\": 351\n    },\n    {\n        \"bookingid\": 21\n    },\n    {\n        \"bookingid\": 537\n    },\n    {\n        \"bookingid\": 448\n    },\n    {\n        \"bookingid\": 46\n    },\n    {\n        \"bookingid\": 580\n    },\n    {\n        \"bookingid\": 577\n    },\n    {\n        \"bookingid\": 530\n    },\n    {\n        \"bookingid\": 97\n    },\n    {\n        \"bookingid\": 516\n    },\n    {\n        \"bookingid\": 626\n    },\n    {\n        \"bookingid\": 514\n    },\n    {\n        \"bookingid\": 574\n    },\n    {\n        \"bookingid\": 255\n    },\n    {\n        \"bookingid\": 256\n    },\n    {\n        \"bookingid\": 331\n    },\n    {\n        \"bookingid\": 198\n    },\n    {\n        \"bookingid\": 59\n    },\n    {\n        \"bookingid\": 687\n    },\n    {\n        \"bookingid\": 682\n    },\n    {\n        \"bookingid\": 242\n    },\n    {\n        \"bookingid\": 120\n    },\n    {\n        \"bookingid\": 513\n    },\n    {\n        \"bookingid\": 225\n    },\n    {\n        \"bookingid\": 418\n    },\n    {\n        \"bookingid\": 289\n    },\n    {\n        \"bookingid\": 399\n    },\n    {\n        \"bookingid\": 19\n    },\n    {\n        \"bookingid\": 55\n    },\n    {\n        \"bookingid\": 139\n    },\n    {\n        \"bookingid\": 457\n    },\n    {\n        \"bookingid\": 95\n    },\n    {\n        \"bookingid\": 219\n    },\n    {\n        \"bookingid\": 422\n    },\n    {\n        \"bookingid\": 479\n    },\n    {\n        \"bookingid\": 443\n    },\n    {\n        \"bookingid\": 213\n    },\n    {\n        \"bookingid\": 173\n    },\n    {\n        \"bookingid\": 571\n    },\n    {\n        \"bookingid\": 157\n    },\n    {\n        \"bookingid\": 646\n    },\n    {\n        \"bookingid\": 282\n    },\n    {\n        \"bookingid\": 72\n    },\n    {\n        \"bookingid\": 437\n    },\n    {\n        \"bookingid\": 106\n    },\n    {\n        \"bookingid\": 485\n    },\n    {\n        \"bookingid\": 667\n    },\n    {\n        \"bookingid\": 400\n    },\n    {\n        \"bookingid\": 239\n    },\n    {\n        \"bookingid\": 297\n    },\n    {\n        \"bookingid\": 499\n    },\n    {\n        \"bookingid\": 413\n    },\n    {\n        \"bookingid\": 223\n    },\n    {\n        \"bookingid\": 567\n    },\n    {\n        \"bookingid\": 584\n    },\n    {\n        \"bookingid\": 394\n    },\n    {\n        \"bookingid\": 601\n    },\n    {\n        \"bookingid\": 467\n    },\n    {\n        \"bookingid\": 192\n    },\n    {\n        \"bookingid\": 486\n    },\n    {\n        \"bookingid\": 453\n    },\n    {\n        \"bookingid\": 658\n    },\n    {\n        \"bookingid\": 178\n    },\n    {\n        \"bookingid\": 234\n    },\n    {\n        \"bookingid\": 347\n    },\n    {\n        \"bookingid\": 273\n    },\n    {\n        \"bookingid\": 342\n    },\n    {\n        \"bookingid\": 593\n    },\n    {\n        \"bookingid\": 493\n    },\n    {\n        \"bookingid\": 65\n    },\n    {\n        \"bookingid\": 369\n    },\n    {\n        \"bookingid\": 73\n    },\n    {\n        \"bookingid\": 621\n    }\n]"
+				},
+				{
+					"name": "404 NOT FOUND",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{mock_url}}/booking",
+							"host": [
+								"{{mock_url}}"
+							],
+							"path": [
+								"booking"
+							],
+							"query": [
+								{
+									"key": "firstname",
+									"value": "John",
+									"disabled": true
+								},
+								{
+									"key": "lastname",
+									"value": "Smith",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{ \"error\": \"No bookings found\" }\r\n"
+				}
+			]
+		},
+		{
+			"name": "GET /booking by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status is 200\", () => {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body is JSON\", () => {\r",
+							"  pm.response.to.be.withBody;\r",
+							"  pm.response.to.be.json;\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/booking/5",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"booking",
+						"5"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 SUCCESS",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mock_url}}/booking/5",
+							"host": [
+								"{{mock_url}}"
+							],
+							"path": [
+								"booking",
+								"5"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "169"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Aug 2025 09:14:01 GMT"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"a9-W+e7zMiyksRTGpxmc9Gb/RIFTq8\""
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=YehDiSKPA8tkz%2BovAV3veVOvPI5TjsR0f%2FDl8gDXaqM%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1755767641\"}],\"max_age\":3600}"
+						},
+						{
+							"key": "Reporting-Endpoints",
+							"value": "heroku-nel=\"https://nel.heroku.com/reports?s=YehDiSKPA8tkz%2BovAV3veVOvPI5TjsR0f%2FDl8gDXaqM%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1755767641\""
+						},
+						{
+							"key": "Server",
+							"value": "Heroku"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 heroku-router"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"firstname\": \"Mary\",\n    \"lastname\": \"Jones\",\n    \"totalprice\": 403,\n    \"depositpaid\": true,\n    \"bookingdates\": {\n        \"checkin\": \"2022-10-25\",\n        \"checkout\": \"2024-02-06\"\n    },\n    \"additionalneeds\": \"Breakfast\"\n}"
+				},
+				{
+					"name": "404 NOT FOUND",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mock_url}}/booking/10",
+							"host": [
+								"{{mock_url}}"
+							],
+							"path": [
+								"booking",
+								"10"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{ \"error\": \"Booking with ID not found\" }\r\n"
+				}
+			]
+		},
+		{
+			"name": "POST /auth",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Check status code\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"// Validate response has token\r",
+							"pm.test(\"Response has token\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"token\");\r",
+							"});\r",
+							"\r",
+							"// Save token in environment\r",
+							"var jsonData = pm.response.json();\r",
+							"pm.environment.set(\"token\", jsonData.token);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\" : \"admin\",\r\n  \"password\" : \"password123\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/auth",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 SUCCESS",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\" : \"admin\",\r\n  \"password\" : \"password123\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mock_url}}/auth",
+							"host": [
+								"{{mock_url}}"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "27"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Aug 2025 09:17:09 GMT"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"1b-wGAKouRQ5RejBuu+q6Yf35SToNY\""
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=yyZPo1DsUavALinJlF7UV7oVSWg1HPB%2BpHjDaYr4WKY%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1755767829\"}],\"max_age\":3600}"
+						},
+						{
+							"key": "Reporting-Endpoints",
+							"value": "heroku-nel=\"https://nel.heroku.com/reports?s=yyZPo1DsUavALinJlF7UV7oVSWg1HPB%2BpHjDaYr4WKY%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1755767829\""
+						},
+						{
+							"key": "Server",
+							"value": "Heroku"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 heroku-router"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"token\": \"beb2c1a2dabc06c\"\n}"
+				},
+				{
+					"name": "400 BAD REQUEST",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\" : \"admin\",\r\n  \"password\" : \"pass\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mock_url}}/auth",
+							"host": [
+								"{{mock_url}}"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{ \"error\": \"Invalid username or password\" }\r\n"
+				}
+			]
+		},
+		{
+			"name": "POST /booking",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let jsonData = pm.response.json();\r",
+							"pm.test(\"Booking ID is present\", function () {\r",
+							"    pm.expect(jsonData).to.have.property(\"bookingid\");\r",
+							"});\r",
+							"\r",
+							"// Save bookingid to environment for later requests\r",
+							"pm.environment.set(\"bookingid\", jsonData.bookingid);\r",
+							"console.log(\"Booking created with ID:\", jsonData.bookingid);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"firstname\": \"Sowmya\",\r\n  \"lastname\": \"Tester\",\r\n  \"totalprice\": 111,\r\n  \"depositpaid\": true,\r\n  \"bookingdates\": {\r\n    \"checkin\": \"2025-08-01\",\r\n    \"checkout\": \"2025-08-10\"\r\n  },\r\n  \"additionalneeds\": \"Breakfast\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/booking",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"booking"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 SUCCESS",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstname\": \"Sowmya\",\r\n  \"lastname\": \"Tester\",\r\n  \"totalprice\": 111,\r\n  \"depositpaid\": true,\r\n  \"bookingdates\": {\r\n    \"checkin\": \"2025-08-01\",\r\n    \"checkout\": \"2025-08-10\"\r\n  },\r\n  \"additionalneeds\": \"Breakfast\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mock_url}}/booking",
+							"host": [
+								"{{mock_url}}"
+							],
+							"path": [
+								"booking"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "201"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Aug 2025 15:16:59 GMT"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"c9-so6/DbkAoC3mlJaIEgTDSrzdP5w\""
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=HFvWYxlaHI8HzMbjs80XoVv0BQ9AOhoFkrBJsMwjOOs%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1755789419\"}],\"max_age\":3600}"
+						},
+						{
+							"key": "Reporting-Endpoints",
+							"value": "heroku-nel=\"https://nel.heroku.com/reports?s=HFvWYxlaHI8HzMbjs80XoVv0BQ9AOhoFkrBJsMwjOOs%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1755789419\""
+						},
+						{
+							"key": "Server",
+							"value": "Heroku"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 heroku-router"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"bookingid\": 3082,\n    \"booking\": {\n        \"firstname\": \"Sowmya\",\n        \"lastname\": \"Tester\",\n        \"totalprice\": 111,\n        \"depositpaid\": true,\n        \"bookingdates\": {\n            \"checkin\": \"2025-08-01\",\n            \"checkout\": \"2025-08-10\"\n        },\n        \"additionalneeds\": \"Breakfast\"\n    }\n}"
+				},
+				{
+					"name": "400 BAD REQUEST",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstname\": \"Sowmya\",\r\n  \"lastname\": \"Tester\",\r\n  \r\n  \"depositpaid\": true,\r\n  \"bookingdates\": {\r\n    \"checkin\": \"2025-08-01\",\r\n    \"checkout\": \"2025-08-10\"\r\n  },\r\n  \"additionalneeds\": \"Breakfast\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mock_url}}/booking",
+							"host": [
+								"{{mock_url}}"
+							],
+							"path": [
+								"booking"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{ \"error\": \"Missing required fields\" }\r\n"
+				}
+			]
+		},
+		{
+			"name": "PUT /booking/{id}",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({\r",
+							"    url: pm.environment.get(\"base_url\") + \"/auth\",\r",
+							"    method: \"POST\",\r",
+							"    header: {\r",
+							"        \"Content-Type\": \"application/json\"\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: \"raw\",\r",
+							"        raw: JSON.stringify({\r",
+							"            \"username\": \"admin\",\r",
+							"            \"password\": \"password123\"\r",
+							"        })\r",
+							"    }\r",
+							"}, function (err, res) {\r",
+							"    if (!err) {\r",
+							"        let json = res.json();\r",
+							"        if (json.token) {\r",
+							"            pm.environment.set(\"authToken\", json.token);\r",
+							"            console.log(\"New Token set: \" + json.token);\r",
+							"        } else {\r",
+							"            console.log(\"Auth token not found in response\");\r",
+							"        }\r",
+							"    } else {\r",
+							"        console.log(\"Error fetching token: \" + err);\r",
+							"    }\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains updated firstname\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.firstname).to.eql(\"Jane\"); \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Cookie",
+						"value": "token={{authToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"firstname\" : \"Jane\",\r\n  \"lastname\" : \"Doe\",\r\n  \"totalprice\" : 200,\r\n  \"depositpaid\" : false,\r\n  \"bookingdates\" : {\r\n    \"checkin\" : \"2025-09-01\",\r\n    \"checkout\" : \"2025-09-05\"\r\n  },\r\n  \"additionalneeds\" : \"Lunch\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/booking/{{bookingid}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"booking",
+						"{{bookingid}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 SUCCESS",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "token={{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstname\" : \"Jane\",\r\n  \"lastname\" : \"Doe\",\r\n  \"totalprice\" : 200,\r\n  \"depositpaid\" : false,\r\n  \"bookingdates\" : {\r\n    \"checkin\" : \"2025-09-01\",\r\n    \"checkout\" : \"2025-09-05\"\r\n  },\r\n  \"additionalneeds\" : \"Lunch\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mock_url}}/booking/{{bookingid}}",
+							"host": [
+								"{{mock_url}}"
+							],
+							"path": [
+								"booking",
+								"{{bookingid}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "164"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Aug 2025 15:17:43 GMT"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"a4-e6iJYq+lFPMVo8OeSLM8w8PymKg\""
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=PUluc8Dy%2BMX1xiYKqfzo0nYWnFeBuJYQlYNCLyNoHlw%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1755789463\"}],\"max_age\":3600}"
+						},
+						{
+							"key": "Reporting-Endpoints",
+							"value": "heroku-nel=\"https://nel.heroku.com/reports?s=PUluc8Dy%2BMX1xiYKqfzo0nYWnFeBuJYQlYNCLyNoHlw%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1755789463\""
+						},
+						{
+							"key": "Server",
+							"value": "Heroku"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 heroku-router"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"firstname\": \"Jane\",\n    \"lastname\": \"Doe\",\n    \"totalprice\": 200,\n    \"depositpaid\": false,\n    \"bookingdates\": {\n        \"checkin\": \"2025-09-01\",\n        \"checkout\": \"2025-09-05\"\n    },\n    \"additionalneeds\": \"Lunch\"\n}"
+				},
+				{
+					"name": "404 NOT FOUND",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "token={{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstname\" : \"Jane\",\r\n  \"lastname\" : \"Doe\",\r\n  \"totalprice\" : 200,\r\n  \"depositpaid\" : false,\r\n  \"bookingdates\" : {\r\n    \"checkin\" : \"2025-09-01\",\r\n    \"checkout\" : \"2025-09-05\"\r\n  },\r\n  \"additionalneeds\" : \"Lunch\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mock_url}}/booking/25",
+							"host": [
+								"{{mock_url}}"
+							],
+							"path": [
+								"booking",
+								"25"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{ \"error\": \"Booking with ID not found\" }\r\n"
+				}
+			]
+		},
+		{
+			"name": "PATCH /booking/{id}",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({\r",
+							"    url: pm.environment.get(\"base_url\") + \"/auth\",\r",
+							"    method: \"POST\",\r",
+							"    header: {\r",
+							"        \"Content-Type\": \"application/json\"\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: \"raw\",\r",
+							"        raw: JSON.stringify({\r",
+							"            \"username\": \"admin\",\r",
+							"            \"password\": \"password123\"\r",
+							"        })\r",
+							"    }\r",
+							"}, function (err, res) {\r",
+							"    if (!err) {\r",
+							"        let json = res.json();\r",
+							"        if (json.token) {\r",
+							"            pm.environment.set(\"authToken\", json.token);\r",
+							"            console.log(\"New Token set: \" + json.token);\r",
+							"        } else {\r",
+							"            console.log(\"Auth token not found in response\");\r",
+							"        }\r",
+							"    } else {\r",
+							"        console.log(\"Error fetching token: \" + err);\r",
+							"    }\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains updated field\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.firstname).to.eql(\"Eric\"); \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Cookie",
+						"value": "token={{authToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"firstname\" : \"Eric\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/booking/3",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"booking",
+						"3"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 SUCCESS",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "token={{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstname\" : \"Eric\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mock_url}}/booking/3",
+							"host": [
+								"{{mock_url}}"
+							],
+							"path": [
+								"booking",
+								"3"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "171"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Aug 2025 15:18:51 GMT"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"ab-5nSqRMNQTOZ2OfvBO/Ume4iKULg\""
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=HBlXp%2B0odOws9YdUJdOXUl3P6HwZvaV9SBMaZpUGv9g%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1755789531\"}],\"max_age\":3600}"
+						},
+						{
+							"key": "Reporting-Endpoints",
+							"value": "heroku-nel=\"https://nel.heroku.com/reports?s=HBlXp%2B0odOws9YdUJdOXUl3P6HwZvaV9SBMaZpUGv9g%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1755789531\""
+						},
+						{
+							"key": "Server",
+							"value": "Heroku"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 heroku-router"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{\n    \"firstname\": \"Eric\",\n    \"lastname\": \"Wilson\",\n    \"totalprice\": 667,\n    \"depositpaid\": false,\n    \"bookingdates\": {\n        \"checkin\": \"2015-11-15\",\n        \"checkout\": \"2021-11-20\"\n    },\n    \"additionalneeds\": \"Breakfast\"\n}"
+				},
+				{
+					"name": "PATCH /booking/{id}",
+					"originalRequest": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Cookie",
+								"value": "token={{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstname\" : \"Eric\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{mock_url}}/booking/35",
+							"host": [
+								"{{mock_url}}"
+							],
+							"path": [
+								"booking",
+								"35"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "{ \"error\": \"Booking with ID not found\" }\r\n"
+				}
+			]
+		},
+		{
+			"name": "DELETE /booking/{id}",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({\r",
+							"    url: pm.environment.get(\"base_url\") + \"/auth\",\r",
+							"    method: \"POST\",\r",
+							"    header: {\r",
+							"        \"Content-Type\": \"application/json\"\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: \"raw\",\r",
+							"        raw: JSON.stringify({\r",
+							"            \"username\": \"admin\",\r",
+							"            \"password\": \"password123\"\r",
+							"        })\r",
+							"    }\r",
+							"}, function (err, res) {\r",
+							"    if (!err) {\r",
+							"        let json = res.json();\r",
+							"        if (json.token) {\r",
+							"            pm.environment.set(\"authToken\", json.token);\r",
+							"            console.log(\"New Token set: \" + json.token);\r",
+							"        } else {\r",
+							"            console.log(\"Auth token not found in response\");\r",
+							"        }\r",
+							"    } else {\r",
+							"        console.log(\"Error fetching token: \" + err);\r",
+							"    }\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201 (Deleted)\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Cookie",
+						"value": "token={{authToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/booking/{{bookingid}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"booking",
+						"{{bookingid}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200 SUCCESS",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token={{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{mock_url}}/booking/{{bookingid}}",
+							"host": [
+								"{{mock_url}}"
+							],
+							"path": [
+								"booking",
+								"{{bookingid}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Length",
+							"value": "7"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 21 Aug 2025 15:19:29 GMT"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"7-rM9AyJuqT6iOan/xHh+AW+7K/T8\""
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"heroku-nel\",\"response_headers\":[\"Via\"],\"max_age\":3600,\"success_fraction\":0.01,\"failure_fraction\":0.1}"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"heroku-nel\",\"endpoints\":[{\"url\":\"https://nel.heroku.com/reports?s=C6DbP9Dw6HNQtpETrIGsLkqYxTSOLRGhpqZaZr%2Ff1k4%3D\\u0026sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add\\u0026ts=1755789569\"}],\"max_age\":3600}"
+						},
+						{
+							"key": "Reporting-Endpoints",
+							"value": "heroku-nel=\"https://nel.heroku.com/reports?s=C6DbP9Dw6HNQtpETrIGsLkqYxTSOLRGhpqZaZr%2Ff1k4%3D&sid=c46efe9b-d3d2-4a0c-8c76-bfafa16c5add&ts=1755789569\""
+						},
+						{
+							"key": "Server",
+							"value": "Heroku"
+						},
+						{
+							"key": "Via",
+							"value": "1.1 heroku-router"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date"
+						}
+					],
+					"body": "Created"
+				},
+				{
+					"name": "404 NOT FOUND",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "token={{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/booking/68",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"booking",
+								"68"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{ \"error\": \"Booking with ID not found\" }\r\n"
+				}
+			]
+		}
+	]
+}
