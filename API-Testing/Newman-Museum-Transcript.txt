@@ -1,0 +1,29 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20250821151116
+Username: ASCENDI-JQU2PAH\Ascendion
+RunAs User: ASCENDI-JQU2PAH\Ascendion
+Configuration Name: 
+Machine: ASCENDI-JQU2PAH (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 26172
+PSVersion: 5.1.26100.4768
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.4768
+BuildVersion: 10.0.26100.4768
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Users\Ascendion\Documents\PowerShell_transcript.ASCENDI-JQU2PAH.PqFnmr9d.20250821151116.txt
+PS C:\Users\Ascendion\source\repos\automation-072025\API-Testing> newman.cmd run ".\Redocly Museum API — Full Collection.postman_collection.json" `
+  -e ".\Redocly_Museum_API_ENV.postman_environment.json" `
+  --env-var baseUrl="https://redocly.com/_mock/demo/openapi/museum-api" `
+  -r cli --insecure
+
+PS C:\Users\Ascendion\source\repos\automation-072025\API-Testing> Stop-Transcript
+**********************
+Windows PowerShell transcript end
+End time: 20250821151133
+**********************
