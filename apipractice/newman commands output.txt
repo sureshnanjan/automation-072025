@@ -1,0 +1,86 @@
+============================================================
+              API Automation Test Execution Report
+============================================================
+
+Copyright © 2025 Shreya S G.  
+All rights reserved.
+
+This document contains confidential and proprietary information 
+regarding the execution of automated API tests using Postman and 
+Newman CLI. Unauthorized copying, distribution, or disclosure of 
+this document, in part or whole, is strictly prohibited without 
+prior written permission from Ascendion.
+
+============================================================
+Software & Tools Used:
+------------------------------------------------------------
+- Microsoft Windows [Version 10.0.26100.4946]
+- Node.js + Newman (Postman CLI Collection Runner)
+- Postman Collection: Restfull-BookerPracticeSample.postman_collection.json
+- Environment: restful-mock-server.postman_environment.json
+- Target API: https://restful-booker.herokuapp.com
+
+============================================================
+Microsoft Windows [Version 10.0.26100.4946]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Ascendion>cd C:\Users\Ascendion\Desktop\apipractice
+
+C:\Users\Ascendion\Desktop\apipractice>newman run "C:\Users\Ascendion\Desktop\apipractice\Restfull-BookerPracticeSample.postman_collection.json" -e "C:\Users\Ascendion\Desktop\apipractice\restful-mock-server.postman_environment.json" --insecure
+newman
+
+Restfull-BookerPracticeSample
+
+→ Auth - CreateToken
+  POST https://restful-booker.herokuapp.com/auth [200 OK, 770B, 877ms]
+
+→ Booking - GetBookingIds
+  GET https://restful-booker.herokuapp.com/booking [200 OK, 47.31kB, 922ms]
+
+→ Booking - GetBooking
+  GET https://restful-booker.herokuapp.com/booking/1 [200 OK, 915B, 300ms]
+
+→ Booking - CreateBooking
+  POST https://restful-booker.herokuapp.com/booking [200 OK, 941B, 383ms]
+
+→ Booking - UpdateBooking
+  POST https://restful-booker.herokuapp.com/auth [200 OK, 770B, 333ms]
+  ┌
+  │ 'Token set:', 'c853cdab8230246'
+  └
+  PUT https://restful-booker.herokuapp.com/booking/18 [200 OK, 910B, 314ms]
+
+→ Booking - PartialUpdateBooking
+  PATCH https://restful-booker.herokuapp.com/booking/3748 [405 Method Not Allowed, 767B, 339ms]
+  POST https://restful-booker.herokuapp.com/auth [200 OK, 766B, 266ms]
+  ┌
+  │ 'Token set:', 'c24c7efb18bce45'
+  └
+
+→ Booking - DeleteBooking
+  POST https://restful-booker.herokuapp.com/auth [200 OK, 766B, 360ms]
+  ┌
+  │ 'Token set:', '172abb942120ff1'
+  └
+  DELETE https://restful-booker.herokuapp.com/booking/18 [201 Created, 743B, 459ms]
+
+┌─────────────────────────┬─────────────────────┬────────────────────┐
+│                         │            executed │             failed │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│              iterations │                   1 │                  0 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│                requests │                  10 │                  0 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│            test-scripts │                   1 │                  0 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│      prerequest-scripts │                   2 │                  0 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│              assertions │                   0 │                  0 │
+├─────────────────────────┴─────────────────────┴────────────────────┤
+│ total run duration: 5.7s                                           │
+├────────────────────────────────────────────────────────────────────┤
+│ total data received: 47.24kB (approx)                              │
+├────────────────────────────────────────────────────────────────────┤
+│ average response time: 455ms [min: 266ms, max: 922ms, s.d.: 227ms] │
+└────────────────────────────────────────────────────────────────────┘
+
