@@ -1,0 +1,2 @@
+INSERT INTO supplier (supplier_name) VALUES
+('Alpha Traders'), ('Beta Corp'), ('Gamma Supplies'), ('Delta Exports'), ('Omega Imports');
