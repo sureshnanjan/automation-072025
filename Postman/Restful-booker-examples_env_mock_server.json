@@ -1,0 +1,16 @@
+{
+	"id": "835ea279-01c3-495a-a684-987644cfc5fb",
+	"name": "Restful-booker-env",
+	"values": [
+		{
+			"key": "BaseURL",
+			"value": "https://d69feb76-9f10-466a-9369-5c0d98e7ecdb.mock.pstmn.io",
+			"type": "default",
+			"description": "",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2025-08-22T07:07:29.727Z",
+	"_postman_exported_using": "Postman/11.59.4"
+}
