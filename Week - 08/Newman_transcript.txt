@@ -1,0 +1,65 @@
+newman
+
+Restful_Booker
+
+□ Auth
+└ CreateToken
+  POST https://restful-booker.herokuapp.com/auth [200 OK, 770B, 536ms]
+  √  Status code is 200
+  √  Response has token
+
+□ Booking
+└ GetBookingIds
+  GET https://restful-booker.herokuapp.com
+/booking [200 OK, 29.96kB, 597ms]
+
+└ GetBooking
+  GET https://restful-booker.herokuapp.com/booking/6 [200 OK, 915B, 303ms]
+
+└ CreateBooking
+  POST https://restful-booker.herokuapp.com/booking [200 OK, 941B, 327ms]
+
+└ UpdateBooking
+  POST https://restful-booker.herokuapp.com/auth [200 OK, 770B, 344ms]
+  ┌
+  │ 'Token set:', '348046c612dd8e2'
+  └
+  PUT https://restful-booker.herokuapp.com/booking/6 [200 OK, 915B, 365ms]
+
+└ PartialUpdateBooking
+  PATCH https://restful-booker.herokuapp.com/booking/8 [200 OK, 914B, 281ms]
+  POST https://restful-booker.herokuapp.com/auth [200 OK, 770B, 320ms]
+  ┌
+  │ 'Token set:', 'a081009c14ad794'
+  └
+
+└ DeleteBooking
+  DELETE https://restful-booker.herokuapp.com/booking/11 [405 Method Not Allowed, 771B, 332ms]
+  POST https://restful-booker.herokuapp.com/auth [200 OK, 770B, 285ms]
+  ┌
+  │ 'Token set:', '846388a45403dc9'
+  └
+
+□ Ping
+└ HealthCheck
+  GET https://restful-booker.herokuapp.com/ping [201 Created, 747B, 314ms]
+
+┌─────────────────────────┬────────────────────┬────────────────────┐
+│                         │           executed │             failed │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│              iterations │                  1 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│                requests │                 11 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│            test-scripts │                  3 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│      prerequest-scripts │                  1 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│              assertions │                  2 │                  0 │
+├─────────────────────────┴────────────────────┴────────────────────┤
+│ total run duration: 4.7s                                          │
+├───────────────────────────────────────────────────────────────────┤
+│ total data received: 30.04kB (approx)                             │
+├───────────────────────────────────────────────────────────────────┤
+│ average response time: 364ms [min: 281ms, max: 597ms, s.d.: 99ms] │
+└───────────────────────────────────────────────────────────────────┘
