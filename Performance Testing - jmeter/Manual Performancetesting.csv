@@ -1,0 +1,10 @@
+Actions,Largest Contentful Paint (LCP),Cumulative Layout Shift (CLS),Interaction to Next Paint (INP)
+0,0.42,0.02,
+add 100,0.42,0.09,88ms
+added 200,0.42,0.09,340ms
+added500,0.42,0.09,1672ms
+added 300,0.42,0.09,4208ms
+sub 400,0.42,0.09,"8,256 ms"
+sub300,0.42,0.09,"8,456ms"
+add100,0.42,0.09,8728ms
+add 200,0.42,0.09,8959ms
