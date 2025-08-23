@@ -1,0 +1,113 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20250813095224
+Username: ASCENDI-HTMOH1J\Ascendion
+RunAs User: ASCENDI-HTMOH1J\Ascendion
+Configuration Name: 
+Machine: ASCENDI-HTMOH1J (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 8344
+PSVersion: 5.1.26100.4652
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.4652
+BuildVersion: 10.0.26100.4652
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is .\restful-booker-transcript.txt
+PS C:\Users\Ascendion> # 1. GET all bookings
+PS C:\Users\Ascendion> curl.exe -X GET "https://restful-booker.herokuapp.com/booking"
+"bookingid":597},{"bookingid":1152},{"bookingid":668},{"bookingid":374},{"bookingid":203},{"bookingid":1494},{"bookingid
+":871},{"bookingid":1136},{"bookingid":1226},{"bookingid":779},{"bookingid":202},{"bookingid":1566},{"bookingid":1272},{
+"bookingid":578},{"bookingid":599},{"bookingid":1476},{"bookingid":1310},{"bookingid":274},{"bookingid":1131},{"bookingi
+d":692},{"bookingid":1062},{"bookingid":1407},{"bookingid":405},{"bookingid":463},{"bookingid":312},{"bookingid":466},{"
+bookingid":5},{"bookingid":33},{"bookingid":659},{"bookingid":794},{"bookingid":609},{"bookingid":323},{"bookingid":122}
+,{"bookingid":582},{"bookingid":18},{"bookingid":1072},{"bookingid":579},{"bookingid":19},{"bookingid":1578},{"bookingid
+":547},{"bookingid":1555},{"bookingid":690},{"bookingid":558},{"bookingid":879},{"bookingid":227},{"bookingid":163},{"bo
+okingid":1581},{"bookingid":751},{"bookingid":968},{"bookingid":230},{"bookingid":38},{"bookingid":1180},{"bookingid":11
+3},{"bookingid":406},{"bookingid":747},{"bookingid":1249},{"bookingid":1220},{"bookingid":545},{"bookingid":1392},{"book
+ingid":336},{"bookingid":79},{"bookingid":940},{"bookingid":1069},{"bookingid":1230},{"bookingid":1483},{"bookingid":315
+},{"bookingid":335},{"bookingid":1441},{"bookingid":15},{"bookingid":895},{"bookingid":560},{"bookingid":634},{"bookingi
+d":1551},{"bookingid":460},{"bookingid":1557},{"bookingid":1066},{"bookingid":675},{"bookingid":995},{"bookingid":92},{"
+bookingid":1000},{"bookingid":1061},{"bookingid":68},{"bookingid":960},{"bookingid":736},{"bookingid":844},{"bookingid":
+1258},{"bookingid":1549},{"bookingid":702},{"bookingid":28},{"bookingid":816},{"bookingid":302},{"bookingid":1374},{"boo
+kingid":1479},{"bookingid":242},{"bookingid":754},{"bookingid":397},{"bookingid":1280},{"bookingid":1497},{"bookingid":7
+27},{"bookingid":948},{"bookingid":1108},{"bookingid":1291},{"bookingid":52},{"bookingid":516},{"bookingid":791},{"booki
+ngid":1121},{"bookingid":1446},{"bookingid":1395},{"bookingid":939},{"bookingid":303},{"bookingid":1525},{"bookingid":35
+},{"bookingid":723},{"bookingid":822},{"bookingid":1324},{"bookingid":616},{"bookingid":1228},{"bookingid":1088},{"booki
+ngid":1202},{"bookingid":972},{"bookingid":94},{"bookingid":363},{"bookingid":306},{"bookingid":454}]
+PS C:\Users\Ascendion> # 2. Create a booking JSON file
+PS C:\Users\Ascendion> @'
+{
+  "firstname": "John",
+  "lastname": "Smith",
+  "totalprice": 111,
+  "depositpaid": true,
+  "bookingdates": {
+    "checkin": "2025-01-01",
+    "checkout": "2025-01-02"
+  },
+  "additionalneeds": "Breakfast"
+}
+'@ | Out-File booking.json -Encoding utf8
+PS C:\Users\Ascendion> # 3. CREATE (POST) a new booking
+PS C:\Users\Ascendion> $createResponse = curl.exe -s -X POST "https://restful-booker.herokuapp.com/booking" `
+-H "Content-Type: application/json" `
+--data "@booking.json"
+PS C:\Users\Ascendion> $createResponse
+{"bookingid":1687,"booking":{"firstname":"John","lastname":"Smith","totalprice":111,"depositpaid":true,"bookingdates":{"checkin":"2025-01-01","checkout":"2025-01-02"},"additionalneeds":"Breakfast"}}
+PS C:\Users\Ascendion> $bookingId = ($createResponse | ConvertFrom-Json).bookingid
+PS C:\Users\Ascendion> Write-Host "Created booking ID: $bookingId"
+Created booking ID: 1687
+PS C:\Users\Ascendion> # 4. Authenticate and get token
+PS C:\Users\Ascendion> @'
+{
+  "username": "admin",
+  "password": "password123"
+}
+'@ | Out-File auth.json -Encoding utf8
+PS C:\Users\Ascendion> $authResponse = curl.exe -s -X POST "https://restful-booker.herokuapp.com/auth" `
+-H "Content-Type: application/json" `
+--data "@auth.json"
+PS C:\Users\Ascendion> $token = ($authResponse | ConvertFrom-Json).token
+PS C:\Users\Ascendion> Write-Host "Token: $token"
+Token: f3c8717979b47a0
+PS C:\Users\Ascendion> # 5. UPDATE booking (PUT)
+PS C:\Users\Ascendion> @'
+{
+  "firstname": "James",
+  "lastname": "Brown",
+  "totalprice": 150,
+  "depositpaid": false,
+  "bookingdates": {
+    "checkin": "2025-02-01",
+    "checkout": "2025-02-05"
+  },
+  "additionalneeds": "Dinner"
+}
+'@ | Out-File update_booking.json -Encoding utf8
+PS C:\Users\Ascendion> curl.exe -X PUT "https://restful-booker.herokuapp.com/booking/$bookingId" `
+-H "Content-Type: application/json" `
+-H "Accept: application/json" `
+-H "Cookie: token=$token" `
+--data "@update_booking.json"
+ckout":"2025-02-05"},"additionalneeds":"Dinner"}
+PS C:\Users\Ascendion> # 6. READ updated booking
+PS C:\Users\Ascendion> curl.exe -X GET "https://restful-booker.herokuapp.com/booking/$bookingId" `
+-H "Accept: application/json"
+ckout":"2025-02-05"},"additionalneeds":"Dinner"}
+PS C:\Users\Ascendion> # 7. DELETE booking
+PS C:\Users\Ascendion> curl.exe -X DELETE "https://restful-booker.herokuapp.com/booking/$bookingId" `
+-H "Cookie: token=$token"
+Created
+PS C:\Users\Ascendion> # 8. Verify deletion
+PS C:\Users\Ascendion> curl.exe -X GET "https://restful-booker.herokuapp.com/booking/$bookingId"
+Not Found
+PS C:\Users\Ascendion> # Stop transcript
+PS C:\Users\Ascendion> Stop-Transcript
+**********************
+Windows PowerShell transcript end
+End time: 20250813095415
+**********************
