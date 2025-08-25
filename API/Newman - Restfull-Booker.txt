@@ -1,0 +1,62 @@
+newman
+
+Restful-Booker
+
+□ Booking
+└ GetBookingIds
+  GET https://restful-booker.herokuapp.com/booking [200 OK, 24.31kB, 2.2s]
+
+└ GetBooking
+  GET https://restful-booker.herokuapp.com/booking/1 [404 Not Found, 747B, 358ms]
+
+└ CreateBooking
+  POST https://restful-booker.herokuapp.com/booking [200 OK, 947B, 328ms]
+
+└ UpdateBooking
+  POST https://restful-booker.herokuapp.com/auth [200 OK, 774B, 334ms]
+  ┌
+  │ 'Token set:', '3b332c52bb12daa'
+  └
+  PUT https://restful-booker.herokuapp.com/booking/1436 [200 OK, 906B, 702ms]
+
+└ PartialUpdateBooking
+  POST https://restful-booker.herokuapp.com/auth [200 OK, 766B, 322ms]
+  ┌
+  │ 'Token set:', '60b247ada409ee3'
+  └
+  PATCH https://restful-booker.herokuapp.com/booking/9 [200 OK, 910B, 367ms]
+
+└ DeleteBooking
+  POST https://restful-booker.herokuapp.com/auth [200 OK, 766B, 332ms]
+  ┌
+  │ 'Token set:', '8ebf16c0937bee5'
+  └
+  DELETE https://restful-booker.herokuapp.com/booking/10 [201 Created, 743B, 323ms]
+
+□ Authentication
+└ Auth - CreateToken
+  POST https://restful-booker.herokuapp.com/auth [200 OK, 770B, 330ms]
+
+□ Ping
+└ Ping
+  GET https://restful-booker.herokuapp.com/ping [201 Created, 747B, 320ms]
+
+┌─────────────────────────┬────────────────────┬────────────────────┐
+│                         │           executed │             failed │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│              iterations │                  1 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│                requests │                 11 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│            test-scripts │                  2 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│      prerequest-scripts │                  3 │                  0 │
+├─────────────────────────┼────────────────────┼────────────────────┤
+│              assertions │                  0 │                  0 │
+├─────────────────────────┴────────────────────┴────────────────────┤
+│ total run duration: 6.6s                                          │
+├───────────────────────────────────────────────────────────────────┤
+│ total data received: 24.23kB (approx)                             │
+├───────────────────────────────────────────────────────────────────┤
+│ average response time: 542ms [min: 320ms, max: 2.2s, s.d.: 550ms] │
+└───────────────────────────────────────────────────────────────────┘
