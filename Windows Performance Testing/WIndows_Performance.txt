@@ -1,0 +1,2893 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20250826123626
+Username: ASCENDI-8530I37\Ascendion
+RunAs User: ASCENDI-8530I37\Ascendion
+Configuration Name: 
+Machine: ASCENDI-8530I37 (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 6560
+PSVersion: 5.1.26100.4768
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.4768
+BuildVersion: 10.0.26100.4768
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Users\Ascendion\Downloads\Week-09\WIndows_Performance.txt
+PS C:\WINDOWS\system32> Write-Host "=================================================="
+Write-Host "Executing Commands from Pages 1 & 2: PerfMon/Logman"
+Write-Host "=================================================="
+
+# Note: 'perfmon' opens a GUI and will not produce text output here.
+Write-Host "Opening Performance Monitor (perfmon)..."
+Start-Process perfmon
+Start-Sleep -Seconds 2 # Give it a moment to open
+
+Write-Host "`n--- Running typeperf to collect CPU usage for 1 minute ---"
+typeperf "\Processor(_Total)\% Processor Time" -o "C:\Monitoring\cpu_usage.csv" -f CSV -si 5 -sc 12
+
+Write-Host "`n--- Creating, running, and stopping a Logman Data Collector Set ---"
+# Remove the counter set if it already exists to prevent errors
+logman delete "WebServer Monitoring" -y | Out-Null
+logman create counter "WebServer Monitoring" -c "\Web Service(_Total)\Bytes Total/sec" "\Web Service Cache\File Cache Hits %" -o "C:\Monitoring\web_monitoring.csv" -f csv
+logman start "WebServer Monitoring"
+Write-Host "Data collection started... waiting 15 seconds."
+Start-Sleep -Seconds 15
+logman stop "WebServer Monitoring"
+Write-Host "Data collection stopped."
+
+Write-Host "`n=================================================="
+Write-Host "Executing Commands from Page 3: Resmon & Event Viewer"
+Write-Host "=================================================="
+
+# Note: 'resmon' opens a GUI and will not produce text output here.
+Write-Host "Opening Resource Monitor (resmon)..."
+Start-Process resmon
+Start-Sleep -Seconds 2
+
+Write-Host "`n--- Top 10 processes by CPU (PowerShell) ---"
+Get-Process | Sort-Object CPU -Descending | Select-Object -First 10
+
+Write-Host "`n--- Getting 50 most recent System Error logs (PowerShell) ---"
+Get-EventLog -LogName System -EntryType Error -Newest 50
+
+Write-Host "`n--- Getting 50 most recent Critical/Error logs (wevtutil) ---"
+wevtutil qe System /c:50 /f:text /q:"*[System[(Level=1 or Level=2)]]"
+
+Write-Host "`n--- Exporting all System Error logs to CSV ---"
+Get-WinEvent -LogName System | Where-Object {$_.LevelDisplayName -eq "Error"} | Export-Csv -Path "C:\Monitoring\system_errors.csv" -NoTypeInformation
+Write-Host "Exported to C:\Monitoring\system_errors.csv"
+
+Write-Host "`n=================================================="
+Write-Host "Executing Commands from Pages 4 & 5: IIS & .NET"
+Write-Host "=================================================="
+
+Write-Host "`n--- Listing all stopped services ---"
+Get-Service | Where-Object {$_.Status -eq "Stopped"}
+
+Write-Host "`n--- Listing all established network connections ---"
+netstat -an | findstr ESTABLISHED
+
+# IIS commands can fail if IIS is not installed.
+if (Get-Module -ListAvailable -Name WebAdministration) {
+    Write-Host "`n--- Importing IIS WebAdministration Module ---"
+    Import-Module WebAdministration
+
+    Write-Host "`n--- Enabling IIS Logging ---"
+    # This command enables logging at the server level for default sites.
+    Set-WebConfigurationProperty -Filter "system.applicationHost/sites/siteDefaults/logFile" -Name enabled -Value $true
+
+    Write-Host "`n--- Monitoring Key IIS Performance Counters for 1 minute ---"
+    $IISCounters = @(
+        "\Web Service(_Total)\Bytes Sent/sec",
+        "\Web Service(_Total)\Current Connections",
+        "\ASP.NET\Requests Queued"
+    )
+    Get-Counter -Counter $IISCounters -SampleInterval 5 -MaxSamples 12
+
+    Write-Host "`n--- Listing IIS Application Pools ---"
+    Get-IISAppPool | Select-Object Name, State
+
+    Write-Host "`n--- Monitoring .NET CLR Performance Counters ---"
+    $DotNetCounters = @(
+        "\.NET CLR Memory(Global)\% Time in GC",
+        "\.NET CLR Exceptions(Global)\# of Exceps Thrown / sec"
+    )
+    Get-Counter -Counter $DotNetCounters -MaxSamples 3
+} else {
+    Write-Warning "IIS (WebAdministration Module) not found. Skipping IIS-specific commands."
+}
+
+Write-Host "`n=================================================="
+Write-Host "Executing Script from Page 6: Custom Monitoring"
+Write-Host "=================================================="
+
+# Create the PowerShell script file from the document content
+$MonitoringScript = @'
+param(
+    [int]$IntervalSeconds = 5,
+    [int]$DurationMinutes = 1,
+    [string]$OutputPath = "C:\Monitoring"
+)
+# Ensure output directory exists
+if (!(Test-Path $OutputPath)) {
+    New-Item -ItemType Directory -Path $OutputPath -Force
+}
+$EndTime = (Get-Date).AddMinutes($DurationMinutes)
+$LogFile = Join-Path $OutputPath "performance_$(Get-Date -Format 'yyyyMMdd_HHmmss').log"
+Write-Host "Starting monitoring... Output: $LogFile"
+Write-Host "Duration: $DurationMinutes minutes, Interval: $IntervalSeconds seconds"
+while ((Get-Date) -lt $EndTime) {
+    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    # System metrics
+    $cpu = (Get-Counter "\Processor(_Total)\% Processor Time").CounterSamples.CookedValue
+    $memory = (Get-Counter "\Memory\Available MBytes").CounterSamples.CookedValue
+    $diskQueue = (Get-Counter "\PhysicalDisk(_Total)\Current Disk Queue Length").CounterSamples.CookedValue
+    
+    $logEntry = "$timestamp, CPU:$([math]::Round($cpu, 2))%, Memory:$([math]::Round($memory, 2)) MB, DiskQueue:$([math]::Round($diskQueue, 2))"
+    Add-Content -Path $LogFile -Value $logEntry
+    Write-Host $logEntry
+    Start-Sleep -Seconds $IntervalSeconds
+}
+Write-Host "Monitoring completed. Log saved to: $LogFile"
+'@
+
+$MonitoringScript | Out-File -FilePath "C:\Monitoring\CustomMonitoring.ps1" -Encoding UTF8 -Force
+
+Write-Host "`n--- Running the custom monitoring script for 1 minute ---"
+# Execute the newly created script
+& "C:\Monitoring\CustomMonitoring.ps1" -DurationMinutes 1 -IntervalSeconds 5
+
+Write-Host "`n=================================================="
+Write-Host "All commands have been executed."
+Write-Host "=================================================="
+
+# Stop the transcript
+Stop-Transcript
+
+Write-Host "`nTranscript file saved to: C:\Monitoring\Monitoring_Session_Transcript.txt"
+Write-Host "Additional output files (CSV, LOG) are also in C:\Monitoring"
+==================================================
+Executing Commands from Pages 1 & 2: PerfMon/Logman
+==================================================
+Opening Performance Monitor (perfmon)...
+
+--- Running typeperf to collect CPU usage for 1 minute ---
+
+
+The command completed successfully.
+
+--- Creating, running, and stopping a Logman Data Collector Set ---
+The command completed successfully.
+The command completed successfully.
+Data collection started... waiting 15 seconds.
+The command completed successfully.
+Data collection stopped.
+
+==================================================
+Executing Commands from Page 3: Resmon & Event Viewer
+==================================================
+Opening Resource Monitor (resmon)...
+
+--- Top 10 processes by CPU (PowerShell) ---
+
+Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName
+-------  ------    -----      -----     ------     --  -- -----------
+    425      62    57872      66672   1,848.81   7684   1 perfmon
+    425      62    66152      68708   1,705.06  10872   1 perfmon
+    425      62    58424      66356   1,145.66  11292   1 perfmon
+   3902       0       44        168   1,127.72      4   0 System
+    425      63    50088      62824   1,037.61   2680   1 perfmon
+    425      63    64524      71652   1,027.66  11340   1 perfmon
+   2584     305   165188     310344     658.30   8580   1 msedge
+   1372      92   126260     197760     553.31   1124   1 dwm
+    552      49    27808     105356     502.59   8824   1 msedge
+    414      61   355748     418012     358.83   9516   1 msedge
+
+--- Getting 50 most recent System Error logs (PowerShell) ---
+
+MachineName        : ASCENDI-8530I37
+Data               : {}
+Index              : 10379
+Category           : (1)
+CategoryNumber     : 1
+EventID            : 20
+EntryType          : Error
+Message            : Installation Failure: Windows failed to install the following update with error 0x80073d02:
+                     9NMPJ99VJBWV-Microsoft.YourPhone.
+Source             : Microsoft-Windows-WindowsUpdateClient
+ReplacementStrings : {0x80073d02, 9NMPJ99VJBWV-Microsoft.YourPhone, {d12f612d-c5ea-4c5d-843b-10b6248e6648}, 1...}
+InstanceId         : 20
+TimeGenerated      : 8/26/2025 9:52:54 AM
+TimeWritten        : 8/26/2025 9:52:54 AM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {}
+Index              : 10376
+Category           : (1)
+CategoryNumber     : 1
+EventID            : 20
+EntryType          : Error
+Message            : Installation Failure: Windows failed to install the following update with error 0x80073d02:
+                     9NTXGKQ8P7N0-MicrosoftWindows.CrossDevice.
+Source             : Microsoft-Windows-WindowsUpdateClient
+ReplacementStrings : {0x80073d02, 9NTXGKQ8P7N0-MicrosoftWindows.CrossDevice, {a2b23f3b-f9c8-442f-a0e7-1eb491f7998f},
+                     1...}
+InstanceId         : 20
+TimeGenerated      : 8/26/2025 9:52:49 AM
+TimeWritten        : 8/26/2025 9:52:49 AM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {}
+Index              : 10355
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 1795
+EntryType          : Error
+Message            : The system firmware returned an error -2147467259 when attempting to update a Secure Boot
+                     variable. For more information, please see https://go.microsoft.com/fwlink/?linkid=2169931
+Source             : Microsoft-Windows-TPM-WMI
+ReplacementStrings : {-2147467259}
+InstanceId         : 1795
+TimeGenerated      : 8/26/2025 9:29:29 AM
+TimeWritten        : 8/26/2025 9:29:29 AM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {233, 7, 8, 0...}
+Index              : 10269
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 6008
+EntryType          : Error
+Message            : The previous system shutdown at 10:43:21 PM on ‎8/‎25/‎2025 was unexpected.
+Source             : EventLog
+ReplacementStrings : {10:43:21 PM, ‎8/‎25/‎2025, , ...}
+InstanceId         : 2147489656
+TimeGenerated      : 8/26/2025 9:24:30 AM
+TimeWritten        : 8/26/2025 9:24:30 AM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {87, 0, 105, 0...}
+Index              : 10255
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7031
+EntryType          : Error
+Message            : The Microsoft Defender Antivirus Service service terminated unexpectedly.  It has done this 1
+                     time(s).  The following corrective action will be taken in 1000 milliseconds: Restart the service.
+Source             : Service Control Manager
+ReplacementStrings : {Microsoft Defender Antivirus Service, 1, 1000, 1...}
+InstanceId         : 3221232503
+TimeGenerated      : 8/25/2025 9:54:16 PM
+TimeWritten        : 8/25/2025 9:54:16 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {}
+Index              : 10248
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 10010
+EntryType          : Error
+Message            : The description for Event ID '10010' in Source 'DCOM' cannot be found.  The local computer may
+                     not have the necessary registry information or message DLL files to display the message, or you
+                     may not have permission to access them.  The following information is part of the event:'Microsoft
+                     .YourPhone_1.25072.63.0_x64__8wekyb3d8bbwe!App.AppXn958k7nsj8mxxmsepqdam8xk948t30sc.mca'
+Source             : DCOM
+ReplacementStrings : {Microsoft.YourPhone_1.25072.63.0_x64__8wekyb3d8bbwe!App.AppXn958k7nsj8mxxmsepqdam8xk948t30sc.mca}
+InstanceId         : 10010
+TimeGenerated      : 8/25/2025 8:04:19 PM
+TimeWritten        : 8/25/2025 8:04:19 PM
+UserName           : ASCENDI-8530I37\Ascendion
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {}
+Index              : 10228
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 1795
+EntryType          : Error
+Message            : The system firmware returned an error -2147467259 when attempting to update a Secure Boot
+                     variable. For more information, please see https://go.microsoft.com/fwlink/?linkid=2169931
+Source             : Microsoft-Windows-TPM-WMI
+ReplacementStrings : {-2147467259}
+InstanceId         : 1795
+TimeGenerated      : 8/25/2025 7:26:31 PM
+TimeWritten        : 8/25/2025 7:26:31 PM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {233, 7, 8, 0...}
+Index              : 10140
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 6008
+EntryType          : Error
+Message            : The previous system shutdown at 4:50:27 PM on ‎8/‎25/‎2025 was unexpected.
+Source             : EventLog
+ReplacementStrings : {4:50:27 PM, ‎8/‎25/‎2025, , ...}
+InstanceId         : 2147489656
+TimeGenerated      : 8/25/2025 7:19:39 PM
+TimeWritten        : 8/25/2025 7:19:39 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {}
+Index              : 10127
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 1795
+EntryType          : Error
+Message            : The system firmware returned an error -2147467259 when attempting to update a Secure Boot
+                     variable. For more information, please see https://go.microsoft.com/fwlink/?linkid=2169931
+Source             : Microsoft-Windows-TPM-WMI
+ReplacementStrings : {-2147467259}
+InstanceId         : 1795
+TimeGenerated      : 8/25/2025 2:50:25 PM
+TimeWritten        : 8/25/2025 2:50:25 PM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {233, 7, 8, 0...}
+Index              : 10043
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 6008
+EntryType          : Error
+Message            : The previous system shutdown at 11:55:09 PM on ‎8/‎24/‎2025 was unexpected.
+Source             : EventLog
+ReplacementStrings : {11:55:09 PM, ‎8/‎24/‎2025, , ...}
+InstanceId         : 2147489656
+TimeGenerated      : 8/25/2025 2:45:24 PM
+TimeWritten        : 8/25/2025 2:45:24 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {}
+Index              : 10019
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 1795
+EntryType          : Error
+Message            : The system firmware returned an error -2147467259 when attempting to update a Secure Boot
+                     variable. For more information, please see https://go.microsoft.com/fwlink/?linkid=2169931
+Source             : Microsoft-Windows-TPM-WMI
+ReplacementStrings : {-2147467259}
+InstanceId         : 1795
+TimeGenerated      : 8/24/2025 10:13:02 PM
+TimeWritten        : 8/24/2025 10:13:02 PM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {233, 7, 8, 0...}
+Index              : 9932
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 6008
+EntryType          : Error
+Message            : The previous system shutdown at 7:29:14 PM on ‎8/‎24/‎2025 was unexpected.
+Source             : EventLog
+ReplacementStrings : {7:29:14 PM, ‎8/‎24/‎2025, , ...}
+InstanceId         : 2147489656
+TimeGenerated      : 8/24/2025 10:07:07 PM
+TimeWritten        : 8/24/2025 10:07:07 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {}
+Index              : 9916
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 1795
+EntryType          : Error
+Message            : The system firmware returned an error -2147467259 when attempting to update a Secure Boot
+                     variable. For more information, please see https://go.microsoft.com/fwlink/?linkid=2169931
+Source             : Microsoft-Windows-TPM-WMI
+ReplacementStrings : {-2147467259}
+InstanceId         : 1795
+TimeGenerated      : 8/24/2025 1:35:13 PM
+TimeWritten        : 8/24/2025 1:35:13 PM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {233, 7, 8, 0...}
+Index              : 9828
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 6008
+EntryType          : Error
+Message            : The previous system shutdown at 12:40:56 AM on ‎8/‎24/‎2025 was unexpected.
+Source             : EventLog
+ReplacementStrings : {12:40:56 AM, ‎8/‎24/‎2025, , ...}
+InstanceId         : 2147489656
+TimeGenerated      : 8/24/2025 1:30:11 PM
+TimeWritten        : 8/24/2025 1:30:11 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {119, 0, 108, 0...}
+Index              : 9802
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7000
+EntryType          : Error
+Message            : The Microsoft Account Sign-in Assistant service failed to start due to the following error:
+                     %%1053
+Source             : Service Control Manager
+ReplacementStrings : {Microsoft Account Sign-in Assistant, %%1053}
+InstanceId         : 3221232472
+TimeGenerated      : 8/23/2025 9:52:13 PM
+TimeWritten        : 8/23/2025 9:52:13 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {115, 0, 112, 0...}
+Index              : 9801
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7000
+EntryType          : Error
+Message            : The Software Protection service failed to start due to the following error:
+                     %%1053
+Source             : Service Control Manager
+ReplacementStrings : {Software Protection, %%1053}
+InstanceId         : 3221232472
+TimeGenerated      : 8/23/2025 9:52:13 PM
+TimeWritten        : 8/23/2025 9:52:13 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {119, 0, 108, 0...}
+Index              : 9800
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7009
+EntryType          : Error
+Message            : A timeout was reached (30000 milliseconds) while waiting for the Microsoft Account Sign-in
+                     Assistant service to connect.
+Source             : Service Control Manager
+ReplacementStrings : {30000, Microsoft Account Sign-in Assistant}
+InstanceId         : 3221232481
+TimeGenerated      : 8/23/2025 9:52:13 PM
+TimeWritten        : 8/23/2025 9:52:13 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {}
+Index              : 9799
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7011
+EntryType          : Error
+Message            : A timeout (30000 milliseconds) was reached while waiting for a transaction response from the
+                     sppsvc service.
+Source             : Service Control Manager
+ReplacementStrings : {30000, sppsvc}
+InstanceId         : 3221232483
+TimeGenerated      : 8/23/2025 9:52:13 PM
+TimeWritten        : 8/23/2025 9:52:13 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {87, 0, 105, 0...}
+Index              : 9782
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7031
+EntryType          : Error
+Message            : The Microsoft Defender Antivirus Service service terminated unexpectedly.  It has done this 1
+                     time(s).  The following corrective action will be taken in 1000 milliseconds: Restart the service.
+Source             : Service Control Manager
+ReplacementStrings : {Microsoft Defender Antivirus Service, 1, 1000, 1...}
+InstanceId         : 3221232503
+TimeGenerated      : 8/23/2025 7:13:09 PM
+TimeWritten        : 8/23/2025 7:13:09 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {}
+Index              : 9772
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 10005
+EntryType          : Error
+Message            : The description for Event ID '10005' in Source 'DCOM' cannot be found.  The local computer may
+                     not have the necessary registry information or message DLL files to display the message, or you
+                     may not have permission to access them.  The following information is part of the event:'1053',
+                     'BITS', 'Unavailable', '{4991D34B-80A1-4291-83B6-3328366B9097}'
+Source             : DCOM
+ReplacementStrings : {1053, BITS, Unavailable, {4991D34B-80A1-4291-83B6-3328366B9097}}
+InstanceId         : 10005
+TimeGenerated      : 8/23/2025 8:41:32 PM
+TimeWritten        : 8/23/2025 8:41:32 PM
+UserName           : NT AUTHORITY\LOCAL SERVICE
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {66, 0, 73, 0...}
+Index              : 9771
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7000
+EntryType          : Error
+Message            : The Background Intelligent Transfer Service service failed to start due to the following error:
+                     %%1053
+Source             : Service Control Manager
+ReplacementStrings : {Background Intelligent Transfer Service, %%1053}
+InstanceId         : 3221232472
+TimeGenerated      : 8/23/2025 8:41:31 PM
+TimeWritten        : 8/23/2025 8:41:31 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {115, 0, 112, 0...}
+Index              : 9770
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7000
+EntryType          : Error
+Message            : The Software Protection service failed to start due to the following error:
+                     %%1053
+Source             : Service Control Manager
+ReplacementStrings : {Software Protection, %%1053}
+InstanceId         : 3221232472
+TimeGenerated      : 8/23/2025 8:41:31 PM
+TimeWritten        : 8/23/2025 8:41:31 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {66, 0, 73, 0...}
+Index              : 9769
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7009
+EntryType          : Error
+Message            : A timeout was reached (30000 milliseconds) while waiting for the Background Intelligent Transfer
+                     Service service to connect.
+Source             : Service Control Manager
+ReplacementStrings : {30000, Background Intelligent Transfer Service}
+InstanceId         : 3221232481
+TimeGenerated      : 8/23/2025 8:41:31 PM
+TimeWritten        : 8/23/2025 8:41:31 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {115, 0, 112, 0...}
+Index              : 9768
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7009
+EntryType          : Error
+Message            : A timeout was reached (30000 milliseconds) while waiting for the Software Protection service to
+                     connect.
+Source             : Service Control Manager
+ReplacementStrings : {30000, Software Protection}
+InstanceId         : 3221232481
+TimeGenerated      : 8/23/2025 8:41:31 PM
+TimeWritten        : 8/23/2025 8:41:31 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {}
+Index              : 9767
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7011
+EntryType          : Error
+Message            : A timeout (30000 milliseconds) was reached while waiting for a transaction response from the
+                     SecurityHealthService service.
+Source             : Service Control Manager
+ReplacementStrings : {30000, SecurityHealthService}
+InstanceId         : 3221232483
+TimeGenerated      : 8/23/2025 8:41:31 PM
+TimeWritten        : 8/23/2025 8:41:31 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {}
+Index              : 9766
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7011
+EntryType          : Error
+Message            : A timeout (30000 milliseconds) was reached while waiting for a transaction response from the
+                     SysMain service.
+Source             : Service Control Manager
+ReplacementStrings : {30000, SysMain}
+InstanceId         : 3221232483
+TimeGenerated      : 8/23/2025 8:41:31 PM
+TimeWritten        : 8/23/2025 8:41:31 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {}
+Index              : 9757
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 10005
+EntryType          : Error
+Message            : The description for Event ID '10005' in Source 'DCOM' cannot be found.  The local computer may
+                     not have the necessary registry information or message DLL files to display the message, or you
+                     may not have permission to access them.  The following information is part of the event:'1053',
+                     'TrustedInstaller', 'Unavailable', '{752073A1-23F2-4396-85F0-8FDB879ED0ED}'
+Source             : DCOM
+ReplacementStrings : {1053, TrustedInstaller, Unavailable, {752073A1-23F2-4396-85F0-8FDB879ED0ED}}
+InstanceId         : 10005
+TimeGenerated      : 8/23/2025 2:37:13 PM
+TimeWritten        : 8/23/2025 2:37:13 PM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {84, 0, 114, 0...}
+Index              : 9756
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7000
+EntryType          : Error
+Message            : The Windows Modules Installer service failed to start due to the following error:
+                     %%1053
+Source             : Service Control Manager
+ReplacementStrings : {Windows Modules Installer, %%1053}
+InstanceId         : 3221232472
+TimeGenerated      : 8/23/2025 2:37:12 PM
+TimeWritten        : 8/23/2025 2:37:12 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {84, 0, 114, 0...}
+Index              : 9755
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7009
+EntryType          : Error
+Message            : A timeout was reached (30000 milliseconds) while waiting for the Windows Modules Installer
+                     service to connect.
+Source             : Service Control Manager
+ReplacementStrings : {30000, Windows Modules Installer}
+InstanceId         : 3221232481
+TimeGenerated      : 8/23/2025 2:37:12 PM
+TimeWritten        : 8/23/2025 2:37:12 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {}
+Index              : 9738
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 1795
+EntryType          : Error
+Message            : The system firmware returned an error -2147467259 when attempting to update a Secure Boot
+                     variable. For more information, please see https://go.microsoft.com/fwlink/?linkid=2169931
+Source             : Microsoft-Windows-TPM-WMI
+ReplacementStrings : {-2147467259}
+InstanceId         : 1795
+TimeGenerated      : 8/23/2025 1:02:39 PM
+TimeWritten        : 8/23/2025 1:02:39 PM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {233, 7, 8, 0...}
+Index              : 9628
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 6008
+EntryType          : Error
+Message            : The previous system shutdown at 4:48:13 PM on ‎8/‎22/‎2025 was unexpected.
+Source             : EventLog
+ReplacementStrings : {4:48:13 PM, ‎8/‎22/‎2025, , ...}
+InstanceId         : 2147489656
+TimeGenerated      : 8/23/2025 12:57:39 PM
+TimeWritten        : 8/23/2025 12:57:39 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {115, 0, 112, 0...}
+Index              : 9571
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7000
+EntryType          : Error
+Message            : The Software Protection service failed to start due to the following error:
+                     %%1053
+Source             : Service Control Manager
+ReplacementStrings : {Software Protection, %%1053}
+InstanceId         : 3221232472
+TimeGenerated      : 8/22/2025 10:43:16 AM
+TimeWritten        : 8/22/2025 10:43:16 AM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {115, 0, 112, 0...}
+Index              : 9570
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7009
+EntryType          : Error
+Message            : A timeout was reached (30000 milliseconds) while waiting for the Software Protection service to
+                     connect.
+Source             : Service Control Manager
+ReplacementStrings : {30000, Software Protection}
+InstanceId         : 3221232481
+TimeGenerated      : 8/22/2025 10:43:16 AM
+TimeWritten        : 8/22/2025 10:43:16 AM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {}
+Index              : 9559
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 1795
+EntryType          : Error
+Message            : The system firmware returned an error -2147467259 when attempting to update a Secure Boot
+                     variable. For more information, please see https://go.microsoft.com/fwlink/?linkid=2169931
+Source             : Microsoft-Windows-TPM-WMI
+ReplacementStrings : {-2147467259}
+InstanceId         : 1795
+TimeGenerated      : 8/22/2025 10:13:45 AM
+TimeWritten        : 8/22/2025 10:13:45 AM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {233, 7, 8, 0...}
+Index              : 9464
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 6008
+EntryType          : Error
+Message            : The previous system shutdown at 10:58:58 PM on ‎8/‎21/‎2025 was unexpected.
+Source             : EventLog
+ReplacementStrings : {10:58:58 PM, ‎8/‎21/‎2025, , ...}
+InstanceId         : 2147489656
+TimeGenerated      : 8/22/2025 10:04:41 AM
+TimeWritten        : 8/22/2025 10:04:41 AM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {}
+Index              : 9431
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 1795
+EntryType          : Error
+Message            : The system firmware returned an error -2147467259 when attempting to update a Secure Boot
+                     variable. For more information, please see https://go.microsoft.com/fwlink/?linkid=2169931
+Source             : Microsoft-Windows-TPM-WMI
+ReplacementStrings : {-2147467259}
+InstanceId         : 1795
+TimeGenerated      : 8/21/2025 7:45:05 PM
+TimeWritten        : 8/21/2025 7:45:05 PM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {233, 7, 8, 0...}
+Index              : 9348
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 6008
+EntryType          : Error
+Message            : The previous system shutdown at 4:36:11 PM on ‎8/‎21/‎2025 was unexpected.
+Source             : EventLog
+ReplacementStrings : {4:36:11 PM, ‎8/‎21/‎2025, , ...}
+InstanceId         : 2147489656
+TimeGenerated      : 8/21/2025 7:36:02 PM
+TimeWritten        : 8/21/2025 7:36:02 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {65, 0, 112, 0...}
+Index              : 9333
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7000
+EntryType          : Error
+Message            : The AppX Deployment Service (AppXSVC) service failed to start due to the following error:
+                     %%1053
+Source             : Service Control Manager
+ReplacementStrings : {AppX Deployment Service (AppXSVC), %%1053}
+InstanceId         : 3221232472
+TimeGenerated      : 8/21/2025 4:20:04 PM
+TimeWritten        : 8/21/2025 4:20:04 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {65, 0, 112, 0...}
+Index              : 9332
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7009
+EntryType          : Error
+Message            : A timeout was reached (30000 milliseconds) while waiting for the AppX Deployment Service
+                     (AppXSVC) service to connect.
+Source             : Service Control Manager
+ReplacementStrings : {30000, AppX Deployment Service (AppXSVC)}
+InstanceId         : 3221232481
+TimeGenerated      : 8/21/2025 4:20:04 PM
+TimeWritten        : 8/21/2025 4:20:04 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {115, 0, 112, 0...}
+Index              : 9331
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7000
+EntryType          : Error
+Message            : The Software Protection service failed to start due to the following error:
+                     %%1053
+Source             : Service Control Manager
+ReplacementStrings : {Software Protection, %%1053}
+InstanceId         : 3221232472
+TimeGenerated      : 8/21/2025 4:20:04 PM
+TimeWritten        : 8/21/2025 4:20:04 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {115, 0, 112, 0...}
+Index              : 9330
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7009
+EntryType          : Error
+Message            : A timeout was reached (30000 milliseconds) while waiting for the Software Protection service to
+                     connect.
+Source             : Service Control Manager
+ReplacementStrings : {30000, Software Protection}
+InstanceId         : 3221232481
+TimeGenerated      : 8/21/2025 4:20:04 PM
+TimeWritten        : 8/21/2025 4:20:04 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {}
+Index              : 9306
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 10010
+EntryType          : Error
+Message            : The description for Event ID '10010' in Source 'DCOM' cannot be found.  The local computer may
+                     not have the necessary registry information or message DLL files to display the message, or you
+                     may not have permission to access them.  The following information is part of the event:'Microsoft
+                     .WindowsStore_22506.1401.10.0_x64__8wekyb3d8bbwe!App.AppXmr37eay91n1zzgqzqj9y7h4f8rjs7zyz.mca'
+Source             : DCOM
+ReplacementStrings : {Microsoft.WindowsStore_22506.1401.10.0_x64__8wekyb3d8bbwe!App.AppXmr37eay91n1zzgqzqj9y7h4f8rjs7zy
+                     z.mca}
+InstanceId         : 10010
+TimeGenerated      : 8/21/2025 11:57:54 AM
+TimeWritten        : 8/21/2025 11:57:54 AM
+UserName           : ASCENDI-8530I37\Ascendion
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {}
+Index              : 9266
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 1795
+EntryType          : Error
+Message            : The system firmware returned an error -2147467259 when attempting to update a Secure Boot
+                     variable. For more information, please see https://go.microsoft.com/fwlink/?linkid=2169931
+Source             : Microsoft-Windows-TPM-WMI
+ReplacementStrings : {-2147467259}
+InstanceId         : 1795
+TimeGenerated      : 8/21/2025 9:31:13 AM
+TimeWritten        : 8/21/2025 9:31:13 AM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {233, 7, 8, 0...}
+Index              : 9177
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 6008
+EntryType          : Error
+Message            : The previous system shutdown at 9:10:00 PM on ‎8/‎20/‎2025 was unexpected.
+Source             : EventLog
+ReplacementStrings : {9:10:00 PM, ‎8/‎20/‎2025, , ...}
+InstanceId         : 2147489656
+TimeGenerated      : 8/21/2025 9:25:54 AM
+TimeWritten        : 8/21/2025 9:25:54 AM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {}
+Index              : 9145
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 1795
+EntryType          : Error
+Message            : The system firmware returned an error -2147467259 when attempting to update a Secure Boot
+                     variable. For more information, please see https://go.microsoft.com/fwlink/?linkid=2169931
+Source             : Microsoft-Windows-TPM-WMI
+ReplacementStrings : {-2147467259}
+InstanceId         : 1795
+TimeGenerated      : 8/20/2025 7:11:38 PM
+TimeWritten        : 8/20/2025 7:11:38 PM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {233, 7, 8, 0...}
+Index              : 8964
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 6008
+EntryType          : Error
+Message            : The previous system shutdown at 4:54:46 PM on ‎8/‎20/‎2025 was unexpected.
+Source             : EventLog
+ReplacementStrings : {4:54:46 PM, ‎8/‎20/‎2025, , ...}
+InstanceId         : 2147489656
+TimeGenerated      : 8/20/2025 6:51:09 PM
+TimeWritten        : 8/20/2025 6:51:09 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {}
+Index              : 8830
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 1795
+EntryType          : Error
+Message            : The system firmware returned an error -2147467259 when attempting to update a Secure Boot
+                     variable. For more information, please see https://go.microsoft.com/fwlink/?linkid=2169931
+Source             : Microsoft-Windows-TPM-WMI
+ReplacementStrings : {-2147467259}
+InstanceId         : 1795
+TimeGenerated      : 8/20/2025 9:22:10 AM
+TimeWritten        : 8/20/2025 9:22:10 AM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {233, 7, 8, 0...}
+Index              : 8742
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 6008
+EntryType          : Error
+Message            : The previous system shutdown at 10:47:57 PM on ‎8/‎19/‎2025 was unexpected.
+Source             : EventLog
+ReplacementStrings : {10:47:57 PM, ‎8/‎19/‎2025, , ...}
+InstanceId         : 2147489656
+TimeGenerated      : 8/20/2025 9:17:11 AM
+TimeWritten        : 8/20/2025 9:17:11 AM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {}
+Index              : 8739
+Category           : (1)
+CategoryNumber     : 1
+EventID            : 20
+EntryType          : Error
+Message            : Installation Failure: Windows failed to install the following update with error 0x80073d02:
+                     9NMPJ99VJBWV-Microsoft.YourPhone.
+Source             : Microsoft-Windows-WindowsUpdateClient
+ReplacementStrings : {0x80073d02, 9NMPJ99VJBWV-Microsoft.YourPhone, {83e4e998-882c-4c30-8795-d97b47c7bad7}, 1...}
+InstanceId         : 20
+TimeGenerated      : 8/19/2025 11:05:29 PM
+TimeWritten        : 8/19/2025 11:05:29 PM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-8530I37
+Data               : {}
+Index              : 8725
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 1795
+EntryType          : Error
+Message            : The system firmware returned an error -2147467259 when attempting to update a Secure Boot
+                     variable. For more information, please see https://go.microsoft.com/fwlink/?linkid=2169931
+Source             : Microsoft-Windows-TPM-WMI
+ReplacementStrings : {-2147467259}
+InstanceId         : 1795
+TimeGenerated      : 8/19/2025 10:52:55 PM
+TimeWritten        : 8/19/2025 10:52:55 PM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+--- Getting 50 most recent Critical/Error logs (wevtutil) ---
+Event[0]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-10T01:15:30.4830000Z
+  Event ID: 7023
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-8530I37
+  Description:
+The netprofm service terminated with the following error:
+The device is not ready.
+
+Event[1]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-10T01:17:30.4720000Z
+  Event ID: 10010
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-8530I37
+  Description:
+The server {A47979D2-C419-11D9-A5B4-001185AD2B89} did not register with DCOM within the required timeout.
+
+Event[2]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-10T01:17:30.5690000Z
+  Event ID: 7023
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-8530I37
+  Description:
+The Network List Service service terminated with the following error:
+The device is not ready.
+
+Event[3]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-10T01:17:40.5160000Z
+  Event ID: 7030
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-8530I37
+  Description:
+The Printer Extensions and Notifications service is marked as an interactive service.  However, the system is configured
+ to not allow interactive services.  This service may not function properly.
+
+Event[4]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-10T01:19:30.5990000Z
+  Event ID: 10010
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-8530I37
+  Description:
+The server {A47979D2-C419-11D9-A5B4-001185AD2B89} did not register with DCOM within the required timeout.
+
+Event[5]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-10T01:19:30.7180000Z
+  Event ID: 7023
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-8530I37
+  Description:
+The Network List Service service terminated with the following error:
+The device is not ready.
+
+Event[6]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-10T01:20:52.0760000Z
+  Event ID: 7022
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-8530I37
+  Description:
+The Connected Devices Platform Service service hung on starting.
+
+Event[7]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-10T01:21:30.7460000Z
+  Event ID: 10010
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-8530I37
+  Description:
+The server {A47979D2-C419-11D9-A5B4-001185AD2B89} did not register with DCOM within the required timeout.
+
+Event[8]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-10T01:21:30.8720000Z
+  Event ID: 7023
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-8530I37
+  Description:
+The Network List Service service terminated with the following error:
+The device is not ready.
+
+Event[9]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-10T01:23:30.9010000Z
+  Event ID: 10010
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-8530I37
+  Description:
+The server {A47979D2-C419-11D9-A5B4-001185AD2B89} did not register with DCOM within the required timeout.
+
+Event[10]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-10T01:23:31.5080000Z
+  Event ID: 7023
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-8530I37
+  Description:
+The Network List Service service terminated with the following error:
+The device is not ready.
+
+Event[11]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-09T12:55:54.2080000Z
+  Event ID: 7043
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-8530I37
+  Description:
+The Windows Update service did not shut down properly after receiving a preshutdown control.
+
+Event[12]
+  Log Name: System
+  Source: Microsoft-Windows-TPM-WMI
+  Date: 2025-07-09T13:00:16.3330000Z
+  Event ID: 1795
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-8530I37
+  Description:
+The system firmware returned an error Access is denied. when attempting to update a Secure Boot variable. For more infor
+mation, please see https://go.microsoft.com/fwlink/?linkid=2169931
+
+Event[13]
+  Log Name: System
+  Source: EventLog
+  Date: 2025-07-09T13:16:45.8620000Z
+  Event ID: 6008
+  Task: None
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-8530I37
+  Description:
+The previous system shutdown at 1:02:58 PM on ‎7/‎9/‎2025 was unexpected.
+
+Event[14]
+  Log Name: System
+  Source: Microsoft-Windows-Kernel-Power
+  Date: 2025-07-09T13:16:26.5680000Z
+  Event ID: 41
+  Task: N/A
+  Level: Critical
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-8530I37
+  Description:
+The system has rebooted without cleanly shutting down first. This error could be caused if the system stopped responding
+, crashed, or lost power unexpectedly.
+
+Event[15]
+  Log Name: System
+  Source: Microsoft-Windows-TPM-WMI
+  Date: 2025-07-09T13:16:40.6640000Z
+  Event ID: 1795
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-8530I37
+  Description:
+The system firmware returned an error Access is denied. when attempting to update a Secure Boot variable. For more infor
+mation, please see https://go.microsoft.com/fwlink/?linkid=2169931
+
+Event[16]
+  Log Name: System
+  Source: EventLog
+  Date: 2025-07-09T13:20:04.8110000Z
+  Event ID: 6008
+  Task: None
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-8530I37
+  Description:
+The previous system shutdown at 1:16:45 PM on ‎7/‎9/‎2025 was unexpected.
+
+Event[17]
+  Log Name: System
+  Source: Microsoft-Windows-Kernel-Power
+  Date: 2025-07-09T13:19:51.3100000Z
+  Event ID: 41
+  Task: N/A
+  Level: Critical
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-8530I37
+  Description:
+The system has rebooted without cleanly shutting down first. This error could be caused if the system stopped responding
+, crashed, or lost power unexpectedly.
+
+Event[18]
+  Log Name: System
+  Source: Microsoft-Windows-TPM-WMI
+  Date: 2025-07-09T13:20:15.2000000Z
+  Event ID: 1795
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-8530I37
+  Description:
+The system firmware returned an error Access is denied. when attempting to update a Secure Boot variable. For more infor
+mation, please see https://go.microsoft.com/fwlink/?linkid=2169931
+
+Event[19]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-09T13:23:06.4720000Z
+  Event ID: 10010
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-21-3041920060-277755917-1759895295-1000
+  User Name: ASCENDI-8530I37\Ascendion
+  Computer: ASCENDI-8530I37
+  Description:
+The server {8CFC164F-4BE5-4FDD-94E9-E2AF73ED4A19} did not register with DCOM within the required timeout.
+
+Event[20]
+  Log Name: System
+  Source: EventLog
+  Date: 2025-07-09T13:57:04.7460000Z
+  Event ID: 6008
+  Task: None
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-8530I37
+  Description:
+The previous system shutdown at 1:20:04 PM on ‎7/‎9/‎2025 was unexpected.
+
+Event[21]
+  Log Name: System
+  Source: Microsoft-Windows-Kernel-Power
+  Date: 2025-07-09T13:56:21.6460000Z
+  Event ID: 41
+  Task: N/A
+  Level: Critical
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-8530I37
+  Description:
+The system has rebooted without cleanly shutting down first. This error could be caused if the system stopped responding
+, crashed, or lost power unexpectedly.
+
+Event[22]
+  Log Name: System
+  Source: Microsoft-Windows-TPM-WMI
+  Date: 2025-07-09T13:57:15.2520000Z
+  Event ID: 1795
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-8530I37
+  Description:
+The system firmware returned an error Access is denied. when attempting to update a Secure Boot variable. For more infor
+mation, please see https://go.microsoft.com/fwlink/?linkid=2169931
+
+Event[23]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-09T14:00:03.0280000Z
+  Event ID: 10010
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-21-3041920060-277755917-1759895295-1000
+  User Name: ASCENDI-8530I37\Ascendion
+  Computer: ASCENDI-8530I37
+  Description:
+The server {8CFC164F-4BE5-4FDD-94E9-E2AF73ED4A19} did not register with DCOM within the required timeout.
+
+Event[24]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-09T14:21:00.4440000Z
+  Event ID: 7009
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-8530I37
+  Description:
+A timeout was reached (30000 milliseconds) while waiting for the Visual Studio Standard Collector Service 150 service to
+ connect.
+
+Event[25]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-09T14:21:00.4440000Z
+  Event ID: 10005
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-21-3041920060-277755917-1759895295-1000
+  User Name: ASCENDI-8530I37\Ascendion
+  Computer: ASCENDI-8530I37
+  Description:
+DCOM got error "1053" attempting to start the service VSStandardCollectorService150 with arguments "Unavailable" in orde
+r to run the server:
+{F2DC0F57-0B99-49E3-BE80-936DBAA54EE0}
+
+Event[26]
+  Log Name: System
+  Source: EventLog
+  Date: 2025-07-09T18:40:08.0370000Z
+  Event ID: 6008
+  Task: None
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-8530I37
+  Description:
+The previous system shutdown at 4:43:28 PM on ‎7/‎9/‎2025 was unexpected.
+
+Event[27]
+  Log Name: System
+  Source: Microsoft-Windows-Kernel-Power
+  Date: 2025-07-09T18:39:54.3990000Z
+  Event ID: 41
+  Task: N/A
+  Level: Critical
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-8530I37
+  Description:
+The system has rebooted without cleanly shutting down first. This error could be caused if the system stopped responding
+, crashed, or lost power unexpectedly.
+
+Event[28]
+  Log Name: System
+  Source: Microsoft-Windows-TPM-WMI
+  Date: 2025-07-09T18:40:23.9640000Z
+  Event ID: 1795
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-8530I37
+  Description:
+The system firmware returned an error Access is denied. when attempting to update a Secure Boot variable. For more infor
+mation, please see https://go.microsoft.com/fwlink/?linkid=2169931
+
+Event[29]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-09T18:45:25.6430000Z
+  Event ID: 10010
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-21-3041920060-277755917-1759895295-1000
+  User Name: ASCENDI-8530I37\Ascendion
+  Computer: ASCENDI-8530I37
+  Description:
+The server {8CFC164F-4BE5-4FDD-94E9-E2AF73ED4A19} did not register with DCOM within the required timeout.
+
+Event[30]
+  Log Name: System
+  Source: EventLog
+  Date: 2025-07-14T10:06:51.6140000Z
+  Event ID: 6008
+  Task: None
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-8530I37
+  Description:
+The previous system shutdown at 10:16:57 PM on ‎7/‎9/‎2025 was unexpected.
+
+Event[31]
+  Log Name: System
+  Source: Microsoft-Windows-Kernel-Power
+  Date: 2025-07-14T10:06:35.8680000Z
+  Event ID: 41
+  Task: N/A
+  Level: Critical
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-8530I37
+  Description:
+The system has rebooted without cleanly shutting down first. This error could be caused if the system stopped responding
+, crashed, or lost power unexpectedly.
+
+Event[32]
+  Log Name: System
+  Source: Microsoft-Windows-TPM-WMI
+  Date: 2025-07-14T10:07:03.9090000Z
+  Event ID: 1795
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-8530I37
+  Description:
+The system firmware returned an error Access is denied. when attempting to update a Secure Boot variable. For more infor
+mation, please see https://go.microsoft.com/fwlink/?linkid=2169931
+
+Event[33]
+  Log Name: System
+  Source: Microsoft-Windows-WindowsUpdateClient
+  Date: 2025-07-14T10:21:13.4420000Z
+  Event ID: 20
+  Task: Windows Update Agent
+  Level: Error
+  Opcode: Installation
+  Keyword: Installation,Failure,
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-8530I37
+  Description:
+Installation Failure: Windows failed to install the following update with error 0x80073D02: 9MSSGKG348SP-MicrosoftWindow
+s.Client.WebExperience.
+
+Event[34]
+  Log Name: System
+  Source: EventLog
+  Date: 2025-07-15T09:51:33.3960000Z
+  Event ID: 6008
+  Task: None
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-8530I37
+  Description:
+The previous system shutdown at 5:03:24 PM on ‎7/‎14/‎2025 was unexpected.
+
+Event[35]
+  Log Name: System
+  Source: Microsoft-Windows-Kernel-Power
+  Date: 2025-07-15T09:37:51.3080000Z
+  Event ID: 41
+  Task: N/A
+  Level: Critical
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-8530I37
+  Description:
+The system has rebooted without cleanly shutting down first. This error could be caused if the system stopped responding
+, crashed, or lost power unexpectedly.
+
+Event[36]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-15T09:51:35.6260000Z
+  Event ID: 7000
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-8530I37
+  Description:
+The mrxsmb service failed to start due to the following error:
+The specified procedure could not be found.
+
+Event[37]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-15T09:51:35.6260000Z
+  Event ID: 7001
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-8530I37
+  Description:
+The mrxsmb20 service depends on the mrxsmb service which failed to start because of the following error:
+The specified procedure could not be found.
+
+Event[38]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-15T09:51:35.6260000Z
+  Event ID: 7001
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-8530I37
+  Description:
+The LanmanWorkstation service depends on the mrxsmb20 service which failed to start because of the following error:
+The dependency service or group failed to start.
+
+Event[39]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-15T09:51:39.3930000Z
+  Event ID: 7000
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-8530I37
+  Description:
+The Ndu service failed to start due to the following error:
+The call must be made from within an explicit transaction.
+
+Event[40]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-15T09:51:43.7040000Z
+  Event ID: 7023
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-8530I37
+  Description:
+The SysMain service terminated with the following error:
+The authentication service is unknown.
+
+Event[41]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-15T09:52:07.9830000Z
+  Event ID: 10010
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-19
+  User Name: NT AUTHORITY\LOCAL SERVICE
+  Computer: ASCENDI-8530I37
+  Description:
+The server Windows.Internal.StateRepository.ApplicationExtension did not register with DCOM within the required timeout.
+
+
+Event[42]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-15T09:52:13.2990000Z
+  Event ID: 7011
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-8530I37
+  Description:
+A timeout (30000 milliseconds) was reached while waiting for a transaction response from the sppsvc service.
+
+Event[43]
+  Log Name: System
+  Source: Microsoft-Windows-Windows Firewall With Advanced Security
+  Date: 2025-07-15T09:52:21.4000000Z
+  Event ID: 2042
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-19
+  User Name: NT AUTHORITY\LOCAL SERVICE
+  Computer: ASCENDI-8530I37
+  Description:
+Config Read Failed
+
+Config: 18
+Error:  More data is available.
+
+Event[44]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-15T09:52:45.0320000Z
+  Event ID: 7023
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-8530I37
+  Description:
+The Server service terminated with the following error:
+A system shutdown is in progress.
+
+Event[45]
+  Log Name: System
+  Source: Microsoft-Windows-TPM-WMI
+  Date: 2025-07-15T10:08:41.6250000Z
+  Event ID: 1795
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-8530I37
+  Description:
+The system firmware returned an error Unspecified error when attempting to update a Secure Boot variable. For more infor
+mation, please see https://go.microsoft.com/fwlink/?linkid=2169931
+
+Event[46]
+  Log Name: System
+  Source: Microsoft-Windows-Windows Firewall With Advanced Security
+  Date: 2025-07-15T10:08:48.4640000Z
+  Event ID: 2042
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-19
+  User Name: NT AUTHORITY\LOCAL SERVICE
+  Computer: ASCENDI-8530I37
+  Description:
+Config Read Failed
+
+Config: 18
+Error:  More data is available.
+
+Event[47]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-15T10:10:36.9400000Z
+  Event ID: 7023
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-8530I37
+  Description:
+The Update Orchestrator Service service terminated with the following error:
+%%2149884192
+
+Event[48]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-15T10:11:25.7610000Z
+  Event ID: 7023
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-8530I37
+  Description:
+The Update Orchestrator Service service terminated with the following error:
+%%2149884192
+
+Event[49]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-15T10:12:34.6120000Z
+  Event ID: 10010
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-8530I37
+  Description:
+The server {46687F54-2097-4FC1-9173-3863021DC370} did not register with DCOM within the required timeout.
+
+--- Exporting all System Error logs to CSV ---
+Exported to C:\Monitoring\system_errors.csv
+
+==================================================
+Executing Commands from Pages 4 & 5: IIS & .NET
+==================================================
+
+--- Listing all stopped services ---
+
+Status      : Stopped
+Name        : AarSvc_518f2
+DisplayName : Agent Activation Runtime_518f2
+
+
+Status      : Stopped
+Name        : ADPSvc
+DisplayName : ADPSvc
+
+
+Status      : Stopped
+Name        : ALG
+DisplayName : Application Layer Gateway Service
+
+
+Status      : Stopped
+Name        : AppIDSvc
+DisplayName : Application Identity
+
+
+Status      : Stopped
+Name        : AppMgmt
+DisplayName : Application Management
+
+
+Status      : Stopped
+Name        : AppReadiness
+DisplayName : App Readiness
+
+
+Status      : Stopped
+Name        : AppVClient
+DisplayName : Microsoft App-V Client
+
+
+Status      : Stopped
+Name        : AppXSvc
+DisplayName : AppX Deployment Service (AppXSVC)
+
+
+Status      : Stopped
+Name        : ApxSvc
+DisplayName : Windows Virtual Audio Device Proxy Service
+
+
+Status      : Stopped
+Name        : AssignedAccessManagerSvc
+DisplayName : AssignedAccessManager Service
+
+
+Status      : Stopped
+Name        : autotimesvc
+DisplayName : Cellular Time
+
+
+Status      : Stopped
+Name        : AxInstSV
+DisplayName : ActiveX Installer (AxInstSV)
+
+
+Status      : Stopped
+Name        : BcastDVRUserService_518f2
+DisplayName : GameDVR and Broadcast User Service_518f2
+
+
+Status      : Stopped
+Name        : BITS
+DisplayName : Background Intelligent Transfer Service
+
+
+Status      : Stopped
+Name        : BluetoothUserService_518f2
+DisplayName : Bluetooth User Support Service_518f2
+
+
+Status      : Stopped
+Name        : BTAGService
+DisplayName : Bluetooth Audio Gateway Service
+
+
+Status      : Stopped
+Name        : BthAvctpSvc
+DisplayName : AVCTP service
+
+
+Status      : Stopped
+Name        : bthserv
+DisplayName : Bluetooth Support Service
+
+
+Status      : Stopped
+Name        : CaptureService_518f2
+DisplayName : CaptureService_518f2
+
+
+Status      : Stopped
+Name        : CertPropSvc
+DisplayName : Certificate Propagation
+
+
+Status      : Stopped
+Name        : ClipSVC
+DisplayName : Client License Service (ClipSVC)
+
+
+Status      : Stopped
+Name        : CloudBackupRestoreSvc_518f2
+DisplayName : Cloud Backup and Restore Service_518f2
+
+
+Status      : Stopped
+Name        : cloudidsvc
+DisplayName : Microsoft Cloud Identity Service
+
+
+Status      : Stopped
+Name        : COMSysApp
+DisplayName : COM+ System Application
+
+
+Status      : Stopped
+Name        : ConsentUxUserSvc_518f2
+DisplayName : ConsentUX User Service_518f2
+
+
+Status      : Stopped
+Name        : CredentialEnrollmentManagerUserSvc_518f2
+DisplayName : CredentialEnrollmentManagerUserSvc_518f2
+
+
+Status      : Stopped
+Name        : CscService
+DisplayName : Offline Files
+
+
+Status      : Stopped
+Name        : dcsvc
+DisplayName : Declared Configuration(DC) service
+
+
+Status      : Stopped
+Name        : defragsvc
+DisplayName : Optimize drives
+
+
+Status      : Stopped
+Name        : DeviceAssociationBrokerSvc_518f2
+DisplayName : DeviceAssociationBroker_518f2
+
+
+Status      : Stopped
+Name        : DeviceAssociationService
+DisplayName : Device Association Service
+
+
+Status      : Stopped
+Name        : DeviceInstall
+DisplayName : Device Install Service
+
+
+Status      : Stopped
+Name        : DevicePickerUserSvc_518f2
+DisplayName : DevicePicker_518f2
+
+
+Status      : Stopped
+Name        : DevicesFlowUserSvc_518f2
+DisplayName : DevicesFlow_518f2
+
+
+Status      : Stopped
+Name        : diagsvc
+DisplayName : Diagnostic Execution Service
+
+
+Status      : Stopped
+Name        : DialogBlockingService
+DisplayName : DialogBlockingService
+
+
+Status      : Stopped
+Name        : DmEnrollmentSvc
+DisplayName : Device Management Enrollment Service
+
+
+Status      : Stopped
+Name        : dmwappushservice
+DisplayName : Device Management Wireless Application Protocol (WAP) Push message Routing Service
+
+
+Status      : Stopped
+Name        : DoSvc
+DisplayName : Delivery Optimization
+
+
+Status      : Stopped
+Name        : dot3svc
+DisplayName : Wired AutoConfig
+
+
+Status      : Stopped
+Name        : DsmSvc
+DisplayName : Device Setup Manager
+
+
+Status      : Stopped
+Name        : EapHost
+DisplayName : Extensible Authentication Protocol
+
+
+Status      : Stopped
+Name        : edgeupdate
+DisplayName : Microsoft Edge Update Service (edgeupdate)
+
+
+Status      : Stopped
+Name        : edgeupdatem
+DisplayName : Microsoft Edge Update Service (edgeupdatem)
+
+
+Status      : Stopped
+Name        : EFS
+DisplayName : Encrypting File System (EFS)
+
+
+Status      : Stopped
+Name        : embeddedmode
+DisplayName : Embedded Mode
+
+
+Status      : Stopped
+Name        : EntAppSvc
+DisplayName : Enterprise App Management Service
+
+
+Status      : Stopped
+Name        : fdPHost
+DisplayName : Function Discovery Provider Host
+
+
+Status      : Stopped
+Name        : FDResPub
+DisplayName : Function Discovery Resource Publication
+
+
+Status      : Stopped
+Name        : fhsvc
+DisplayName : File History Service
+
+
+Status      : Stopped
+Name        : FrameServer
+DisplayName : Windows Camera Frame Server
+
+
+Status      : Stopped
+Name        : FrameServerMonitor
+DisplayName : Windows Camera Frame Server Monitor
+
+
+Status      : Stopped
+Name        : GameInputSvc
+DisplayName : GameInput Service
+
+
+Status      : Stopped
+Name        : gpsvc
+DisplayName : Group Policy Client
+
+
+Status      : Stopped
+Name        : GraphicsPerfSvc
+DisplayName : GraphicsPerfSvc
+
+
+Status      : Stopped
+Name        : hidserv
+DisplayName : Human Interface Device Service
+
+
+Status      : Stopped
+Name        : hpatchmon
+DisplayName : Hotpatch Monitoring Service
+
+
+Status      : Stopped
+Name        : HvHost
+DisplayName : HV Host Service
+
+
+Status      : Stopped
+Name        : icssvc
+DisplayName : Windows Mobile Hotspot Service
+
+
+Status      : Stopped
+Name        : IKEEXT
+DisplayName : IKE and AuthIP IPsec Keying Modules
+
+
+Status      : Stopped
+Name        : IpxlatCfgSvc
+DisplayName : IP Translation Configuration Service
+
+
+Status      : Stopped
+Name        : KtmRm
+DisplayName : KtmRm for Distributed Transaction Coordinator
+
+
+Status      : Stopped
+Name        : lltdsvc
+DisplayName : Link-Layer Topology Discovery Mapper
+
+
+Status      : Stopped
+Name        : LocalKdc
+DisplayName : Kerberos Local Key Distribution Center
+
+
+Status      : Stopped
+Name        : LxpSvc
+DisplayName : Language Experience Service
+
+
+Status      : Stopped
+Name        : MapsBroker
+DisplayName : Downloaded Maps Manager
+
+
+Status      : Stopped
+Name        : McmSvc
+DisplayName : This service provides profile management for mobile connectivity modules
+
+
+Status      : Stopped
+Name        : McpManagementService
+DisplayName : McpManagementService
+
+
+Status      : Stopped
+Name        : MessagingService_518f2
+DisplayName : MessagingService_518f2
+
+
+Status      : Stopped
+Name        : MicrosoftEdgeElevationService
+DisplayName : Microsoft Edge Elevation Service (MicrosoftEdgeElevationService)
+
+
+Status      : Stopped
+Name        : MSDTC
+DisplayName : Distributed Transaction Coordinator
+
+
+Status      : Stopped
+Name        : MSiSCSI
+DisplayName : Microsoft iSCSI Initiator Service
+
+
+Status      : Stopped
+Name        : msiserver
+DisplayName : Windows Installer
+
+
+Status      : Stopped
+Name        : MsKeyboardFilter
+DisplayName : Microsoft Keyboard Filter
+
+
+Status      : Stopped
+Name        : NaturalAuthentication
+DisplayName : Natural Authentication
+
+
+Status      : Stopped
+Name        : NcaSvc
+DisplayName : Network Connectivity Assistant
+
+
+Status      : Stopped
+Name        : NcdAutoSetup
+DisplayName : Network Connected Devices Auto-Setup
+
+
+Status      : Stopped
+Name        : Netlogon
+DisplayName : Netlogon
+
+
+Status      : Stopped
+Name        : Netman
+DisplayName : Network Connections
+
+
+Status      : Stopped
+Name        : NetSetupSvc
+DisplayName : Network Setup Service
+
+
+Status      : Stopped
+Name        : NetTcpPortSharing
+DisplayName : Net.Tcp Port Sharing Service
+
+
+Status      : Stopped
+Name        : NgcCtnrSvc
+DisplayName : Microsoft Passport Container
+
+
+Status      : Stopped
+Name        : NgcSvc
+DisplayName : Microsoft Passport
+
+
+Status      : Stopped
+Name        : NlaSvc
+DisplayName : Network Location Awareness
+
+
+Status      : Stopped
+Name        : NPSMSvc_518f2
+DisplayName : Now Playing Session Manager Service_518f2
+
+
+Status      : Stopped
+Name        : OneDrive Updater Service
+DisplayName : OneDrive Updater Service
+
+
+Status      : Stopped
+Name        : P9RdrService_518f2
+DisplayName : P9RdrService_518f2
+
+
+Status      : Stopped
+Name        : PeerDistSvc
+DisplayName : BranchCache
+
+
+Status      : Stopped
+Name        : PenService_518f2
+DisplayName : PenService_518f2
+
+
+Status      : Stopped
+Name        : perceptionsimulation
+DisplayName : Windows Perception Simulation Service
+
+
+Status      : Stopped
+Name        : PerfHost
+DisplayName : Performance Counter DLL Host
+
+
+Status      : Stopped
+Name        : PhoneSvc
+DisplayName : Phone Service
+
+
+Status      : Stopped
+Name        : PimIndexMaintenanceSvc_518f2
+DisplayName : Contact Data_518f2
+
+
+Status      : Stopped
+Name        : PrintDeviceConfigurationService
+DisplayName : Print Device Configuration Service
+
+
+Status      : Stopped
+Name        : PrintNotify
+DisplayName : Printer Extensions and Notifications
+
+
+Status      : Stopped
+Name        : PrintScanBrokerService
+DisplayName : PrintScanBrokerService
+
+
+Status      : Stopped
+Name        : PrintWorkflowUserSvc_518f2
+DisplayName : PrintWorkflow_518f2
+
+
+Status      : Stopped
+Name        : PushToInstall
+DisplayName : Windows PushToInstall Service
+
+
+Status      : Stopped
+Name        : QWAVE
+DisplayName : Quality Windows Audio Video Experience
+
+
+Status      : Stopped
+Name        : RasAuto
+DisplayName : Remote Access Auto Connection Manager
+
+
+Status      : Stopped
+Name        : refsdedupsvc
+DisplayName : ReFS Dedup Service
+
+
+Status      : Stopped
+Name        : RemoteAccess
+DisplayName : Routing and Remote Access
+
+
+Status      : Stopped
+Name        : RemoteRegistry
+DisplayName : Remote Registry
+
+
+Status      : Stopped
+Name        : RetailDemo
+DisplayName : Retail Demo Service
+
+
+Status      : Stopped
+Name        : RpcLocator
+DisplayName : Remote Procedure Call (RPC) Locator
+
+
+Status      : Stopped
+Name        : SCardSvr
+DisplayName : Smart Card
+
+
+Status      : Stopped
+Name        : ScDeviceEnum
+DisplayName : Smart Card Device Enumeration Service
+
+
+Status      : Stopped
+Name        : SCPolicySvc
+DisplayName : Smart Card Removal Policy
+
+
+Status      : Stopped
+Name        : SDRSVC
+DisplayName : Windows Backup
+
+
+Status      : Stopped
+Name        : seclogon
+DisplayName : Secondary Logon
+
+
+Status      : Stopped
+Name        : SEMgrSvc
+DisplayName : Payments and NFC/SE Manager
+
+
+Status      : Stopped
+Name        : Sense
+DisplayName : Windows Defender Advanced Threat Protection Service
+
+
+Status      : Stopped
+Name        : SensorDataService
+DisplayName : Sensor Data Service
+
+
+Status      : Stopped
+Name        : SensorService
+DisplayName : Sensor Service
+
+
+Status      : Stopped
+Name        : SensrSvc
+DisplayName : Sensor Monitoring Service
+
+
+Status      : Stopped
+Name        : SessionEnv
+DisplayName : Remote Desktop Configuration
+
+
+Status      : Stopped
+Name        : SharedAccess
+DisplayName : Internet Connection Sharing (ICS)
+
+
+Status      : Stopped
+Name        : shpamsvc
+DisplayName : Shared PC Account Manager
+
+
+Status      : Stopped
+Name        : smphost
+DisplayName : Microsoft Storage Spaces SMP
+
+
+Status      : Stopped
+Name        : SmsRouter
+DisplayName : Microsoft Windows SMS Router Service.
+
+
+Status      : Stopped
+Name        : SNMPTrap
+DisplayName : SNMP Trap
+
+
+Status      : Stopped
+Name        : sppsvc
+DisplayName : Software Protection
+
+
+Status      : Stopped
+Name        : ssh-agent
+DisplayName : OpenSSH Authentication Agent
+
+
+Status      : Stopped
+Name        : StiSvc
+DisplayName : Windows Image Acquisition (WIA)
+
+
+Status      : Stopped
+Name        : svsvc
+DisplayName : Spot Verifier
+
+
+Status      : Stopped
+Name        : swprv
+DisplayName : Microsoft Software Shadow Copy Provider
+
+
+Status      : Stopped
+Name        : TapiSrv
+DisplayName : Telephony
+
+
+Status      : Stopped
+Name        : TermService
+DisplayName : Remote Desktop Services
+
+
+Status      : Stopped
+Name        : TieringEngineService
+DisplayName : Storage Tiers Management
+
+
+Status      : Stopped
+Name        : TroubleshootingSvc
+DisplayName : Recommended Troubleshooting Service
+
+
+Status      : Stopped
+Name        : TrustedInstaller
+DisplayName : Windows Modules Installer
+
+
+Status      : Stopped
+Name        : tzautoupdate
+DisplayName : Auto Time Zone Updater
+
+
+Status      : Stopped
+Name        : UevAgentService
+DisplayName : User Experience Virtualization Service
+
+
+Status      : Stopped
+Name        : UmRdpService
+DisplayName : Remote Desktop Services UserMode Port Redirector
+
+
+Status      : Stopped
+Name        : UnistoreSvc_518f2
+DisplayName : User Data Storage_518f2
+
+
+Status      : Stopped
+Name        : upnphost
+DisplayName : UPnP Device Host
+
+
+Status      : Stopped
+Name        : UserDataSvc_518f2
+DisplayName : User Data Access_518f2
+
+
+Status      : Stopped
+Name        : vds
+DisplayName : Virtual Disk
+
+
+Status      : Stopped
+Name        : vmicguestinterface
+DisplayName : Hyper-V Guest Service Interface
+
+
+Status      : Stopped
+Name        : vmicheartbeat
+DisplayName : Hyper-V Heartbeat Service
+
+
+Status      : Stopped
+Name        : vmickvpexchange
+DisplayName : Hyper-V Data Exchange Service
+
+
+Status      : Stopped
+Name        : vmicrdv
+DisplayName : Hyper-V Remote Desktop Virtualization Service
+
+
+Status      : Stopped
+Name        : vmicshutdown
+DisplayName : Hyper-V Guest Shutdown Service
+
+
+Status      : Stopped
+Name        : vmictimesync
+DisplayName : Hyper-V Time Synchronization Service
+
+
+Status      : Stopped
+Name        : vmicvmsession
+DisplayName : Hyper-V PowerShell Direct Service
+
+
+Status      : Stopped
+Name        : vmicvss
+DisplayName : Hyper-V Volume Shadow Copy Requestor
+
+
+Status      : Stopped
+Name        : VSInstallerElevationService
+DisplayName : Visual Studio Installer Elevation Service
+
+
+Status      : Stopped
+Name        : VSS
+DisplayName : Volume Shadow Copy
+
+
+Status      : Stopped
+Name        : VSStandardCollectorService150
+DisplayName : Visual Studio Standard Collector Service 150
+
+
+Status      : Stopped
+Name        : WaaSMedicSvc
+DisplayName : WaaSMedicSvc
+
+
+Status      : Stopped
+Name        : WalletService
+DisplayName : WalletService
+
+
+Status      : Stopped
+Name        : WarpJITSvc
+DisplayName : Warp JIT Service
+
+
+Status      : Stopped
+Name        : wbengine
+DisplayName : Block Level Backup Engine Service
+
+
+Status      : Stopped
+Name        : WbioSrvc
+DisplayName : Windows Biometric Service
+
+
+Status      : Stopped
+Name        : wcncsvc
+DisplayName : Windows Connect Now - Config Registrar
+
+
+Status      : Stopped
+Name        : WdiServiceHost
+DisplayName : Diagnostic Service Host
+
+
+Status      : Stopped
+Name        : WdiSystemHost
+DisplayName : Diagnostic System Host
+
+
+Status      : Stopped
+Name        : WebClient
+DisplayName : WebClient
+
+
+Status      : Stopped
+Name        : Wecsvc
+DisplayName : Windows Event Collector
+
+
+Status      : Stopped
+Name        : WEPHOSTSVC
+DisplayName : Windows Encryption Provider Host Service
+
+
+Status      : Stopped
+Name        : wercplsupport
+DisplayName : Problem Reports Control Panel Support
+
+
+Status      : Stopped
+Name        : WerSvc
+DisplayName : Windows Error Reporting Service
+
+
+Status      : Stopped
+Name        : WFDSConMgrSvc
+DisplayName : Wi-Fi Direct Services Connection Manager Service
+
+
+Status      : Stopped
+Name        : WiaRpc
+DisplayName : Still Image Acquisition Events
+
+
+Status      : Stopped
+Name        : WinRM
+DisplayName : Windows Remote Management (WS-Management)
+
+
+Status      : Stopped
+Name        : wisvc
+DisplayName : Windows Insider Service
+
+
+Status      : Stopped
+Name        : WlanSvc
+DisplayName : WLAN AutoConfig
+
+
+Status      : Stopped
+Name        : wlidsvc
+DisplayName : Microsoft Account Sign-in Assistant
+
+
+Status      : Stopped
+Name        : wlpasvc
+DisplayName : Local Profile Assistant Service
+
+
+Status      : Stopped
+Name        : WManSvc
+DisplayName : Windows Management Service
+
+
+Status      : Stopped
+Name        : wmiApSrv
+DisplayName : WMI Performance Adapter
+
+
+Status      : Stopped
+Name        : WMPNetworkSvc
+DisplayName : Windows Media Player Network Sharing Service
+
+
+Status      : Stopped
+Name        : workfolderssvc
+DisplayName : Work Folders
+
+
+Status      : Stopped
+Name        : WpcMonSvc
+DisplayName : Parental Controls
+
+
+Status      : Stopped
+Name        : WPDBusEnum
+DisplayName : Portable Device Enumerator Service
+
+
+Status      : Stopped
+Name        : wuauserv
+DisplayName : Windows Update
+
+
+Status      : Stopped
+Name        : WwanSvc
+DisplayName : WWAN AutoConfig
+
+
+Status      : Stopped
+Name        : XblAuthManager
+DisplayName : Xbox Live Auth Manager
+
+
+Status      : Stopped
+Name        : XblGameSave
+DisplayName : Xbox Live Game Save
+
+
+Status      : Stopped
+Name        : XboxGipSvc
+DisplayName : Xbox Accessory Management Service
+
+
+Status      : Stopped
+Name        : XboxNetApiSvc
+DisplayName : Xbox Live Networking Service
+
+
+Status      : Stopped
+Name        : ZTHELPER
+DisplayName : ZTDNS Helper service
+
+
+--- Listing all established network connections ---
+  TCP    10.0.2.15:49695        52.109.56.128:443      ESTABLISHED
+  TCP    10.0.2.15:62390        184.51.195.202:443     ESTABLISHED
+  TCP    10.0.2.15:62396        4.213.25.242:443       ESTABLISHED
+  TCP    10.0.2.15:62400        157.240.23.53:5222     ESTABLISHED
+  TCP    10.0.2.15:62404        35.174.210.7:443       ESTABLISHED
+  TCP    10.0.2.15:62405        3.212.81.64:443        ESTABLISHED
+  TCP    10.0.2.15:62408        104.18.39.21:443       ESTABLISHED
+  TCP    10.0.2.15:62410        4.190.204.124:443      ESTABLISHED
+  TCP    10.0.2.15:62418        4.213.25.242:443       ESTABLISHED
+  TCP    10.0.2.15:62421        52.187.79.109:443      ESTABLISHED
+  TCP    10.0.2.15:62448        20.189.173.17:443      ESTABLISHED
+  TCP    10.0.2.15:62543        23.96.124.68:443       ESTABLISHED
+  TCP    10.0.2.15:62544        13.107.139.11:443      ESTABLISHED
+  TCP    10.0.2.15:62545        51.116.246.104:443     ESTABLISHED
+  TCP    127.0.0.1:49672        127.0.0.1:49673        ESTABLISHED
+  TCP    127.0.0.1:49673        127.0.0.1:49672        ESTABLISHED
+  TCP    127.0.0.1:49674        127.0.0.1:49675        ESTABLISHED
+  TCP    127.0.0.1:49675        127.0.0.1:49674        ESTABLISHED
+WARNING: IIS (WebAdministration Module) not found. Skipping IIS-specific commands.
+
+==================================================
+Executing Script from Page 6: Custom Monitoring
+==================================================
+
+--- Running the custom monitoring script for 1 minute ---
+Starting monitoring... Output: C:\Monitoring\performance_20250826_123941.log
+Duration: 1 minutes, Interval: 5 seconds
+2025-08-26 12:39:41, CPU:43.45%, Memory:3128 MB, DiskQueue:0
+2025-08-26 12:39:52, CPU:47.15%, Memory:3143 MB, DiskQueue:0
+2025-08-26 12:40:01, CPU:43.6%, Memory:3149 MB, DiskQueue:0
+2025-08-26 12:40:10, CPU:35.12%, Memory:3158 MB, DiskQueue:0
+2025-08-26 12:40:18, CPU:32.69%, Memory:3152 MB, DiskQueue:0
+2025-08-26 12:40:26, CPU:26.33%, Memory:3152 MB, DiskQueue:0
+2025-08-26 12:40:33, CPU:44.32%, Memory:3276 MB, DiskQueue:0
+2025-08-26 12:40:39, CPU:8.87%, Memory:3280 MB, DiskQueue:0
+Monitoring completed. Log saved to: C:\Monitoring\performance_20250826_123941.log
+
+==================================================
+All commands have been executed.
+==================================================
+**********************
+Windows PowerShell transcript end
+End time: 20250826124045
+**********************
