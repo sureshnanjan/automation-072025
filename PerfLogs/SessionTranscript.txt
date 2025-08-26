@@ -1,0 +1,498 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20250825150002
+Username: ASCENDI-9P6AH5O\Ascendion
+RunAs User: ASCENDI-9P6AH5O\Ascendion
+Configuration Name: 
+Machine: ASCENDI-9P6AH5O (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 1084
+PSVersion: 5.1.26100.4768
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.4768
+BuildVersion: 10.0.26100.4768
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\PerfLogs\SessionTranscript.txt
+PS C:\WINDOWS\system32> typeperf "\Processor(_Total)\% Processor Time" -o C:\PerfLogs\cpu_usage.csv -f CSV -si 5 -sc 12
+
+
+The command completed successfully.
+PS C:\WINDOWS\system32> logman create counter "WebServerMonitoring" -c "\Web Service(_Total)\Bytes Total/sec" "\Web Service(_Total)\Current Connections" -f csv -o C:\PerfLogs\WebServerMonitoring
+The command completed successfully.
+PS C:\WINDOWS\system32> logman start "WebServerMonitoring"
+The command completed successfully.
+PS C:\WINDOWS\system32> logman stop "WebServerMonitoring"
+The command completed successfully.
+PS C:\WINDOWS\system32> "\Processor(_Total)\% Processor Time"
+\Processor(_Total)\% Processor Time
+PS C:\WINDOWS\system32> "\System\Processor Queue Length"
+\System\Processor Queue Length
+PS C:\WINDOWS\system32> "\Processor Information(_Total)\% Privileged Time"
+\Processor Information(_Total)\% Privileged Time
+PS C:\WINDOWS\system32> "\Memory\Available MBytes" 
+\Memory\Available MBytes
+PS C:\WINDOWS\system32> "\Memory\Pages/sec"
+\Memory\Pages/sec
+PS C:\WINDOWS\system32> "\Memory\Pool Nonpaged Bytes"
+\Memory\Pool Nonpaged Bytes
+PS C:\WINDOWS\system32> "\Process(_Total)\Working Set"
+\Process(_Total)\Working Set
+PS C:\WINDOWS\system32> "\PhysicalDisk(_Total)\Disk Reads/sec"
+\PhysicalDisk(_Total)\Disk Reads/sec
+PS C:\WINDOWS\system32> "\PhysicalDisk(_Total)\Disk Writes/sec"
+\PhysicalDisk(_Total)\Disk Writes/sec
+PS C:\WINDOWS\system32> "\PhysicalDisk(_Total)\Avg. Disk sec/Read" 
+\PhysicalDisk(_Total)\Avg. Disk sec/Read
+PS C:\WINDOWS\system32> "\PhysicalDisk(_Total)\Avg. Disk sec/Write"
+\PhysicalDisk(_Total)\Avg. Disk sec/Write
+PS C:\WINDOWS\system32> "\PhysicalDisk(_Total)\Current Disk Queue Length"
+\PhysicalDisk(_Total)\Current Disk Queue Length
+PS C:\WINDOWS\system32> "\Network Interface(*)\Bytes Total/sec"
+\Network Interface(*)\Bytes Total/sec
+PS C:\WINDOWS\system32> "\Network Interface(*)\Packets/sec"
+\Network Interface(*)\Packets/sec
+PS C:\WINDOWS\system32> "\Network Interface(*)\Output Queue Length"
+\Network Interface(*)\Output Queue Length
+PS C:\WINDOWS\system32> -f csv -o C:\PerfLogs\KeyPerfCounters
+-f : The term '-f' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ -f csv -o C:\PerfLogs\KeyPerfCounters
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-f:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+-f : The term '-f' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ -f csv -o C:\PerfLogs\KeyPerfCounters
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-f:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\WINDOWS\system32> logman create counter "KeyPerfCounters" ^
+Argument '^' is unknown.
+
+Error:
+The parameter is incorrect.
+PS C:\WINDOWS\system32> logman create counter "KeyPerfCounters" 
+The command completed successfully.
+PS C:\WINDOWS\system32> -c "\Processor(_Total)\% Processor Time"
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ -c "\Processor(_Total)\% Processor Time"
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ -c "\Processor(_Total)\% Processor Time"
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\WINDOWS\system32> csv -o C:\PerfLogs\KeyPerfCounters
+csv : The term 'csv' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ csv -o C:\PerfLogs\KeyPerfCounters
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (csv:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+csv : The term 'csv' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ csv -o C:\PerfLogs\KeyPerfCounters
++ ~~~
+    + CategoryInfo          : ObjectNotFound: (csv:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\WINDOWS\system32> logman create counter "KeyPerfCounters" ^
+-c "\Processor(_Total)\% Processor Time" ^
+-c "\System\Processor Queue Length" ^
+-c "\Processor Information(_Total)\% Privileged Time" ^
+-c "\Memory\Available MBytes" ^
+-c "\Memory\Pages/sec" ^
+-c "\Memory\Pool Nonpaged Bytes" ^
+-c "\Process(_Total)\Working Set" ^
+-c "\PhysicalDisk(_Total)\Disk Reads/sec" ^
+-c "\PhysicalDisk(_Total)\Disk Writes/sec" ^
+-c "\PhysicalDisk(_Total)\Avg. Disk sec/Read" ^
+-c "\PhysicalDisk(_Total)\Avg. Disk sec/Write" ^
+-c "\PhysicalDisk(_Total)\Current Disk Queue Length" ^
+-c "\Network Interface(*)\Bytes Total/sec" ^
+-c "\Network Interface(*)\Packets/sec" ^
+-c "\Network Interface(*)\Output Queue Length" ^
+-f csv -o C:\PerfLogs\KeyPerfCounters
+
+Argument '^' is unknown.
+
+Error:
+The parameter is incorrect.
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:2 char:1
++ -c "\Processor(_Total)\% Processor Time" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:2 char:1
++ -c "\Processor(_Total)\% Processor Time" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:3 char:1
++ -c "\System\Processor Queue Length" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:3 char:1
++ -c "\System\Processor Queue Length" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:4 char:1
++ -c "\Processor Information(_Total)\% Privileged Time" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:4 char:1
++ -c "\Processor Information(_Total)\% Privileged Time" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:5 char:1
++ -c "\Memory\Available MBytes" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:5 char:1
++ -c "\Memory\Available MBytes" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:6 char:1
++ -c "\Memory\Pages/sec" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:6 char:1
++ -c "\Memory\Pages/sec" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:7 char:1
++ -c "\Memory\Pool Nonpaged Bytes" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:7 char:1
++ -c "\Memory\Pool Nonpaged Bytes" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:8 char:1
++ -c "\Process(_Total)\Working Set" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:8 char:1
++ -c "\Process(_Total)\Working Set" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:9 char:1
++ -c "\PhysicalDisk(_Total)\Disk Reads/sec" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:9 char:1
++ -c "\PhysicalDisk(_Total)\Disk Reads/sec" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:10 char:1
++ -c "\PhysicalDisk(_Total)\Disk Writes/sec" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:10 char:1
++ -c "\PhysicalDisk(_Total)\Disk Writes/sec" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:11 char:1
++ -c "\PhysicalDisk(_Total)\Avg. Disk sec/Read" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:11 char:1
++ -c "\PhysicalDisk(_Total)\Avg. Disk sec/Read" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:12 char:1
++ -c "\PhysicalDisk(_Total)\Avg. Disk sec/Write" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:12 char:1
++ -c "\PhysicalDisk(_Total)\Avg. Disk sec/Write" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:13 char:1
++ -c "\PhysicalDisk(_Total)\Current Disk Queue Length" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:13 char:1
++ -c "\PhysicalDisk(_Total)\Current Disk Queue Length" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:14 char:1
++ -c "\Network Interface(*)\Bytes Total/sec" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:14 char:1
++ -c "\Network Interface(*)\Bytes Total/sec" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:15 char:1
++ -c "\Network Interface(*)\Packets/sec" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:15 char:1
++ -c "\Network Interface(*)\Packets/sec" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:16 char:1
++ -c "\Network Interface(*)\Output Queue Length" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+-c : The term '-c' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:16 char:1
++ -c "\Network Interface(*)\Output Queue Length" ^
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-c:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+-f : The term '-f' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the 
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:17 char:1
++ -f csv -o C:\PerfLogs\KeyPerfCounters
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-f:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+-f : The term '-f' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:17 char:1
++ -f csv -o C:\PerfLogs\KeyPerfCounters
++ ~~
+    + CategoryInfo          : ObjectNotFound: (-f:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\WINDOWS\system32> logman create counter "KeyPerfCounters" `
+-c "\Processor(_Total)\% Processor Time" `
+-c "\System\Processor Queue Length" `
+-c "\Processor Information(_Total)\% Privileged Time" `
+-c "\Memory\Available MBytes" `
+-c "\Memory\Pages/sec" `
+-c "\Memory\Pool Nonpaged Bytes" `
+-c "\Process(_Total)\Working Set" `
+-c "\PhysicalDisk(_Total)\Disk Reads/sec" `
+-c "\PhysicalDisk(_Total)\Disk Writes/sec" `
+-c "\PhysicalDisk(_Total)\Avg. Disk sec/Read" `
+-c "\PhysicalDisk(_Total)\Avg. Disk sec/Write" `
+-c "\PhysicalDisk(_Total)\Current Disk Queue Length" `
+-c "\Network Interface(*)\Bytes Total/sec" `
+-c "\Network Interface(*)\Packets/sec" `
+-c "\Network Interface(*)\Output Queue Length" `
+-f csv -o C:\PerfLogs\KeyPerfCounters
+
+Argument 'c' has been defined too many times.
+Argument 'c' has been defined too many times.
+Argument 'c' has been defined too many times.
+Argument 'c' has been defined too many times.
+Argument 'c' has been defined too many times.
+Argument 'c' has been defined too many times.
+Argument 'c' has been defined too many times.
+Argument 'c' has been defined too many times.
+Argument 'c' has been defined too many times.
+Argument 'c' has been defined too many times.
+Argument 'c' has been defined too many times.
+Argument 'c' has been defined too many times.
+Argument 'c' has been defined too many times.
+Argument 'c' has been defined too many times.
+
+Error:
+The parameter is incorrect.
+PS C:\WINDOWS\system32> logman create counter "KeyPerfCounters" `
+-c "\Processor(_Total)\% Processor Time" "\System\Processor Queue Length" "\Processor Information(_Total)\% Privileged Time" `
+"\Memory\Available MBytes" "\Memory\Pages/sec" "\Memory\Pool Nonpaged Bytes" "\Process(_Total)\Working Set" `
+"\PhysicalDisk(_Total)\Disk Reads/sec" "\PhysicalDisk(_Total)\Disk Writes/sec" `
+"\PhysicalDisk(_Total)\Avg. Disk sec/Read" "\PhysicalDisk(_Total)\Avg. Disk sec/Write" "\PhysicalDisk(_Total)\Current Disk Queue Length" `
+"\Network Interface(*)\Bytes Total/sec" "\Network Interface(*)\Packets/sec" "\Network Interface(*)\Output Queue Length" `
+-f csv -o C:\PerfLogs\KeyPerfCounters
+
+
+Error:
+Data Collector already exists.
+PS C:\WINDOWS\system32> logman delete "KeyPerfCounters"
+
+The command completed successfully.
+PS C:\WINDOWS\system32> logman create counter "KeyPerfCounters" `
+-c "\Processor(_Total)\% Processor Time" "\System\Processor Queue Length" "\Processor Information(_Total)\% Privileged Time" `
+"\Memory\Available MBytes" "\Memory\Pages/sec" "\Memory\Pool Nonpaged Bytes" "\Process(_Total)\Working Set" `
+"\PhysicalDisk(_Total)\Disk Reads/sec" "\PhysicalDisk(_Total)\Disk Writes/sec" `
+"\PhysicalDisk(_Total)\Avg. Disk sec/Read" "\PhysicalDisk(_Total)\Avg. Disk sec/Write" "\PhysicalDisk(_Total)\Current Disk Queue Length" `
+"\Network Interface(*)\Bytes Total/sec" "\Network Interface(*)\Packets/sec" "\Network Interface(*)\Output Queue Length" `
+-f csv -o C:\PerfLogs\KeyPerfCounters
+
+The command completed successfully.
+PS C:\WINDOWS\system32> logman start "KeyPerfCounters"
+
+The command completed successfully.
+PS C:\WINDOWS\system32> logman stop "KeyPerfCounters"
+
+The command completed successfully.
+PS C:\WINDOWS\system32> C:\PerfLogs\KeyPerfCounters_000001.csv
+
+PS C:\WINDOWS\system32> C:\PerfLogs\Admin\KeyPerfCounters\
+
+C:\PerfLogs\Admin\KeyPerfCounters\ : The term 'C:\PerfLogs\Admin\KeyPerfCounters\' is not recognized as the name of a 
+cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify 
+that the path is correct and try again.
+At line:1 char:1
++ C:\PerfLogs\Admin\KeyPerfCounters\
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\PerfLogs\Admin\KeyPerfCounters\:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+C:\PerfLogs\Admin\KeyPerfCounters\ : The term 'C:\PerfLogs\Admin\KeyPerfCounters\' is not recognized as the name of a
+cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify
+that the path is correct and try again.
+At line:1 char:1
++ C:\PerfLogs\Admin\KeyPerfCounters\
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\PerfLogs\Admin\KeyPerfCounters\:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\WINDOWS\system32> Set-Location "C:\PerfLogs\Admin\KeyPerfCounters"
+
+Set-Location : Cannot find path 'C:\PerfLogs\Admin\KeyPerfCounters' because it does not exist.
+At line:1 char:1
++ Set-Location "C:\PerfLogs\Admin\KeyPerfCounters"
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\PerfLogs\Admin\KeyPerfCounters:String) [Set-Location], 
+ItemNotFoundException
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.SetLocationCommand
+Set-Location : Cannot find path 'C:\PerfLogs\Admin\KeyPerfCounters' because it does not exist.
+At line:1 char:1
++ Set-Location "C:\PerfLogs\Admin\KeyPerfCounters"
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\PerfLogs\Admin\KeyPerfCounters:String) [Set-Location], ItemNotFoundE
+   xception
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.SetLocationCommand
+
+PS C:\WINDOWS\system32> cd "C:\PerfLogs\Admin\KeyPerfCounters"
+
+cd : Cannot find path 'C:\PerfLogs\Admin\KeyPerfCounters' because it does not exist.
+At line:1 char:1
++ cd "C:\PerfLogs\Admin\KeyPerfCounters"
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\PerfLogs\Admin\KeyPerfCounters:String) [Set-Location], 
+ItemNotFoundException
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.SetLocationCommand
+cd : Cannot find path 'C:\PerfLogs\Admin\KeyPerfCounters' because it does not exist.
+At line:1 char:1
++ cd "C:\PerfLogs\Admin\KeyPerfCounters"
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (C:\PerfLogs\Admin\KeyPerfCounters:String) [Set-Location], ItemNotFoundE
+   xception
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.SetLocationCommand
+
+PS C:\WINDOWS\system32> cd C:\PerfLogs
+PS C:\PerfLogs> C:\PerfLogs\KeyPerfCounters_000001.csv
+
