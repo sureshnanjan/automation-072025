@@ -1,0 +1,511 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20250825145210
+Username: ASCENDI-03PBECJ\Ascendion
+RunAs User: ASCENDI-03PBECJ\Ascendion
+Configuration Name: 
+Machine: ASCENDI-03PBECJ (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 7500
+PSVersion: 5.1.26100.4768
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.4768
+BuildVersion: 10.0.26100.4768
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Logs\cpu_session.txt
+PS C:\WINDOWS\system32> perfmon
+PS C:\WINDOWS\system32> typeperf "\Processor(_Total)\% Processor Time" -o cpu_usage.csv -f CSV -si 5 -sc 12
+
+
+The file "cpu_usage.csv" already exists, overwrite? [y/n]  y
+
+The command completed successfully.
+PS C:\WINDOWS\system32> logman create counter "WebServerMonitoring" -c "\Web Service(_Total)\Bytes Total/sec" "\Web Service(_Total)\Current Connections" -si 5 -f csv -o "C:\Logs\WebServerData"
+
+The command completed successfully.
+PS C:\WINDOWS\system32> logman start "WebServerMonitoring"
+The command completed successfully.
+PS C:\WINDOWS\system32> logman stop "WebServerMonitoring"
+
+The command completed successfully.
+PS C:\WINDOWS\system32> logman create counter "SystemMonitoring" `
+  -c "\Processor(_Total)\% Processor Time" `
+     "\System\Processor Queue Length" `
+     "\Processor Information(_Total)\% Privileged Time" `
+     "\Memory\Available MBytes" `
+     "\Memory\Pages/sec" `
+     "\Memory\Pool Nonpaged Bytes" `
+     "\Process(_Total)\Working Set" `
+     "\PhysicalDisk(_Total)\Disk Reads/sec" `
+     "\PhysicalDisk(_Total)\Disk Writes/sec" `
+     "\PhysicalDisk(_Total)\Avg. Disk sec/Read" `
+     "\PhysicalDisk(_Total)\Avg. Disk sec/Write" `
+     "\PhysicalDisk(_Total)\Current Disk Queue Length" `
+     "\Network Interface(*)\Bytes Total/sec" `
+     "\Network Interface(*)\Packets/sec" `
+     "\Network Interface(*)\Output Queue Length" `
+  -si 5 -f csv -o "C:\Logs\SystemMonitoring"
+
+The command completed successfully.
+PS C:\WINDOWS\system32> logman start "SystemMonitoring"
+
+The command completed successfully.
+PS C:\WINDOWS\system32> logman stop "SystemMonitoring"
+The command completed successfully.
+PS C:\WINDOWS\system32> Start-Transcript -Path "C:\Monitoring\ResourceMonitoring.log"
+Transcript started, output file is C:\Monitoring\ResourceMonitoring.log
+PS C:\WINDOWS\system32> resmon
+PS C:\WINDOWS\system32> Get-Process | Sort-Object CPU -Descending | Select-Object -First 10
+
+Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName
+-------  ------    -----      -----     ------     --  -- -----------
+   3914       0       44        168  38,246.66      4   0 System
+   5248     178   378608     355696   9,159.89  10612   1 explorer
+   1134      64   116048     134608   8,977.58   6568   1 OneDrive
+    246      13   121012     131196   8,807.94   2124   0 svchost
+    928     230   274852     200208   8,141.25   3536   0 MsMpEng
+   1012      36    15656      72316   8,013.11   9052   1 Widgets
+    381      17    30224      34072   6,028.02   3260   0 svchost
+      0       0     1464     263716   5,495.02   2224   0 Memory Compression
+   1739     195    97948     236992   4,875.83   6280   1 Copilot
+    266      13     4840      26192   4,870.75   3664   0 svchost
+
+
+PS C:\WINDOWS\system32> Get-Counter "\Process(*)\% Processor Time" | 
+  Select-Object -ExpandProperty CounterSamples | 
+  Sort-Object CookedValue -Descending | Select-Object -First 10
+
+Path                                                 InstanceName      CookedValue
+----                                                 ------------      -----------
+\\ascendi-03pbecj\process(_total)\% processor time   _total       321.891835227842
+\\ascendi-03pbecj\process(idle)\% processor time     idle         138.157115119915
+\\ascendi-03pbecj\process(system)\% processor time   system       35.6075038968852
+\\ascendi-03pbecj\process(chrome)\% processor time   chrome       28.4860031175082
+\\ascendi-03pbecj\process(dwm)\% processor time      dwm          27.0617029616328
+\\ascendi-03pbecj\process(explorer)\% processor time explorer     21.3645023381311
+\\ascendi-03pbecj\process(copilot)\% processor time  copilot      17.0916018705049
+\\ascendi-03pbecj\process(chrome#7)\% processor time chrome       12.8187014028787
+\\ascendi-03pbecj\process(perfmon)\% processor time  perfmon      9.97010109112786
+\\ascendi-03pbecj\process(csrss#1)\% processor time  csrss        5.69720062350164
+
+
+PS C:\WINDOWS\system32> Stop-Transcript
+Transcript stopped, output file is C:\Monitoring\ResourceMonitoring.log
+PS C:\WINDOWS\system32> Start-Transcript -Path "C:\Monitoring\EventViewerMonitoring.log"
+Transcript started, output file is C:\Monitoring\EventViewerMonitoring.log
+PS C:\WINDOWS\system32> Get-EventLog -LogName System -EntryType Error -Newest 50
+
+   Index Time          EntryType   Source                 InstanceID Message
+   ----- ----          ---------   ------                 ---------- -------
+   12106 Aug 25 13:39  Error       Microsoft-Windows...           20 Installation Failure: Windows failed to install the following update with error 0x80073d02: 9NHT9RB...
+   12074 Aug 25 07:36  Error       Microsoft-Windows...         1795 The system firmware returned an error -2147467259 when attempting to update a Secure Boot variable....
+   12057 Aug 24 21:51  Error       Microsoft-Windows...           20 Installation Failure: Windows failed to install the following update with error 0x80073d02: 9NHT9RB...
+   12052 Aug 24 21:50  Error       Microsoft-Windows...         1795 The system firmware returned an error -2147467259 when attempting to update a Secure Boot variable....
+   12046 Aug 24 21:49  Error       Service Control M...   3221232483 A timeout (30000 milliseconds) was reached while waiting for a transaction response from the SysMai...
+   12045 Aug 24 21:49  Error       Service Control M...   3221232483 A timeout (30000 milliseconds) was reached while waiting for a transaction response from the RasMan...
+   12044 Aug 24 20:27  Error       Service Control M...   3221232483 A timeout (30000 milliseconds) was reached while waiting for a transaction response from the gpsvc ...
+   12043 Aug 24 20:27  Error       Service Control M...   3221232483 A timeout (30000 milliseconds) was reached while waiting for a transaction response from the iphlps...
+   12042 Aug 24 20:27  Error       Service Control M...   3221232483 A timeout (30000 milliseconds) was reached while waiting for a transaction response from the EventL...
+   11939 Aug 24 09:14  Error       Microsoft-Windows...           34 The time service has detected that the system time needs to be  changed by 27 seconds. The time ser...
+   11935 Aug 24 09:04  Error       Microsoft-Windows...           20 Installation Failure: Windows failed to install the following update with error 0x80073d02: 9NHT9RB...
+   11926 Aug 24 09:00  Error       Microsoft-Windows...         1795 The system firmware returned an error -2147467259 when attempting to update a Secure Boot variable....
+   11892 Aug 23 09:30  Error       Microsoft-Windows...           20 Installation Failure: Windows failed to install the following update with error 0x80073d02: 9MSSGKG...
+   11886 Aug 23 09:29  Error       Microsoft-Windows...           20 Installation Failure: Windows failed to install the following update with error 0x80073d02: 9NHT9RB...
+   11871 Aug 23 09:24  Error       Service Control M...   3221232503 The Connected User Experiences and Telemetry service terminated unexpectedly.  It has done this 1 t...
+   11870 Aug 23 09:23  Error       DCOM                        10010 The description for Event ID '10010' in Source 'DCOM' cannot be found.  The local computer may not ...
+   11869 Aug 23 09:23  Error       DCOM                        10010 The description for Event ID '10010' in Source 'DCOM' cannot be found.  The local computer may not ...
+   11863 Aug 22 20:27  Error       Service Control M...   3221232472 The Software Protection service failed to start due to the following error: ...
+   11862 Aug 22 20:27  Error       Service Control M...   3221232472 The AppX Deployment Service (AppXSVC) service failed to start due to the following error: ...
+   11861 Aug 22 20:27  Error       Service Control M...   3221232481 A timeout was reached (30000 milliseconds) while waiting for the Software Protection service to con...
+   11860 Aug 22 20:27  Error       Service Control M...   3221232481 A timeout was reached (30000 milliseconds) while waiting for the AppX Deployment Service (AppXSVC) ...
+   11853 Aug 22 18:14  Error       Microsoft-Windows...         1795 The system firmware returned an error -2147467259 when attempting to update a Secure Boot variable....
+   11849 Aug 22 17:51  Error       Service Control M...   3221232483 A timeout (30000 milliseconds) was reached while waiting for a transaction response from the cbdhsv...
+   11848 Aug 22 17:51  Error       Service Control M...   3221232483 A timeout (30000 milliseconds) was reached while waiting for a transaction response from the iphlps...
+   11847 Aug 22 17:51  Error       Service Control M...   3221232483 A timeout (30000 milliseconds) was reached while waiting for a transaction response from the SysMai...
+   11770 Aug 22 08:21  Error       Service Control M...   3221232483 A timeout (30000 milliseconds) was reached while waiting for a transaction response from the Audios...
+   11759 Aug 22 06:11  Error       Microsoft-Windows...         1795 The system firmware returned an error -2147467259 when attempting to update a Secure Boot variable....
+   11732 Aug 22 05:53  Error       Service Control M...   3221232472 The GoogleUpdaterService140.0.7272.0 service failed to start due to the following error: ...
+   11731 Aug 22 05:53  Error       Service Control M...   3221232472 The GoogleUpdaterInternalService140.0.7272.0 service failed to start due to the following error: ...
+   11657 Aug 22 05:53  Error       EventLog               2147489656 The previous system shutdown at 12:55:28 AM on ‎8/‎22/‎2025 was unexpected.
+   11654 Aug 22 05:51  Error       DCOM                        10010 The description for Event ID '10010' in Source 'DCOM' cannot be found.  The local computer may not ...
+   11653 Aug 22 05:51  Error       DCOM                        10010 The description for Event ID '10010' in Source 'DCOM' cannot be found.  The local computer may not ...
+   11652 Aug 22 05:51  Error       DCOM                        10010 The description for Event ID '10010' in Source 'DCOM' cannot be found.  The local computer may not ...
+   11651 Aug 22 05:51  Error       DCOM                        10010 The description for Event ID '10010' in Source 'DCOM' cannot be found.  The local computer may not ...
+   11646 Aug 22 00:55  Error       Service Control M...   3221232483 A timeout (30000 milliseconds) was reached while waiting for a transaction response from the SysMai...
+   11630 Aug 21 20:59  Error       Microsoft-Windows...           20 Installation Failure: Windows failed to install the following update with error 0x80073d02: 9N3RK8Z...
+   11591 Aug 21 18:48  Error       Microsoft-Windows...         1795 The system firmware returned an error -2147467259 when attempting to update a Secure Boot variable....
+   11578 Aug 21 18:43  Error       Service Control M...   3221232472 The GoogleUpdaterService140.0.7272.0 service failed to start due to the following error: ...
+   11577 Aug 21 18:43  Error       Service Control M...   3221232472 The GoogleUpdaterInternalService140.0.7272.0 service failed to start due to the following error: ...
+   11489 Aug 21 16:56  Error       DCOM                        10005 The description for Event ID '10005' in Source 'DCOM' cannot be found.  The local computer may not ...
+   11488 Aug 21 16:56  Error       Service Control M...   3221232472 The Google Updater Service (GoogleUpdaterService141.0.7340.0) service failed to start due to the fo...
+   11487 Aug 21 16:56  Error       Service Control M...   3221232481 A timeout was reached (30000 milliseconds) while waiting for the Google Updater Service (GoogleUpda...
+   11473 Aug 21 13:58  Error       Service Control M...   3221232472 The AppX Deployment Service (AppXSVC) service failed to start due to the following error: ...
+   11472 Aug 21 13:58  Error       Service Control M...   3221232483 A timeout (30000 milliseconds) was reached while waiting for a transaction response from the AppXSv...
+   11471 Aug 21 13:58  Error       Service Control M...   3221232472 The Software Protection service failed to start due to the following error: ...
+   11470 Aug 21 13:58  Error       Service Control M...   3221232481 A timeout was reached (30000 milliseconds) while waiting for the Software Protection service to con...
+   11426 Aug 21 08:48  Error       DCOM                        10010 The description for Event ID '10010' in Source 'DCOM' cannot be found.  The local computer may not ...
+   11424 Aug 21 07:41  Error       Service Control M...   3221232472 The Software Protection service failed to start due to the following error: ...
+   11423 Aug 21 07:41  Error       Service Control M...   3221232481 A timeout was reached (30000 milliseconds) while waiting for the Software Protection service to con...
+   11422 Aug 21 07:41  Error       Service Control M...   3221232483 A timeout (30000 milliseconds) was reached while waiting for a transaction response from the Spoole...
+
+
+PS C:\WINDOWS\system32> Get-EventLog -LogName Application -EntryType Warning -After (Get-Date).AddHours(-24)
+
+   Index Time          EntryType   Source                 InstanceID Message
+   ----- ----          ---------   ------                 ---------- -------
+    8388 Aug 25 07:39  Warning     ESENT                         508 taskhostw (904,D,0,0) WebCacheLocal: A request to write to the file "C:\Users\Ascendion\AppData\Loc...
+    8387 Aug 25 07:39  Warning     ESENT                         508 taskhostw (904,D,0,0) WebCacheLocal: A request to write to the file "C:\Users\Ascendion\AppData\Loc...
+    8386 Aug 25 07:39  Warning     ESENT                         508 taskhostw (904,D,0,0) WebCacheLocal: A request to write to the file "C:\Users\Ascendion\AppData\Loc...
+
+
+PS C:\WINDOWS\system32> Get-EventLog -LogName Security -Newest 50
+
+   Index Time          EntryType   Source                 InstanceID Message
+   ----- ----          ---------   ------                 ---------- -------
+  231597 Aug 25 15:47  SuccessA... Microsoft-Windows...         4672 Special privileges assigned to new logon....
+  231596 Aug 25 15:47  SuccessA... Microsoft-Windows...         4624 An account was successfully logged on....
+  231595 Aug 25 15:46  SuccessA... Microsoft-Windows...         4672 Special privileges assigned to new logon....
+  231594 Aug 25 15:46  SuccessA... Microsoft-Windows...         4624 An account was successfully logged on....
+  231593 Aug 25 15:41  SuccessA... Microsoft-Windows...         4672 Special privileges assigned to new logon....
+  231592 Aug 25 15:41  SuccessA... Microsoft-Windows...         4624 An account was successfully logged on....
+  231591 Aug 25 15:37  SuccessA... Microsoft-Windows...         4799 A security-enabled local group membership was enumerated....
+  231590 Aug 25 15:37  SuccessA... Microsoft-Windows...         4799 A security-enabled local group membership was enumerated....
+  231589 Aug 25 15:36  SuccessA... Microsoft-Windows...         4672 Special privileges assigned to new logon....
+  231588 Aug 25 15:36  SuccessA... Microsoft-Windows...         4624 An account was successfully logged on....
+  231587 Aug 25 15:31  SuccessA... Microsoft-Windows...         4672 Special privileges assigned to new logon....
+  231586 Aug 25 15:31  SuccessA... Microsoft-Windows...         4624 An account was successfully logged on....
+  231585 Aug 25 15:31  SuccessA... Microsoft-Windows...         4672 Special privileges assigned to new logon....
+  231584 Aug 25 15:31  SuccessA... Microsoft-Windows...         4624 An account was successfully logged on....
+  231583 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231582 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231581 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231580 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231579 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231578 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231577 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231576 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231575 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231574 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231573 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231572 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231571 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231570 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231569 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231568 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231567 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231566 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231565 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231564 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231563 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231562 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231561 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231560 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231559 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231558 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231557 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231556 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231555 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231554 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231553 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231552 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231551 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231550 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231549 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+  231548 Aug 25 15:27  SuccessA... Microsoft-Windows...         5379 Credential Manager credentials were read....
+
+
+PS C:\WINDOWS\system32> Stop-Transcript
+Transcript stopped, output file is C:\Monitoring\EventViewerMonitoring.log
+PS C:\WINDOWS\system32> Get-WinEvent -LogName System | Where-Object {$_.LevelDisplayName -eq "Error"} | 
+    Export-Csv -Path "C:\Monitoring\SystemErrors.csv" -NoTypeInformation
+PS C:\WINDOWS\system32> Start-Transcript -Path "C:\Monitoring\TaskManagerMonitoring.log"
+Transcript started, output file is C:\Monitoring\TaskManagerMonitoring.log
+PS C:\WINDOWS\system32> Get-Process | Sort-Object CPU -Descending | Select-Object -First 10
+
+Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName
+-------  ------    -----      -----     ------     --  -- -----------
+   4012       0       44        168  38,465.80      4   0 System
+   6605     212   431764     429452   9,272.73  10612   1 explorer
+   1141      64   116104     152732   8,999.39   6568   1 OneDrive
+    253      14   124268     136072   8,832.28   2124   0 svchost
+    941     230   275768     187156   8,154.84   3536   0 MsMpEng
+   1018      35    15736      70548   8,014.20   9052   1 Widgets
+    383      17    29580      30900   6,030.70   3260   0 svchost
+      0       0     1452     243644   5,502.86   2224   0 Memory Compression
+   1743     195    97940     237324   5,031.63   6280   1 Copilot
+    273      13     4908      26484   4,871.70   3664   0 svchost
+
+
+PS C:\WINDOWS\system32> Get-Process | Sort-Object WorkingSet -Descending | Select-Object -First 10
+
+Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName
+-------  ------    -----      -----     ------     --  -- -----------
+   6599     211   432124     429628   9,274.27  10612   1 explorer
+    421      43   201256     265984     708.94  13960   1 chrome
+    443      46   164700     258568     211.42  12516   1 msedgewebview2
+   1290     147   148460     258452   3,406.56   1148   1 dwm
+      0       0     1452     243444   5,502.86   2224   0 Memory Compression
+   1743     195    97940     237328   5,033.56   6280   1 Copilot
+    941     230   282008     191380   8,154.95   3536   0 MsMpEng
+   1757      71    73784     176960     320.05  13276   1 chrome
+    374      33   109236     159892      61.83   3700   1 chrome
+   1141      64   116104     152732   8,999.59   6568   1 OneDrive
+
+
+PS C:\WINDOWS\system32> Get-Service | Where-Object {$_.Status -eq "Stopped"}
+
+Status   Name               DisplayName
+------   ----               -----------
+Stopped  AarSvc_540f1       Agent Activation Runtime_540f1
+Stopped  ADPSvc             ADPSvc
+Stopped  ALG                Application Layer Gateway Service
+Stopped  AppReadiness       App Readiness
+Stopped  AppVClient         Microsoft App-V Client
+Stopped  AppXSvc            AppX Deployment Service (AppXSVC)
+Stopped  ApxSvc             Windows Virtual Audio Device Proxy ...
+Stopped  AssignedAccessM... AssignedAccessManager Service
+Stopped  autotimesvc        Cellular Time
+Stopped  AxInstSV           ActiveX Installer (AxInstSV)
+Stopped  BcastDVRUserSer... GameDVR and Broadcast User Service_...
+Stopped  BITS               Background Intelligent Transfer Ser...
+Stopped  BluetoothUserSe... Bluetooth User Support Service_540f1
+Stopped  BTAGService        Bluetooth Audio Gateway Service
+Stopped  BthAvctpSvc        AVCTP service
+Stopped  bthserv            Bluetooth Support Service
+Stopped  CaptureService_... CaptureService_540f1
+Stopped  CertPropSvc        Certificate Propagation
+Stopped  ClipSVC            Client License Service (ClipSVC)
+Stopped  CloudBackupRest... Cloud Backup and Restore Service_540f1
+Stopped  cloudidsvc         Microsoft Cloud Identity Service
+Stopped  COMSysApp          COM+ System Application
+Stopped  ConsentUxUserSv... ConsentUX User Service_540f1
+Stopped  CredentialEnrol... CredentialEnrollmentManagerUserSvc_...
+Stopped  CscService         Offline Files
+Stopped  dcsvc              Declared Configuration(DC) service
+Stopped  defragsvc          Optimize drives
+Stopped  DeviceAssociati... DeviceAssociationBroker_540f1
+Stopped  DeviceAssociati... Device Association Service
+Stopped  DeviceInstall      Device Install Service
+Stopped  DevicePickerUse... DevicePicker_540f1
+Stopped  diagsvc            Diagnostic Execution Service
+Stopped  DialogBlockingS... DialogBlockingService
+Stopped  DmEnrollmentSvc    Device Management Enrollment Service
+Stopped  dmwappushservice   Device Management Wireless Applicat...
+Stopped  dot3svc            Wired AutoConfig
+Stopped  DsmSvc             Device Setup Manager
+Stopped  EapHost            Extensible Authentication Protocol
+Stopped  edgeupdate         Microsoft Edge Update Service (edge...
+Stopped  edgeupdatem        Microsoft Edge Update Service (edge...
+Stopped  EFS                Encrypting File System (EFS)
+Stopped  embeddedmode       Embedded Mode
+Stopped  EntAppSvc          Enterprise App Management Service
+Stopped  fdPHost            Function Discovery Provider Host
+Stopped  FDResPub           Function Discovery Resource Publica...
+Stopped  fhsvc              File History Service
+Stopped  FrameServer        Windows Camera Frame Server
+Stopped  FrameServerMonitor Windows Camera Frame Server Monitor
+Stopped  GameInputSvc       GameInput Service
+Stopped  GoogleChromeEle... Google Chrome Elevation Service (Go...
+Stopped  GoogleUpdaterIn... Google updater internal service (Go...
+Stopped  GoogleUpdaterIn... Google Updater Internal Service (Go...
+Stopped  GoogleUpdaterSe... Google Updater Service (GoogleUpdat...
+Stopped  GoogleUpdaterSe... Google Updater Service (GoogleUpdat...
+Stopped  GraphicsPerfSvc    GraphicsPerfSvc
+Stopped  hidserv            Human Interface Device Service
+Stopped  hpatchmon          Hotpatch Monitoring Service
+Stopped  HvHost             HV Host Service
+Stopped  icssvc             Windows Mobile Hotspot Service
+Stopped  IKEEXT             IKE and AuthIP IPsec Keying Modules
+Stopped  InventorySvc       Inventory and Compatibility Apprais...
+Stopped  IpxlatCfgSvc       IP Translation Configuration Service
+Stopped  KtmRm              KtmRm for Distributed Transaction C...
+Stopped  lltdsvc            Link-Layer Topology Discovery Mapper
+Stopped  LocalKdc           Kerberos Local Key Distribution Center
+Stopped  LxpSvc             Language Experience Service
+Stopped  MapsBroker         Downloaded Maps Manager
+Stopped  McmSvc             This service provides profile manag...
+Stopped  McpManagementSe... McpManagementService
+Stopped  MessagingServic... MessagingService_540f1
+Stopped  MicrosoftEdgeEl... Microsoft Edge Elevation Service (M...
+Stopped  MozillaMaintenance Mozilla Maintenance Service
+Stopped  MSDTC              Distributed Transaction Coordinator
+Stopped  MSiSCSI            Microsoft iSCSI Initiator Service
+Stopped  msiserver          Windows Installer
+Stopped  MsKeyboardFilter   Microsoft Keyboard Filter
+Stopped  NaturalAuthenti... Natural Authentication
+Stopped  NcaSvc             Network Connectivity Assistant
+Stopped  NcdAutoSetup       Network Connected Devices Auto-Setup
+Stopped  Netlogon           Netlogon
+Stopped  Netman             Network Connections
+Stopped  NetSetupSvc        Network Setup Service
+Stopped  NetTcpPortSharing  Net.Tcp Port Sharing Service
+Stopped  NgcCtnrSvc         Microsoft Passport Container
+Stopped  NgcSvc             Microsoft Passport
+Stopped  NlaSvc             Network Location Awareness
+Stopped  P9RdrService_540f1 P9RdrService_540f1
+Stopped  PeerDistSvc        BranchCache
+Stopped  PenService_540f1   PenService_540f1
+Stopped  perceptionsimul... Windows Perception Simulation Service
+Stopped  PerfHost           Performance Counter DLL Host
+Stopped  PhoneSvc           Phone Service
+Stopped  PimIndexMainten... Contact Data_540f1
+Stopped  PrintDeviceConf... Print Device Configuration Service
+Stopped  PrintNotify        Printer Extensions and Notifications
+Stopped  PrintScanBroker... PrintScanBrokerService
+Stopped  PrintWorkflowUs... PrintWorkflow_540f1
+Stopped  PushToInstall      Windows PushToInstall Service
+Stopped  RasAuto            Remote Access Auto Connection Manager
+Stopped  refsdedupsvc       ReFS Dedup Service
+Stopped  RemoteAccess       Routing and Remote Access
+Stopped  RemoteRegistry     Remote Registry
+Stopped  RetailDemo         Retail Demo Service
+Stopped  RpcLocator         Remote Procedure Call (RPC) Locator
+Stopped  SCardSvr           Smart Card
+Stopped  ScDeviceEnum       Smart Card Device Enumeration Service
+Stopped  SCPolicySvc        Smart Card Removal Policy
+Stopped  SDRSVC             Windows Backup
+Stopped  seclogon           Secondary Logon
+Stopped  SEMgrSvc           Payments and NFC/SE Manager
+Stopped  Sense              Windows Defender Advanced Threat Pr...
+Stopped  SensorDataService  Sensor Data Service
+Stopped  SensrSvc           Sensor Monitoring Service
+Stopped  SessionEnv         Remote Desktop Configuration
+Stopped  SharedAccess       Internet Connection Sharing (ICS)
+Stopped  shpamsvc           Shared PC Account Manager
+Stopped  smphost            Microsoft Storage Spaces SMP
+Stopped  SmsRouter          Microsoft Windows SMS Router Service.
+Stopped  SNMPTrap           SNMP Trap
+Stopped  sppsvc             Software Protection
+Stopped  ssh-agent          OpenSSH Authentication Agent
+Stopped  StiSvc             Windows Image Acquisition (WIA)
+Stopped  svsvc              Spot Verifier
+Stopped  swprv              Microsoft Software Shadow Copy Prov...
+Stopped  TapiSrv            Telephony
+Stopped  TermService        Remote Desktop Services
+Stopped  TieringEngineSe... Storage Tiers Management
+Stopped  TroubleshootingSvc Recommended Troubleshooting Service
+Stopped  TrustedInstaller   Windows Modules Installer
+Stopped  tzautoupdate       Auto Time Zone Updater
+Stopped  UevAgentService    User Experience Virtualization Service
+Stopped  UmRdpService       Remote Desktop Services UserMode Po...
+Stopped  UnistoreSvc_540f1  User Data Storage_540f1
+Stopped  upnphost           UPnP Device Host
+Stopped  UserDataSvc_540f1  User Data Access_540f1
+Stopped  vds                Virtual Disk
+Stopped  vmicguestinterface Hyper-V Guest Service Interface
+Stopped  vmicheartbeat      Hyper-V Heartbeat Service
+Stopped  vmickvpexchange    Hyper-V Data Exchange Service
+Stopped  vmicrdv            Hyper-V Remote Desktop Virtualizati...
+Stopped  vmicshutdown       Hyper-V Guest Shutdown Service
+Stopped  vmictimesync       Hyper-V Time Synchronization Service
+Stopped  vmicvmsession      Hyper-V PowerShell Direct Service
+Stopped  vmicvss            Hyper-V Volume Shadow Copy Requestor
+Stopped  VSInstallerElev... Visual Studio Installer Elevation S...
+Stopped  VSS                Volume Shadow Copy
+Stopped  VSStandardColle... Visual Studio Standard Collector Se...
+Stopped  W32Time            Windows Time
+Stopped  WaaSMedicSvc       WaaSMedicSvc
+Stopped  WalletService      WalletService
+Stopped  WarpJITSvc         Warp JIT Service
+Stopped  wbengine           Block Level Backup Engine Service
+Stopped  WbioSrvc           Windows Biometric Service
+Stopped  wcncsvc            Windows Connect Now - Config Registrar
+Stopped  WebClient          WebClient
+Stopped  Wecsvc             Windows Event Collector
+Stopped  WEPHOSTSVC         Windows Encryption Provider Host Se...
+Stopped  wercplsupport      Problem Reports Control Panel Support
+Stopped  WerSvc             Windows Error Reporting Service
+Stopped  WFDSConMgrSvc      Wi-Fi Direct Services Connection Ma...
+Stopped  WiaRpc             Still Image Acquisition Events
+Stopped  WinRM              Windows Remote Management (WS-Manag...
+Stopped  WlanSvc            WLAN AutoConfig
+Stopped  wlidsvc            Microsoft Account Sign-in Assistant
+Stopped  wlpasvc            Local Profile Assistant Service
+Stopped  WManSvc            Windows Management Service
+Stopped  wmiApSrv           WMI Performance Adapter
+Stopped  WMPNetworkSvc      Windows Media Player Network Sharin...
+Stopped  workfolderssvc     Work Folders
+Stopped  WpcMonSvc          Parental Controls
+Stopped  WPDBusEnum         Portable Device Enumerator Service
+Stopped  wuauserv           Windows Update
+Stopped  WwanSvc            WWAN AutoConfig
+Stopped  XblAuthManager     Xbox Live Auth Manager
+Stopped  XblGameSave        Xbox Live Game Save
+Stopped  XboxGipSvc         Xbox Accessory Management Service
+Stopped  XboxNetApiSvc      Xbox Live Networking Service
+Stopped  ZTHELPER           ZTDNS Helper service
+
+
+PS C:\WINDOWS\system32> Get-Service -Name "W3SVC","MSSQLSERVER" | Select-Object Name, Status, StartType
+Get-Service : Cannot find any service with service name 'W3SVC'.
+At line:1 char:1
++ Get-Service -Name "W3SVC","MSSQLSERVER" | Select-Object Name, Status, ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (W3SVC:String) [Get-Service], ServiceCommandException
+    + FullyQualifiedErrorId : NoServiceFoundForGivenName,Microsoft.PowerShell.Commands.GetServiceCommand
+Get-Service : Cannot find any service with service name 'W3SVC'.
+At line:1 char:1
++ Get-Service -Name "W3SVC","MSSQLSERVER" | Select-Object Name, Status, ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (W3SVC:String) [Get-Service], ServiceCommandException
+    + FullyQualifiedErrorId : NoServiceFoundForGivenName,Microsoft.PowerShell.Commands.GetServiceCommand
+
+Get-Service : Cannot find any service with service name 'MSSQLSERVER'.
+At line:1 char:1
++ Get-Service -Name "W3SVC","MSSQLSERVER" | Select-Object Name, Status, ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (MSSQLSERVER:String) [Get-Service], ServiceCommandException
+    + FullyQualifiedErrorId : NoServiceFoundForGivenName,Microsoft.PowerShell.Commands.GetServiceCommand
+Get-Service : Cannot find any service with service name 'MSSQLSERVER'.
+At line:1 char:1
++ Get-Service -Name "W3SVC","MSSQLSERVER" | Select-Object Name, Status, ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (MSSQLSERVER:String) [Get-Service], ServiceCommandException
+    + FullyQualifiedErrorId : NoServiceFoundForGivenName,Microsoft.PowerShell.Commands.GetServiceCommand
+
+PS C:\WINDOWS\system32> Get-ComputerInfo | Select-Object TotalPhysicalMemory, CsProcessors, WindowsVersion
+
+TotalPhysicalMemory CsProcessors                     WindowsVersion
+------------------- ------------                     --------------
+                    {Intel(R) Core(TM) Ultra 5 135U} 2009
+
+
+PS C:\WINDOWS\system32> systeminfo | findstr /C:"Total Physical Memory"
+Total Physical Memory:         9,198 MB
+PS C:\WINDOWS\system32> netstat -an | findstr ESTABLISHED
+  TCP    10.0.2.15:50307        172.64.148.235:443     ESTABLISHED
+  TCP    10.0.2.15:52839        172.64.155.209:443     ESTABLISHED
+  TCP    10.0.2.15:56027        104.18.39.21:443       ESTABLISHED
+  TCP    10.0.2.15:59073        104.208.203.89:443     ESTABLISHED
+  TCP    10.0.2.15:59074        104.208.203.90:443     ESTABLISHED
+  TCP    10.0.2.15:60575        40.100.141.162:443     ESTABLISHED
+  TCP    10.0.2.15:60583        52.98.88.242:443       ESTABLISHED
+  TCP    127.0.0.1:49672        127.0.0.1:49673        ESTABLISHED
+  TCP    127.0.0.1:49673        127.0.0.1:49672        ESTABLISHED
+  TCP    127.0.0.1:49674        127.0.0.1:49675        ESTABLISHED
+  TCP    127.0.0.1:49675        127.0.0.1:49674        ESTABLISHED
+PS C:\WINDOWS\system32> Get-NetTCPConnection | Group-Object State | Select-Object Count, Name
+
+Count Name
+----- ----
+   21 Listen
+   26 Bound
+   16 CloseWait
+   12 FinWait2
+   11 Established
+   46 TimeWait
+
+
+PS C:\WINDOWS\system32> Stop-Transcript
+Transcript stopped, output file is C:\Monitoring\TaskManagerMonitoring.log
+PS C:\WINDOWS\system32> Start-Transcript -Path "C:\Logs\IISMonitoringTranscript.txt" -Append
+Transcript started, output file is C:\Logs\IISMonitoringTranscript.txt
+
+
+
+
+

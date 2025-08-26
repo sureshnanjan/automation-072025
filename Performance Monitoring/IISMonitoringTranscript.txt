@@ -1,0 +1,315 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20250825163234
+Username: ASCENDI-03PBECJ\Ascendion
+RunAs User: ASCENDI-03PBECJ\Ascendion
+Configuration Name: 
+Machine: ASCENDI-03PBECJ (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 7500
+PSVersion: 5.1.26100.4768
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.4768
+BuildVersion: 10.0.26100.4768
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Logs\IISMonitoringTranscript.txt
+PS C:\WINDOWS\system32> Import-Module WebAdministration
+Import-Module : The specified module 'WebAdministration' was not loaded because no valid module file was found in any 
+module directory.
+At line:1 char:1
++ Import-Module WebAdministration
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceUnavailable: (WebAdministration:String) [Import-Module], FileNotFoundException
+    + FullyQualifiedErrorId : Modules_ModuleNotFound,Microsoft.PowerShell.Commands.ImportModuleCommand
+Import-Module : The specified module 'WebAdministration' was not loaded because no valid module file was found in any module directory.
+At line:1 char:1
++ Import-Module WebAdministration
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceUnavailable: (WebAdministration:String) [Import-Module], FileNotFoundException
+    + FullyQualifiedErrorId : Modules_ModuleNotFound,Microsoft.PowerShell.Commands.ImportModuleCommand
+
+PS C:\WINDOWS\system32> Import-Module WebAdministration
+Set-WebConfigurationProperty -Filter "system.applicationHost/sites/siteDefaults/logFile" -Name enabled -Value $true
+Import-Module : The specified module 'WebAdministration' was not loaded because no valid module file was found in any 
+module directory.
+At line:1 char:1
++ Import-Module WebAdministration
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceUnavailable: (WebAdministration:String) [Import-Module], FileNotFoundException
+    + FullyQualifiedErrorId : Modules_ModuleNotFound,Microsoft.PowerShell.Commands.ImportModuleCommand
+Import-Module : The specified module 'WebAdministration' was not loaded because no valid module file was found in any module directory.
+At line:1 char:1
++ Import-Module WebAdministration
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ResourceUnavailable: (WebAdministration:String) [Import-Module], FileNotFoundException
+    + FullyQualifiedErrorId : Modules_ModuleNotFound,Microsoft.PowerShell.Commands.ImportModuleCommand
+
+Set-WebConfigurationProperty : The term 'Set-WebConfigurationProperty' is not recognized as the name of a cmdlet, 
+function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the 
+path is correct and try again.
+At line:2 char:1
++ Set-WebConfigurationProperty -Filter "system.applicationHost/sites/si ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Set-WebConfigurationProperty:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+Set-WebConfigurationProperty : The term 'Set-WebConfigurationProperty' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the
+spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:2 char:1
++ Set-WebConfigurationProperty -Filter "system.applicationHost/sites/si ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Set-WebConfigurationProperty:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\WINDOWS\system32> Get-WindowsFeature *Web-Server*
+
+Get-WindowsFeature : The term 'Get-WindowsFeature' is not recognized as the name of a cmdlet, function, script file, or 
+operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try 
+again.
+At line:1 char:1
++ Get-WindowsFeature *Web-Server*
++ ~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Get-WindowsFeature:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+Get-WindowsFeature : The term 'Get-WindowsFeature' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name,
+or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ Get-WindowsFeature *Web-Server*
++ ~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Get-WindowsFeature:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\WINDOWS\system32> Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServerRole -All
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-ManagementConsole -All
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-ManagementScriptingTools -All
+
+
+
+Path          :
+Online        : True
+RestartNeeded : False
+
+Path          :
+Online        : True
+RestartNeeded : False
+
+Path          :
+Online        : True
+RestartNeeded : False
+
+
+
+PS C:\WINDOWS\system32> Get-WindowsFeature *Web-Server*
+
+Get-WindowsFeature : The term 'Get-WindowsFeature' is not recognized as the name of a cmdlet, function, script file, or 
+operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try 
+again.
+At line:1 char:1
++ Get-WindowsFeature *Web-Server*
++ ~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Get-WindowsFeature:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+Get-WindowsFeature : The term 'Get-WindowsFeature' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name,
+or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ Get-WindowsFeature *Web-Server*
++ ~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Get-WindowsFeature:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\WINDOWS\system32> Get-WindowsFeature *Web-Server*
+
+Get-WindowsFeature : The term 'Get-WindowsFeature' is not recognized as the name of a cmdlet, function, script file, or 
+operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try 
+again.
+At line:1 char:1
++ Get-WindowsFeature *Web-Server*
++ ~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Get-WindowsFeature:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+Get-WindowsFeature : The term 'Get-WindowsFeature' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name,
+or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ Get-WindowsFeature *Web-Server*
++ ~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Get-WindowsFeature:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\WINDOWS\system32> Install-WindowsFeature Web-Server -IncludeManagementTools
+
+Install-WindowsFeature : The term 'Install-WindowsFeature' is not recognized as the name of a cmdlet, function, script 
+file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct 
+and try again.
+At line:1 char:1
++ Install-WindowsFeature Web-Server -IncludeManagementTools
++ ~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Install-WindowsFeature:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+Install-WindowsFeature : The term 'Install-WindowsFeature' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of
+the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ Install-WindowsFeature Web-Server -IncludeManagementTools
++ ~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Install-WindowsFeature:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\WINDOWS\system32> Import-Module WebAdministration
+
+PS C:\WINDOWS\system32> Start-Service W3SVC
+
+PS C:\WINDOWS\system32> Set-Service W3SVC -StartupType Automatic
+
+PS C:\WINDOWS\system32> Set-WebConfigurationProperty -Filter "system.applicationHost/sites/siteDefaults/logFile" -Name enabled -Value $true
+PS C:\WINDOWS\system32> $IISCounters = @(
+    "\Web Service(_Total)\Bytes Sent/sec",
+    "\Web Service(_Total)\Bytes Received/sec",
+    "\Web Service(_Total)\Current Connections",
+    "\Web Service(_Total)\Get Requests/sec",
+    "\Web Service(_Total)\Post Requests/sec",
+    "\ASP.NET\Requests Current",
+    "\ASP.NET\Requests Queued",
+    "\ASP.NET\Request Wait Time"
+)
+PS C:\WINDOWS\system32> Get-Counter -Counter $IISCounters -SampleInterval 5 -MaxSamples 12 | Export-Csv "C:\Logs\IISMonitoring.csv" -NoTypeInformation
+Get-Counter : The specified object was not found on the computer.
+At line:1 char:1
++ Get-Counter -Counter $IISCounters -SampleInterval 5 -MaxSamples 12 |  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidResult: (:) [Get-Counter], Exception
+    + FullyQualifiedErrorId : CounterApiError,Microsoft.PowerShell.Commands.GetCounterCommand
+Get-Counter : The specified object was not found on the computer.
+At line:1 char:1
++ Get-Counter -Counter $IISCounters -SampleInterval 5 -MaxSamples 12 |  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidResult: (:) [Get-Counter], Exception
+    + FullyQualifiedErrorId : CounterApiError,Microsoft.PowerShell.Commands.GetCounterCommand
+
+Get-Counter : The specified object was not found on the computer.
+At line:1 char:1
++ Get-Counter -Counter $IISCounters -SampleInterval 5 -MaxSamples 12 |  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidResult: (:) [Get-Counter], Exception
+    + FullyQualifiedErrorId : CounterApiError,Microsoft.PowerShell.Commands.GetCounterCommand
+Get-Counter : The specified object was not found on the computer.
+At line:1 char:1
++ Get-Counter -Counter $IISCounters -SampleInterval 5 -MaxSamples 12 |  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidResult: (:) [Get-Counter], Exception
+    + FullyQualifiedErrorId : CounterApiError,Microsoft.PowerShell.Commands.GetCounterCommand
+
+Get-Counter : The specified object was not found on the computer.
+At line:1 char:1
++ Get-Counter -Counter $IISCounters -SampleInterval 5 -MaxSamples 12 |  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidResult: (:) [Get-Counter], Exception
+    + FullyQualifiedErrorId : CounterApiError,Microsoft.PowerShell.Commands.GetCounterCommand
+Get-Counter : The specified object was not found on the computer.
+At line:1 char:1
++ Get-Counter -Counter $IISCounters -SampleInterval 5 -MaxSamples 12 |  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidResult: (:) [Get-Counter], Exception
+    + FullyQualifiedErrorId : CounterApiError,Microsoft.PowerShell.Commands.GetCounterCommand
+
+Get-Counter : The specified object was not found on the computer.
+At line:1 char:1
++ Get-Counter -Counter $IISCounters -SampleInterval 5 -MaxSamples 12 |  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidResult: (:) [Get-Counter], Exception
+    + FullyQualifiedErrorId : CounterApiError,Microsoft.PowerShell.Commands.GetCounterCommand
+Get-Counter : The specified object was not found on the computer.
+At line:1 char:1
++ Get-Counter -Counter $IISCounters -SampleInterval 5 -MaxSamples 12 |  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidResult: (:) [Get-Counter], Exception
+    + FullyQualifiedErrorId : CounterApiError,Microsoft.PowerShell.Commands.GetCounterCommand
+
+Get-Counter : The specified object was not found on the computer.
+At line:1 char:1
++ Get-Counter -Counter $IISCounters -SampleInterval 5 -MaxSamples 12 |  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidResult: (:) [Get-Counter], Exception
+    + FullyQualifiedErrorId : CounterApiError,Microsoft.PowerShell.Commands.GetCounterCommand
+Get-Counter : The specified object was not found on the computer.
+At line:1 char:1
++ Get-Counter -Counter $IISCounters -SampleInterval 5 -MaxSamples 12 |  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidResult: (:) [Get-Counter], Exception
+    + FullyQualifiedErrorId : CounterApiError,Microsoft.PowerShell.Commands.GetCounterCommand
+
+Get-Counter : The specified object was not found on the computer.
+At line:1 char:1
++ Get-Counter -Counter $IISCounters -SampleInterval 5 -MaxSamples 12 |  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidResult: (:) [Get-Counter], Exception
+    + FullyQualifiedErrorId : CounterApiError,Microsoft.PowerShell.Commands.GetCounterCommand
+Get-Counter : The specified object was not found on the computer.
+At line:1 char:1
++ Get-Counter -Counter $IISCounters -SampleInterval 5 -MaxSamples 12 |  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidResult: (:) [Get-Counter], Exception
+    + FullyQualifiedErrorId : CounterApiError,Microsoft.PowerShell.Commands.GetCounterCommand
+
+Get-Counter : The specified object was not found on the computer.
+At line:1 char:1
++ Get-Counter -Counter $IISCounters -SampleInterval 5 -MaxSamples 12 |  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidResult: (:) [Get-Counter], Exception
+    + FullyQualifiedErrorId : CounterApiError,Microsoft.PowerShell.Commands.GetCounterCommand
+Get-Counter : The specified object was not found on the computer.
+At line:1 char:1
++ Get-Counter -Counter $IISCounters -SampleInterval 5 -MaxSamples 12 |  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidResult: (:) [Get-Counter], Exception
+    + FullyQualifiedErrorId : CounterApiError,Microsoft.PowerShell.Commands.GetCounterCommand
+
+Get-Counter : The specified object was not found on the computer.
+At line:1 char:1
++ Get-Counter -Counter $IISCounters -SampleInterval 5 -MaxSamples 12 |  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidResult: (:) [Get-Counter], Exception
+    + FullyQualifiedErrorId : CounterApiError,Microsoft.PowerShell.Commands.GetCounterCommand
+Get-Counter : The specified object was not found on the computer.
+At line:1 char:1
++ Get-Counter -Counter $IISCounters -SampleInterval 5 -MaxSamples 12 |  ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidResult: (:) [Get-Counter], Exception
+    + FullyQualifiedErrorId : CounterApiError,Microsoft.PowerShell.Commands.GetCounterCommand
+
+PS C:\WINDOWS\system32> Get-Counter -Counter $AppPoolCounters -SampleInterval 5 -MaxSamples 12 | Export-Csv "C:\Logs\AppPoolMonitoring.csv" -NoTypeInformationGet-Counter -Counter $AppPoolCounters -SampleInterval 5 -MaxSamples 12 | Export-Csv "C:\Logs\AppPoolMonitoring.csv" -NoTypeInformation
+>> TerminatingError(Export-Csv): "A parameter cannot be found that matches parameter name 'NoTypeInformationGet-Counter'."
+Export-Csv : A parameter cannot be found that matches parameter name 'NoTypeInformationGet-Counter'.
+At line:1 char:117
++ ... "C:\Logs\AppPoolMonitoring.csv" -NoTypeInformationGet-Counter -Counte ...
++                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Export-Csv], ParameterBindingException
+    + FullyQualifiedErrorId : NamedParameterNotFound,Microsoft.PowerShell.Commands.ExportCsvCommand
+Export-Csv : A parameter cannot be found that matches parameter name 'NoTypeInformationGet-Counter'.
+At line:1 char:117
++ ... "C:\Logs\AppPoolMonitoring.csv" -NoTypeInformationGet-Counter -Counte ...
++                                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Export-Csv], ParameterBindingException
+    + FullyQualifiedErrorId : NamedParameterNotFound,Microsoft.PowerShell.Commands.ExportCsvCommand
+
+PS C:\WINDOWS\system32> Get-Counter -Counter $AppPoolCounters -SampleInterval 5 -MaxSamples 12 |
+Export-Csv "C:\Logs\AppPoolMonitoring.csv" -NoTypeInformation
+
+>> TerminatingError(Get-Counter): "Value cannot be null.
+Parameter name: collection"
+Get-Counter : Value cannot be null.
+Parameter name: collection
+At line:1 char:1
++ Get-Counter -Counter $AppPoolCounters -SampleInterval 5 -MaxSamples 1 ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidResult: (:) [Get-Counter], ArgumentNullException
+    + FullyQualifiedErrorId : CounterApiError,Microsoft.PowerShell.Commands.GetCounterCommand
+Get-Counter : Value cannot be null.
+Parameter name: collection
+At line:1 char:1
++ Get-Counter -Counter $AppPoolCounters -SampleInterval 5 -MaxSamples 1 ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidResult: (:) [Get-Counter], ArgumentNullException
+    + FullyQualifiedErrorId : CounterApiError,Microsoft.PowerShell.Commands.GetCounterCommand
+
