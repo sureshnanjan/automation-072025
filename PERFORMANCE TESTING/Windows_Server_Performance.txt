@@ -1,0 +1,1764 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20250825150914
+Username: ASCENDI-5KUKA0U\Ascendion
+RunAs User: ASCENDI-5KUKA0U\Ascendion
+Configuration Name: 
+Machine: ASCENDI-5KUKA0U (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 8152
+PSVersion: 5.1.26100.4768
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.4768
+BuildVersion: 10.0.26100.4768
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Users\Ascendion\Desktop\TRAINING\PRACTICE\Windows_Server_Performance.txt
+PS C:\WINDOWS\system32> perfmon
+PS C:\WINDOWS\system32> New-Item -ItemType Directory -Force -Path "C:\Logs"
+
+
+    Directory: C:\
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        25-08-2025     15:02                Logs
+
+
+PS C:\WINDOWS\system32> typeperf "\Processor(_Total)\% Processor Time" -o C:\Logs\cpu_usage.csv -f CSV -si 5 -sc 12
+
+PS C:\WINDOWS\system32> typeperf "\Processor(_Total)\% Processor Time" -o C:\Logs\cp
+u_usage.csv -f CSV -si 5 -sc 12
+
+The file "C:\Logs\cpu_usage.csv" already exists, overwrite? [y/n] y
+
+The command completed successfully.
+PS C:\WINDOWS\system32> logman create counter "WebServerMonitoring" -c "\Web Service(_Total)\Bytes Total/sec" "\Web Service(_Total)\Current Connections"
+The command completed successfully.
+PS C:\WINDOWS\system32> logman start "WebServerMonitoring"
+The command completed successfully.
+PS C:\WINDOWS\system32> logman stop "WebServerMonitoring"
+The command completed successfully.
+PS C:\WINDOWS\system32> Write-Host "=== CPU Monitoring ==="
+Get-Counter '\Processor(_Total)\% Processor Time'
+=== CPU Monitoring ===
+
+Timestamp                  CounterSamples
+---------                  --------------
+25-08-2025 15:21:30        \\ascendi-5kuka0u\processor(_total)\% processor time :
+                           22.1426424523059
+
+
+
+
+PS C:\WINDOWS\system32> Get-Counter '\System\Processor Queue Length'
+
+Timestamp                  CounterSamples
+---------                  --------------
+25-08-2025 15:21:49        \\ascendi-5kuka0u\system\processor queue length :
+                           4
+
+
+
+
+PS C:\WINDOWS\system32> Get-Counter '\Processor Information(_Total)\% Privileged Time'
+
+Timestamp                  CounterSamples
+---------                  --------------
+25-08-2025 15:22:06        \\ascendi-5kuka0u\processor information(_total)\%
+                           privileged time :
+                           20.8645982899017
+
+
+
+
+PS C:\WINDOWS\system32> Write-Host "=== Memory Monitoring ==="
+Get-Counter '\Memory\Available MBytes'
+=== Memory Monitoring ===
+
+Timestamp                  CounterSamples
+---------                  --------------
+25-08-2025 15:22:36        \\ascendi-5kuka0u\memory\available mbytes :
+                           4361
+
+
+
+
+PS C:\WINDOWS\system32> Get-Counter '\Memory\Pages/sec'
+
+Timestamp                  CounterSamples
+---------                  --------------
+25-08-2025 15:22:49        \\ascendi-5kuka0u\memory\pages/sec :
+                           0
+
+
+
+
+PS C:\WINDOWS\system32> Get-Counter '\Memory\Pool Nonpaged Bytes'
+
+Timestamp                  CounterSamples
+---------                  --------------
+25-08-2025 15:28:22        \\ascendi-5kuka0u\memory\pool nonpaged bytes :
+                           155652096
+
+
+
+
+PS C:\WINDOWS\system32> Get-Counter '\Process(_Total)\Working Set'
+
+Timestamp                  CounterSamples
+---------                  --------------
+25-08-2025 15:28:36        \\ascendi-5kuka0u\process(_total)\working set :
+                           6512254976
+
+
+
+
+PS C:\WINDOWS\system32> 
+Write-Host "=== Disk I/O Monitoring ==="
+Get-Counter '\PhysicalDisk(_Total)\Disk Reads/sec'
+=== Disk I/O Monitoring ===
+
+Timestamp                  CounterSamples
+---------                  --------------
+25-08-2025 15:28:49        \\ascendi-5kuka0u\physicaldisk(_total)\disk reads/sec :
+                           0
+
+
+
+
+PS C:\WINDOWS\system32> Get-Counter '\PhysicalDisk(_Total)\Disk Writes/sec'
+
+Timestamp                  CounterSamples
+---------                  --------------
+25-08-2025 15:29:03        \\ascendi-5kuka0u\physicaldisk(_total)\disk writes/sec :
+                           29.7554843077015
+
+
+
+
+PS C:\WINDOWS\system32> Get-Counter '\PhysicalDisk(_Total)\Avg. Disk sec/Read'
+
+Timestamp                  CounterSamples
+---------                  --------------
+25-08-2025 15:29:20        \\ascendi-5kuka0u\physicaldisk(_total)\avg. disk
+                           sec/read :
+                           0
+
+
+
+
+PS C:\WINDOWS\system32> Get-Counter '\PhysicalDisk(_Total)\Avg. Disk sec/Write'
+
+Timestamp                  CounterSamples
+---------                  --------------
+25-08-2025 15:29:36        \\ascendi-5kuka0u\physicaldisk(_total)\avg. disk
+                           sec/write :
+                           0.00132924
+
+
+
+
+PS C:\WINDOWS\system32> Get-Counter '\PhysicalDisk(_Total)\Current Disk Queue Length'
+
+Timestamp                  CounterSamples
+---------                  --------------
+25-08-2025 15:29:50        \\ascendi-5kuka0u\physicaldisk(_total)\current disk
+                           queue length :
+                           0
+
+
+
+
+PS C:\WINDOWS\system32> Write-Host "=== Network Monitoring ==="
+Get-Counter '\Network Interface(*)\Bytes Total/sec'
+=== Network Monitoring ===
+
+Timestamp                  CounterSamples
+---------                  --------------
+25-08-2025 15:31:38        \\ascendi-5kuka0u\network interface(intel[r] pro_1000
+                           mt desktop adapter)\bytes total/sec :
+                           0
+
+
+
+
+PS C:\WINDOWS\system32> Get-Counter '\Network Interface(*)\Packets/sec'
+
+Timestamp                  CounterSamples
+---------                  --------------
+25-08-2025 15:31:54        \\ascendi-5kuka0u\network interface(intel[r] pro_1000
+                           mt desktop adapter)\packets/sec :
+                           2.97544159768519
+
+
+
+
+PS C:\WINDOWS\system32> Get-Counter '\Network Interface(*)\Output Queue Length'
+
+Timestamp                  CounterSamples
+---------                  --------------
+25-08-2025 15:32:09        \\ascendi-5kuka0u\network interface(intel[r] pro_1000
+                           mt desktop adapter)\output queue length :
+                           0
+
+
+
+
+PS C:\WINDOWS\system32> resmon
+PS C:\WINDOWS\system32> Get-Process | Sort-Object CPU -Descending | Select-Object -First 10
+
+Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName
+-------  ------    -----      -----     ------     --  -- -----------
+   3580       0       40        168   1,096.33      4   0 System
+   1370     130   161652     277088     316.31    860   1 dwm
+    400      43   157660     242404     311.17  10484   1 chrome
+    247      14   108812     115088     214.41   2128   0 svchost
+    918     229   278320     201408     196.11   3596   0 MsMpEng
+   4577     131   126876     319568     163.14   2080   1 explorer
+    419      32    22488      75492     115.27   7388   1 chrome
+   1532      58    55772     171456     113.39    688   1 chrome
+    352      24    15676      47004     105.95   7400   1 chrome
+    506     279   573576     103660      64.36   3564   0 mysqld
+
+
+PS C:\WINDOWS\system32> Get-Counter "\Process(*)\% Processor Time" |
+    Select-Object -ExpandProperty CounterSamples |
+    Sort-Object CookedValue -Descending |
+    Select-Object -First 10
+
+Path                                                   InstanceName     CookedValue
+----                                                   ------------     -----------
+\\ascendi-5kuka0u\process(_total)\% processor time     _total       ...196116670913
+\\ascendi-5kuka0u\process(idle)\% processor time       idle         ...643632356688
+\\ascendi-5kuka0u\process(system)\% processor time     system       ...731582650896
+\\ascendi-5kuka0u\process(chrome#5)\% processor time   chrome       ...892633060358
+\\ascendi-5kuka0u\process(mysqld#1)\% processor time   mysqld       ...892633060358
+\\ascendi-5kuka0u\process(perfmon)\% processor time    perfmon      ...892633060358
+\\ascendi-5kuka0u\process(powershell)\% processor time powershell   ...946316530179
+\\ascendi-5kuka0u\process(mmc#2)\% processor time      mmc          ...946316530179
+\\ascendi-5kuka0u\process(chrome)\% processor time     chrome       ...946316530179
+\\ascendi-5kuka0u\process(svchost#6)\% processor time  svchost                    0
+
+
+PS C:\WINDOWS\system32> Get-EventLog -LogName System -EntryType Error -Newest 50
+
+   Index Time          EntryType   Source                 InstanceID Message
+   ----- ----          ---------   ------                 ---------- -------
+    8124 Aug 25 17:00  Error       DCOM                        10010 The descrip...
+    8123 Aug 25 17:00  Error       DCOM                        10010 The descrip...
+    8093 Aug 25 13:58  Error       DCOM                        10010 The descrip...
+    8087 Aug 25 13:56  Error       Microsoft-Windows...         1795 The system ...
+    8065 Aug 25 13:52  Error       DCOM                        10010 The descrip...
+    8064 Aug 25 13:52  Error       DCOM                        10010 The descrip...
+    7947 Aug 24 22:39  Error       Microsoft-Windows...         1795 The system ...
+    7943 Aug 24 21:06  Error       Service Control M...   3221232503 The Connect...
+    7942 Aug 24 21:06  Error       Service Control M...   3221232472 The Group P...
+    7941 Aug 24 21:06  Error       Service Control M...   3221232481 A timeout w...
+    7940 Aug 24 21:06  Error       Service Control M...   3221232472 The AppX De...
+    7939 Aug 24 21:06  Error       Service Control M...   3221232481 A timeout w...
+    7934 Aug 24 20:05  Error       Service Control M...   3221232472 The AppX De...
+    7933 Aug 24 20:05  Error       Service Control M...   3221232483 A timeout (...
+    7932 Aug 24 20:05  Error       Service Control M...   3221232481 A timeout w...
+    7931 Aug 24 20:05  Error       Service Control M...   3221232483 A timeout (...
+    7930 Aug 24 20:05  Error       Service Control M...   3221232472 The Softwar...
+    7929 Aug 24 20:05  Error       Service Control M...   3221232472 The Group P...
+    7928 Aug 24 20:05  Error       Service Control M...   3221232483 A timeout (...
+    7927 Aug 24 20:05  Error       Service Control M...   3221232483 A timeout (...
+    7870 Aug 24 10:37  Error       Microsoft-Windows...         1795 The system ...
+    7774 Aug 24 10:31  Error       Service Control M...   3221232495 The SysMain...
+    7700 Aug 24 10:30  Error       EventLog               2147489656 The previou...
+    7678 Aug 23 20:55  Error       Service Control M...   3221232483 A timeout (...
+    7669 Aug 22 21:23  Error       DCOM                        10010 The descrip...
+    7608 Aug 22 10:16  Error       Microsoft-Windows...           20 Installatio...
+    7602 Aug 22 10:10  Error       Microsoft-Windows...         1795 The system ...
+    7598 Aug 21 23:25  Error       DCOM                        10010 The descrip...
+    7573 Aug 21 21:59  Error       Microsoft-Windows...         1795 The system ...
+    7562 Aug 21 17:17  Error       Service Control M...   3221232472 The Softwar...
+    7561 Aug 21 17:17  Error       Service Control M...   3221232481 A timeout w...
+    7557 Aug 21 16:27  Error       Service Control M...   3221232472 The AppX De...
+    7556 Aug 21 16:27  Error       Service Control M...   3221232481 A timeout w...
+    7555 Aug 21 16:27  Error       Service Control M...   3221232472 The Softwar...
+    7554 Aug 21 16:27  Error       Service Control M...   3221232481 A timeout w...
+    7516 Aug 21 13:54  Error       Service Control M...   3221232472 The Softwar...
+    7515 Aug 21 13:54  Error       Service Control M...   3221232481 A timeout w...
+    7509 Aug 21 12:43  Error       Service Control M...   3221232483 A timeout (...
+    7508 Aug 21 12:43  Error       Service Control M...   3221232472 The Softwar...
+    7507 Aug 21 12:43  Error       Service Control M...   3221232483 A timeout (...
+    7506 Aug 21 12:43  Error       Service Control M...   3221232483 A timeout (...
+    7476 Aug 21 09:59  Error       Microsoft-Windows...         1795 The system ...
+    7463 Aug 20 22:45  Error       Microsoft-Windows...         1795 The system ...
+    7445 Aug 20 13:10  Error       DCOM                        10010 The descrip...
+    7443 Aug 20 13:10  Error       Service Control M...   3221232472 The Windows...
+    7442 Aug 20 13:10  Error       Service Control M...   3221232481 A timeout w...
+    7441 Aug 20 13:10  Error       Service Control M...   3221232472 The AppX De...
+    7440 Aug 20 13:10  Error       Service Control M...   3221232481 A timeout w...
+    7397 Aug 20 09:59  Error       Microsoft-Windows...         1795 The system ...
+    7387 Aug 19 22:57  Error       DCOM                        10010 The descrip...
+
+
+PS C:\WINDOWS\system32> Get-EventLog -LogName Application -EntryType Warning -After (Get-Date).AddHours(-24)
+
+   Index Time          EntryType   Source                 InstanceID Message
+   ----- ----          ---------   ------                 ---------- -------
+    4930 Aug 25 13:52  Warning     ESENT                         507 wuaueng.dll...
+    4929 Aug 25 13:52  Warning     Wlclntfy               2147489654 The winlogo...
+    4926 Aug 25 13:51  Warning     Wlclntfy               2147489653 The winlogo...
+
+
+PS C:\WINDOWS\system32> wevtutil qe System /c:50 /f:text /q:"*[System[(Level=1 or Level=2)]]"
+Event[0]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-08T22:37:15.6740000Z
+  Event ID: 7023
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The netprofm service terminated with the following error:
+The device is not ready.
+
+Event[1]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-08T22:39:15.6870000Z
+  Event ID: 10010
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The server {A47979D2-C419-11D9-A5B4-001185AD2B89} did not register with DCOM within
+the required timeout.
+
+Event[2]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-08T10:09:24.3410000Z
+  Event ID: 7030
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The Printer Extensions and Notifications service is marked as an interactive service
+.  However, the system is configured to not allow interactive services.  This servic
+e may not function properly.
+
+Event[3]
+  Log Name: System
+  Source: Microsoft-Windows-TPM-WMI
+  Date: 2025-07-08T10:11:02.3650000Z
+  Event ID: 1795
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The system firmware returned an error Access is denied. when attempting to update a
+Secure Boot variable. For more information, please see https://go.microsoft.com/fwli
+nk/?linkid=2169931
+
+Event[4]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-08T10:19:47.1260000Z
+  Event ID: 10010
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-21-693582964-3246078928-4005434760-1000
+  User Name: ASCENDI-5KUKA0U\Ascendion
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The server {C53A4F16-787E-42A4-B304-29EFFB4BF597} did not register with DCOM within
+the required timeout.
+
+Event[5]
+  Log Name: System
+  Source: Microsoft-Windows-TPM-WMI
+  Date: 2025-07-08T10:24:20.0020000Z
+  Event ID: 1795
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The system firmware returned an error Access is denied. when attempting to update a
+Secure Boot variable. For more information, please see https://go.microsoft.com/fwli
+nk/?linkid=2169931
+
+Event[6]
+  Log Name: System
+  Source: Microsoft-Windows-TPM-WMI
+  Date: 2025-07-08T10:28:29.2360000Z
+  Event ID: 1795
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The system firmware returned an error Access is denied. when attempting to update a
+Secure Boot variable. For more information, please see https://go.microsoft.com/fwli
+nk/?linkid=2169931
+
+Event[7]
+  Log Name: System
+  Source: Microsoft-Windows-TPM-WMI
+  Date: 2025-07-08T10:34:13.9990000Z
+  Event ID: 1795
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The system firmware returned an error Access is denied. when attempting to update a
+Secure Boot variable. For more information, please see https://go.microsoft.com/fwli
+nk/?linkid=2169931
+
+Event[8]
+  Log Name: System
+  Source: Microsoft-Windows-WindowsUpdateClient
+  Date: 2025-07-08T22:54:47.5850000Z
+  Event ID: 20
+  Task: Windows Update Agent
+  Level: Error
+  Opcode: Installation
+  Keyword: Installation,Failure,
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-5KUKA0U
+  Description:
+Installation Failure: Windows failed to install the following update with error 0x80
+073D02: 9NBLGGH4NNS1-Microsoft.DesktopAppInstaller.
+
+Event[9]
+  Log Name: System
+  Source: Microsoft-Windows-WindowsUpdateClient
+  Date: 2025-07-08T23:00:59.7650000Z
+  Event ID: 20
+  Task: Windows Update Agent
+  Level: Error
+  Opcode: Installation
+  Keyword: Installation,Failure,
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-5KUKA0U
+  Description:
+Installation Failure: Windows failed to install the following update with error 0x80
+073D02: 9WZDNCRFJBMP-MICROSOFT.WINDOWSSTORE.
+
+Event[10]
+  Log Name: System
+  Source: Microsoft-Windows-WindowsUpdateClient
+  Date: 2025-07-08T23:05:24.0640000Z
+  Event ID: 20
+  Task: Windows Update Agent
+  Level: Error
+  Opcode: Installation
+  Keyword: Installation,Failure,
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-5KUKA0U
+  Description:
+Installation Failure: Windows failed to install the following update with error 0x80
+073D02: 9MSSGKG348SP-MicrosoftWindows.Client.WebExperience.
+
+Event[11]
+  Log Name: System
+  Source: EventLog
+  Date: 2025-07-09T09:28:03.1530000Z
+  Event ID: 6008
+  Task: None
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The previous system shutdown at 11:33:46 PM on ‎7/‎8/‎2025 was unexpected.
+
+Event[12]
+  Log Name: System
+  Source: Microsoft-Windows-Kernel-Power
+  Date: 2025-07-09T09:27:40.6370000Z
+  Event ID: 41
+  Task: N/A
+  Level: Critical
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The system has rebooted without cleanly shutting down first. This error could be cau
+sed if the system stopped responding, crashed, or lost power unexpectedly.
+
+Event[13]
+  Log Name: System
+  Source: Microsoft-Windows-TPM-WMI
+  Date: 2025-07-09T09:28:23.5680000Z
+  Event ID: 1795
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The system firmware returned an error Access is denied. when attempting to update a
+Secure Boot variable. For more information, please see https://go.microsoft.com/fwli
+nk/?linkid=2169931
+
+Event[14]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-09T14:47:58.2390000Z
+  Event ID: 7011
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+A timeout (30000 milliseconds) was reached while waiting for a transaction response
+from the AppXSvc service.
+
+Event[15]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-09T14:47:58.2390000Z
+  Event ID: 7000
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The AppX Deployment Service (AppXSVC) service failed to start due to the following e
+rror:
+The service did not respond to the start or control request in a timely fashion.
+
+Event[16]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-09T15:12:02.9660000Z
+  Event ID: 7009
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+A timeout was reached (30000 milliseconds) while waiting for the AppX Deployment Ser
+vice (AppXSVC) service to connect.
+
+Event[17]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-09T15:12:02.9720000Z
+  Event ID: 7000
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The AppX Deployment Service (AppXSVC) service failed to start due to the following e
+rror:
+The service did not respond to the start or control request in a timely fashion.
+
+Event[18]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-09T15:12:35.5140000Z
+  Event ID: 7031
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The Connected User Experiences and Telemetry service terminated unexpectedly.  It ha
+s done this 1 time(s).  The following corrective action will be taken in 30000 milli
+seconds: Restart the service.
+
+Event[19]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-09T15:13:30.4180000Z
+  Event ID: 10010
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-21-693582964-3246078928-4005434760-1000
+  User Name: ASCENDI-5KUKA0U\Ascendion
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The server MicrosoftWindows.Client.CBS_1000.26100.18.0_x64__cw5n1h2txyewy!Global.Acc
+ounts.AppX8yrfnvrjgqksgeea7rrq1yev91j1g7b8.mca did not register with DCOM within the
+ required timeout.
+
+Event[20]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-10T10:04:48.8900000Z
+  Event ID: 7031
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The Connected User Experiences and Telemetry service terminated unexpectedly.  It ha
+s done this 2 time(s).  The following corrective action will be taken in 30000 milli
+seconds: Restart the service.
+
+Event[21]
+  Log Name: System
+  Source: EventLog
+  Date: 2025-07-14T10:15:56.4290000Z
+  Event ID: 6008
+  Task: None
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The previous system shutdown at 5:59:57 PM on ‎7/‎9/‎2025 was unexpected.
+
+Event[22]
+  Log Name: System
+  Source: Microsoft-Windows-Kernel-Power
+  Date: 2025-07-13T19:14:48.5850000Z
+  Event ID: 41
+  Task: N/A
+  Level: Critical
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The system has rebooted without cleanly shutting down first. This error could be cau
+sed if the system stopped responding, crashed, or lost power unexpectedly.
+
+Event[23]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-13T19:59:51.4270000Z
+  Event ID: 7038
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The ProfSvc service was unable to log on as NT AUTHORITY\SYSTEM with the currently c
+onfigured password due to the following error:
+The request is not supported.
+
+To ensure that the service is configured properly, use the Services snap-in in Micro
+soft Management Console (MMC).
+
+Event[24]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-13T19:59:51.4310000Z
+  Event ID: 7000
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The ProfSvc service failed to start due to the following error:
+The service did not start due to a logon failure.
+
+Event[25]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-13T19:59:51.4310000Z
+  Event ID: 7001
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The UserManager service depends on the ProfSvc service which failed to start because
+ of the following error:
+The service did not start due to a logon failure.
+
+Event[26]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-13T19:59:51.4330000Z
+  Event ID: 7038
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The BITS service was unable to log on as NT AUTHORITY\SYSTEM with the currently conf
+igured password due to the following error:
+The request is not supported.
+
+To ensure that the service is configured properly, use the Services snap-in in Micro
+soft Management Console (MMC).
+
+Event[27]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-13T19:59:51.4330000Z
+  Event ID: 7000
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The BITS service failed to start due to the following error:
+The service did not start due to a logon failure.
+
+Event[28]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-13T19:59:51.4510000Z
+  Event ID: 10005
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-90-0-1
+  User Name: Window Manager\DWM-1
+  Computer: ASCENDI-5KUKA0U
+  Description:
+DCOM got error "1068" attempting to start the service UserManager with arguments "Un
+available" in order to run the server:
+Windows.System.Internal.UserManager
+
+Event[29]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-13T19:59:51.4530000Z
+  Event ID: 10005
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-19
+  User Name: NT AUTHORITY\LOCAL SERVICE
+  Computer: ASCENDI-5KUKA0U
+  Description:
+DCOM got error "1069" attempting to start the service BITS with arguments "Unavailab
+le" in order to run the server:
+{4991D34B-80A1-4291-83B6-3328366B9097}
+
+Event[30]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-13T19:23:30.6800000Z
+  Event ID: 7000
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The CldFlt service failed to start due to the following error:
+The media is write protected.
+
+Event[31]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-13T19:23:30.6800000Z
+  Event ID: 7000
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The UnionFS service failed to start due to the following error:
+The media is write protected.
+
+Event[32]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-13T19:23:30.6820000Z
+  Event ID: 7000
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The storqosflt service failed to start due to the following error:
+The media is write protected.
+
+Event[33]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-13T19:23:30.6830000Z
+  Event ID: 7000
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The bindflt service failed to start due to the following error:
+The media is write protected.
+
+Event[34]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-13T19:23:30.6830000Z
+  Event ID: 7000
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The VBoxService service failed to start due to the following error:
+The media is write protected.
+
+Event[35]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-13T19:23:30.6830000Z
+  Event ID: 7000
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The EventLog service failed to start due to the following error:
+The media is write protected.
+
+Event[36]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-13T19:23:30.6830000Z
+  Event ID: 7000
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The gpsvc service failed to start due to the following error:
+The media is write protected.
+
+Event[37]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-13T19:23:30.6830000Z
+  Event ID: 7000
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The EventSystem service failed to start due to the following error:
+The media is write protected.
+
+Event[38]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-13T19:23:30.6830000Z
+  Event ID: 7001
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The SENS service depends on the EventSystem service which failed to start because of
+ the following error:
+The media is write protected.
+
+Event[39]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-13T19:23:30.6830000Z
+  Event ID: 7000
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The Themes service failed to start due to the following error:
+The media is write protected.
+
+Event[40]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-13T19:23:30.6830000Z
+  Event ID: 7000
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The AudioEndpointBuilder service failed to start due to the following error:
+The media is write protected.
+
+Event[41]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-13T19:23:30.6830000Z
+  Event ID: 7001
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The Audiosrv service depends on the AudioEndpointBuilder service which failed to sta
+rt because of the following error:
+The media is write protected.
+
+Event[42]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-13T19:23:30.6830000Z
+  Event ID: 7000
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The SamSs service failed to start due to the following error:
+The media is write protected.
+
+Event[43]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-13T19:23:30.6830000Z
+  Event ID: 7000
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The TextInputManagementService service failed to start due to the following error:
+The media is write protected.
+
+Event[44]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-13T19:23:30.6850000Z
+  Event ID: 7000
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The lltdio service failed to start due to the following error:
+The media is write protected.
+
+Event[45]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-13T19:23:30.6900000Z
+  Event ID: 7000
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The rspndr service failed to start due to the following error:
+The media is write protected.
+
+Event[46]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-13T19:23:30.6900000Z
+  Event ID: 7000
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The MsLldp service failed to start due to the following error:
+The media is write protected.
+
+Event[47]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-13T19:23:30.6900000Z
+  Event ID: 7000
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The nsi service failed to start due to the following error:
+The media is write protected.
+
+Event[48]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-13T19:23:30.6900000Z
+  Event ID: 7001
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The Dhcp service depends on the nsi service which failed to start because of the fol
+lowing error:
+The media is write protected.
+
+Event[49]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-13T19:23:30.6900000Z
+  Event ID: 7001
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-5KUKA0U
+  Description:
+The Dnscache service depends on the nsi service which failed to start because of the
+ following error:
+The media is write protected.
+PS C:\WINDOWS\system32> Get-WinEvent -LogName System | Where-Object {$_.LevelDisplayName -eq "Error"} | Export-Csv -Path "C:\Logs\SystemErrors.csv" -NoTypeInformation
+PS C:\WINDOWS\system32> Get-Process | Sort-Object CPU -Descending
+
+Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName
+-------  ------    -----      -----     ------     --  -- -----------
+    245      13   110064     116372   4,090.92   2128   0 svchost
+    329      10     9024      20656   3,910.16   2100   0 svchost
+   3703       0       40        168   1,208.09      4   0 System
+   4747     138   129964     301604     608.23   2080   1 explorer
+    420      22     6960      45180     421.97   1696   1 RuntimeBroker
+   1379     130   165720     258680     361.63    860   1 dwm
+    407      44   347044     435060     344.48  10484   1 chrome
+    867     229   281224     207764     206.80   3596   0 MsMpEng
+    406      32    22308      74624     126.88   7388   1 chrome
+   1439      56    55396     170832     126.53    688   1 chrome
+    360      26    15776      47468     112.98   7400   1 chrome
+    506     279   573576     103792      68.89   3564   0 mysqld
+    165      11     3220       8832      59.59   1928   0 VBoxService
+    759      45    24608      69128      56.42   4940   1 mmc
+    373      16     8716      20312      53.14   3188   0 svchost
+    416      62    42204      72872      50.73   8636   1 perfmon
+   1792      64    68748     175576      46.44   6964   1 msedge
+   1245      18     7112      16888      44.59    848   0 svchost
+    276      31   101664     150848      37.52   1232   1 msedge
+    757      45    24192      66436      37.38  10744   1 mmc
+    414      35   166532     236908      35.69   2188   1 msedgewebview2
+   1067      44    37708     123224      35.67   3724   1 SearchHost
+    763      44    24076      65500      32.33    364   1 mmc
+   1591      25     8464      31292      29.42    900   0 lsass
+    439      32    17572      57540      26.39   8540   1 msedge
+   1494      80    68076     120332      25.70   5332   1 TextInputHost
+    692      26    18640      51592      23.97   3216   0 svchost
+   1199      24    11572      41120      23.72    536   0 svchost
+   1148      45    34888     108960      22.61   6288   1 msedgewebview2
+    645      12     4848      11076      21.72    892   0 services
+    796      23     7720      48264      21.31   5100   1 sihost
+    594      24     2076       7556      20.55    692   1 csrss
+    659      33    72564      95924      19.02   8152   1 powershell
+    267      13     3940      25532      18.06   4500   0 svchost
+    999      44    56624     134632      17.31   2828   1 StartMenuExperienceHost
+    291      13     3640      19216      16.58   4380   0 svchost
+      0       0      504     118472      16.48   2240   0 Memory Compression
+    618      22     8424      37460      15.22   2824   1 ctfmon
+    320      12     2768      13220      15.14    976   0 svchost
+    272      22    34736      84072      12.91   6476   1 msedge
+    966      34    12464      67116      12.88   8840   1 Widgets
+   1210      43    39044     113744      12.44   5204   1 msedgewebview2
+    478      28    20156      22428      12.44   1984   0 svchost
+      0      21    10688      25244      12.41    108   0 Registry
+    972      19     4972      19076      10.20   1704   0 svchost
+    406      28    78704      89836      10.06   8296   1 msedge
+    323      17     6184      26340       9.73   8376   0 svchost
+    272      15     3288      25856       9.81   2444   1 conhost
+    517      22     8816      43376       9.16   1104   1 svchost
+    384      18    17400      48536       8.61   6920   1 msedgewebview2
+    984      53    50584     115484       8.47   6756   1 OneDrive
+    445      32    10776      24156       8.38   1380   0 svchost
+    320      16     3428      12036       8.17   1080   0 svchost
+    459      17     6880      35996       8.16   4472   1 svchost
+    281      13     3080      16056       7.89   7144   1 VBoxTray
+    779      18    13924      30208       7.88   5996   0 SearchIndexer
+    367      15     5872      18700       7.80   3448   0 svchost
+    343      16     5968      16360       7.39   1428   0 svchost
+    318      17    12448      39620       6.98   8764   1 msedgewebview2
+    678      29    13456      60404       6.94   5296   1 RuntimeBroker
+    525      18     4388      22500       6.45    684   0 svchost
+    274      11     2876      14596       6.39   1588   0 svchost
+    535      18     5024      25092       6.27   7608   0 svchost
+    322      17    11284      35724       5.52   6908   1 msedgewebview2
+    246      20    44788      88536       5.17  10188   1 msedgewebview2
+    168      10    10792      20812       5.14   2616   1 msedgewebview2
+    331      20    12672      40068       5.06   3460   1 msedge
+   1077      64    53672     126160       4.86   1728   1 Notepad
+    377      24    19152      51624       4.72   6016   1 msedgewebview2
+    264      13     5600      15524       4.67   3156   0 svchost
+    803      33    19996      86052       4.61   2656   1 ShellExperienceHost
+    395      22     8404      42968       4.39   5604   1 RuntimeBroker
+   1388      58    38272       7540       4.39   7112   1 SystemSettings
+    131      10     1568       8468       4.19   4116   0 conhost
+    487      17    10040      24980       4.16   3352   0 MpDefenderCoreService
+    456      17     7344      29296       3.69   4264   1 svchost
+    826      33    14856      78244       3.69  10752   1 LockApp
+    451      18     7412      22072       3.53   7868   0 SecurityHealthService
+    553      22     1904       7240       3.38    624   0 csrss
+    240      11     2380      10248       3.25   2404   0 svchost
+    463      18     8972      30984       2.97   4188   0 svchost
+    281      28     6112      19628       2.78    628   1 taskhostw
+    405      27     4056      19996       2.72   3208   0 svchost
+    454      21     5064      28988       2.70   3480   0 svchost
+    424      21     5360      18728       2.63   3012   0 spoolsv
+    326      17     4744      25748       2.58   5740   1 WidgetService
+    285      13     2696      22452       2.55    748   1 winlogon
+     42       8     3524       8252       2.45      8   1 fontdrvhost
+    188      10     1820       9956       2.44   2588   0 svchost
+   1047      67    21640      78664       2.44   9844   1 CrossDeviceService
+    432      22     8124      45424       1.97   4776   1 CrossDeviceResume
+    241      13     3036      15216       1.97   1132   0 svchost
+    542      29    34432        856       1.88   4296   1 Microsoft.SharePoint
+     58       4     1156       1532       1.86    448   0 smss
+    209      11     2172      11800       1.83   1532   0 svchost
+    441      20     5284      23348       1.83   4628   0 svchost
+    242      19    20556      47432       1.80   9220   1 msedge
+    386      19     6484      38916       1.78   5208   1 ShellHost
+    247      12     2412      15572       1.78   2936   0 svchost
+    373      13     2988      18496       1.72   2524   0 svchost
+    204      13     8440      21524       1.72   6592   1 chrome
+    196      11     2452      13552       1.67   1384   0 svchost
+    211      12     2360      10540       1.58   1152   0 svchost
+    190      11     2948      13752       1.33   4644   0 AggregatorHost
+    150      28     5512      10640       1.31   1548   0 svchost
+    280      16     3828      29572       1.31   5908   1 RuntimeBroker
+    217      12     2628      12840       1.16   1244   0 svchost
+    266      10     2104      15124       1.13   1280   0 svchost
+    223      16     8816      23268       1.09  10732   1 chrome
+    167      10     8696      19204       1.05   7836   1 msedgewebview2
+    216      11     2772      15844       1.02   5764   0 svchost
+    200      13     4236      16416       1.00   1832   0 svchost
+    460      12     2288      12452       0.95   2764   0 svchost
+    188      10     1888      10944       0.94   2316   0 svchost
+    227      11     2288      10612       0.89   1272   0 svchost
+    196       7     1888       8100       0.89   1136   0 svchost
+    384      17     2732      14464       0.80   3240   0 svchost
+    254      14     3412      22488       0.78   5392   1 svchost
+    125       8     1468       9012       0.72   1392   0 svchost
+    248      16    11148      25856       0.69   7564   1 msedge
+    317      16     3516      22064       0.69   4700   0 svchost
+    161      10     1748       9504       0.67   3024   0 svchost
+    213      12     2312      11772       0.66   3360   0 svchost
+    241      14     8632      28420       0.63   7848   1 msedge
+    155      10     2060      11156       0.63   4948   1 svchost
+    210      39     4028      12240       0.61   3468   0 NisSrv
+    271      14     7500      30376       0.61   1628   1 RuntimeBroker
+    211      12     2932      12544       0.61   7580   0 svchost
+    182      10     2048      10528       0.59   2120   0 svchost
+    158      11     1536       9108       0.58    700   0 wininit
+    146      10     1844      10624       0.58   1648   0 svchost
+    232      19    13784      30544       0.58   9488   1 chrome
+    234      15     2160      10020       0.58   2696   0 svchost
+    331      11     2660      11580       0.56   6552   0 svchost
+    229      13     2644      18288       0.56   2860   0 svchost
+    258      16    11232      26280       0.56   3132   1 msedge
+    162       9     1612       9228       0.55   2644   0 svchost
+    234       8     1348       7736       0.52   2140   0 svchost
+    164      10     2256       9072       0.50   7288   1 chrome
+    252      13     2896      15360       0.48   5240   1 svchost
+    130       9     1680       9484       0.47   3620   0 svchost
+    181      12     1928      11228       0.47   2256   0 svchost
+    200      11     2148      12448       0.45   2744   0 svchost
+    184      11     1896      10188       0.41    916   0 svchost
+    401      23     3544      15660       0.39   1852   0 svchost
+    381      22    10308      41036       0.39   6996   1 ApplicationFrameHost
+    453      22    11264      40484       0.34  10076   1 FileCoAuth
+    160      10     2284      13884       0.34   9956   1 RuntimeBroker
+    210      17    15644      31296       0.33   7260   1 msedge
+    174      10     8240      18588       0.33   3656   1 msedge
+    163      10     1884      15372       0.31   7116   1 dllhost
+    169      10     2324      16064       0.31   2360   1 svchost
+    504      19     6000       1916       0.31   7772   1 backgroundTaskHost
+    199       9     2216       9248       0.22   8452   1 msedge
+    119       8     1384       7112       0.20   1196   0 svchost
+    228      11     6332      15864       0.20  10984   0 audiodg
+    466      28     9312      27468       0.19   8704   0 svchost
+    218      13     8196      21876       0.17   8588   1 msedgewebview2
+    146       9     2208       8680       0.17   6356   1 msedgewebview2
+    144      13    34084      21984       0.16   3704   0 mysqld
+    148      10     1900       9880       0.16   3440   0 sqlwriter
+    233      14     3688      21064       0.16  11248   0 svchost
+    363      13     2448      12312       0.14    876   0 SearchProtocolHost
+    136      11     1704      11576       0.13   7284   1 UserOOBEBroker
+     70       6      764       4788       0.11   3432   0 wlms
+    156      42     1764       9016       0.11   5076   0 svchost
+    154       9     2172       9100       0.09   1224   1 msedgewebview2
+    132       8     1300       7480       0.09   3424   0 svchost
+    173      10     1812      10640       0.08   4400   0 SearchFilterHost
+    133       9     1532       9324       0.06   9592   0 svchost
+    171       9     1704       9392       0.05   1744   0 svchost
+    168      10     1816      10908       0.03  11172   0 SearchFilterHost
+     42       7     1400       3928       0.03    288   0 fontdrvhost
+      0       0       60          8                 0   0 Idle
+
+
+PS C:\WINDOWS\system32> Get-Process | Sort-Object WorkingSet -Descending
+
+Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName
+-------  ------    -----      -----     ------     --  -- -----------
+   4757     138   130116     301636     608.95   2080   1 explorer
+   1379     130   165292     259052     362.81    860   1 dwm
+    407      44   164908     251280     345.73  10484   1 chrome
+    414      35   166532     236908      35.69   2188   1 msedgewebview2
+    869     229   281236     191696     206.89   3596   0 MsMpEng
+   1792      64    68896     175472      46.59   6964   1 msedge
+   1441      56    55396     170828     127.03    688   1 chrome
+    276      31   101692     150836      37.59   1232   1 msedge
+    999      44    56624     134632      17.31   2828   1 StartMenuExperienceHost
+   1069      64    53536     126068       4.86   1728   1 Notepad
+   1067      44    37708     123224      35.69   3724   1 SearchHost
+   1494      79    68076     120324      25.77   5332   1 TextInputHost
+      0       0      504     118440      16.48   2240   0 Memory Compression
+    245      13   110188     116496   4,090.95   2128   0 svchost
+    984      53    50584     115484       8.47   6756   1 OneDrive
+   1210      43    39072     113756      12.44   5204   1 msedgewebview2
+   1148      45    34916     108972      22.61   6288   1 msedgewebview2
+    506     279   573576     103792      69.02   3564   0 mysqld
+    675      33    68004      90480      19.39   8152   1 powershell
+    406      28    78704      89836      10.06   8296   1 msedge
+    246      20    44788      88536       5.17  10188   1 msedgewebview2
+    803      33    19996      86052       4.61   2656   1 ShellExperienceHost
+    272      22    34736      84068      12.91   6476   1 msedge
+   1047      67    21668      78676       2.44   9844   1 CrossDeviceService
+    826      33    14856      78244       3.69  10752   1 LockApp
+    419     124    42204      72872      51.23   8636   1 perfmon
+    406      32    22284      72740     127.09   7388   1 chrome
+    759      45    24608      69128      56.48   4940   1 mmc
+    966      34    12464      67116      12.88   8840   1 Widgets
+    757      45    24192      66436      37.47  10744   1 mmc
+    763      44    24076      65500      32.39    364   1 mmc
+    678      29    13456      60404       6.94   5296   1 RuntimeBroker
+    439      32    17368      56008      26.45   8540   1 msedge
+    377      24    19152      51624       4.72   6016   1 msedgewebview2
+    692      26    18640      51584      23.97   3216   0 svchost
+    384      18    17400      48536       8.61   6920   1 msedgewebview2
+    796      23     7720      48264      21.31   5100   1 sihost
+    360      26    15772      47444     113.19   7400   1 chrome
+    242      19    20556      47432       1.80   9220   1 msedge
+    432      22     8148      45436       1.97   4776   1 CrossDeviceResume
+    420      22     7028      45196     421.97   1696   1 RuntimeBroker
+    517      23     8868      43392       9.28   1104   1 svchost
+    395      22     8404      42968       4.39   5604   1 RuntimeBroker
+   1199      24    11572      41120      23.72    536   0 svchost
+    381      22    10308      41036       0.39   6996   1 ApplicationFrameHost
+    453      22    11264      40484       0.34  10076   1 FileCoAuth
+    330      20    12672      40084       5.08   3460   1 msedge
+    318      17    12476      39632       6.98   8764   1 msedgewebview2
+    386      19     6484      38916       1.78   5208   1 ShellHost
+    618      22     8424      37460      15.28   2824   1 ctfmon
+    459      17     6932      36012       8.16   4472   1 svchost
+    322      17    11320      35744       5.52   6908   1 msedgewebview2
+    210      17    15644      31296       0.33   7260   1 msedge
+   1590      25     8464      31292      29.42    900   0 lsass
+    463      18     9024      30996       2.97   4188   0 svchost
+    232      19    13784      30544       0.58   9488   1 chrome
+    271      14     7568      30388       0.61   1628   1 RuntimeBroker
+    779      18    13924      30208       7.88   5996   0 SearchIndexer
+    278      16     3896      29588       1.31   5908   1 RuntimeBroker
+    456      17     7344      29296       3.70   4264   1 svchost
+    453      21     5064      28988       2.70   3480   0 svchost
+    241      14     8632      28420       0.63   7848   1 msedge
+    466      28     9312      27464       0.19   8704   0 svchost
+    323      17     6236      26352       9.73   8376   0 svchost
+    258      16    11232      26280       0.56   3132   1 msedge
+    272      15     3404      25972      10.23   2444   1 conhost
+    248      16    11148      25856       0.69   7564   1 msedge
+    326      18     4772      25760       2.58   5740   1 WidgetService
+    267      13     3940      25532      18.06   4500   0 svchost
+      0      21    10688      25240      12.41    108   0 Registry
+    535      18     5072      25100       6.27   7608   0 svchost
+    487      17    10040      24980       4.16   3352   0 MpDefenderCoreService
+    445      32    10776      24156       8.38   1380   0 svchost
+    441      20     5284      23348       1.83   4628   0 svchost
+    223      16     8816      23268       1.09  10732   1 chrome
+    525      18     4388      22500       6.47    684   0 svchost
+    254      14     3468      22500       0.78   5392   1 svchost
+    285      13     2696      22452       2.55    748   1 winlogon
+    451      18     7440      22080       3.53   7868   0 SecurityHealthService
+    317      16     3568      22076       0.69   4700   0 svchost
+    144      13    34084      21984       0.16   3704   0 mysqld
+    218      13     8196      21876       0.17   8588   1 msedgewebview2
+    204      13     8440      21524       1.72   6592   1 chrome
+    233      14     3688      21064       0.16  11248   0 svchost
+    168      10    10792      20812       5.14   2616   1 msedgewebview2
+    328      10     9032      20664   3,910.17   2100   0 svchost
+    443      14    15648      20568      12.44   1984   0 svchost
+    373      16     8700      20296      53.16   3188   0 svchost
+    405      27     4108      20008       2.72   3208   0 svchost
+    281      28     6112      19628       2.78    628   1 taskhostw
+    290      13     3688      19224      16.58   4380   0 svchost
+    167      10     8696      19204       1.05   7836   1 msedgewebview2
+    972      19     4972      19076      10.20   1704   0 svchost
+    424      21     5360      18728       2.63   3012   0 spoolsv
+    370      15     5928      18720       7.80   3448   0 svchost
+    174      10     8240      18588       0.34   3656   1 msedge
+    373      13     3040      18508       1.72   2524   0 svchost
+    229      13     2644      18288       0.56   2860   0 svchost
+   1245      17     7020      16788      44.63    848   0 svchost
+    200      13     4292      16428       1.00   1832   0 svchost
+    341      16     5964      16356       7.39   1428   0 svchost
+    169      10     2324      16064       0.31   2360   1 svchost
+    281      13     3080      16056       7.92   7144   1 VBoxTray
+    228      11     6332      15864       0.20  10984   0 audiodg
+    216      11     2824      15856       1.02   5764   0 svchost
+    401      24     3596      15676       0.41   1852   0 svchost
+    247      12     2412      15572       1.78   2936   0 svchost
+    264      13     5600      15524       4.67   3156   0 svchost
+    163      10     1884      15372       0.31   7116   1 dllhost
+    252      13     2896      15360       0.48   5240   1 svchost
+    241      13     3088      15228       1.97   1132   0 svchost
+    264      10     2152      15136       1.13   1280   0 svchost
+    274      11     2876      14596       6.39   1588   0 svchost
+    384      17     2732      14464       0.80   3240   0 svchost
+    160      11     2352      13896       0.34   9956   1 RuntimeBroker
+    190      11     2948      13752       1.33   4644   0 AggregatorHost
+    196      11     2452      13552       1.67   1384   0 svchost
+    320      12     2772      13224      15.14    976   0 svchost
+    217      12     2628      12840       1.16   1244   0 svchost
+    211      12     2984      12556       0.61   7580   0 svchost
+    460      13     2340      12464       0.95   2764   0 svchost
+    200      11     2148      12448       0.45   2744   0 svchost
+    210      39     4028      12240       0.61   3468   0 NisSrv
+    319      16     3440      12048       8.19   1080   0 svchost
+    209      12     2224      11812       1.83   1532   0 svchost
+    362      14     2552      11812       0.14    876   0 SearchProtocolHost
+    213      12     2312      11772       0.66   3360   0 svchost
+    331      11     2660      11580       0.56   6552   0 svchost
+    136      11     1704      11576       0.13   7284   1 UserOOBEBroker
+    181      12     1928      11228       0.47   2256   0 svchost
+    155      10     2060      11156       0.63   4948   1 svchost
+    647      12     4848      11080      21.73    892   0 services
+    188      10     1888      10944       0.94   2316   0 svchost
+    168      10     1920      10788       0.05  11172   0 SearchFilterHost
+    150      28     5564      10656       1.31   1548   0 svchost
+    173      10     1916      10640       0.08   4400   0 SearchFilterHost
+    146      10     1844      10624       0.58   1648   0 svchost
+    227      11     2288      10612       0.89   1272   0 svchost
+    211      12     2360      10540       1.58   1152   0 svchost
+    182      10     2048      10528       0.59   2120   0 svchost
+    239      11     2380      10248       3.25   2404   0 svchost
+    184      11     1896      10188       0.41    916   0 svchost
+    234      15     2160      10020       0.58   2696   0 svchost
+    188      10     1820       9956       2.44   2588   0 svchost
+    148      10     1900       9880       0.16   3440   0 sqlwriter
+    161      10     1748       9504       0.67   3024   0 svchost
+    130       9     1680       9484       0.47   3620   0 svchost
+    171       9     1704       9388       0.05   1744   0 svchost
+    133       9     1532       9324       0.06   9592   0 svchost
+    199       9     2216       9248       0.22   8452   1 msedge
+    162       9     1612       9228       0.55   2644   0 svchost
+    158      11     1536       9108       0.58    700   0 wininit
+    154       9     2172       9100       0.09   1224   1 msedgewebview2
+    164      10     2256       9072       0.50   7288   1 chrome
+    156      42     1816       9032       0.13   5076   0 svchost
+    125       8     1520       9028       0.72   1392   0 svchost
+    167      11     3220       8824      59.66   1928   0 VBoxService
+    146       9     2208       8680       0.17   6356   1 msedgewebview2
+    131      10     1568       8468       4.19   4116   0 conhost
+     42       8     3524       8252       2.45      8   1 fontdrvhost
+    196       7     1888       8108       0.89   1136   0 svchost
+    234       8     1400       7748       0.52   2140   0 svchost
+    595      24     2128       7572      20.64    692   1 csrss
+   1388      58    38272       7540       4.39   7112   1 SystemSettings
+    132       8     1300       7480       0.09   3424   0 svchost
+    554      22     1956       7256       3.38    624   0 csrss
+    119       8     1384       7112       0.20   1196   0 svchost
+     70       6      764       4788       0.11   3432   0 wlms
+     42       7     1400       3928       0.03    288   0 fontdrvhost
+    504      19     6000       1916       0.31   7772   1 backgroundTaskHost
+     58       4     1156       1532       1.86    448   0 smss
+    542      29    34432        832       1.88   4296   1 Microsoft.SharePoint
+   3703       0       40        168   1,211.38      4   0 System
+      0       0       60          8                 0   0 Idle
+
+
+PS C:\WINDOWS\system32> Get-Service | Where-Object {$_.Status -eq "Stopped"}
+
+Status   Name               DisplayName
+------   ----               -----------
+Stopped  AarSvc_487e9       Agent Activation Runtime_487e9
+Stopped  ADPSvc             ADPSvc
+Stopped  ALG                Application Layer Gateway Service
+Stopped  AppIDSvc           Application Identity
+Stopped  AppMgmt            Application Management
+Stopped  AppReadiness       App Readiness
+Stopped  AppVClient         Microsoft App-V Client
+Stopped  AppXSvc            AppX Deployment Service (AppXSVC)
+Stopped  ApxSvc             Windows Virtual Audio Device Proxy ...
+Stopped  AssignedAccessM... AssignedAccessManager Service
+Stopped  autotimesvc        Cellular Time
+Stopped  AxInstSV           ActiveX Installer (AxInstSV)
+Stopped  BcastDVRUserSer... GameDVR and Broadcast User Service_...
+Stopped  BluetoothUserSe... Bluetooth User Support Service_487e9
+Stopped  BTAGService        Bluetooth Audio Gateway Service
+Stopped  BthAvctpSvc        AVCTP service
+Stopped  bthserv            Bluetooth Support Service
+Stopped  CaptureService_... CaptureService_487e9
+Stopped  CertPropSvc        Certificate Propagation
+Stopped  ClipSVC            Client License Service (ClipSVC)
+Stopped  CloudBackupRest... Cloud Backup and Restore Service_487e9
+Stopped  cloudidsvc         Microsoft Cloud Identity Service
+Stopped  COMSysApp          COM+ System Application
+Stopped  ConsentUxUserSv... ConsentUX User Service_487e9
+Stopped  CredentialEnrol... CredentialEnrollmentManagerUserSvc_...
+Stopped  CscService         Offline Files
+Stopped  dcsvc              Declared Configuration(DC) service
+Stopped  defragsvc          Optimize drives
+Stopped  DeviceAssociati... DeviceAssociationBroker_487e9
+Stopped  DeviceAssociati... Device Association Service
+Stopped  DeviceInstall      Device Install Service
+Stopped  DevicePickerUse... DevicePicker_487e9
+Stopped  DevicesFlowUser... DevicesFlow_487e9
+Stopped  diagsvc            Diagnostic Execution Service
+Stopped  DialogBlockingS... DialogBlockingService
+Stopped  DmEnrollmentSvc    Device Management Enrollment Service
+Stopped  dmwappushservice   Device Management Wireless Applicat...
+Stopped  dot3svc            Wired AutoConfig
+Stopped  DsmSvc             Device Setup Manager
+Stopped  DsSvc              Data Sharing Service
+Stopped  EapHost            Extensible Authentication Protocol
+Stopped  edgeupdate         Microsoft Edge Update Service (edge...
+Stopped  edgeupdatem        Microsoft Edge Update Service (edge...
+Stopped  EFS                Encrypting File System (EFS)
+Stopped  embeddedmode       Embedded Mode
+Stopped  EntAppSvc          Enterprise App Management Service
+Stopped  fdPHost            Function Discovery Provider Host
+Stopped  FDResPub           Function Discovery Resource Publica...
+Stopped  fhsvc              File History Service
+Stopped  FrameServer        Windows Camera Frame Server
+Stopped  FrameServerMonitor Windows Camera Frame Server Monitor
+Stopped  GameInputSvc       GameInput Service
+Stopped  GoogleChromeEle... Google Chrome Elevation Service (Go...
+Stopped  GoogleUpdaterIn... Google Updater Internal Service (Go...
+Stopped  GoogleUpdaterSe... Google Updater Service (GoogleUpdat...
+Stopped  gpsvc              Group Policy Client
+Stopped  GraphicsPerfSvc    GraphicsPerfSvc
+Stopped  hidserv            Human Interface Device Service
+Stopped  hpatchmon          Hotpatch Monitoring Service
+Stopped  HvHost             HV Host Service
+Stopped  icssvc             Windows Mobile Hotspot Service
+Stopped  IKEEXT             IKE and AuthIP IPsec Keying Modules
+Stopped  InventorySvc       Inventory and Compatibility Apprais...
+Stopped  IpxlatCfgSvc       IP Translation Configuration Service
+Stopped  KtmRm              KtmRm for Distributed Transaction C...
+Stopped  lltdsvc            Link-Layer Topology Discovery Mapper
+Stopped  LocalKdc           Kerberos Local Key Distribution Center
+Stopped  LxpSvc             Language Experience Service
+Stopped  MapsBroker         Downloaded Maps Manager
+Stopped  McmSvc             This service provides profile manag...
+Stopped  McpManagementSe... McpManagementService
+Stopped  MessagingServic... MessagingService_487e9
+Stopped  MicrosoftEdgeEl... Microsoft Edge Elevation Service (M...
+Stopped  MozillaMaintenance Mozilla Maintenance Service
+Stopped  MSDTC              Distributed Transaction Coordinator
+Stopped  MSiSCSI            Microsoft iSCSI Initiator Service
+Stopped  msiserver          Windows Installer
+Stopped  MsKeyboardFilter   Microsoft Keyboard Filter
+Stopped  NaturalAuthenti... Natural Authentication
+Stopped  NcaSvc             Network Connectivity Assistant
+Stopped  NcdAutoSetup       Network Connected Devices Auto-Setup
+Stopped  Netlogon           Netlogon
+Stopped  Netman             Network Connections
+Stopped  NetSetupSvc        Network Setup Service
+Stopped  NetTcpPortSharing  Net.Tcp Port Sharing Service
+Stopped  NgcCtnrSvc         Microsoft Passport Container
+Stopped  NgcSvc             Microsoft Passport
+Stopped  NlaSvc             Network Location Awareness
+Stopped  P9RdrService_487e9 P9RdrService_487e9
+Stopped  PeerDistSvc        BranchCache
+Stopped  PenService_487e9   PenService_487e9
+Stopped  perceptionsimul... Windows Perception Simulation Service
+Stopped  PerfHost           Performance Counter DLL Host
+Stopped  PhoneSvc           Phone Service
+Stopped  PimIndexMainten... Contact Data_487e9
+Stopped  PrintDeviceConf... Print Device Configuration Service
+Stopped  PrintNotify        Printer Extensions and Notifications
+Stopped  PrintScanBroker... PrintScanBrokerService
+Stopped  PrintWorkflowUs... PrintWorkflow_487e9
+Stopped  PushToInstall      Windows PushToInstall Service
+Stopped  QWAVE              Quality Windows Audio Video Experience
+Stopped  RasAuto            Remote Access Auto Connection Manager
+Stopped  refsdedupsvc       ReFS Dedup Service
+Stopped  RemoteAccess       Routing and Remote Access
+Stopped  RemoteRegistry     Remote Registry
+Stopped  RetailDemo         Retail Demo Service
+Stopped  RpcLocator         Remote Procedure Call (RPC) Locator
+Stopped  SCardSvr           Smart Card
+Stopped  ScDeviceEnum       Smart Card Device Enumeration Service
+Stopped  SCPolicySvc        Smart Card Removal Policy
+Stopped  SDRSVC             Windows Backup
+Stopped  seclogon           Secondary Logon
+Stopped  SEMgrSvc           Payments and NFC/SE Manager
+Stopped  Sense              Windows Defender Advanced Threat Pr...
+Stopped  SensorDataService  Sensor Data Service
+Stopped  SensorService      Sensor Service
+Stopped  SensrSvc           Sensor Monitoring Service
+Stopped  SessionEnv         Remote Desktop Configuration
+Stopped  SharedAccess       Internet Connection Sharing (ICS)
+Stopped  shpamsvc           Shared PC Account Manager
+Stopped  smphost            Microsoft Storage Spaces SMP
+Stopped  SmsRouter          Microsoft Windows SMS Router Service.
+Stopped  SNMPTrap           SNMP Trap
+Stopped  sppsvc             Software Protection
+Stopped  ssh-agent          OpenSSH Authentication Agent
+Stopped  StiSvc             Windows Image Acquisition (WIA)
+Stopped  svsvc              Spot Verifier
+Stopped  swprv              Microsoft Software Shadow Copy Prov...
+Stopped  TapiSrv            Telephony
+Stopped  TermService        Remote Desktop Services
+Stopped  TieringEngineSe... Storage Tiers Management
+Stopped  TroubleshootingSvc Recommended Troubleshooting Service
+Stopped  TrustedInstaller   Windows Modules Installer
+Stopped  tzautoupdate       Auto Time Zone Updater
+Stopped  UevAgentService    User Experience Virtualization Service
+Stopped  UmRdpService       Remote Desktop Services UserMode Po...
+Stopped  UnistoreSvc_487e9  User Data Storage_487e9
+Stopped  upnphost           UPnP Device Host
+Stopped  UserDataSvc_487e9  User Data Access_487e9
+Stopped  vds                Virtual Disk
+Stopped  vmicguestinterface Hyper-V Guest Service Interface
+Stopped  vmicheartbeat      Hyper-V Heartbeat Service
+Stopped  vmickvpexchange    Hyper-V Data Exchange Service
+Stopped  vmicrdv            Hyper-V Remote Desktop Virtualizati...
+Stopped  vmicshutdown       Hyper-V Guest Shutdown Service
+Stopped  vmictimesync       Hyper-V Time Synchronization Service
+Stopped  vmicvmsession      Hyper-V PowerShell Direct Service
+Stopped  vmicvss            Hyper-V Volume Shadow Copy Requestor
+Stopped  VSInstallerElev... Visual Studio Installer Elevation S...
+Stopped  VSS                Volume Shadow Copy
+Stopped  VSStandardColle... Visual Studio Standard Collector Se...
+Stopped  W32Time            Windows Time
+Stopped  WaaSMedicSvc       WaaSMedicSvc
+Stopped  WalletService      WalletService
+Stopped  WarpJITSvc         Warp JIT Service
+Stopped  wbengine           Block Level Backup Engine Service
+Stopped  WbioSrvc           Windows Biometric Service
+Stopped  wcncsvc            Windows Connect Now - Config Registrar
+Stopped  WdiServiceHost     Diagnostic Service Host
+Stopped  WdiSystemHost      Diagnostic System Host
+Stopped  WebClient          WebClient
+Stopped  Wecsvc             Windows Event Collector
+Stopped  WEPHOSTSVC         Windows Encryption Provider Host Se...
+Stopped  wercplsupport      Problem Reports Control Panel Support
+Stopped  WerSvc             Windows Error Reporting Service
+Stopped  WFDSConMgrSvc      Wi-Fi Direct Services Connection Ma...
+Stopped  WiaRpc             Still Image Acquisition Events
+Stopped  WinRM              Windows Remote Management (WS-Manag...
+Stopped  WlanSvc            WLAN AutoConfig
+Stopped  wlidsvc            Microsoft Account Sign-in Assistant
+Stopped  wlpasvc            Local Profile Assistant Service
+Stopped  WManSvc            Windows Management Service
+Stopped  wmiApSrv           WMI Performance Adapter
+Stopped  WMPNetworkSvc      Windows Media Player Network Sharin...
+Stopped  workfolderssvc     Work Folders
+Stopped  WpcMonSvc          Parental Controls
+Stopped  WPDBusEnum         Portable Device Enumerator Service
+Stopped  wuauserv           Windows Update
+Stopped  WwanSvc            WWAN AutoConfig
+Stopped  XblAuthManager     Xbox Live Auth Manager
+Stopped  XblGameSave        Xbox Live Game Save
+Stopped  XboxGipSvc         Xbox Accessory Management Service
+Stopped  XboxNetApiSvc      Xbox Live Networking Service
+Stopped  ZTHELPER           ZTDNS Helper service
+
+
+PS C:\WINDOWS\system32> Get-Service -Name "W3SVC","MSSQLSERVER" | Select-Object Name, Status, StartType
+Get-Service : Cannot find any service with service name 'W3SVC'.
+At line:1 char:1
++ Get-Service -Name "W3SVC","MSSQLSERVER" | Select-Object Name, Status, ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (W3SVC:String) [Get-Service], ServiceCommandException
+    + FullyQualifiedErrorId : NoServiceFoundForGivenName,Microsoft.PowerShell.Commands.GetServiceCommand
+Get-Service : Cannot find any service with service name 'W3SVC'.
+At line:1 char:1
++ Get-Service -Name "W3SVC","MSSQLSERVER" | Select-Object Name, Status, ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (W3SVC:String) [Get-Service], Servic
+   eCommandException
+    + FullyQualifiedErrorId : NoServiceFoundForGivenName,Microsoft.PowerShell.Comm
+   ands.GetServiceCommand
+
+Get-Service : Cannot find any service with service name 'MSSQLSERVER'.
+At line:1 char:1
++ Get-Service -Name "W3SVC","MSSQLSERVER" | Select-Object Name, Status, ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (MSSQLSERVER:String) [Get-Service], ServiceCommandException
+    + FullyQualifiedErrorId : NoServiceFoundForGivenName,Microsoft.PowerShell.Commands.GetServiceCommand
+Get-Service : Cannot find any service with service name 'MSSQLSERVER'.
+At line:1 char:1
++ Get-Service -Name "W3SVC","MSSQLSERVER" | Select-Object Name, Status, ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (MSSQLSERVER:String) [Get-Service],
+   ServiceCommandException
+    + FullyQualifiedErrorId : NoServiceFoundForGivenName,Microsoft.PowerShell.Comm
+   ands.GetServiceCommand
+
+PS C:\WINDOWS\system32> Get-Service -Name "Spooler","wuauserv" | Select-Object Name, Status, StartType
+
+Name      Status StartType
+----      ------ ---------
+Spooler  Running Automatic
+wuauserv Stopped    Manual
+
+
+PS C:\WINDOWS\system32> Get-ComputerInfo | Select-Object TotalPhysicalMemory, CsProcessors, WindowsVersion
+
+TotalPhysicalMemory CsProcessors                     WindowsVersion
+------------------- ------------                     --------------
+                    {Intel(R) Core(TM) Ultra 5 135U} 2009
+
+
+PS C:\WINDOWS\system32> netstat -an | findstr ESTABLISHED
+  TCP    10.0.2.15:49158        172.64.155.209:443     ESTABLISHED
+  TCP    10.0.2.15:49306        104.18.32.47:443       ESTABLISHED
+  TCP    10.0.2.15:50031        52.187.79.109:443      ESTABLISHED
+  TCP    10.0.2.15:50032        4.213.25.242:443       ESTABLISHED
+  TCP    10.0.2.15:50812        104.18.39.21:443       ESTABLISHED
+  TCP    10.0.2.15:51883        142.251.10.188:443     ESTABLISHED
+  TCP    10.0.2.15:53005        35.190.80.1:443        ESTABLISHED
+  TCP    10.0.2.15:53006        23.202.229.23:443      ESTABLISHED
+  TCP    10.0.2.15:54284        172.64.155.209:443     ESTABLISHED
+  TCP    10.0.2.15:61794        172.64.155.209:443     ESTABLISHED
+  TCP    127.0.0.1:49677        127.0.0.1:49678        ESTABLISHED
+  TCP    127.0.0.1:49678        127.0.0.1:49677        ESTABLISHED
+  TCP    127.0.0.1:49679        127.0.0.1:49680        ESTABLISHED
+  TCP    127.0.0.1:49680        127.0.0.1:49679        ESTABLISHED
+PS C:\WINDOWS\system32> Get-NetTCPConnection | Group-Object State | Select-Object Count, Name
+
+Count Name
+----- ----
+   20 Listen
+   14 Bound
+    8 TimeWait
+    5 CloseWait
+   11 Established
+
+
+PS C:\WINDOWS\system32> Stop-Transcript
+**********************
+Windows PowerShell transcript end
+End time: 20250825224507
+**********************
