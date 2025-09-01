@@ -1,0 +1,2933 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20250826114300
+Username: ASCENDI-HTMOH1J\Ascendion
+RunAs User: ASCENDI-HTMOH1J\Ascendion
+Configuration Name: 
+Machine: ASCENDI-HTMOH1J (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+Process ID: 2596
+PSVersion: 5.1.26100.4768
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.4768
+BuildVersion: 10.0.26100.4768
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is C:\Monitoring\Monitoring_Session_Transcript.txt
+==================================================
+Executing Commands from Pages 1 & 2: PerfMon/Logman
+==================================================
+Opening Performance Monitor (perfmon)...
+
+--- Running typeperf to collect CPU usage for 1 minute ---
+
+
+The command completed successfully.
+
+--- Creating, running, and stopping a Logman Data Collector Set ---
+The command completed successfully.
+The command completed successfully.
+Data collection started... waiting 15 seconds.
+The command completed successfully.
+Data collection stopped.
+
+==================================================
+Executing Commands from Page 3: Resmon & Event Viewer
+==================================================
+Opening Resource Monitor (resmon)...
+
+--- Top 10 processes by CPU (PowerShell) ---
+
+Id      : 4
+Handles : 3445
+CPU     : 580.21875
+SI      : 0
+Name    : System
+
+
+Id      : 3236
+Handles : 912
+CPU     : 358.734375
+SI      : 0
+Name    : MsMpEng
+
+
+Id      : 1996
+Handles : 244
+CPU     : 278.359375
+SI      : 0
+Name    : svchost
+
+
+Id      : 1692
+Handles : 1998
+CPU     : 103.8125
+SI      : 1
+Name    : msedge
+
+
+Id      : 1028
+Handles : 1170
+CPU     : 103.109375
+SI      : 1
+Name    : dwm
+
+
+Id      : 2832
+Handles : 476
+CPU     : 98.640625
+SI      : 1
+Name    : msedge
+
+
+Id      : 4296
+Handles : 5003
+CPU     : 66.0625
+SI      : 1
+Name    : explorer
+
+
+Id      : 2084
+Handles : 552
+CPU     : 50.078125
+SI      : 1
+Name    : msedge
+
+
+Id      : 6964
+Handles : 376
+CPU     : 32.34375
+SI      : 1
+Name    : msedge
+
+
+Id      : 3644
+Handles : 505
+CPU     : 29.71875
+SI      : 0
+Name    : mysqld
+
+
+--- Getting 50 most recent System Error logs (PowerShell) ---
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 10827
+Category           : (1)
+CategoryNumber     : 1
+EventID            : 20
+EntryType          : Error
+Message            : Installation Failure: Windows failed to install the following update with error 0x80073d02:
+                     9NMPJ99VJBWV-Microsoft.YourPhone.
+Source             : Microsoft-Windows-WindowsUpdateClient
+ReplacementStrings : {0x80073d02, 9NMPJ99VJBWV-Microsoft.YourPhone, {d12f612d-c5ea-4c5d-843b-10b6248e6648}, 1...}
+InstanceId         : 20
+TimeGenerated      : 8/26/2025 9:32:36 AM
+TimeWritten        : 8/26/2025 9:32:36 AM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 10824
+Category           : (1)
+CategoryNumber     : 1
+EventID            : 20
+EntryType          : Error
+Message            : Installation Failure: Windows failed to install the following update with error 0x80073d02:
+                     9NTXGKQ8P7N0-MicrosoftWindows.CrossDevice.
+Source             : Microsoft-Windows-WindowsUpdateClient
+ReplacementStrings : {0x80073d02, 9NTXGKQ8P7N0-MicrosoftWindows.CrossDevice, {a2b23f3b-f9c8-442f-a0e7-1eb491f7998f},
+                     1...}
+InstanceId         : 20
+TimeGenerated      : 8/26/2025 9:32:22 AM
+TimeWritten        : 8/26/2025 9:32:22 AM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 10812
+Category           : (1)
+CategoryNumber     : 1
+EventID            : 20
+EntryType          : Error
+Message            : Installation Failure: Windows failed to install the following update with error 0x80073d02:
+                     9N3RK8ZV2ZR8-Microsoft.WidgetsPlatformRuntime.
+Source             : Microsoft-Windows-WindowsUpdateClient
+ReplacementStrings : {0x80073d02, 9N3RK8ZV2ZR8-Microsoft.WidgetsPlatformRuntime, {6db27de8-dfb5-4cac-917a-876cc2af058e},
+                     1...}
+InstanceId         : 20
+TimeGenerated      : 8/26/2025 9:31:32 AM
+TimeWritten        : 8/26/2025 9:31:32 AM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 10804
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 1795
+EntryType          : Error
+Message            : The system firmware returned an error -2147467259 when attempting to update a Secure Boot variable.
+                     For more information, please see https://go.microsoft.com/fwlink/?linkid=2169931
+Source             : Microsoft-Windows-TPM-WMI
+ReplacementStrings : {-2147467259}
+InstanceId         : 1795
+TimeGenerated      : 8/26/2025 9:29:11 AM
+TimeWritten        : 8/26/2025 9:29:11 AM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {233, 7, 8, 0...}
+Index              : 10715
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 6008
+EntryType          : Error
+Message            : The previous system shutdown at 4:44:22 PM on ‎8/‎25/‎2025 was unexpected.
+Source             : EventLog
+ReplacementStrings : {4:44:22 PM, ‎8/‎25/‎2025, , ...}
+InstanceId         : 2147489656
+TimeGenerated      : 8/26/2025 9:14:39 AM
+TimeWritten        : 8/26/2025 9:14:39 AM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 10676
+Category           : (1)
+CategoryNumber     : 1
+EventID            : 20
+EntryType          : Error
+Message            : Installation Failure: Windows failed to install the following update with error 0x80240016:
+                     Security Intelligence Update for Microsoft Defender Antivirus - KB2267602 (Version 1.435.370.0) -
+                     Current Channel (Broad).
+Source             : Microsoft-Windows-WindowsUpdateClient
+ReplacementStrings : {0x80240016, Security Intelligence Update for Microsoft Defender Antivirus - KB2267602 (Version
+                     1.435.370.0) - Current Channel (Broad), {b9f4a16c-36e8-41d4-b30b-b1c575694fb0}, 200...}
+InstanceId         : 20
+TimeGenerated      : 8/25/2025 1:27:46 PM
+TimeWritten        : 8/25/2025 1:27:46 PM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {233, 7, 8, 0...}
+Index              : 10500
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 6008
+EntryType          : Error
+Message            : The previous system shutdown at 11:29:25 PM on ‎8/‎24/‎2025 was unexpected.
+Source             : EventLog
+ReplacementStrings : {11:29:25 PM, ‎8/‎24/‎2025, , ...}
+InstanceId         : 2147489656
+TimeGenerated      : 8/25/2025 9:23:32 AM
+TimeWritten        : 8/25/2025 9:23:32 AM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 10497
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 1795
+EntryType          : Error
+Message            : The system firmware returned an error -2147467259 when attempting to update a Secure Boot variable.
+                     For more information, please see https://go.microsoft.com/fwlink/?linkid=2169931
+Source             : Microsoft-Windows-TPM-WMI
+ReplacementStrings : {-2147467259}
+InstanceId         : 1795
+TimeGenerated      : 8/24/2025 11:46:38 PM
+TimeWritten        : 8/24/2025 11:46:38 PM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 10488
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7011
+EntryType          : Error
+Message            : A timeout (30000 milliseconds) was reached while waiting for a transaction response from the
+                     SystemEventsBroker service.
+Source             : Service Control Manager
+ReplacementStrings : {30000, SystemEventsBroker}
+InstanceId         : 3221232483
+TimeGenerated      : 8/24/2025 5:53:08 PM
+TimeWritten        : 8/24/2025 5:53:08 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {115, 0, 112, 0...}
+Index              : 10487
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7000
+EntryType          : Error
+Message            : The Software Protection service failed to start due to the following error:
+                     %%1053
+Source             : Service Control Manager
+ReplacementStrings : {Software Protection, %%1053}
+InstanceId         : 3221232472
+TimeGenerated      : 8/24/2025 5:53:08 PM
+TimeWritten        : 8/24/2025 5:53:08 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {115, 0, 112, 0...}
+Index              : 10486
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7009
+EntryType          : Error
+Message            : A timeout was reached (30000 milliseconds) while waiting for the Software Protection service to
+                     connect.
+Source             : Service Control Manager
+ReplacementStrings : {30000, Software Protection}
+InstanceId         : 3221232481
+TimeGenerated      : 8/24/2025 5:53:08 PM
+TimeWritten        : 8/24/2025 5:53:08 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {65, 0, 112, 0...}
+Index              : 10485
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7000
+EntryType          : Error
+Message            : The AppX Deployment Service (AppXSVC) service failed to start due to the following error:
+                     %%1053
+Source             : Service Control Manager
+ReplacementStrings : {AppX Deployment Service (AppXSVC), %%1053}
+InstanceId         : 3221232472
+TimeGenerated      : 8/24/2025 5:53:08 PM
+TimeWritten        : 8/24/2025 5:53:08 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {65, 0, 112, 0...}
+Index              : 10484
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7009
+EntryType          : Error
+Message            : A timeout was reached (30000 milliseconds) while waiting for the AppX Deployment Service (AppXSVC)
+                     service to connect.
+Source             : Service Control Manager
+ReplacementStrings : {30000, AppX Deployment Service (AppXSVC)}
+InstanceId         : 3221232481
+TimeGenerated      : 8/24/2025 5:53:08 PM
+TimeWritten        : 8/24/2025 5:53:08 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 10482
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 10010
+EntryType          : Error
+Message            : The description for Event ID '10010' in Source 'DCOM' cannot be found.  The local computer may not
+                     have the necessary registry information or message DLL files to display the message, or you may not
+                     have permission to access them.  The following information is part of the
+                     event:'{544C4C52-DE0B-4D14-9510-21745381D5CA}'
+Source             : DCOM
+ReplacementStrings : {{544C4C52-DE0B-4D14-9510-21745381D5CA}}
+InstanceId         : 10010
+TimeGenerated      : 8/24/2025 5:53:08 PM
+TimeWritten        : 8/24/2025 5:53:08 PM
+UserName           : ASCENDI-HTMOH1J\Ascendion
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 10480
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7011
+EntryType          : Error
+Message            : A timeout (30000 milliseconds) was reached while waiting for a transaction response from the
+                     W32Time service.
+Source             : Service Control Manager
+ReplacementStrings : {30000, W32Time}
+InstanceId         : 3221232483
+TimeGenerated      : 8/24/2025 5:46:07 PM
+TimeWritten        : 8/24/2025 5:46:07 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 10459
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 1795
+EntryType          : Error
+Message            : The system firmware returned an error -2147467259 when attempting to update a Secure Boot variable.
+                     For more information, please see https://go.microsoft.com/fwlink/?linkid=2169931
+Source             : Microsoft-Windows-TPM-WMI
+ReplacementStrings : {-2147467259}
+InstanceId         : 1795
+TimeGenerated      : 8/24/2025 11:49:30 AM
+TimeWritten        : 8/24/2025 11:49:30 AM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {233, 7, 8, 0...}
+Index              : 10347
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 6008
+EntryType          : Error
+Message            : The previous system shutdown at 12:58:13 AM on ‎8/‎24/‎2025 was unexpected.
+Source             : EventLog
+ReplacementStrings : {12:58:13 AM, ‎8/‎24/‎2025, , ...}
+InstanceId         : 2147489656
+TimeGenerated      : 8/24/2025 11:41:37 AM
+TimeWritten        : 8/24/2025 11:41:37 AM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {68, 0, 105, 0...}
+Index              : 10343
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7031
+EntryType          : Error
+Message            : The Connected User Experiences and Telemetry service terminated unexpectedly.  It has done this 1
+                     time(s).  The following corrective action will be taken in 30000 milliseconds: Restart the service.
+Source             : Service Control Manager
+ReplacementStrings : {Connected User Experiences and Telemetry, 1, 30000, 1...}
+InstanceId         : 3221232503
+TimeGenerated      : 8/24/2025 12:02:14 AM
+TimeWritten        : 8/24/2025 12:02:14 AM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 10340
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 10010
+EntryType          : Error
+Message            : The description for Event ID '10010' in Source 'DCOM' cannot be found.  The local computer may not
+                     have the necessary registry information or message DLL files to display the message, or you may not
+                     have permission to access them.  The following information is part of the event:'Microsoft.Windows.C
+                     ontentDeliveryManager_10.0.26100.1_neutral_neutral_cw5n1h2txyewy!App.AppXryc2qd338f5728r9gzzazav8206
+                     ba77s.mca'
+Source             : DCOM
+ReplacementStrings : {Microsoft.Windows.ContentDeliveryManager_10.0.26100.1_neutral_neutral_cw5n1h2txyewy!App.AppXryc2qd3
+                     38f5728r9gzzazav8206ba77s.mca}
+InstanceId         : 10010
+TimeGenerated      : 8/23/2025 11:50:19 PM
+TimeWritten        : 8/23/2025 11:50:19 PM
+UserName           : ASCENDI-HTMOH1J\Ascendion
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {103, 0, 112, 0...}
+Index              : 10339
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7000
+EntryType          : Error
+Message            : The Group Policy Client service failed to start due to the following error:
+                     %%1053
+Source             : Service Control Manager
+ReplacementStrings : {Group Policy Client, %%1053}
+InstanceId         : 3221232472
+TimeGenerated      : 8/23/2025 11:50:19 PM
+TimeWritten        : 8/23/2025 11:50:19 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {103, 0, 112, 0...}
+Index              : 10338
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7009
+EntryType          : Error
+Message            : A timeout was reached (30000 milliseconds) while waiting for the Group Policy Client service to
+                     connect.
+Source             : Service Control Manager
+ReplacementStrings : {30000, Group Policy Client}
+InstanceId         : 3221232481
+TimeGenerated      : 8/23/2025 11:50:19 PM
+TimeWritten        : 8/23/2025 11:50:19 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 10313
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 10010
+EntryType          : Error
+Message            : The description for Event ID '10010' in Source 'DCOM' cannot be found.  The local computer may not
+                     have the necessary registry information or message DLL files to display the message, or you may not
+                     have permission to access them.  The following information is part of the event:'Microsoft.WindowsSt
+                     ore_22506.1401.10.0_x64__8wekyb3d8bbwe!App.AppXmr37eay91n1zzgqzqj9y7h4f8rjs7zyz.mca'
+Source             : DCOM
+ReplacementStrings : {Microsoft.WindowsStore_22506.1401.10.0_x64__8wekyb3d8bbwe!App.AppXmr37eay91n1zzgqzqj9y7h4f8rjs7zyz.
+                     mca}
+InstanceId         : 10010
+TimeGenerated      : 8/23/2025 7:42:25 PM
+TimeWritten        : 8/23/2025 7:42:25 PM
+UserName           : ASCENDI-HTMOH1J\Ascendion
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 10283
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 1795
+EntryType          : Error
+Message            : The system firmware returned an error -2147467259 when attempting to update a Secure Boot variable.
+                     For more information, please see https://go.microsoft.com/fwlink/?linkid=2169931
+Source             : Microsoft-Windows-TPM-WMI
+ReplacementStrings : {-2147467259}
+InstanceId         : 1795
+TimeGenerated      : 8/23/2025 3:39:28 PM
+TimeWritten        : 8/23/2025 3:39:28 PM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 10282
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 10010
+EntryType          : Error
+Message            : The description for Event ID '10010' in Source 'DCOM' cannot be found.  The local computer may not
+                     have the necessary registry information or message DLL files to display the message, or you may not
+                     have permission to access them.  The following information is part of the
+                     event:'{8CFC164F-4BE5-4FDD-94E9-E2AF73ED4A19}'
+Source             : DCOM
+ReplacementStrings : {{8CFC164F-4BE5-4FDD-94E9-E2AF73ED4A19}}
+InstanceId         : 10010
+TimeGenerated      : 8/23/2025 3:36:59 PM
+TimeWritten        : 8/23/2025 3:36:59 PM
+UserName           : ASCENDI-HTMOH1J\Ascendion
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {233, 7, 8, 0...}
+Index              : 10199
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 6008
+EntryType          : Error
+Message            : The previous system shutdown at 1:14:05 AM on ‎8/‎23/‎2025 was unexpected.
+Source             : EventLog
+ReplacementStrings : {1:14:05 AM, ‎8/‎23/‎2025, , ...}
+InstanceId         : 2147489656
+TimeGenerated      : 8/23/2025 3:29:21 PM
+TimeWritten        : 8/23/2025 3:29:21 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 10179
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 10010
+EntryType          : Error
+Message            : The description for Event ID '10010' in Source 'DCOM' cannot be found.  The local computer may not
+                     have the necessary registry information or message DLL files to display the message, or you may not
+                     have permission to access them.  The following information is part of the
+                     event:'{8CFC164F-4BE5-4FDD-94E9-E2AF73ED4A19}'
+Source             : DCOM
+ReplacementStrings : {{8CFC164F-4BE5-4FDD-94E9-E2AF73ED4A19}}
+InstanceId         : 10010
+TimeGenerated      : 8/22/2025 11:06:48 PM
+TimeWritten        : 8/22/2025 11:06:48 PM
+UserName           : ASCENDI-HTMOH1J\Ascendion
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 10170
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 1795
+EntryType          : Error
+Message            : The system firmware returned an error -2147467259 when attempting to update a Secure Boot variable.
+                     For more information, please see https://go.microsoft.com/fwlink/?linkid=2169931
+Source             : Microsoft-Windows-TPM-WMI
+ReplacementStrings : {-2147467259}
+InstanceId         : 1795
+TimeGenerated      : 8/22/2025 11:01:09 PM
+TimeWritten        : 8/22/2025 11:01:09 PM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {233, 7, 8, 0...}
+Index              : 10106
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 6008
+EntryType          : Error
+Message            : The previous system shutdown at 4:52:34 PM on ‎8/‎22/‎2025 was unexpected.
+Source             : EventLog
+ReplacementStrings : {4:52:34 PM, ‎8/‎22/‎2025, , ...}
+InstanceId         : 2147489656
+TimeGenerated      : 8/22/2025 10:44:09 PM
+TimeWritten        : 8/22/2025 10:44:09 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 10066
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 10010
+EntryType          : Error
+Message            : The description for Event ID '10010' in Source 'DCOM' cannot be found.  The local computer may not
+                     have the necessary registry information or message DLL files to display the message, or you may not
+                     have permission to access them.  The following information is part of the event:'Microsoft.StorePurc
+                     haseApp_22506.1401.4.0_x64__8wekyb3d8bbwe!App.AppXh68f74x901gdx01kwdh3szc5yp7bnmah.mca'
+Source             : DCOM
+ReplacementStrings : {Microsoft.StorePurchaseApp_22506.1401.4.0_x64__8wekyb3d8bbwe!App.AppXh68f74x901gdx01kwdh3szc5yp7bnm
+                     ah.mca}
+InstanceId         : 10010
+TimeGenerated      : 8/22/2025 2:04:50 PM
+TimeWritten        : 8/22/2025 2:04:50 PM
+UserName           : ASCENDI-HTMOH1J\Ascendion
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {115, 0, 112, 0...}
+Index              : 10065
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7000
+EntryType          : Error
+Message            : The Software Protection service failed to start due to the following error:
+                     %%1053
+Source             : Service Control Manager
+ReplacementStrings : {Software Protection, %%1053}
+InstanceId         : 3221232472
+TimeGenerated      : 8/22/2025 2:04:50 PM
+TimeWritten        : 8/22/2025 2:04:50 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {115, 0, 112, 0...}
+Index              : 10064
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7009
+EntryType          : Error
+Message            : A timeout was reached (30000 milliseconds) while waiting for the Software Protection service to
+                     connect.
+Source             : Service Control Manager
+ReplacementStrings : {30000, Software Protection}
+InstanceId         : 3221232481
+TimeGenerated      : 8/22/2025 2:04:50 PM
+TimeWritten        : 8/22/2025 2:04:50 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 10063
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7011
+EntryType          : Error
+Message            : A timeout (30000 milliseconds) was reached while waiting for a transaction response from the WerSvc
+                     service.
+Source             : Service Control Manager
+ReplacementStrings : {30000, WerSvc}
+InstanceId         : 3221232483
+TimeGenerated      : 8/22/2025 2:04:50 PM
+TimeWritten        : 8/22/2025 2:04:50 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {65, 0, 112, 0...}
+Index              : 10062
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7000
+EntryType          : Error
+Message            : The AppX Deployment Service (AppXSVC) service failed to start due to the following error:
+                     %%1053
+Source             : Service Control Manager
+ReplacementStrings : {AppX Deployment Service (AppXSVC), %%1053}
+InstanceId         : 3221232472
+TimeGenerated      : 8/22/2025 1:23:48 PM
+TimeWritten        : 8/22/2025 1:23:48 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 10061
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7011
+EntryType          : Error
+Message            : A timeout (30000 milliseconds) was reached while waiting for a transaction response from the
+                     AppXSvc service.
+Source             : Service Control Manager
+ReplacementStrings : {30000, AppXSvc}
+InstanceId         : 3221232483
+TimeGenerated      : 8/22/2025 1:23:48 PM
+TimeWritten        : 8/22/2025 1:23:48 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 10026
+Category           : (1)
+CategoryNumber     : 1
+EventID            : 20
+EntryType          : Error
+Message            : Installation Failure: Windows failed to install the following update with error 0x80073d02:
+                     9MSSGKG348SP-MicrosoftWindows.Client.WebExperience.
+Source             : Microsoft-Windows-WindowsUpdateClient
+ReplacementStrings : {0x80073d02, 9MSSGKG348SP-MicrosoftWindows.Client.WebExperience,
+                     {e2fc5f3e-16e1-48e3-9e7e-9fd0acd2942b}, 1...}
+InstanceId         : 20
+TimeGenerated      : 8/22/2025 8:54:48 AM
+TimeWritten        : 8/22/2025 8:54:48 AM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 10008
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 1795
+EntryType          : Error
+Message            : The system firmware returned an error -2147467259 when attempting to update a Secure Boot variable.
+                     For more information, please see https://go.microsoft.com/fwlink/?linkid=2169931
+Source             : Microsoft-Windows-TPM-WMI
+ReplacementStrings : {-2147467259}
+InstanceId         : 1795
+TimeGenerated      : 8/22/2025 8:41:26 AM
+TimeWritten        : 8/22/2025 8:41:26 AM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {233, 7, 8, 0...}
+Index              : 9922
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 6008
+EntryType          : Error
+Message            : The previous system shutdown at 11:13:37 PM on ‎8/‎21/‎2025 was unexpected.
+Source             : EventLog
+ReplacementStrings : {11:13:37 PM, ‎8/‎21/‎2025, , ...}
+InstanceId         : 2147489656
+TimeGenerated      : 8/22/2025 8:35:40 AM
+TimeWritten        : 8/22/2025 8:35:40 AM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 9917
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 10010
+EntryType          : Error
+Message            : The description for Event ID '10010' in Source 'DCOM' cannot be found.  The local computer may not
+                     have the necessary registry information or message DLL files to display the message, or you may not
+                     have permission to access them.  The following information is part of the event:'Microsoft.YourPhone
+                     _1.25072.63.0_x64__8wekyb3d8bbwe!App.AppXn958k7nsj8mxxmsepqdam8xk948t30sc.mca'
+Source             : DCOM
+ReplacementStrings : {Microsoft.YourPhone_1.25072.63.0_x64__8wekyb3d8bbwe!App.AppXn958k7nsj8mxxmsepqdam8xk948t30sc.mca}
+InstanceId         : 10010
+TimeGenerated      : 8/21/2025 10:39:16 PM
+TimeWritten        : 8/21/2025 10:39:16 PM
+UserName           : ASCENDI-HTMOH1J\Ascendion
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 9916
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 10005
+EntryType          : Error
+Message            : The description for Event ID '10005' in Source 'DCOM' cannot be found.  The local computer may not
+                     have the necessary registry information or message DLL files to display the message, or you may not
+                     have permission to access them.  The following information is part of the event:'1053',
+                     'WaaSMedicSvc', 'Unavailable', '{72566E27-1ABB-4EB3-B4F0-EB431CB1CB32}'
+Source             : DCOM
+ReplacementStrings : {1053, WaaSMedicSvc, Unavailable, {72566E27-1ABB-4EB3-B4F0-EB431CB1CB32}}
+InstanceId         : 10005
+TimeGenerated      : 8/21/2025 10:39:16 PM
+TimeWritten        : 8/21/2025 10:39:16 PM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {87, 0, 97, 0...}
+Index              : 9915
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7000
+EntryType          : Error
+Message            : The WaaSMedicSvc service failed to start due to the following error:
+                     %%1053
+Source             : Service Control Manager
+ReplacementStrings : {WaaSMedicSvc, %%1053}
+InstanceId         : 3221232472
+TimeGenerated      : 8/21/2025 10:39:14 PM
+TimeWritten        : 8/21/2025 10:39:14 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {87, 0, 97, 0...}
+Index              : 9914
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 7009
+EntryType          : Error
+Message            : A timeout was reached (30000 milliseconds) while waiting for the WaaSMedicSvc service to connect.
+Source             : Service Control Manager
+ReplacementStrings : {30000, WaaSMedicSvc}
+InstanceId         : 3221232481
+TimeGenerated      : 8/21/2025 10:39:14 PM
+TimeWritten        : 8/21/2025 10:39:14 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 9909
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 1795
+EntryType          : Error
+Message            : The system firmware returned an error -2147467259 when attempting to update a Secure Boot variable.
+                     For more information, please see https://go.microsoft.com/fwlink/?linkid=2169931
+Source             : Microsoft-Windows-TPM-WMI
+ReplacementStrings : {-2147467259}
+InstanceId         : 1795
+TimeGenerated      : 8/21/2025 8:46:21 PM
+TimeWritten        : 8/21/2025 8:46:21 PM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {233, 7, 8, 0...}
+Index              : 9826
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 6008
+EntryType          : Error
+Message            : The previous system shutdown at 4:47:57 PM on ‎8/‎21/‎2025 was unexpected.
+Source             : EventLog
+ReplacementStrings : {4:47:57 PM, ‎8/‎21/‎2025, , ...}
+InstanceId         : 2147489656
+TimeGenerated      : 8/21/2025 8:32:41 PM
+TimeWritten        : 8/21/2025 8:32:41 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 9772
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 1795
+EntryType          : Error
+Message            : The system firmware returned an error -2147467259 when attempting to update a Secure Boot variable.
+                     For more information, please see https://go.microsoft.com/fwlink/?linkid=2169931
+Source             : Microsoft-Windows-TPM-WMI
+ReplacementStrings : {-2147467259}
+InstanceId         : 1795
+TimeGenerated      : 8/21/2025 9:08:58 AM
+TimeWritten        : 8/21/2025 9:08:58 AM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {233, 7, 8, 0...}
+Index              : 9684
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 6008
+EntryType          : Error
+Message            : The previous system shutdown at 11:50:22 PM on ‎8/‎20/‎2025 was unexpected.
+Source             : EventLog
+ReplacementStrings : {11:50:22 PM, ‎8/‎20/‎2025, , ...}
+InstanceId         : 2147489656
+TimeGenerated      : 8/21/2025 9:02:28 AM
+TimeWritten        : 8/21/2025 9:02:28 AM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 9674
+Category           : (1)
+CategoryNumber     : 1
+EventID            : 20
+EntryType          : Error
+Message            : Installation Failure: Windows failed to install the following update with error 0x80240016:
+                     Security Intelligence Update for Microsoft Defender Antivirus - KB2267602 (Version 1.435.286.0) -
+                     Current Channel (Broad).
+Source             : Microsoft-Windows-WindowsUpdateClient
+ReplacementStrings : {0x80240016, Security Intelligence Update for Microsoft Defender Antivirus - KB2267602 (Version
+                     1.435.286.0) - Current Channel (Broad), {d1b0bb57-4a31-4742-b435-ec19cc36e9b0}, 200...}
+InstanceId         : 20
+TimeGenerated      : 8/20/2025 11:13:26 PM
+TimeWritten        : 8/20/2025 11:13:26 PM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {233, 7, 8, 0...}
+Index              : 9591
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 6008
+EntryType          : Error
+Message            : The previous system shutdown at 4:26:02 PM on ‎8/‎20/‎2025 was unexpected.
+Source             : EventLog
+ReplacementStrings : {4:26:02 PM, ‎8/‎20/‎2025, , ...}
+InstanceId         : 2147489656
+TimeGenerated      : 8/20/2025 10:22:36 PM
+TimeWritten        : 8/20/2025 10:22:36 PM
+UserName           :
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 9570
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 1795
+EntryType          : Error
+Message            : The system firmware returned an error -2147467259 when attempting to update a Secure Boot variable.
+                     For more information, please see https://go.microsoft.com/fwlink/?linkid=2169931
+Source             : Microsoft-Windows-TPM-WMI
+ReplacementStrings : {-2147467259}
+InstanceId         : 1795
+TimeGenerated      : 8/20/2025 3:43:15 PM
+TimeWritten        : 8/20/2025 3:43:15 PM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 9567
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 1001
+EntryType          : Error
+Message            : The description for Event ID '1001' in Source 'Microsoft-Windows-WER-SystemErrorReporting' cannot
+                     be found.  The local computer may not have the necessary registry information or message DLL files
+                     to display the message, or you may not have permission to access them.  The following information
+                     is part of the event:'0x0000009f (0x0000000000000003, 0xffffbf89a9ed7050, 0xfffff805395a19f0,
+                     0xffffbf89a96b6010)', 'C:\WINDOWS\MEMORY.DMP', '00000000-0000-0000-0000-000000000000'
+Source             : Microsoft-Windows-WER-SystemErrorReporting
+ReplacementStrings : {0x0000009f (0x0000000000000003, 0xffffbf89a9ed7050, 0xfffff805395a19f0, 0xffffbf89a96b6010),
+                     C:\WINDOWS\MEMORY.DMP, 00000000-0000-0000-0000-000000000000}
+InstanceId         : 1001
+TimeGenerated      : 8/20/2025 3:39:22 PM
+TimeWritten        : 8/20/2025 3:39:22 PM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+MachineName        : ASCENDI-HTMOH1J
+Data               : {}
+Index              : 9566
+Category           : (0)
+CategoryNumber     : 0
+EventID            : 1005
+EntryType          : Error
+Message            : The description for Event ID '1005' in Source 'Microsoft-Windows-WER-SystemErrorReporting' cannot
+                     be found.  The local computer may not have the necessary registry information or message DLL files
+                     to display the message, or you may not have permission to access them.  The following information
+                     is part of the event:
+Source             : Microsoft-Windows-WER-SystemErrorReporting
+ReplacementStrings : {}
+InstanceId         : 1005
+TimeGenerated      : 8/20/2025 3:39:22 PM
+TimeWritten        : 8/20/2025 3:39:22 PM
+UserName           : NT AUTHORITY\SYSTEM
+Site               :
+Container          :
+
+
+--- Getting 50 most recent Critical/Error logs (wevtutil) ---
+Event[0]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-09T01:14:54.4990000Z
+  Event ID: 7023
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The netprofm service terminated with the following error:
+The device is not ready.
+
+Event[1]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-09T01:16:54.5740000Z
+  Event ID: 10010
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The server {A47979D2-C419-11D9-A5B4-001185AD2B89} did not register with DCOM within the required timeout.
+
+Event[2]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-09T01:16:54.6990000Z
+  Event ID: 7023
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The Network List Service service terminated with the following error:
+The device is not ready.
+
+Event[3]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-09T01:17:00.7070000Z
+  Event ID: 7030
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The Printer Extensions and Notifications service is marked as an interactive service.  However, the system is configured t
+o not allow interactive services.  This service may not function properly.
+
+Event[4]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-09T01:18:55.3810000Z
+  Event ID: 10010
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The server {A47979D2-C419-11D9-A5B4-001185AD2B89} did not register with DCOM within the required timeout.
+
+Event[5]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-09T01:18:55.5940000Z
+  Event ID: 7023
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The Network List Service service terminated with the following error:
+The device is not ready.
+
+Event[6]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-09T01:20:31.8100000Z
+  Event ID: 7022
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The Connected Devices Platform Service service hung on starting.
+
+Event[7]
+  Log Name: System
+  Source: Microsoft-Windows-TPM-WMI
+  Date: 2025-07-08T12:53:42.6380000Z
+  Event ID: 1795
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The system firmware returned an error Access is denied. when attempting to update a Secure Boot variable. For more informa
+tion, please see https://go.microsoft.com/fwlink/?linkid=2169931
+
+Event[8]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-08T13:12:55.5440000Z
+  Event ID: 10010
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-21-1649049209-2824995486-182282566-1000
+  User Name: ASCENDI-HTMOH1J\Ascendion
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The server MicrosoftWindows.Client.CBS_1000.26100.18.0_x64__cw5n1h2txyewy!Global.IrisService.AppXkjrqty4skpnq48e37dvjmd2bf
+x178sas.mca did not register with DCOM within the required timeout.
+
+Event[9]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-08T13:12:55.7000000Z
+  Event ID: 10010
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-21-1649049209-2824995486-182282566-1000
+  User Name: ASCENDI-HTMOH1J\Ascendion
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The server Microsoft.Windows.ContentDeliveryManager_10.0.26100.1_neutral_neutral_cw5n1h2txyewy!App.AppXx4zfy1ffv3wctgdz2vy
+pnybzjkh27jhw.mca did not register with DCOM within the required timeout.
+
+Event[10]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-08T13:13:54.6450000Z
+  Event ID: 7031
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The AppX Deployment Service (AppXSVC) service terminated unexpectedly.  It has done this 1 time(s).  The following correct
+ive action will be taken in 120000 milliseconds: Restart the service.
+
+Event[11]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-08T13:18:31.1360000Z
+  Event ID: 10010
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The server {7EAD5C10-8B3F-11E6-AE22-56B6B6499611} did not register with DCOM within the required timeout.
+
+Event[12]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-08T13:18:31.1910000Z
+  Event ID: 10010
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The server {7EAD5C10-8B3F-11E6-AE22-56B6B6499611} did not register with DCOM within the required timeout.
+
+Event[13]
+  Log Name: System
+  Source: Microsoft-Windows-TPM-WMI
+  Date: 2025-07-08T13:18:58.0360000Z
+  Event ID: 1795
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The system firmware returned an error Access is denied. when attempting to update a Secure Boot variable. For more informa
+tion, please see https://go.microsoft.com/fwlink/?linkid=2169931
+
+Event[14]
+  Log Name: System
+  Source: Microsoft-Windows-TPM-WMI
+  Date: 2025-07-08T14:10:17.7420000Z
+  Event ID: 1795
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The system firmware returned an error Access is denied. when attempting to update a Secure Boot variable. For more informa
+tion, please see https://go.microsoft.com/fwlink/?linkid=2169931
+
+Event[15]
+  Log Name: System
+  Source: Microsoft-Windows-TPM-WMI
+  Date: 2025-07-08T14:13:37.3490000Z
+  Event ID: 1795
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The system firmware returned an error Access is denied. when attempting to update a Secure Boot variable. For more informa
+tion, please see https://go.microsoft.com/fwlink/?linkid=2169931
+
+Event[16]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-08T14:15:56.4130000Z
+  Event ID: 10010
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-21-1649049209-2824995486-182282566-1000
+  User Name: ASCENDI-HTMOH1J\Ascendion
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The server {8CFC164F-4BE5-4FDD-94E9-E2AF73ED4A19} did not register with DCOM within the required timeout.
+
+Event[17]
+  Log Name: System
+  Source: Microsoft-Windows-TPM-WMI
+  Date: 2025-07-08T14:16:22.3380000Z
+  Event ID: 1795
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The system firmware returned an error Access is denied. when attempting to update a Secure Boot variable. For more informa
+tion, please see https://go.microsoft.com/fwlink/?linkid=2169931
+
+Event[18]
+  Log Name: System
+  Source: Microsoft-Windows-TPM-WMI
+  Date: 2025-07-08T14:18:07.0040000Z
+  Event ID: 1795
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The system firmware returned an error Access is denied. when attempting to update a Secure Boot variable. For more informa
+tion, please see https://go.microsoft.com/fwlink/?linkid=2169931
+
+Event[19]
+  Log Name: System
+  Source: Microsoft-Windows-TPM-WMI
+  Date: 2025-07-08T14:20:55.9120000Z
+  Event ID: 1795
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The system firmware returned an error Access is denied. when attempting to update a Secure Boot variable. For more informa
+tion, please see https://go.microsoft.com/fwlink/?linkid=2169931
+
+Event[20]
+  Log Name: System
+  Source: Microsoft-Windows-TPM-WMI
+  Date: 2025-07-08T14:26:09.6090000Z
+  Event ID: 1795
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The system firmware returned an error Access is denied. when attempting to update a Secure Boot variable. For more informa
+tion, please see https://go.microsoft.com/fwlink/?linkid=2169931
+
+Event[21]
+  Log Name: System
+  Source: EventLog
+  Date: 2025-07-09T09:33:49.2420000Z
+  Event ID: 6008
+  Task: None
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The previous system shutdown at 4:37:13 PM on ‎7/‎8/‎2025 was unexpected.
+
+Event[22]
+  Log Name: System
+  Source: Microsoft-Windows-Kernel-Power
+  Date: 2025-07-09T09:33:39.2190000Z
+  Event ID: 41
+  Task: N/A
+  Level: Critical
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The system has rebooted without cleanly shutting down first. This error could be caused if the system stopped responding,
+crashed, or lost power unexpectedly.
+
+Event[23]
+  Log Name: System
+  Source: Microsoft-Windows-TPM-WMI
+  Date: 2025-07-09T09:34:04.4260000Z
+  Event ID: 1795
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The system firmware returned an error Access is denied. when attempting to update a Secure Boot variable. For more informa
+tion, please see https://go.microsoft.com/fwlink/?linkid=2169931
+
+Event[24]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-09T09:36:38.4540000Z
+  Event ID: 10010
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-21-1649049209-2824995486-182282566-1000
+  User Name: ASCENDI-HTMOH1J\Ascendion
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The server {8CFC164F-4BE5-4FDD-94E9-E2AF73ED4A19} did not register with DCOM within the required timeout.
+
+Event[25]
+  Log Name: System
+  Source: Microsoft-Windows-WindowsUpdateClient
+  Date: 2025-07-09T10:16:11.9560000Z
+  Event ID: 20
+  Task: Windows Update Agent
+  Level: Error
+  Opcode: Installation
+  Keyword: Installation,Failure,
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+Installation Failure: Windows failed to install the following update with error 0x80073D02: 9MSSGKG348SP-MicrosoftWindows.
+Client.WebExperience.
+
+Event[26]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-09T10:16:42.5070000Z
+  Event ID: 10005
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+DCOM got error "1115" attempting to start the service wuauserv with arguments "Unavailable" in order to run the server:
+{E60687F7-01A1-40AA-86AC-DB1CBF673334}
+
+Event[27]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-09T10:16:42.6070000Z
+  Event ID: 10005
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+DCOM got error "1115" attempting to start the service wuauserv with arguments "Unavailable" in order to run the server:
+{E60687F7-01A1-40AA-86AC-DB1CBF673334}
+
+Event[28]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-09T10:16:42.8740000Z
+  Event ID: 10005
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+DCOM got error "1115" attempting to start the service wuauserv with arguments "Unavailable" in order to run the server:
+{E60687F7-01A1-40AA-86AC-DB1CBF673334}
+
+Event[29]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-09T10:16:43.3630000Z
+  Event ID: 10005
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-19
+  User Name: NT AUTHORITY\LOCAL SERVICE
+  Computer: ASCENDI-HTMOH1J
+  Description:
+DCOM got error "1115" attempting to start the service wuauserv with arguments "Unavailable" in order to run the server:
+{E60687F7-01A1-40AA-86AC-DB1CBF673334}
+
+Event[30]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-09T10:16:43.3730000Z
+  Event ID: 10005
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-19
+  User Name: NT AUTHORITY\LOCAL SERVICE
+  Computer: ASCENDI-HTMOH1J
+  Description:
+DCOM got error "1115" attempting to start the service wuauserv with arguments "Unavailable" in order to run the server:
+{E60687F7-01A1-40AA-86AC-DB1CBF673334}
+
+Event[31]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-09T10:16:45.0130000Z
+  Event ID: 10005
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+DCOM got error "1115" attempting to start the service wuauserv with arguments "Unavailable" in order to run the server:
+{E60687F7-01A1-40AA-86AC-DB1CBF673334}
+
+Event[32]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-09T10:16:45.6940000Z
+  Event ID: 10005
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+DCOM got error "1115" attempting to start the service wuauserv with arguments "Unavailable" in order to run the server:
+{E60687F7-01A1-40AA-86AC-DB1CBF673334}
+
+Event[33]
+  Log Name: System
+  Source: Microsoft-Windows-TPM-WMI
+  Date: 2025-07-09T10:24:50.1080000Z
+  Event ID: 1796
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The Secure Boot update failed to update a Secure Boot variable with error The system cannot find the file specified.. For
+more information, please see https://go.microsoft.com/fwlink/?linkid=2169931
+
+Event[34]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-09T14:34:27.2900000Z
+  Event ID: 7009
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-HTMOH1J
+  Description:
+A timeout was reached (30000 milliseconds) while waiting for the WaaSMedicSvc service to connect.
+
+Event[35]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-09T14:34:27.3130000Z
+  Event ID: 7000
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The WaaSMedicSvc service failed to start due to the following error:
+The service did not respond to the start or control request in a timely fashion.
+
+Event[36]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-09T14:34:27.4310000Z
+  Event ID: 10005
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+DCOM got error "1053" attempting to start the service WaaSMedicSvc with arguments "Unavailable" in order to run the server
+:
+{72566E27-1ABB-4EB3-B4F0-EB431CB1CB32}
+
+Event[37]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-09T15:03:44.8000000Z
+  Event ID: 10010
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-21-1649049209-2824995486-182282566-1000
+  User Name: ASCENDI-HTMOH1J\Ascendion
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The server Microsoft.AAD.BrokerPlugin_1000.19580.1000.2_neutral_neutral_cw5n1h2txyewy!Windows.Security.Authentication.Web.
+Core.BackgroundGetTokenTask.ClassId.WebAccountProvider did not register with DCOM within the required timeout.
+
+Event[38]
+  Log Name: System
+  Source: EventLog
+  Date: 2025-07-13T12:30:21.8730000Z
+  Event ID: 6008
+  Task: None
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The previous system shutdown at 4:52:26 PM on ‎7/‎9/‎2025 was unexpected.
+
+Event[39]
+  Log Name: System
+  Source: Microsoft-Windows-Kernel-Power
+  Date: 2025-07-13T12:28:47.7090000Z
+  Event ID: 41
+  Task: N/A
+  Level: Critical
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The system has rebooted without cleanly shutting down first. This error could be caused if the system stopped responding,
+crashed, or lost power unexpectedly.
+
+Event[40]
+  Log Name: System
+  Source: EventLog
+  Date: 2025-07-14T09:19:44.0310000Z
+  Event ID: 6008
+  Task: None
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The previous system shutdown at 12:30:22 PM on ‎7/‎13/‎2025 was unexpected.
+
+Event[41]
+  Log Name: System
+  Source: volmgr
+  Date: 2025-07-14T09:19:35.0430000Z
+  Event ID: 162
+  Task: None
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-HTMOH1J
+  Description:
+Dump file generation succeded.
+
+Event[42]
+  Log Name: System
+  Source: Microsoft-Windows-Kernel-Power
+  Date: 2025-07-14T09:19:35.2760000Z
+  Event ID: 41
+  Task: N/A
+  Level: Critical
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The system has rebooted without cleanly shutting down first. This error could be caused if the system stopped responding,
+crashed, or lost power unexpectedly.
+
+Event[43]
+  Log Name: System
+  Source: Microsoft-Windows-WER-SystemErrorReporting
+  Date: 2025-07-14T09:20:55.7750000Z
+  Event ID: 1001
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The computer has rebooted from a bugcheck.  The bugcheck was: 0x0000009f (0x0000000000000003, 0xffff808d78924080, 0xfffff8
+00165819f0, 0xffff808d7a2d1010). A dump was saved in: C:\WINDOWS\MEMORY.DMP. Report Id: 95109ec3-c818-4c4f-a49a-12044ad309
+bb.
+
+Event[44]
+  Log Name: System
+  Source: Microsoft-Windows-TPM-WMI
+  Date: 2025-07-14T09:24:51.6580000Z
+  Event ID: 1796
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The Secure Boot update failed to update a Secure Boot variable with error The system cannot find the file specified.. For
+more information, please see https://go.microsoft.com/fwlink/?linkid=2169931
+
+Event[45]
+  Log Name: System
+  Source: Microsoft-Windows-TPM-WMI
+  Date: 2025-07-14T09:24:51.6590000Z
+  Event ID: 1796
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The Secure Boot update failed to update a Secure Boot variable with error The system cannot find the file specified.. For
+more information, please see https://go.microsoft.com/fwlink/?linkid=2169931
+
+Event[46]
+  Log Name: System
+  Source: Microsoft-Windows-WindowsUpdateClient
+  Date: 2025-07-14T09:29:55.6650000Z
+  Event ID: 20
+  Task: Windows Update Agent
+  Level: Error
+  Opcode: Installation
+  Keyword: Installation,Failure,
+  User: S-1-5-18
+  User Name: NT AUTHORITY\SYSTEM
+  Computer: ASCENDI-HTMOH1J
+  Description:
+Installation Failure: Windows failed to install the following update with error 0x80073D02: 9N3RK8ZV2ZR8-Microsoft.Widgets
+PlatformRuntime.
+
+Event[47]
+  Log Name: System
+  Source: Microsoft-Windows-DistributedCOM
+  Date: 2025-07-14T10:45:11.8790000Z
+  Event ID: 10010
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: Classic,
+  User: S-1-5-21-1649049209-2824995486-182282566-1000
+  User Name: ASCENDI-HTMOH1J\Ascendion
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The server {AB8902B4-09CA-4BB6-B78D-A8F59079A8D5} did not register with DCOM within the required timeout.
+
+Event[48]
+  Log Name: System
+  Source: Microsoft-Windows-Windows Firewall With Advanced Security
+  Date: 2025-07-14T10:36:00.2490000Z
+  Event ID: 2042
+  Task: N/A
+  Level: Error
+  Opcode: Info
+  Keyword: N/A
+  User: S-1-5-19
+  User Name: NT AUTHORITY\LOCAL SERVICE
+  Computer: ASCENDI-HTMOH1J
+  Description:
+Config Read Failed
+
+Config: 18
+Error:  More data is available.
+
+Event[49]
+  Log Name: System
+  Source: Service Control Manager
+  Date: 2025-07-14T10:57:32.1150000Z
+  Event ID: 7023
+  Task: N/A
+  Level: Error
+  Opcode: N/A
+  Keyword: Classic,
+  User: N/A
+  User Name: N/A
+  Computer: ASCENDI-HTMOH1J
+  Description:
+The Update Orchestrator Service service terminated with the following error:
+%%2149884192
+
+--- Exporting all System Error logs to CSV ---
+Exported to C:\Monitoring\system_errors.csv
+
+==================================================
+Executing Commands from Pages 4 & 5: IIS & .NET
+==================================================
+
+--- Listing all stopped services ---
+
+Status      : Stopped
+Name        : AarSvc_53c88
+DisplayName : Agent Activation Runtime_53c88
+
+
+Status      : Stopped
+Name        : ADPSvc
+DisplayName : ADPSvc
+
+
+Status      : Stopped
+Name        : ALG
+DisplayName : Application Layer Gateway Service
+
+
+Status      : Stopped
+Name        : AppIDSvc
+DisplayName : Application Identity
+
+
+Status      : Stopped
+Name        : AppMgmt
+DisplayName : Application Management
+
+
+Status      : Stopped
+Name        : AppReadiness
+DisplayName : App Readiness
+
+
+Status      : Stopped
+Name        : AppVClient
+DisplayName : Microsoft App-V Client
+
+
+Status      : Stopped
+Name        : AppXSvc
+DisplayName : AppX Deployment Service (AppXSVC)
+
+
+Status      : Stopped
+Name        : ApxSvc
+DisplayName : Windows Virtual Audio Device Proxy Service
+
+
+Status      : Stopped
+Name        : aspnet_state
+DisplayName : ASP.NET State Service
+
+
+Status      : Stopped
+Name        : AssignedAccessManagerSvc
+DisplayName : AssignedAccessManager Service
+
+
+Status      : Stopped
+Name        : autotimesvc
+DisplayName : Cellular Time
+
+
+Status      : Stopped
+Name        : AxInstSV
+DisplayName : ActiveX Installer (AxInstSV)
+
+
+Status      : Stopped
+Name        : BcastDVRUserService_53c88
+DisplayName : GameDVR and Broadcast User Service_53c88
+
+
+Status      : Stopped
+Name        : BITS
+DisplayName : Background Intelligent Transfer Service
+
+
+Status      : Stopped
+Name        : BluetoothUserService_53c88
+DisplayName : Bluetooth User Support Service_53c88
+
+
+Status      : Stopped
+Name        : BTAGService
+DisplayName : Bluetooth Audio Gateway Service
+
+
+Status      : Stopped
+Name        : BthAvctpSvc
+DisplayName : AVCTP service
+
+
+Status      : Stopped
+Name        : bthserv
+DisplayName : Bluetooth Support Service
+
+
+Status      : Stopped
+Name        : CaptureService_53c88
+DisplayName : CaptureService_53c88
+
+
+Status      : Stopped
+Name        : CertPropSvc
+DisplayName : Certificate Propagation
+
+
+Status      : Stopped
+Name        : CloudBackupRestoreSvc_53c88
+DisplayName : Cloud Backup and Restore Service_53c88
+
+
+Status      : Stopped
+Name        : cloudidsvc
+DisplayName : Microsoft Cloud Identity Service
+
+
+Status      : Stopped
+Name        : COMSysApp
+DisplayName : COM+ System Application
+
+
+Status      : Stopped
+Name        : ConsentUxUserSvc_53c88
+DisplayName : ConsentUX User Service_53c88
+
+
+Status      : Stopped
+Name        : CredentialEnrollmentManagerUserSvc_53c88
+DisplayName : CredentialEnrollmentManagerUserSvc_53c88
+
+
+Status      : Stopped
+Name        : CscService
+DisplayName : Offline Files
+
+
+Status      : Stopped
+Name        : dcsvc
+DisplayName : Declared Configuration(DC) service
+
+
+Status      : Stopped
+Name        : defragsvc
+DisplayName : Optimize drives
+
+
+Status      : Stopped
+Name        : DeviceAssociationBrokerSvc_53c88
+DisplayName : DeviceAssociationBroker_53c88
+
+
+Status      : Stopped
+Name        : DeviceAssociationService
+DisplayName : Device Association Service
+
+
+Status      : Stopped
+Name        : DeviceInstall
+DisplayName : Device Install Service
+
+
+Status      : Stopped
+Name        : DevicePickerUserSvc_53c88
+DisplayName : DevicePicker_53c88
+
+
+Status      : Stopped
+Name        : DevicesFlowUserSvc_53c88
+DisplayName : DevicesFlow_53c88
+
+
+Status      : Stopped
+Name        : diagsvc
+DisplayName : Diagnostic Execution Service
+
+
+Status      : Stopped
+Name        : DialogBlockingService
+DisplayName : DialogBlockingService
+
+
+Status      : Stopped
+Name        : DmEnrollmentSvc
+DisplayName : Device Management Enrollment Service
+
+
+Status      : Stopped
+Name        : dmwappushservice
+DisplayName : Device Management Wireless Application Protocol (WAP) Push message Routing Service
+
+
+Status      : Stopped
+Name        : dot3svc
+DisplayName : Wired AutoConfig
+
+
+Status      : Stopped
+Name        : DsmSvc
+DisplayName : Device Setup Manager
+
+
+Status      : Stopped
+Name        : EapHost
+DisplayName : Extensible Authentication Protocol
+
+
+Status      : Stopped
+Name        : edgeupdate
+DisplayName : Microsoft Edge Update Service (edgeupdate)
+
+
+Status      : Stopped
+Name        : edgeupdatem
+DisplayName : Microsoft Edge Update Service (edgeupdatem)
+
+
+Status      : Stopped
+Name        : EFS
+DisplayName : Encrypting File System (EFS)
+
+
+Status      : Stopped
+Name        : embeddedmode
+DisplayName : Embedded Mode
+
+
+Status      : Stopped
+Name        : EntAppSvc
+DisplayName : Enterprise App Management Service
+
+
+Status      : Stopped
+Name        : fdPHost
+DisplayName : Function Discovery Provider Host
+
+
+Status      : Stopped
+Name        : FDResPub
+DisplayName : Function Discovery Resource Publication
+
+
+Status      : Stopped
+Name        : fhsvc
+DisplayName : File History Service
+
+
+Status      : Stopped
+Name        : FrameServer
+DisplayName : Windows Camera Frame Server
+
+
+Status      : Stopped
+Name        : FrameServerMonitor
+DisplayName : Windows Camera Frame Server Monitor
+
+
+Status      : Stopped
+Name        : GameInputSvc
+DisplayName : GameInput Service
+
+
+Status      : Stopped
+Name        : gpsvc
+DisplayName : Group Policy Client
+
+
+Status      : Stopped
+Name        : GraphicsPerfSvc
+DisplayName : GraphicsPerfSvc
+
+
+Status      : Stopped
+Name        : hidserv
+DisplayName : Human Interface Device Service
+
+
+Status      : Stopped
+Name        : hpatchmon
+DisplayName : Hotpatch Monitoring Service
+
+
+Status      : Stopped
+Name        : HvHost
+DisplayName : HV Host Service
+
+
+Status      : Stopped
+Name        : icssvc
+DisplayName : Windows Mobile Hotspot Service
+
+
+Status      : Stopped
+Name        : IKEEXT
+DisplayName : IKE and AuthIP IPsec Keying Modules
+
+
+Status      : Stopped
+Name        : IpxlatCfgSvc
+DisplayName : IP Translation Configuration Service
+
+
+Status      : Stopped
+Name        : KtmRm
+DisplayName : KtmRm for Distributed Transaction Coordinator
+
+
+Status      : Stopped
+Name        : lltdsvc
+DisplayName : Link-Layer Topology Discovery Mapper
+
+
+Status      : Stopped
+Name        : LocalKdc
+DisplayName : Kerberos Local Key Distribution Center
+
+
+Status      : Stopped
+Name        : LxpSvc
+DisplayName : Language Experience Service
+
+
+Status      : Stopped
+Name        : MapsBroker
+DisplayName : Downloaded Maps Manager
+
+
+Status      : Stopped
+Name        : McmSvc
+DisplayName : This service provides profile management for mobile connectivity modules
+
+
+Status      : Stopped
+Name        : McpManagementService
+DisplayName : McpManagementService
+
+
+Status      : Stopped
+Name        : MessagingService_53c88
+DisplayName : MessagingService_53c88
+
+
+Status      : Stopped
+Name        : MicrosoftEdgeElevationService
+DisplayName : Microsoft Edge Elevation Service (MicrosoftEdgeElevationService)
+
+
+Status      : Stopped
+Name        : MozillaMaintenance
+DisplayName : Mozilla Maintenance Service
+
+
+Status      : Stopped
+Name        : MSDTC
+DisplayName : Distributed Transaction Coordinator
+
+
+Status      : Stopped
+Name        : MSiSCSI
+DisplayName : Microsoft iSCSI Initiator Service
+
+
+Status      : Stopped
+Name        : msiserver
+DisplayName : Windows Installer
+
+
+Status      : Stopped
+Name        : MsKeyboardFilter
+DisplayName : Microsoft Keyboard Filter
+
+
+Status      : Stopped
+Name        : NaturalAuthentication
+DisplayName : Natural Authentication
+
+
+Status      : Stopped
+Name        : NcaSvc
+DisplayName : Network Connectivity Assistant
+
+
+Status      : Stopped
+Name        : NcdAutoSetup
+DisplayName : Network Connected Devices Auto-Setup
+
+
+Status      : Stopped
+Name        : Netlogon
+DisplayName : Netlogon
+
+
+Status      : Stopped
+Name        : Netman
+DisplayName : Network Connections
+
+
+Status      : Stopped
+Name        : NetSetupSvc
+DisplayName : Network Setup Service
+
+
+Status      : Stopped
+Name        : NetTcpPortSharing
+DisplayName : Net.Tcp Port Sharing Service
+
+
+Status      : Stopped
+Name        : NgcCtnrSvc
+DisplayName : Microsoft Passport Container
+
+
+Status      : Stopped
+Name        : NgcSvc
+DisplayName : Microsoft Passport
+
+
+Status      : Stopped
+Name        : NlaSvc
+DisplayName : Network Location Awareness
+
+
+Status      : Stopped
+Name        : NPSMSvc_53c88
+DisplayName : Now Playing Session Manager Service_53c88
+
+
+Status      : Stopped
+Name        : P9RdrService_53c88
+DisplayName : P9RdrService_53c88
+
+
+Status      : Stopped
+Name        : PeerDistSvc
+DisplayName : BranchCache
+
+
+Status      : Stopped
+Name        : PenService_53c88
+DisplayName : PenService_53c88
+
+
+Status      : Stopped
+Name        : perceptionsimulation
+DisplayName : Windows Perception Simulation Service
+
+
+Status      : Stopped
+Name        : PerfHost
+DisplayName : Performance Counter DLL Host
+
+
+Status      : Stopped
+Name        : PhoneSvc
+DisplayName : Phone Service
+
+
+Status      : Stopped
+Name        : PimIndexMaintenanceSvc_53c88
+DisplayName : Contact Data_53c88
+
+
+Status      : Stopped
+Name        : PrintDeviceConfigurationService
+DisplayName : Print Device Configuration Service
+
+
+Status      : Stopped
+Name        : PrintNotify
+DisplayName : Printer Extensions and Notifications
+
+
+Status      : Stopped
+Name        : PrintScanBrokerService
+DisplayName : PrintScanBrokerService
+
+
+Status      : Stopped
+Name        : PrintWorkflowUserSvc_53c88
+DisplayName : PrintWorkflow_53c88
+
+
+Status      : Stopped
+Name        : PushToInstall
+DisplayName : Windows PushToInstall Service
+
+
+Status      : Stopped
+Name        : QWAVE
+DisplayName : Quality Windows Audio Video Experience
+
+
+Status      : Stopped
+Name        : RasAuto
+DisplayName : Remote Access Auto Connection Manager
+
+
+Status      : Stopped
+Name        : refsdedupsvc
+DisplayName : ReFS Dedup Service
+
+
+Status      : Stopped
+Name        : RemoteAccess
+DisplayName : Routing and Remote Access
+
+
+Status      : Stopped
+Name        : RemoteRegistry
+DisplayName : Remote Registry
+
+
+Status      : Stopped
+Name        : RetailDemo
+DisplayName : Retail Demo Service
+
+
+Status      : Stopped
+Name        : RpcLocator
+DisplayName : Remote Procedure Call (RPC) Locator
+
+
+Status      : Stopped
+Name        : SCardSvr
+DisplayName : Smart Card
+
+
+Status      : Stopped
+Name        : ScDeviceEnum
+DisplayName : Smart Card Device Enumeration Service
+
+
+Status      : Stopped
+Name        : SCPolicySvc
+DisplayName : Smart Card Removal Policy
+
+
+Status      : Stopped
+Name        : SDRSVC
+DisplayName : Windows Backup
+
+
+Status      : Stopped
+Name        : seclogon
+DisplayName : Secondary Logon
+
+
+Status      : Stopped
+Name        : SEMgrSvc
+DisplayName : Payments and NFC/SE Manager
+
+
+Status      : Stopped
+Name        : Sense
+DisplayName : Windows Defender Advanced Threat Protection Service
+
+
+Status      : Stopped
+Name        : SensorDataService
+DisplayName : Sensor Data Service
+
+
+Status      : Stopped
+Name        : SensrSvc
+DisplayName : Sensor Monitoring Service
+
+
+Status      : Stopped
+Name        : SessionEnv
+DisplayName : Remote Desktop Configuration
+
+
+Status      : Stopped
+Name        : SharedAccess
+DisplayName : Internet Connection Sharing (ICS)
+
+
+Status      : Stopped
+Name        : shpamsvc
+DisplayName : Shared PC Account Manager
+
+
+Status      : Stopped
+Name        : smphost
+DisplayName : Microsoft Storage Spaces SMP
+
+
+Status      : Stopped
+Name        : SmsRouter
+DisplayName : Microsoft Windows SMS Router Service.
+
+
+Status      : Stopped
+Name        : SNMPTrap
+DisplayName : SNMP Trap
+
+
+Status      : Stopped
+Name        : sppsvc
+DisplayName : Software Protection
+
+
+Status      : Stopped
+Name        : ssh-agent
+DisplayName : OpenSSH Authentication Agent
+
+
+Status      : Stopped
+Name        : StiSvc
+DisplayName : Windows Image Acquisition (WIA)
+
+
+Status      : Stopped
+Name        : svsvc
+DisplayName : Spot Verifier
+
+
+Status      : Stopped
+Name        : swprv
+DisplayName : Microsoft Software Shadow Copy Provider
+
+
+Status      : Stopped
+Name        : TapiSrv
+DisplayName : Telephony
+
+
+Status      : Stopped
+Name        : TermService
+DisplayName : Remote Desktop Services
+
+
+Status      : Stopped
+Name        : TieringEngineService
+DisplayName : Storage Tiers Management
+
+
+Status      : Stopped
+Name        : Tomcat9
+DisplayName : Apache Tomcat 9.0 Tomcat9
+
+
+Status      : Stopped
+Name        : TroubleshootingSvc
+DisplayName : Recommended Troubleshooting Service
+
+
+Status      : Stopped
+Name        : TrustedInstaller
+DisplayName : Windows Modules Installer
+
+
+Status      : Stopped
+Name        : tzautoupdate
+DisplayName : Auto Time Zone Updater
+
+
+Status      : Stopped
+Name        : UevAgentService
+DisplayName : User Experience Virtualization Service
+
+
+Status      : Stopped
+Name        : UmRdpService
+DisplayName : Remote Desktop Services UserMode Port Redirector
+
+
+Status      : Stopped
+Name        : UnistoreSvc_53c88
+DisplayName : User Data Storage_53c88
+
+
+Status      : Stopped
+Name        : upnphost
+DisplayName : UPnP Device Host
+
+
+Status      : Stopped
+Name        : UserDataSvc_53c88
+DisplayName : User Data Access_53c88
+
+
+Status      : Stopped
+Name        : vds
+DisplayName : Virtual Disk
+
+
+Status      : Stopped
+Name        : vmicguestinterface
+DisplayName : Hyper-V Guest Service Interface
+
+
+Status      : Stopped
+Name        : vmicheartbeat
+DisplayName : Hyper-V Heartbeat Service
+
+
+Status      : Stopped
+Name        : vmickvpexchange
+DisplayName : Hyper-V Data Exchange Service
+
+
+Status      : Stopped
+Name        : vmicrdv
+DisplayName : Hyper-V Remote Desktop Virtualization Service
+
+
+Status      : Stopped
+Name        : vmicshutdown
+DisplayName : Hyper-V Guest Shutdown Service
+
+
+Status      : Stopped
+Name        : vmictimesync
+DisplayName : Hyper-V Time Synchronization Service
+
+
+Status      : Stopped
+Name        : vmicvmsession
+DisplayName : Hyper-V PowerShell Direct Service
+
+
+Status      : Stopped
+Name        : vmicvss
+DisplayName : Hyper-V Volume Shadow Copy Requestor
+
+
+Status      : Stopped
+Name        : VSInstallerElevationService
+DisplayName : Visual Studio Installer Elevation Service
+
+
+Status      : Stopped
+Name        : VSS
+DisplayName : Volume Shadow Copy
+
+
+Status      : Stopped
+Name        : VSStandardCollectorService150
+DisplayName : Visual Studio Standard Collector Service 150
+
+
+Status      : Stopped
+Name        : W3LOGSVC
+DisplayName : W3C Logging Service
+
+
+Status      : Stopped
+Name        : WaaSMedicSvc
+DisplayName : WaaSMedicSvc
+
+
+Status      : Stopped
+Name        : WalletService
+DisplayName : WalletService
+
+
+Status      : Stopped
+Name        : WarpJITSvc
+DisplayName : Warp JIT Service
+
+
+Status      : Stopped
+Name        : wbengine
+DisplayName : Block Level Backup Engine Service
+
+
+Status      : Stopped
+Name        : WbioSrvc
+DisplayName : Windows Biometric Service
+
+
+Status      : Stopped
+Name        : wcncsvc
+DisplayName : Windows Connect Now - Config Registrar
+
+
+Status      : Stopped
+Name        : WdiServiceHost
+DisplayName : Diagnostic Service Host
+
+
+Status      : Stopped
+Name        : WebClient
+DisplayName : WebClient
+
+
+Status      : Stopped
+Name        : Wecsvc
+DisplayName : Windows Event Collector
+
+
+Status      : Stopped
+Name        : WEPHOSTSVC
+DisplayName : Windows Encryption Provider Host Service
+
+
+Status      : Stopped
+Name        : wercplsupport
+DisplayName : Problem Reports Control Panel Support
+
+
+Status      : Stopped
+Name        : WerSvc
+DisplayName : Windows Error Reporting Service
+
+
+Status      : Stopped
+Name        : WFDSConMgrSvc
+DisplayName : Wi-Fi Direct Services Connection Manager Service
+
+
+Status      : Stopped
+Name        : WiaRpc
+DisplayName : Still Image Acquisition Events
+
+
+Status      : Stopped
+Name        : WinRM
+DisplayName : Windows Remote Management (WS-Management)
+
+
+Status      : Stopped
+Name        : wisvc
+DisplayName : Windows Insider Service
+
+
+Status      : Stopped
+Name        : WlanSvc
+DisplayName : WLAN AutoConfig
+
+
+Status      : Stopped
+Name        : wlidsvc
+DisplayName : Microsoft Account Sign-in Assistant
+
+
+Status      : Stopped
+Name        : wlpasvc
+DisplayName : Local Profile Assistant Service
+
+
+Status      : Stopped
+Name        : WManSvc
+DisplayName : Windows Management Service
+
+
+Status      : Stopped
+Name        : wmiApSrv
+DisplayName : WMI Performance Adapter
+
+
+Status      : Stopped
+Name        : WMPNetworkSvc
+DisplayName : Windows Media Player Network Sharing Service
+
+
+Status      : Stopped
+Name        : workfolderssvc
+DisplayName : Work Folders
+
+
+Status      : Stopped
+Name        : WpcMonSvc
+DisplayName : Parental Controls
+
+
+Status      : Stopped
+Name        : WPDBusEnum
+DisplayName : Portable Device Enumerator Service
+
+
+Status      : Stopped
+Name        : wuauserv
+DisplayName : Windows Update
+
+
+Status      : Stopped
+Name        : WwanSvc
+DisplayName : WWAN AutoConfig
+
+
+Status      : Stopped
+Name        : XblAuthManager
+DisplayName : Xbox Live Auth Manager
+
+
+Status      : Stopped
+Name        : XblGameSave
+DisplayName : Xbox Live Game Save
+
+
+Status      : Stopped
+Name        : XboxGipSvc
+DisplayName : Xbox Accessory Management Service
+
+
+Status      : Stopped
+Name        : XboxNetApiSvc
+DisplayName : Xbox Live Networking Service
+
+
+Status      : Stopped
+Name        : ZTHELPER
+DisplayName : ZTDNS Helper service
+
+
+--- Listing all established network connections ---
+  TCP    10.0.2.15:52111        4.213.25.240:443       ESTABLISHED
+  TCP    10.0.2.15:52754        140.82.114.26:443      ESTABLISHED
+  TCP    10.0.2.15:52765        150.171.74.16:443      ESTABLISHED
+  TCP    10.0.2.15:52815        150.171.74.16:443      ESTABLISHED
+  TCP    10.0.2.15:52886        104.86.188.184:443     ESTABLISHED
+  TCP    127.0.0.1:49672        127.0.0.1:49673        ESTABLISHED
+  TCP    127.0.0.1:49673        127.0.0.1:49672        ESTABLISHED
+  TCP    127.0.0.1:49674        127.0.0.1:49675        ESTABLISHED
+  TCP    127.0.0.1:49675        127.0.0.1:49674        ESTABLISHED
+
+--- Importing IIS WebAdministration Module ---
+
+--- Enabling IIS Logging ---
+
+--- Monitoring Key IIS Performance Counters for 1 minute ---
+Get-Counter : The specified object was not found on the computer.
+At line:76 char:5
++     Get-Counter -Counter $IISCounters -SampleInterval 5 -MaxSamples 1 ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidResult: (:) [Get-Counter], Exception
+    + FullyQualifiedErrorId : CounterApiError,Microsoft.PowerShell.Commands.GetCounterCommand
+Get-Counter : The specified object was not found on the computer.
+At line:76 char:5
++     Get-Counter -Counter $IISCounters -SampleInterval 5 -MaxSamples 1 ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidResult: (:) [Get-Counter], Exception
+    + FullyQualifiedErrorId : CounterApiError,Microsoft.PowerShell.Commands.GetCounterCommand
+
+Get-Counter : The specified object was not found on the computer.
+At line:76 char:5
++     Get-Counter -Counter $IISCounters -SampleInterval 5 -MaxSamples 1 ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidResult: (:) [Get-Counter], Exception
+    + FullyQualifiedErrorId : CounterApiError,Microsoft.PowerShell.Commands.GetCounterCommand
+Get-Counter : The specified object was not found on the computer.
+At line:76 char:5
++     Get-Counter -Counter $IISCounters -SampleInterval 5 -MaxSamples 1 ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidResult: (:) [Get-Counter], Exception
+    + FullyQualifiedErrorId : CounterApiError,Microsoft.PowerShell.Commands.GetCounterCommand
+
+Get-Counter : The specified object was not found on the computer.
+At line:76 char:5
++     Get-Counter -Counter $IISCounters -SampleInterval 5 -MaxSamples 1 ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidResult: (:) [Get-Counter], Exception
+    + FullyQualifiedErrorId : CounterApiError,Microsoft.PowerShell.Commands.GetCounterCommand
+Get-Counter : The specified object was not found on the computer.
+At line:76 char:5
++     Get-Counter -Counter $IISCounters -SampleInterval 5 -MaxSamples 1 ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidResult: (:) [Get-Counter], Exception
+    + FullyQualifiedErrorId : CounterApiError,Microsoft.PowerShell.Commands.GetCounterCommand
+
+
+--- Listing IIS Application Pools ---
+
+Name  : DefaultAppPool
+State : Started
+
+
+Name  : .NET v4.5 Classic
+State : Started
+
+
+Name  : .NET v4.5
+State : Started
+
+
+--- Monitoring .NET CLR Performance Counters ---
+
+Timestamp : 8/26/2025 11:44:09 AM
+Readings  : \\ascendi-htmoh1j\.net clr memory(_global_)\% time in gc :
+            0.247931596880763
+
+            \\ascendi-htmoh1j\.net clr exceptions(_global_)\# of exceps thrown / sec :
+            0
+
+
+
+
+Timestamp : 8/26/2025 11:44:10 AM
+Readings  : \\ascendi-htmoh1j\.net clr memory(_global_)\% time in gc :
+            0.247931596880763
+
+            \\ascendi-htmoh1j\.net clr exceptions(_global_)\# of exceps thrown / sec :
+            0
+
+
+
+
+Timestamp : 8/26/2025 11:44:11 AM
+Readings  : \\ascendi-htmoh1j\.net clr memory(_global_)\% time in gc :
+            0.247931596880763
+
+            \\ascendi-htmoh1j\.net clr exceptions(_global_)\# of exceps thrown / sec :
+            0
+
+
+
+
+==================================================
+Executing Script from Page 6: Custom Monitoring
+==================================================
+
+--- Running the custom monitoring script for 1 minute ---
+Starting monitoring... Output: C:\Monitoring\performance_20250826_114411.log
+Duration: 1 minutes, Interval: 5 seconds
+PS>TerminatingError(Get-Counter): "A counter with a negative denominator value was detected."
+Get-Counter : A counter with a negative denominator value was detected.
+At C:\Monitoring\CustomMonitoring.ps1:17 char:13
++     $cpu = (Get-Counter "\Processor(_Total)\% Processor Time").Counte ...
++             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidResult: (:) [Get-Counter], Exception
+    + FullyQualifiedErrorId : CounterApiError,Microsoft.PowerShell.Commands.GetCounterCommand
+Get-Counter : A counter with a negative denominator value was detected.
+At C:\Monitoring\CustomMonitoring.ps1:17 char:13
++     $cpu = (Get-Counter "\Processor(_Total)\% Processor Time").Counte ...
++             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : InvalidResult: (:) [Get-Counter], Exception
+    + FullyQualifiedErrorId : CounterApiError,Microsoft.PowerShell.Commands.GetCounterCommand
+
+2025-08-26 11:44:11, CPU:0%, Memory:4095 MB, DiskQueue:0
+2025-08-26 11:44:18, CPU:1.87%, Memory:4096 MB, DiskQueue:0
+2025-08-26 11:44:26, CPU:22.76%, Memory:4061 MB, DiskQueue:0
+2025-08-26 11:44:35, CPU:14.61%, Memory:4042 MB, DiskQueue:0
+2025-08-26 11:44:44, CPU:15.62%, Memory:4048 MB, DiskQueue:0
+2025-08-26 11:44:54, CPU:23.98%, Memory:4051 MB, DiskQueue:0
+2025-08-26 11:45:04, CPU:32.3%, Memory:4048 MB, DiskQueue:0
+Monitoring completed. Log saved to: C:\Monitoring\performance_20250826_114411.log
+
+==================================================
+All commands have been executed.
+==================================================
+**********************
+Windows PowerShell transcript end
+End time: 20250826114515
+**********************
