@@ -1,12 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\MainProgram",
     "\\MainProgram\\MainProgram",
     "\\MainProgram\\PetstoreDesktop",
     "\\MainProgram\\PetstoreDesktop\\Properties",
-    "\\Week 3 assignments"
+    "\\PostmanTestcases"
   ],
-  "SelectedNode": "\\MainProgram\\MainProgram\\DemoUser.cs",
+  "SelectedNode": "\\PostmanTestcases",
   "PreviewInSolutionExplorer": false
 }
